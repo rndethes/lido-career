@@ -125,13 +125,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-control-label">LinkedIn</label>
-                                        <input type="text" v-model="data_diri.linkedin_candidate" class="form-control"
-                                            name="linkedin_candidate" placeholder="Masukkan URL LinkedIn">
+                                        <input type="text" v-model="data_diri.socialmedia2_candidate" class="form-control"
+                                            name="socialmedia2_candidate" placeholder="Masukkan USERNAME LinkedIn">
                                     </div>
                                     <div class="form-group mt-2">
                                         <label class="form-control-label">Instagram</label>
-                                        <input type="text" v-model="data_diri.instagram_candidate" class="form-control"
-                                            name="instagram_candidate" placeholder="Masukkan URL Instagram">
+                                        <input type="text" v-model="data_diri.socialmedia_candidate" class="form-control"
+                                            name="socialmedia2_candidate" placeholder="Masukkan USERNAME Instagram">
                                     </div>
                                 </div>
                             </div>
@@ -885,8 +885,8 @@
                         jk_candidate: '<?= $biodata["jk_candidate"] ?>',
                         religion_candidate: '<?= $biodata["religion_candidate"] ?? "" ?>',
                         marital_candidate: '<?= $biodata["marital_candidate"] ?? "" ?>',
-                        linkedin_candidate: '<?= $biodata["linkedin_candidate"] ?? "" ?>',
-                        instagram_candidate: '<?= $biodata["instagram_candidate"] ?? "" ?>'
+                        socialmedia2_candidate: '<?= $biodata["socialmedia2_candidate"] ?? "" ?>',
+                        socialmedia_candidate: '<?= $biodata["socialmedia_candidate"] ?? "" ?>'
                     },
                     pendidikan: {
                         study_level: '<?= $laststudy["jenjang_"] ?>',
@@ -1323,8 +1323,8 @@
                     data.append("jk_candidate", this.data_diri.jk_candidate);
                     data.append("religion_candidate", this.data_diri.religion_candidate);
                     data.append("marital_candidate", this.data_diri.marital_candidate);
-                    data.append("linkedin_candidate", this.data_diri.linkedin_candidate);
-                    data.append("instagram_candidate", this.data_diri.instagram_candidate);
+                    data.append("socialmedia2_candidate", this.data_diri.socialmedia2_candidate);
+                    data.append("socialmedia_candidate", this.data_diri.socialmedia_candidate);
 
                     axios.post(
                             '<?= site_url("candidate-biodata/update-biodata/save-data-diri") ?>',

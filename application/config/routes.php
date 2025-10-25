@@ -55,6 +55,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
 
+
 $route['pengaturan-landing-page'] = 'PengaturanLandingPage';
 
 $route['pengaturan-timeline'] = 'PengaturanTimeline';
@@ -98,6 +99,8 @@ $route['candidate-biodata/update-biodata/save-data-pendukung'] = 'CandidateBioda
 $route['candidate-biodata/update-biodata/delete-data-pendukung'] = 'CandidateBiodata/delete_data_pendukung';
 $route['candidate-biodata/update-biodata/save-data-profile'] = 'CandidateBiodata/save_data_profile';
 $route['candidate-biodata/change-password'] = 'CandidateBiodata/change_password';
+
+$route['candidate-biodata/cetak-cv/(:num)'] = 'CandidateBiodata/cetak_cv/$1';
 
 $route['candidate-api/my-experience-as-json'] = 'KandidatApi/my_experience_as_json';
 $route['candidate-api/my-file-as-json'] = 'KandidatApi/my_file_as_json';

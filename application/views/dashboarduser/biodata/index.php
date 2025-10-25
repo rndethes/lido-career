@@ -142,16 +142,26 @@
 <h6>Media Sosial</h6>
 <div class="sub-bio">
     <?php
-        // Ambil data sosmed dari database
-        $linkedin  = $biodata['linkedin_candidate'] ?? '';
-        $instagram = $biodata['instagram_candidate'] ?? '';
+        // Ambil username sosmed dari database
+        $linkedin  = $biodata['socialmedia2_candidate'] ?? '';
+        $instagram = $biodata['socialmedia_candidate'] ?? '';
 
-        // Fungsi untuk memotong teks panjang
-        function shorten_link($url, $length = 30) {
-            if (strlen($url) > $length) {
-                return substr($url, 0, $length) . '...';
+        // Fungsi bikin URL otomatis
+        function build_social_url($username, $platform) {
+            $username = trim($username);
+            if (empty($username)) return '';
+
+            switch ($platform) {
+                case 'linkedin':
+                    // hapus tanda @ jika ada
+                    $username = ltrim($username, '@');
+                    return 'https://www.linkedin.com/in/' . $username;
+                case 'instagram':
+                    $username = ltrim($username, '@');
+                    return 'https://www.instagram.com/' . $username . '/';
+                default:
+                    return $username;
             }
-            return $url;
         }
 
         // Jika dua-duanya kosong
@@ -159,14 +169,21 @@
             echo '<span>TIDAK DICANTUMKAN</span>';
         } else {
             echo '<ul class="list-unstyled mb-0">';
+
+            // LinkedIn
             if (!empty($linkedin)) {
-                echo '<li><strong>LinkedIn:</strong> <a href="' . htmlspecialchars($linkedin) . '" target="_blank">' 
-                     . htmlspecialchars(shorten_link($linkedin)) . '</a></li>';
+                $linkedinUrl = build_social_url($linkedin, 'linkedin');
+                echo '<li><strong>LinkedIn:</strong> <a href="' . htmlspecialchars($linkedinUrl) . '" target="_blank">@' 
+                     . htmlspecialchars(ltrim($linkedin, '@')) . '</a></li>';
             }
+
+            // Instagram
             if (!empty($instagram)) {
-                echo '<li><strong>Instagram:</strong> <a href="' . htmlspecialchars($instagram) . '" target="_blank">' 
-                     . htmlspecialchars(shorten_link($instagram)) . '</a></li>';
+                $instagramUrl = build_social_url($instagram, 'instagram');
+                echo '<li><strong>Instagram:</strong> <a href="' . htmlspecialchars($instagramUrl) . '" target="_blank">@' 
+                     . htmlspecialchars(ltrim($instagram, '@')) . '</a></li>';
             }
+
             echo '</ul>';
         }
     ?>

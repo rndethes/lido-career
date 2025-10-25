@@ -51,6 +51,13 @@ class Kandidat_model extends CI_Model
         return $trandata;
     }
 
+    public function getBiodataById($id)
+{
+    
+    return $this->db->get_where('candidate', ['id' => $id])->row_array();
+}
+
+
   public function getBiodata()
 {
     $id = getLoggedInUser('id');
@@ -472,8 +479,8 @@ class Kandidat_model extends CI_Model
             'religion_candidate',
             'jk_candidate',
             'marital_candidate',
-            'linkedin_candidate',
-            'instagram_candidate',
+            'socialmedia2_candidate',
+            'socialmedia_candidate',
         ])) {
             $this->db->set($k, $v);
         }

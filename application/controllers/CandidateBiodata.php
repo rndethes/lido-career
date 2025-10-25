@@ -76,7 +76,7 @@ class CandidateBiodata extends CI_Controller
                 }
             }
 
-            redirect(site_url('candidate-biodata/change-password'));
+            redirect(site_url('candidatebiodata/change-password'));
         } else {
             $this->load->view('dashboarduser/change-password/index');
         }

@@ -51,23 +51,11 @@ class Kandidat_model extends CI_Model
         return $trandata;
     }
 
-    public function getBiodata($id)
-    {
-        $biodata = $this->db->get_where('candidate', ['id' => $id])->row_array();
-
-        $birthdate = explode(',', $biodata['birthdate_candidate']);
-
-        if ($birthdate && count($birthdate) > 1) {
-            $biodata['tempat_lahir_'] = $birthdate[0];
-            $biodata['tanggal_lahir_'] = $birthdate[1];
-        } else {
-            $biodata['tempat_lahir_'] = null;
-            $biodata['tanggal_lahir_'] = null;
-        }
-
-        return $biodata;
-    }
-
+  public function getBiodata()
+{
+    $id = getLoggedInUser('id');
+    return $this->db->get_where('biodata', ['id' => $id])->row_array();
+}
     public function applyCandidateStep($id_candidate, $id_job_vacancy, $history_timeline_id)
     {
         // Update state
@@ -456,51 +444,61 @@ class Kandidat_model extends CI_Model
         return $this->db->affected_rows() > 0;
     }
 
-    public function saveKandidat(array $data)
-    {
-        $mode = 'insert';
+   public function saveKandidat(array $data)
+{
+    $mode = !empty($data['id']) ? 'update' : 'insert';
 
-        if (isset($data['id'])) {
-            $mode = 'update';
+    $birthdate_candidate = '';
+    $tempatlhr_candidate = '';
+
+    foreach ($data as $k => $v) {
+        if ($k == 'id') continue;
+
+        if ($k == 'tempat_lahir_candidate') {
+            $tempatlhr_candidate = $v;
+            continue;
         }
 
-        $birthdate_candidate = '';
-        $tempatlhr_candidate = '';
-        foreach ($data as $k => $v) {
-            if ($k == 'id') {
-                continue;
-            }
+        if ($k == 'birthdate_candidate') {
+            $birthdate_candidate = $v;
+            continue;
+        }
 
-            if ($k == 'tempat_lahir_candidate') {
-                $tempatlhr_candidate = $v;
-                continue;
-            }
-
-            if ($k == 'birthdate_candidate') {
-                $birthdate_candidate = $v;
-                continue;
-            }
-
+        if (in_array($k, [
+            'name_candidate',
+            'email_candidate',
+            'no_candidate',
+            'birthdate_candidate',
+            'religion_candidate',
+            'jk_candidate',
+            'marital_candidate',
+            'linkedin_candidate',
+            'instagram_candidate',
+        ])) {
             $this->db->set($k, $v);
         }
-
-        if (!empty($tempatlhr_candidate) && !empty($birthdate_candidate)) {
-            $birthdate_candidate = sprintf('%s, %s', $tempatlhr_candidate, $birthdate_candidate);
-
-            $this->db->set('birthdate_candidate', $birthdate_candidate);
-        }
-
-        if ($mode == 'update') {
-            $this->db->where(['id' => $data['id']]);
-            $this->db->update($this->table);
-        } else {
-            // Generate Id
-            $this->db->set('id_candidate', generateIdCandidate());
-            $this->db->insert($this->table);
-        }
-
-        return $this->db->affected_rows() > 0;
     }
+
+    // Gabungkan tempat & tanggal lahir
+    if (!empty($tempatlhr_candidate) && !empty($birthdate_candidate)) {
+        $this->db->set('birthdate_candidate', $tempatlhr_candidate . ', ' . $birthdate_candidate);
+    }
+
+    if ($mode === 'update') {
+        $this->db->where('id', $data['id']); // ❌ perbaiki key sesuai DB
+        $this->db->update($this->table);
+    } else {
+        $this->db->set('id', generateIdCandidate());
+        $this->db->insert($this->table);
+    }
+
+    echo "<pre>";
+    echo "SQL terakhir: " . $this->db->last_query() . "\n";
+    echo "Affected rows: " . $this->db->affected_rows();
+    exit;
+
+    return $this->db->affected_rows() > 0;
+}
 
     // TODO: rollback operation
     public function deleteKandidat($id)

@@ -2,6 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed.');
 
+
 class CandidateBiodata extends CI_Controller
 {
     public function __construct()
@@ -83,25 +84,24 @@ class CandidateBiodata extends CI_Controller
     }
 
     public function update_biodata()
-    {
-        $biodata    = $this->biodata_model->getMyBiodata();
-        $address    = $this->kandidat_model->getKandidatAddress($biodata['id']);
-        $address2   = $this->kandidat_model->getKandidatAddress($biodata['id'], $secondAddress = true);
-        $laststudy  = $this->kandidat_model->getKandidatStudy($biodata['id']);
-        $exprience  = $this->kandidat_model->getKandidatExperience($biodata['id']);
-        $pendukung  = $this->kandidat_model->getFilePendukung($biodata['id']);
+{
+    $biodata    = $this->biodata_model->getMyBiodata();
+    $address    = $this->kandidat_model->getKandidatAddress($biodata['id']);
+    $address2   = $this->kandidat_model->getKandidatAddress($biodata['id'], $secondAddress = true);
+    $laststudy  = $this->kandidat_model->getKandidatStudy($biodata['id']);
+    $exprience  = $this->kandidat_model->getKandidatExperience($biodata['id']);
+    $pendukung  = $this->kandidat_model->getFilePendukung($biodata['id']);
 
-        $this->render('update', [
-            'title'      => 'Update Biodata',
-            'biodata'    => $biodata,
-            'address'    => $address,
-            'address2'   => $address2,
-            'laststudy'  => $laststudy,
-            'experience' => $exprience,
-            'pendukung'  => $pendukung
-        ]);
-    }
-
+    $this->render('update', [
+        'title'      => 'Update Biodata',
+        'biodata'    => $biodata,
+        'address'    => $address,
+        'address2'   => $address2,
+        'laststudy'  => $laststudy,
+        'experience' => $exprience,
+        'pendukung'  => $pendukung,
+    ]);
+}
     public function delete_experience($id)
     {
         $delete = $this->kandidat_model->deletePengalamanKerja($id);
@@ -223,120 +223,73 @@ class CandidateBiodata extends CI_Controller
             ]);
         }
     }
+    
 
-    public function save_data_pendukung()
-    {
-        $file = $_FILES['file_pendukung'] ?? [];
-        $idex = $this->input->post('id');
+   public function save_data_pendukung()
+{
+    $file = $_FILES['file_pendukung'] ?? null;
+    $idex = $this->input->post('id');
+    $jenis_file = $this->input->post('jenis_file'); // tambahkan field ini di form
 
-        $idex = $this->db->get_where('candidate_file', ['id' => $idex])->num_rows() > 0;
-
-        if (empty($file) || (int)$file['error'] === UPLOAD_ERR_NO_FILE) {
-            http_response_code(400);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'Tidak ada file yang dipilih.'
-            ]);
-            exit;
-        }
-
-        $kandidat = $this->db->get_where('candidate', ['id' => getLoggedInUser('id')])->row_array();
-
-        if (!$kandidat) {
-            http_response_code(401);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'Access denied (Unauthorized).'
-            ]);
-            exit;
-        }
-
-        if ((int)$file['error'] === UPLOAD_ERR_OK) {
-            $target_dir = 'uploads/kandidat/files/';
-            $target_dir = FCPATH . str_replace('/', DIRECTORY_SEPARATOR, $target_dir);
-            $target_file = sprintf(
-                'file_%s_%s_%s',
-                $kandidat['id_candidate'] . '-' . $kandidat['name_candidate'],
-                time(),
-                $file['name']
-            );
-            $target_file_path = $target_dir . $target_file;
-
-            $allowed_type = Biodata_model::ALLOWED_EXTENSIONS_FOR_FILE_PENDUKUNG;
-            $file_type = strtolower(pathinfo($target_file_path, PATHINFO_EXTENSION));
-
-            if (!in_array($file_type, $allowed_type)) {
-                http_response_code(400);
-
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'File yang dipilih tidak valid.'
-                ]);
-                exit;
-            }
-        } else {
-            $data = [];
-
-            $save = $this->db->update('candidate_file', $data, ['id' => $this->input->post('id')]);
-            if ($save) {
-                http_response_code(200);
-
-                echo json_encode([
-                    'success'  => true,
-                    'message'  => 'File pendukung berhasil diupload.',
-                ]);
-            } else {
-                http_response_code(500);
-
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'File pendukung gagal diupload.'
-                ]);
-            }
-
-            exit;
-        }
-
-        if (move_uploaded_file($file['tmp_name'], $target_file_path)) {
-            $data = [
-                'id_candidate'   => getLoggedInUser('id'),
-                'file_pendukung' => $target_file,
-            ];
-
-            $idex = $this->input->post('id');
-
-            if ($idex && $this->db->get_where('candidate_file', ['id' => $idex])->num_rows() > 0) {
-                $save = $this->db->update('candidate_file', $data, ['id' => $idex]);
-            } else {
-                $save = $this->db->insert('candidate_file', $data);
-            }
-
-            if ($save) {
-                http_response_code(200);
-
-                echo json_encode([
-                    'success'  => true,
-                    'message'  => 'File pendukung berhasil diupload.',
-                ]);
-            } else {
-                http_response_code(500);
-
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'File pendukung gagal diupload.'
-                ]);
-            }
-        } else {
-            http_response_code(500);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'File pendukung gagal diupload.'
-            ]);
-        }
+    if (!$file || (int)$file['error'] === UPLOAD_ERR_NO_FILE) {
+        return $this->response(false, 'Tidak ada file yang dipilih.', 400);
     }
+
+    $kandidat = $this->db->get_where('candidate', ['id' => getLoggedInUser('id')])->row_array();
+    if (!$kandidat) {
+        return $this->response(false, 'Access denied (Unauthorized).', 401);
+    }
+
+    // Pastikan folder upload ada
+    $target_dir = FCPATH . 'uploads/kandidat/files/';
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
+    $file_name = sprintf(
+        'file_%s_%s_%s',
+        $kandidat['id_candidate'],
+        time(),
+        preg_replace('/\s+/', '_', $file['name'])
+    );
+    $target_file = $target_dir . $file_name;
+
+    $allowed_type = ['pdf', 'jpg', 'jpeg', 'png', 'doc', 'docx'];
+    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    if (!in_array($file_type, $allowed_type)) {
+        return $this->response(false, 'File yang dipilih tidak valid.', 400);
+    }
+
+    if (move_uploaded_file($file['tmp_name'], $target_file)) {
+        $data = [
+            'id_candidate'   => getLoggedInUser('id'),
+            'file_pendukung' => $file_name,
+            'jenis_file'     => $jenis_file,
+        ];
+
+        if ($idex && $this->db->get_where('candidate_file', ['id' => $idex])->num_rows() > 0) {
+            $save = $this->db->update('candidate_file', $data, ['id' => $idex]);
+        } else {
+            $save = $this->db->insert('candidate_file', $data);
+        }
+
+        if ($save) {
+            return $this->response(true, 'File pendukung berhasil diupload.', 200);
+        }
+        return $this->response(false, 'Gagal menyimpan ke database.', 500);
+    }
+
+    return $this->response(false, 'File gagal diupload.', 500);
+}
+
+// helper kecil untuk response JSON
+private function response($success, $message, $code)
+{
+    http_response_code($code);
+    echo json_encode(['success' => $success, 'message' => $message]);
+    exit;
+}
 
     public function save_data_pengalaman()
     {
@@ -557,29 +510,31 @@ class CandidateBiodata extends CI_Controller
         ]);
     }
 
-    public function my_file_as_json()
-    {
-        $candidate = getLoggedInUser('id');
+            public function my_file_as_json()
+            {
+                $candidate = getLoggedInUser('id');
 
-        $pendukung = $this->kandidat_model->getFilePendukung($candidate);
+                $pendukung = $this->kandidat_model->getFilePendukung($candidate);
 
-        $files = [];
+                $files = [];
 
-        foreach ($pendukung as $file) {
-            $files []= [
-                'id'   => $file['id'],
-                'name' => $file['file_pendukung'],
-                'url'  => base_url('uploads/kandidat/files/' . $file['file_pendukung']),
-            ];
-        }
+                foreach ($pendukung as $file) {
+                    $files[] = [
+                        'id'          => $file['id'],
+                        'name'        => $file['file_pendukung'],
+                        'jenis_file'  => $file['jenis_file'], // ✅ tambahkan ini
+                        'url'         => base_url('uploads/kandidat/files/' . $file['file_pendukung']),
+                    ];
+                }
 
-        http_response_code(200);
+                http_response_code(200);
 
-        echo json_encode([
-            'success'  => true,
-            'files'    => $files
-        ]);
-    }
+                echo json_encode([
+                    'success' => true,
+                    'files'   => $files
+                ]);
+            }
+
 
     public function my_experience_as_json()
     {

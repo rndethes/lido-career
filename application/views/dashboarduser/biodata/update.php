@@ -82,15 +82,56 @@
                                             class="form-control" type="date" />
                                     </div>
                                 </div>
+                            <!-- Agama -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Agama</label>
+                                        <select v-model="data_diri.religion_candidate" class="form-control" name="religion_candidate">
+                                            <option value="">-- pilih --</option>
+                                            <option v-for="agm in agama_list" :key="agm.id" :value="agm.id">
+                                                {{ agm.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Jenis Kelamin -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-control-label">Jenis Kelamin</label>
-                                        <select v-model="data_diri.jk_candidate" class="form-control"
-                                            placeholder="-- pilih --" name="jk_candidate">
+                                        <select v-model="data_diri.jk_candidate" class="form-control" name="jk_candidate">
+                                            <option value="">-- pilih --</option>
                                             <option v-for="kel in jenis_kelamin" :key="kel.id" :value="kel.id">
                                                 {{ kel.text }}
                                             </option>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Status</label>
+                                        <select v-model="data_diri.marital_candidate" class="form-control" name="marital_candidate">
+                                            <option value="">-- pilih --</option>
+                                            <option v-for="st in marital_list" :key="st.id" :value="st.id">
+                                                {{ st.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Media Sosial -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">LinkedIn</label>
+                                        <input type="text" v-model="data_diri.linkedin_candidate" class="form-control"
+                                            name="linkedin_candidate" placeholder="Masukkan URL LinkedIn">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label class="form-control-label">Instagram</label>
+                                        <input type="text" v-model="data_diri.instagram_candidate" class="form-control"
+                                            name="instagram_candidate" placeholder="Masukkan URL Instagram">
                                     </div>
                                 </div>
                             </div>
@@ -577,122 +618,128 @@
                         </div>
                     </div>
                 </div>
-                <!-- Data Pendukung -->
-                <div id="data-pendukung" v-show="show_tab == 'data-pendukung'">
-                    <div class="card z-index-2 h-100">
-                        <div class="card-header pb-0 pt-3 bg-transparent; d-flex justify-content-between">
-                            <div>
-                                <h6 class="text-capitalize">Data Pendukung</h6>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" @click="openModalAddFile" class="btn btn-primary btn-xs">
-                                    <span class="fas fa-plus"></span> Tambah Data
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="row">
-                                <div v-if="pendukung.length == 0">
-                                    <div class="col-12">
-                                        <div class="alert bg-info text-white">
-                                            Data file pendukung masih kosong.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-else>
-                                    <div v-for="(file, index) in pendukung" :key="`file-pd-${index}`"
-                                        class="col-12 mb-3"
-                                        style="background: rgba(233, 233, 233, 0.8); border-radius: 10px; padding: 15px;">
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <p class="text-dark">
-                                                    <a :href="file.url" target="_blank">
-                                                        <i class="fas fa-file"></i> {{ file.name }}
-                                                    </a>
-                                                </p>
-                                            </div>
-                                            <div class="d-none d-md-block">
-                                                <a :href="file.url" class="btn btn-xs btn-info">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                &nbsp;
-                                                <a :href="file.url" class="btn btn-xs btn-primary" download>
-                                                    <i class="fas fa-download"></i>
-                                                </a>
-                                                &nbsp;
-                                                <button @click="openModalDeleteFile(file)"
-                                                    class="btn btn-xs btn-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="d-block d-md-none">
-                                            <a :href="file.url" class="btn btn-xs btn-info">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            &nbsp;
-                                            <a :href="file.url" class="btn btn-xs btn-primary" download>
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                            &nbsp;
-                                            <button @click="openModalDeleteFile(file)" class="btn btn-xs btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                 <!--data pendukung-->
+           <div id="data-pendukung" v-show="show_tab == 'data-pendukung'">
+        <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent d-flex justify-content-between align-items-center">
+        <h6 class="text-capitalize mb-0">Data Pendukung</h6>
+        <button
+            type="button"
+            class="btn btn-primary btn-xs"
+            @click="openModalAddFile()"
+        >
+            <i class="fas fa-plus"></i> Tambah Data
+        </button>
         </div>
-    </div>
+    <div class="card-body p-4">
+      <div class="row">
+        <div v-if="pendukung.length == 0">
+          <div class="col-12">
+            <div class="alert bg-info text-white">
+              Data file pendukung masih kosong.
+            </div>
+          </div>
+        </div>
 
-    <!-- Modal Show Description -->
-    <div class="modal fade" id="showDescriptionModal12" tabindex="-1" role="dialog"
-        aria-labelledby="showDescriptionModal12Label" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div>
-                        <p id="showDescriptionModal12Content">{{ modalDescriptionContent }}</p>
-                    </div>
+        <div v-else>
+         <div
+            v-for="(file, index) in pendukung"
+            :key="`file-pd-${index}`"
+            class="col-12 mb-3"
+            style="background: rgba(233, 233, 233, 0.8); border-radius: 10px; padding: 15px;"
+            >
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                <p class="text-dark mb-1">
+                    <strong>{{ file.jenis_file }}</strong>
+                </p>
+                <p class="text-dark mb-0">
+                    <a :href="file.url" target="_blank">
+                    <i class="fas fa-file"></i> {{ file.name }}
+                    </a>
+                </p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="modalAddFilePendukung" tabindex="-1" role="dialog"
-        aria-labelledby="modalAddFilePendukungLabel" aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" ref="modalAddFilePendukungTitle">Tambah Data</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="text-dark fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="" onsubmit="return false;" id="formBiodataDataPendukung">
-                        <div class="form-group">
-                            <label>File</label>
-                            <input id="formBiodataDataPendukung_file_pendukung" name="file_pendukung" type="file"
-                                class="form-control" placeholder="Pilih file">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" @click="saveDataPendukung">
-                        Unggah
-                    </button>
-                </div>
+              <!-- Tombol untuk desktop -->
+              <div class="d-none d-md-block">
+                <a :href="file.url" class="btn btn-xs btn-info">
+                  <i class="fas fa-eye"></i> Lihat
+                </a>
+                &nbsp;
+                <a :href="file.url" class="btn btn-xs btn-primary" download>
+                  <i class="fas fa-download"></i> Download
+                </a>
+                &nbsp;
+                <button @click="openModalDeleteFile(file)" class="btn btn-xs btn-danger">
+                  <i class="fas fa-trash"></i> Hapus
+                </button>
+              </div>
             </div>
+
+            <!-- Tombol untuk mobile -->
+            <div class="d-block d-md-none mt-2">
+              <a :href="file.url" class="btn btn-xs btn-info"> 
+                <i class="fas fa-eye"></i> Lihat
+              </a>
+              &nbsp;
+              <a :href="file.url" class="btn btn-xs btn-primary" download> 
+                <i class="fas fa-download"></i>Download
+              </a>
+              &nbsp;
+              <button @click="openModalDeleteFile(file)" class="btn btn-xs btn-danger">
+                <i class="fas fa-trash"></i> Hapus
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- Modal Tambah File -->
+<div class="modal fade" id="modalAddFilePendukung" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <h3 class="modal-title mb-0" ref="modalAddFilePendukungTitle">Tambah Data</h3>
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formBiodataDataPendukung" onsubmit="return false;">
+          <!-- Tambahkan dropdown jenis file -->
+          <div class="form-group mb-3">
+            <label>Jenis Dokumen</label>
+            <select name="jenis_file" v-model="formFilePendukungJenis" class="form-select" required>
+              <option disabled value="">-- Pilih Jenis Dokumen --</option>
+              <option value="Ijazah">Ijazah</option>
+              <option value="Portofolio">Portofolio</option>
+              <option value="Sertifikat">Sertifikat</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Pilih File</label>
+            <input
+              id="formBiodataDataPendukung_file_pendukung"
+              name="file_pendukung"
+              type="file"
+              class="form-control"
+              placeholder="Pilih file"
+              required
+            />
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" @click="saveDataPendukung">
+          <i class="fas fa-upload"></i> Unggah
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="<?= base_url('assets/js/ext/vue.js') ?>">
@@ -745,14 +792,6 @@
                         {
                             id: 2,
                             text: 'PEREMPUAN'
-                        },
-                        {
-                            id: 3,
-                            text: 'TRANSGENDER'
-                        },
-                        {
-                            id: 4,
-                            text: 'TIDAK INGIN MENYEBUTKAN'
                         },
                     ],
                     study_level_list: [{
@@ -843,7 +882,11 @@
                         no_candidate: '<?= $biodata["no_candidate"] ?>',
                         tempat_lahir_candidate: '<?= $biodata["tempat_lahir_"] ?>',
                         birthdate_candidate: '<?= trim($biodata["tanggal_lahir_"]) ?>',
-                        jk_candidate: '<?= $biodata["jk_candidate"] ?>'
+                        jk_candidate: '<?= $biodata["jk_candidate"] ?>',
+                        religion_candidate: '<?= $biodata["religion_candidate"] ?? "" ?>',
+                        marital_candidate: '<?= $biodata["marital_candidate"] ?? "" ?>',
+                        linkedin_candidate: '<?= $biodata["linkedin_candidate"] ?? "" ?>',
+                        instagram_candidate: '<?= $biodata["instagram_candidate"] ?? "" ?>'
                     },
                     pendidikan: {
                         study_level: '<?= $laststudy["jenjang_"] ?>',
@@ -870,6 +913,19 @@
                         kode_pos: '<?= $address2["kode_pos"] ?>',
                         noaddress_candidate: '<?= $address2["no_tlp"] ?>',
                     },
+                    agama_list: [
+                        { id: 1, text: 'ISLAM' },
+                        { id: 2, text: 'KRISTEN' },
+                        { id: 3, text: 'HINDU' },
+                        { id: 4, text: 'BUDDHA' },
+                        { id: 5, text: 'KATOLIK' },
+                    ],
+                    marital_list: [
+                    { id: 1, text: 'BELUM MENIKAH' },
+                    { id: 2, text: 'MENIKAH' },
+                    { id: 3, text: 'CERAI HIDUP' },
+                    { id: 4, text: 'CERAI MATI' },
+                    ],
                     pengalaman: {
                         name_company: '',
                         type_company: '',
@@ -937,23 +993,27 @@
 
                     return null;
                 },
-                openModalAddFile() {
-                    var indah = this.$refs.modalAddFilePendukungTitle || {};
+                openModalAddFile(jenis) {
+                var indah = this.$refs.modalAddFilePendukungTitle || {};
 
-                    indah.innerText = 'Tambah Data';
+                // Ganti judul modal sesuai jenis file
+                indah.innerText = 'Tambah Data';
 
-                    // document.getElementById('formBiodataDataPendukung_file_name').value = null;
-                    document.getElementById('formBiodataDataPendukung_file_pendukung').value = null;
-                    document.getElementById('formBiodataDataPendukung_file_pendukung').files = null;
+                // Bersihkan input file sebelumnya
+                document.getElementById('formBiodataDataPendukung_file_pendukung').value = null;
+                document.getElementById('formBiodataDataPendukung_file_pendukung').files = null;
 
-                    this.formFilePendukungID = null;
+                // Simpan jenis file yang dipilih ke variabel (biar bisa ikut disimpan nanti)
+                this.formFilePendukungJenis = jenis;
+                this.formFilePendukungID = null;
 
-                    var modal = bootstrap.Modal.getOrCreateInstance(
-                        document.getElementById('modalAddFilePendukung')
-                    );
+                // Tampilkan modal
+                var modal = bootstrap.Modal.getOrCreateInstance(
+                    document.getElementById('modalAddFilePendukung')
+                );
+                modal.show();
+            },
 
-                    modal.show();
-                },
                 openModalUpdateFile(data) {
                     var indah = this.$refs.modalAddFilePendukungTitle || {};
 
@@ -1032,41 +1092,36 @@
                         setDefaultAddress(true);
                     }
                 },
-                saveDataPendukung() {
-                    var modal = bootstrap.Modal.getOrCreateInstance(
-                        document.getElementById('modalAddFilePendukung')
-                    );
+                            saveDataPendukung() {
+                var modal = bootstrap.Modal.getOrCreateInstance(
+                    document.getElementById('modalAddFilePendukung')
+                );
 
-                    var foel = document.getElementById('formBiodataDataPendukung');
-                    var form = new FormData(foel);
+                var form = new FormData(document.getElementById('formBiodataDataPendukung'));
 
-                    if (this.formFilePendukungID) {
-                        form.append("id", this.formFilePendukungID);
-                    }
+                // Pastikan jenis_file dikirim
+                form.append("jenis_file", this.formFilePendukungJenis);
 
-                    axios.post(
-                            '<?= site_url("candidate-biodata/update-biodata/save-data-pendukung") ?>',
-                            form)
-                        .then((response) => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: 'Berhasil memperbarui data pendukung.'
-                            }).then((x) => {
-                                this.loadDataPendukung();
-                                modal.hide();
-                            });
-                        }).catch((error) => {
-                            console.log(error);
-
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Failed!',
-                                text: error.response.data.message ||
-                                    'Gagal memperbarui data pendukung.'
-                            });
-                        });
-                },
+                axios.post('<?= site_url("candidate-biodata/update-biodata/save-data-pendukung") ?>', form)
+                    .then((response) => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Berhasil menyimpan data pendukung.'
+                    }).then(() => {
+                        this.loadDataPendukung();
+                        modal.hide();
+                    });
+                    })
+                    .catch((error) => {
+                    console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed!',
+                        text: error.response?.data?.message || 'Gagal menyimpan data pendukung.'
+                    });
+                    });
+},
                 showDescription(content) {
                     var modal = bootstrap.Modal.getOrCreateInstance(
                         document.getElementById('showDescriptionModal12')
@@ -1266,6 +1321,10 @@
                     data.append("tempat_lahir_candidate", this.data_diri.tempat_lahir_candidate);
                     data.append("birthdate_candidate", this.data_diri.birthdate_candidate);
                     data.append("jk_candidate", this.data_diri.jk_candidate);
+                    data.append("religion_candidate", this.data_diri.religion_candidate);
+                    data.append("marital_candidate", this.data_diri.marital_candidate);
+                    data.append("linkedin_candidate", this.data_diri.linkedin_candidate);
+                    data.append("instagram_candidate", this.data_diri.instagram_candidate);
 
                     axios.post(
                             '<?= site_url("candidate-biodata/update-biodata/save-data-diri") ?>',

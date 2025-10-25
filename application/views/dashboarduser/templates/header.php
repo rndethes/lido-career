@@ -95,15 +95,24 @@ $content_zero = $CI->main_model->getSettingZero();
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= menu_active('CandidateBiodata'); ?>"
-                        href="<?= site_url('candidate-biodata') ?>">
+                        href="<?= site_url('candidatebiodata') ?>">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fas fa-user-edit text-danger text-sm opacity-10"></i>
+                          <i class="ni ni-single-02 text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Biodata</span>
                     </a>
                 </li>
-
+                  <li class="nav-item">
+                    <a class="nav-link <?= menu_active('CandidateJob'); ?>"
+                        href="<?= base_url('candidatejob/index') ?>">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-app text-danger text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Lowongan</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link <?= menu_active('CandidatePengumuman'); ?>"
                         href="<?= site_url('candidatepengumuman') ?>">
@@ -113,16 +122,6 @@ $content_zero = $CI->main_model->getSettingZero();
                             <i class="ni ni-credit-card text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Pengumuman</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= menu_active('CandidateJob'); ?>"
-                        href="<?= base_url('candidatejob/index') ?>">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-app text-danger text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Lowongan</span>
                     </a>
                 </li>
                 <li class="nav-item">

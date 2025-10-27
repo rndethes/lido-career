@@ -25,18 +25,26 @@ class Kandidat extends CI_Controller
         $this->load->library('Sendmail');
     }
 
-    public function index()
-    {
-        $this->load->view('templates/header', [
-            'title' => 'Daftar Kandidat'
-        ]);
+   public function index()
+{
+    
+    $filters = [
+        'nama' => $this->input->get('nama'),
+        'pendidikan' => $this->input->get('pendidikan'),
+        'alamat' => $this->input->get('alamat')
+    ];
 
-        $this->load->view('kandidat/index', [
-            'kandidat' => $this->kandidat_model->getAllKandidat()
-        ]);
+    
+    $data['kandidat'] = $this->kandidat_model->getAllKandidatJoin($filters);
 
-        $this->load->view('templates/footer');
-    }
+    
+    $this->load->view('templates/header', [
+        'title' => 'Daftar Kandidat'
+    ]);
+    $this->load->view('kandidat/index', $data);
+    $this->load->view('templates/footer');
+}
+
 
     public function transfer($id = null)
     {

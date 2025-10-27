@@ -123,16 +123,25 @@
 
                                 <!-- Media Sosial -->
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">LinkedIn</label>
-                                        <input type="text" v-model="data_diri.socialmedia2_candidate" class="form-control"
-                                            name="socialmedia2_candidate" placeholder="Masukkan USERNAME LinkedIn">
-                                    </div>
+                                   <div class="form-group">
+    <label class="form-control-label">LinkedIn</label>
+    <input type="text"
+           v-model="data_diri.socialmedia2_candidate"
+           class="form-control"
+           name="socialmedia2_candidate"
+           placeholder="Contoh: ida-fania-872b441b2">
+    <small class="text-muted">
+        Isi hanya bagian akhir URL setelah <strong>linkedin.com/in/</strong>
+    </small>
+</div>
                                     <div class="form-group mt-2">
                                         <label class="form-control-label">Instagram</label>
                                         <input type="text" v-model="data_diri.socialmedia_candidate" class="form-control"
-                                            name="socialmedia2_candidate" placeholder="Masukkan USERNAME Instagram">
-                                    </div>
+                                            name="socialmedia2_candidate" placeholder="Contoh: ida_fania">
+                                   <small class="text-muted">
+                                         Isi hanya username tanpa <strong>@</strong> 
+                                 </small>
+                                        </div>
                                 </div>
                             </div>
                             <div class="row">

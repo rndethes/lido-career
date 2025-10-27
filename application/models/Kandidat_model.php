@@ -51,6 +51,87 @@ class Kandidat_model extends CI_Model
         return $trandata;
     }
 
+public function getAllKandidatJoin($filters = [])
+{
+    $this->db->select('
+        c.*,
+        s.study_level,
+        s.year_first,
+        s.year_last
+    ');
+    $this->db->from('candidate c');
+    $this->db->join('candidate_study s', 's.id_candidate = c.id', 'left');
+
+    // === FILTERS (opsional) ===
+    if (!empty($filters['nama'])) {
+        $this->db->like('c.fullname_candidate', $filters['nama']);
+    }
+    if (!empty($filters['pendidikan'])) {
+        $this->db->like('s.study_level', $filters['pendidikan']);
+    }
+    if (!empty($filters['alamat'])) {
+        $this->db->like('c.address_candidate', $filters['alamat']);
+    }
+
+    $this->db->order_by('c.id', 'ASC');
+    $kandidat = $this->db->get()->result_array();
+
+    $trandata = [];
+
+    foreach ($kandidat as $row) {
+        // === Tempat & tanggal lahir ===
+        $tsp = explode(',', $row['birthdate_candidate']);
+        if (count($tsp) > 1) {
+            $row['tempat_lahir_candidate_'] = $tsp[0];
+            $row['birthdate_candidate_'] = trim($tsp[1]);
+        } else {
+            $row['tempat_lahir_candidate_'] = null;
+            $row['birthdate_candidate_'] = null;
+        }
+
+        // === Cek timeline ===
+        $history_timeline = $this->db->get_where('history_timeline', [
+            'id_candidate' => $row['id'],
+            'status' => 1
+        ])->num_rows();
+        $row['timeline_done'] = $history_timeline <= 0;
+
+        $history_apply = $this->db->get_where('history_timeline', [
+            'id_candidate' => $row['id']
+        ])->num_rows();
+        if ($history_apply === 0) {
+            $row['timeline_done'] = false;
+        }
+
+        // === Divisi ===
+        $sidaneKetampaNangApa = $this->getKandidatNangDivisiApa($row['id']);
+        $row['division_'] = empty($sidaneKetampaNangApa)
+            ? '-'
+            : $sidaneKetampaNangApa['name_division'] . ' - ' . $sidaneKetampaNangApa['name_job'];
+
+        // === Pendidikan ===
+        $row['study_level'] = !empty($row['study_level'])
+            ? strtoupper($row['study_level'])
+            : '-';
+
+        // === Tahun pendidikan ===
+        if (!empty($row['year_first']) && !empty($row['year_last'])) {
+            $row['tahun_pendidikan'] = $row['year_first'] . ' - ' . $row['year_last'];
+        } else {
+            $row['tahun_pendidikan'] = '-';
+        }
+
+        // === Potong alamat (maks 30 karakter) ===
+        $row['address_candidate'] = strlen($row['address_candidate']) > 30
+            ? substr($row['address_candidate'], 0, 30) . '...'
+            : $row['address_candidate'];
+
+        $trandata[] = $row;
+    }
+
+    return $trandata;
+}
+    
     public function getBiodataById($id)
 {
     

@@ -21,6 +21,33 @@
                         <?= $this->session->flashdata('message') ?>
                     </div>
                     <?php endif ?>
+                    <div class="row mb-3">
+ <form method="get" action="">
+  <div class="row mb-3">
+      <div class="col-md-4">
+          <label>Filter Berdasarkan</label>
+          <select name="filter_type" id="filter-type" class="form-control">
+              <option value="nama" <?= ($this->input->get('filter_type') == 'nama') ? 'selected' : '' ?>>Nama</option>
+              <option value="pendidikan" <?= ($this->input->get('filter_type') == 'pendidikan') ? 'selected' : '' ?>>Pendidikan</option>
+              <option value="alamat" <?= ($this->input->get('filter_type') == 'alamat') ? 'selected' : '' ?>>Alamat</option>
+          </select>
+      </div>
+
+      <div class="col-md-4">
+          <label>Kata Kunci</label>
+          <input type="text" name="keyword" id="filter-keyword" class="form-control"
+                 placeholder="Ketik untuk mencari..."
+                 value="<?= $this->input->get('keyword') ?>">
+      </div>
+
+      <div class="col-md-4 d-flex align-items-end">
+          <button type="submit" class="btn btn-primary">Cari</button>
+          <a href="<?= site_url('kandidat') ?>" class="btn btn-secondary ms-2">Reset</a>
+      </div>
+  </div>
+</form>
+
+
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0" id="table-kandidat">
                             <thead>
@@ -31,6 +58,12 @@
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         ID Kandidat</th>
+                                     <th
+                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        Pendidikan</th>
+                                         <th
+                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        Alamat</th>
                                     <th
                                         class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Divisi</th>
@@ -69,6 +102,14 @@
                                         <span
                                             class="text-secondary text-xs font-weight-bold"><?= $row['id_candidate'] ?></span>
                                     </td>
+                                    <td><?= strtoupper($row['study_level'] ?? '-') ?></td>
+                                   <td>
+                                    <?php 
+                                        $alamat = strtoupper($row['address_candidate'] ?? '-');
+                                        echo strlen($alamat) > 20 ? substr($alamat, 0, 20) . '...' : $alamat;
+                                    ?>
+                                </td>
+
                                     <td class="">
                                         <span class="text-secondary text-xs font-weight-bold">
                                             <?= $row['state'] == 2 ? strtoupper($row['division_']) : '&nbsp;&nbsp;&nbsp;-'  ?>
@@ -135,77 +176,61 @@
 </div>
 
 <script>
-    window.addEventListener("DOMContentLoaded", function() {
-        const table = $("#table-kandidat").DataTable({
-            dom: 'lfrtip',
-            processing: true,
-            buttons: [{
-                    extend: 'print',
-                    text: '<i class="fas fa-sm fa-print"></i> Print',
-                    className: 'btn-xs btn-primary bg-primary',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    },
-                    title: 'Lido Career Center - Data Kandidat'
-                },
-                {
-                    extend: 'excel',
-                    text: '<i class="fas fa-sm fa-file-excel"></i> Excel',
-                    className: 'btn-xs btn-success bg-success',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    },
-                    title: 'Lido Career Center - Data Kandidat'
-                },
-                {
-                    extend: 'pdf',
-                    text: '<i class="fas fa-sm fa-file-pdf"></i> Pdf',
-                    className: 'btn-xs btn-danger bg-danger',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    },
-                    title: 'Lido Career Center - Data Kandidat'
-                },
-                {
-                    extend: 'csv',
-                    text: '<i class="fas fa-sm fa-file-csv"></i> Csv',
-                    className: 'btn-xs btn-secondary bg-secondary',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
-                    },
-                    title: 'Lido Career Center - Data Kandidat'
-                },
-            ],
-            language: {
-                paginate: {
-                    previous: '<span class="fas fa-arrow-left"></span>',
-                    next: '<span class="fas fa-arrow-right"></span>'
-                },
+   window.addEventListener("DOMContentLoaded", function() {
+    const table = $("#table-kandidat").DataTable({
+        dom: 'lfrtip',
+        processing: true,
+        buttons: [
+            {
+                extend: 'print',
+                text: '<i class="fas fa-sm fa-print"></i> Print',
+                className: 'btn-xs btn-primary bg-primary',
+                exportOptions: { columns: [0,1,2,3,4,5,6] },
+                title: 'Lido Career Center - Data Kandidat'
             },
-            // lengthChange: false,
-        });
+            {
+                extend: 'excel',
+                text: '<i class="fas fa-sm fa-file-excel"></i> Excel',
+                className: 'btn-xs btn-success bg-success',
+                exportOptions: { columns: [0,1,2,3,4,5,6] },
+                title: 'Lido Career Center - Data Kandidat'
+            },
+        ],
+        language: {
+            paginate: {
+                previous: '<span class="fas fa-arrow-left"></span>',
+                next: '<span class="fas fa-arrow-right"></span>'
+            },
+        },
+    });
 
-        // table.buttons().container()
-        //     .appendTo('#table-kandidat_wrapper .col-md-6:eq(0)');
+    // === Custom Filter ===
+    $('#filter-nama').on('keyup', function () {
+        table.column(0).search(this.value).draw();
+    });
+    $('#filter-pendidikan').on('keyup', function () {
+        table.column(2).search(this.value).draw();
+    });
+    $('#filter-alamat').on('keyup', function () {
+        table.column(3).search(this.value).draw();
+    });
 
-        $("a.page-link").addClass('text-white');
-
-        document.querySelectorAll(".btn-confirm-apply").forEach((elem) => {
-            elem.addEventListener("click", function(e) {
-                e.preventDefault();
-
-                Swal.fire({
-                    title: 'Transfer Kandidat',
-                    text: 'Lanjutkan proses transfer kandidat?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    allowOutsideClick: false,
-                }).then((x) => {
-                    if (x.isConfirmed) {
-                        document.location.href = elem.href;
-                    }
-                });
+    // Tombol konfirmasi transfer (tetap sama)
+    document.querySelectorAll(".btn-confirm-apply").forEach((elem) => {
+        elem.addEventListener("click", function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Transfer Kandidat',
+                text: 'Lanjutkan proses transfer kandidat?',
+                icon: 'question',
+                showCancelButton: true,
+                allowOutsideClick: false,
+            }).then((x) => {
+                if (x.isConfirmed) {
+                    document.location.href = elem.href;
+                }
             });
         });
     });
+});
 </script>

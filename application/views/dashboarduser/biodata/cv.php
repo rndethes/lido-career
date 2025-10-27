@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CV - <?= $karyawan['nama'] . " " . date('j F Y') ?></title>
+  <title>CV - <?= $biodata['name_candidate'] . " " . date('j F Y') ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    /* ======================
+       DESAIN UTAMA CV
+       ====================== */
     body {
       font-family: "Segoe UI", sans-serif;
       background-color: #f9f9f9;
@@ -14,22 +16,19 @@
       padding: 0;
     }
     .cv-header {
-    background-color: #1c1c1e;
-    color: #fff;
-    padding: 2rem;
-    display: flex;
-    align-items: center;
+      background-color: #1c1c1e;
+      color: #fff;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
     }
-
     .cv-header img {
       width: 110px;
       height: 110px;
       object-fit: cover;
       border-radius: 10px;
       margin-right: 2rem;
-     
     }
-
     .cv-header h1 {
       font-size: 2rem;
       margin: 0;
@@ -37,501 +36,292 @@
     .section-title {
       font-weight: bold;
       text-transform: uppercase;
-      margin-top: 1rem;
-      margin-bottom: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
       border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+      padding-bottom: 5px;
     }
-/* 
-  .section-title {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #007acc;
-    padding-bottom: 5px;
-    color: #007acc;
-  } */
-
-
-  .career-entry {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px dashed #ccc;
-  }
-
-  ul {
-    margin: 0;
-    padding-left: 1.2rem;
-  }
-
-  ul li {
-    margin-bottom: 4px;
-  }
-
-
-    .contact-info p {
-      margin: 0;
+    .career-entry {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
     }
-    .font-small {
-      font-size: 10;
+    ul { margin: 0; padding-left: 1.2rem; }
+    ul li { margin-bottom: 4px; }
+    .font-small { font-size: 14px; }
+    hr { border-top: 2px solid #aaa; }
+    .contact-info p { margin: 0; }
+
+    /* Style baris biodata */
+    .biodata-row {
+      display: flex;
+      margin-bottom: 6px;
     }
-    hr {
-      border-top: 2px solid #aaa;
+    .biodata-row .label {
+      width: 35%;
+      font-weight: 600;
+      color: #555;
     }
-    ul {
-      padding-left: 1.2rem;
+    .biodata-row .value {
+      width: 65%;
     }
+
+    /* ======================
+       MODE CETAK
+       ====================== */
     @media print {
-
-    body {
-      background: white !important;
-      color: black !important;
+      body { background: white !important; color: black !important; }
+      .cv-header { background-color: #444 !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .btn, .no-print, nav, footer { display: none !important; }
+      img { max-width: 100% !important; height: auto !important; }
+      .container { width: 100% !important; padding: 0 !important; margin: 0 !important; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     }
-
-    .row-flex {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-  }
-
-  .col-lg-6 {
-    width: 50% !important;
-    float: left !important;
-    box-sizing: border-box;
-    padding: 0 10px; /* opsional padding antar kolom */
-  }
-
-    .row-print {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-    }
-    .col-print-6 {
-      width: 50% !important;
-    }
-
-    .cv-header {
-      background-color: #444 !important;
-      color: white !important;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .btn,
-    .no-print,
-    nav,
-    footer {
-      display: none !important;
-    }
-
-    img {
-      max-width: 100% !important;
-      height: auto !important;
-    }
-
-    .container {
-      width: 100% !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-
-    /* Untuk memaksa warna background dan teks sesuai */
-    * {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-  }
   </style>
+  <script>
+    window.onload = function () {
+      setTimeout(() => {
+        window.print();
+      }, 800);
+    };
+  </script>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- ===== HEADER ===== -->
   <div class="cv-header">
-  <?php 
-            $url_sicuan = base_url().'uploads/karyawan/' . $karyawan['foto'];
-            $url_asik 	= 'https://asik.ethes.tech/uploads/karyawan/' . $karyawan['foto'];
-            // $headers = @get_headers($url);
-            if (@getimagesize($url_sicuan)) {
-            // file exists
-              $url = $url_sicuan;
-            } else {
-            // file doesn't exist
-              $url = $url_asik;
-            }
-            ?>
-    <img src="<?= $url ?>" >
+    <?php 
+      $url_local = base_url().'uploads/foto/' . $biodata['photo_candidate'];
+      if (@getimagesize($url_local)) {
+        $url = $url_local;
+      } else {
+        $url = base_url().'assets/img/default-user.png';
+      }
+    ?>
+    <img src="<?= $url ?>" alt="Foto Kandidat">
     <div>
-      <h1><?= $karyawan['nama']; ?></h1>
-      <p><?= $karyawan['email']; ?> | <?= $karyawan['no_hp']; ?></p>
+      <h1><?= strtoupper($biodata['name_candidate']); ?></h1>
+      <p><?= $biodata['email_candidate']; ?> | <?= $biodata['no_candidate']; ?></p>
     </div>
   </div>
 
-  <div class="py-4">
-    <h5 class="section-title">BIODATA DIRI</h5>
+  <!-- ===== BODY ===== -->
+  <div class="container py-4">
+    <h5 class="section-title">Biodata Diri</h5>
+
+<?php
+// ====================
+// TEMPAT & TANGGAL LAHIR
+// ====================
+$tempat_tanggal = $biodata['birthdate_candidate'] ?? '';
+list($tempat_lahir, $tanggal_lahir) = array_pad(explode(',', $tempat_tanggal, 2), 2, '');
+$tempat_lahir = trim($tempat_lahir);
+$tanggal_lahir = trim($tanggal_lahir);
+
+if (!empty($tanggal_lahir) && strtotime($tanggal_lahir)) {
+  $tanggal_formatted = date('j F Y', strtotime($tanggal_lahir));
+  $bulan = [
+    'January' => 'Januari', 'February' => 'Februari', 'March' => 'Maret',
+    'April' => 'April', 'May' => 'Mei', 'June' => 'Juni',
+    'July' => 'Juli', 'August' => 'Agustus', 'September' => 'September',
+    'October' => 'Oktober', 'November' => 'November', 'December' => 'Desember'
+  ];
+  foreach ($bulan as $en => $id) {
+    $tanggal_formatted = str_replace($en, $id, $tanggal_formatted);
+  }
+} else {
+  $tanggal_formatted = '-';
+}
+
+// ====================
+// KONVERSI JENIS KELAMIN & AGAMA
+// ====================
+$jenis_kelamin = '-';
+if (isset($biodata['jk_candidate'])) {
+  if ($biodata['jk_candidate'] == 1) {
+    $jenis_kelamin = 'LAKI-LAKI';
+  } elseif ($biodata['jk_candidate'] == 2) {
+    $jenis_kelamin = 'PEREMPUAN';
+  } else {
+    $jenis_kelamin = 'TIDAK INGIN MENYEBUTKAN';
+  }
+}
+
+$agama = '-';
+if (isset($biodata['religion_candidate'])) {
+  switch ($biodata['religion_candidate']) {
+    case 1: $agama = 'ISLAM'; break;
+    case 2: $agama = 'KRISTEN'; break;
+    case 3: $agama = 'HINDU'; break;
+    case 4: $agama = 'BUDDHA'; break;
+    case 5: $agama = 'KATOLIK'; break;
+    default: $agama = 'TIDAK INGIN MENYEBUTKAN'; break;
+  }
+}
+?>
+
+<!-- ===== BIODATA LIST (sejajar kanan kiri) ===== -->
+<div class="biodata-row">
+  <div class="label">Tempat, Tanggal Lahir</div>
+  <div class="value"><?= strtoupper($tempat_lahir) . ', ' . $tanggal_formatted; ?></div>
+</div>
+
+<div class="biodata-row">
+  <div class="label">Jenis Kelamin</div>
+  <div class="value"><?= $jenis_kelamin; ?></div>
+</div>
+
+<div class="biodata-row">
+  <div class="label">Alamat</div>
+  <div class="value">
+    <?= 
+      trim(($address['alamat_'] ?? '-') . ', ' . 
+           ($address['kecamatan'] ?? '-') . ', ' . 
+           ($address['kabupaten'] ?? '-') . ', ' . 
+           ($address['provinsi'] ?? '-')); 
+    ?>
+  </div>
+</div>
+
+<div class="biodata-row">
+  <div class="label">Kode Pos</div>
+  <div class="value"><?= $address['kode_pos'] ?? '-'; ?></div>
+</div>
+
+<div class="biodata-row">
+  <div class="label">Agama</div>
+  <div class="value"><?= $agama; ?></div>
+</div>
+
+<div class="biodata-row">
+  <div class="label">Instagram / LinkedIn</div>
+  <div class="value">
+    <?= $biodata['socialmedia_candidate'] ?? '-' ?> / <?= $biodata['socialmedia2_candidate'] ?? '-' ?>
+  </div>
+</div>
+
+<!-- ===== Pendidikan ===== -->
+<h5 class="section-title">Pendidikan Terakhir</h5>
+<p>
+  <?= strtoupper($laststudy['jenjang_'] ?? '-') ?> - <?= strtoupper($laststudy['name_school'] ?? '-') ?><br>
+  Jurusan: <?= strtoupper($laststudy['jurusan_'] ?? '-') ?><br>
+  Tahun: <?= date('Y', strtotime($laststudy['year_first'] ?? date('Y'))) ?> -
+  <?= date('Y', strtotime($laststudy['year_last'] ?? date('Y'))) ?>
+</p>
+
+<!-- ===== Pengalaman ===== -->
+<h5 class="section-title">Pengalaman Kerja</h5>
+<?php if (!empty($experience)): ?>
+<div class="row">
+  <?php foreach ($experience as $row): ?>
+    <div class="col-6">
+      <h6>Nama Perusahaan</h6>
+      <div class="sub-bio">
+        <?= strtoupper($row['name_company']) ?>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <h6>Jenis Perusahaan</h6>
+      <div class="sub-bio">
+        <?= strtoupper($row['type_company']) ?>
+      </div>
+    </div>
+
+  <div class="col-6">
+  <h6>Lama Bekerja</h6>
+  <div class="sub-bio">
     <?php
-        $ttl = $karyawan['ttl']; // contoh: "MAGELANG, 2000-01-01"
+      $first = !empty($row['first_year']) ? new DateTime($row['first_year']) : null;
+      $last  = !empty($row['last_year']) ? new DateTime($row['last_year']) : new DateTime();
+      if ($first) {
+        $diff = $first->diff($last);
+        $lama_bekerja = '';
+        if ($diff->y > 0) $lama_bekerja .= $diff->y . ' Tahun ';
+        if ($diff->m > 0) $lama_bekerja .= $diff->m . ' Bulan';
+        echo trim($lama_bekerja) ?: '-';
+      } else {
+        echo '-';
+      }
+    ?>
+  </div>
+</div>
 
-        // Pisahkan kota dan tanggal
-        [$kota, $tanggal] = explode(',', $ttl);
-
-        // Format tanggal ke: 1 Januari 2000
-        $tanggal_formatted = date('j F Y', strtotime(trim($tanggal)));
-
-        // Ganti nama bulan ke bahasa Indonesia
-        $bulan = [
-            'January' => 'Januari',
-            'February' => 'Februari',
-            'March' => 'Maret',
-            'April' => 'April',
-            'May' => 'Mei',
-            'June' => 'Juni',
-            'July' => 'Juli',
-            'August' => 'Agustus',
-            'September' => 'September',
-            'October' => 'Oktober',
-            'November' => 'November',
-            'December' => 'Desember',
-        ];
-
-        foreach ($bulan as $en => $id) {
-            $tanggal_formatted = str_replace($en, $id, $tanggal_formatted);
-        }
-
-      
+    <div class="col-6">
+      <h6>Status Pegawai</h6>
+      <div class="sub-bio">
+        <?php
+          $status_pegawai_list = [
+            0 => 'PEKERJA PARUH WAKTU',
+            1 => 'PKWT',
+            2 => 'PEKERJA TETAP',
+            3 => 'PEKERJA SEMENTARA',
+            4 => 'PEKERJA MUSIMAN',
+            5 => 'FREELANCER/PEKERJA LEPAS',
+            6 => 'PEKERJA KONTRAK',
+            7 => 'OUTSOURCING',
+            8 => 'MAGANG',
+            9 => 'PKWTT'
+          ];
+          $id_type = $row['employee_company'];
+          $nama_type = isset($status_pegawai_list[$id_type])
+              ? $status_pegawai_list[$id_type]
+              : 'TIDAK DICANTUMKAN';
         ?>
-
-        <div class="row">
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1 font-small ">Tanggal Lahir</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= trim($kota) . ', ' . $tanggal_formatted;?></div>
-                              </div>
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">NIK / NOKK</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= $karyawan['nik'];?> / <?= $karyawan['nokk'];?></div>
-                              </div>
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">NPWP</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= $karyawan['npwp'];?></div>
-                              </div>
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">Jenis Kelamin</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "> 
-                                  <?php if ($karyawan['jenis_kelamin'] == 1) {
-                                    echo "Laki Laki" ;
-                                  } else if ($karyawan['jenis_kelamin'] == 2){
-                                    echo "Perempuan";
-                                  } else if ($karyawan['jenis_kelamin'] == 3){
-                                    echo "Tidak Menyebutkan";
-                                  }; ?>
-                                </div>
-                              </div>
-                             
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">Alamat</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= $karyawan['alamat']; ?></div>
-                              </div>
-                         
-                       
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">Agama</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= $karyawan['agama']; ?></div>
-                              </div>
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">Marital</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= $karyawan['martial']; ?></div>
-                              </div>
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">Pendidikan Terakhir</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= $karyawan['pendidikan']; ?></div>
-                              </div>
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">Instagram / Tiktok</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= $karyawan['sosmed']; ?> / <?= $karyawan['sosmed_second']; ?></div>
-                              </div>
-                              <div class="col-sm-4 font-small">
-                                <div class="pb-1">No Rekening</div>
-                              </div>
-                              <div class="col-sm-8">
-                                <div class="pb-1 font-small "><?= $karyawan['no_rek']; ?></div>
-                              </div>
-                            </div>
-    <!-- Summary & Contact -->
-    <div class="row">
-      <div class="col-lg-12 contact-info">
-        <h5 class="section-title">Data Keluarga</h5>
-            <div class="row row-print">
-                <div class="col-lg-6">
-                    <div class="row mt-2">
-                        <div class="col-sm-4">
-                            <div class="pb-1">Nama Ibu Kandung</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1 text-secondary"><?= $karyawan['nama_orangtua'];?></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-print">
-                <div class="col-lg-6">
-                    <div class="row mt-2">
-                        <div class="col-sm-4">
-                            <div class="pb-1">Nama Wali 1</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1"><?= $wali1['name_detail'] ?? "-" ?></div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="pb-1">No HP 1</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1"><?= $wali1['phone_detail'] ?? "-" ?></div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="pb-1">Hubungan Wali 1</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1"><?= $wali1['relationship'] ?? "-" ?></div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="pb-1">Alamat Wali 1</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1"><?= $wali1['addresed'] ?? "-" ?></div>
-                        </div>
-                    </div>
-                </div>
-                              
-                <div class="col-md-6">
-                    <div class="row mt-2">
-                        <div class="col-sm-4">
-                            <div class="pb-1">Nama Wali 2</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1"><?= $wali2['name_detail'] ?? "-" ?></div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="pb-1">No HP 2</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1"><?= $wali2['phone_detail'] ?? "-" ?></div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="pb-1">Hubungan Wali 2</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1"><?= $wali2['relationship'] ?? "-" ?></div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="pb-1">Alamat Wali 2</div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="pb-1"><?= $wali2['addresed'] ?? "-" ?></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!--           
-            <hr> -->
-           
-              <div class="row">
-                  <div class="col-lg-6">
-                    <h5 class="section-title">Data Pasangan</h5>
-                    <div class="row mt-2">
-                          <?php if(empty($data_relation)) { ?>
-                            <div class="col-sm-4">
-                              <div class="pb-1">Belum Ada</div>
-                            </div>
-                          <?php } else { ?>
-                          <?php foreach($data_relation as $dr) { ?>
-                              <div class="col-sm-4">
-                                  <div class="pb-1">Nama Pasangan</div>
-                              </div>
-                              <div class="col-sm-8">
-                                  <div class="pb-1"><?= $dr['name_detail'] ?? "-" ?></div>
-                              </div>
-                              <div class="col-sm-4">
-                                  <div class="pb-1">Nomor Pasangan</div>
-                              </div>
-                              <div class="col-sm-8">
-                                  <div class="pb-1"><?= $wali1['phone_detail'] ?? "-" ?></div>
-                              </div>
-                          <?php } ?>
-                        <?php } ?>
-                      </div>
-                  </div>
-                  <div class="col-lg-6">
-                        <h5 class="section-title">Data Anak</h5>
-                          <div class="row mt-2">
-                              <?php if(empty($data_child)) { ?>
-                                <div class="col-sm-4">
-                                  <div class="pb-1">Belum Ada</div>
-                                </div>
-                              <?php } else { ?>
-                                <?php foreach($data_child as $dc) { ?>
-                                  <div class="col-sm-4">
-                                    <div class="pb-1">Nama Anak</div>
-                                  </div>
-                                  <div class="col-sm-8">
-                                    <div class="pb-1"><?= $dc['name_detail'] ?? "-" ?></div>
-                                  </div>
-                                  <div class="col-sm-4">
-                                    <div class="pb-1">Nomor Anak</div>
-                                  </div>
-                                  <div class="col-sm-8">
-                                    <div class="pb-1"><?= $dc['phone_detail'] ?? "-" ?></div>
-                                  </div>
-                                <?php } ?>
-                              <?php } ?>
-                            </div>
-                    </div>
-              </div>
-        </div>
-    </div>
-
-    <!-- <hr> -->
-
-    <!-- Work Experience -->
-    <div>
-      <h5 class="section-title">Karir</h5>
-
-      <div class="mb-4">
-      <?php foreach($karir as $act) { 
-                            $id_kr = $act['id_name_activation'];
-                            $id_act = $act['id_activation'];
-                            $CI = &get_instance();
-                            $CI->load->model('ActivationModel');
-
-                            $periode = $CI->ActivationModel->getActivationDetailDesc($id_act,$id_kr);
-
-                              if($act['date_activation'] != '0000-00-00') {
-                                  if($periode == null){
-                                      //  print_r($periode);exit();
-                                      $date1 = new DateTime($act['date_activation']);
-                                      $date2 = new DateTime(date("Y-m-d"));
-                                      $diff = $date1->diff($date2);
-                                      // Ambil selisih tahun dan bulan
-                                      $years = $diff->y;
-                                      $months = $diff->m;
-                                      $status = "Aktif";
-                          
-                                      $periodedate = date('j F Y',strtotime($act['date_activation'])) . " - Sekarang";
-                                  } else {
-                                      if($periode['date_activation'] == $act['date_activation']) {
-                                          //  print_r($periode);exit();
-                                          $date1 = new DateTime($periode['date_activation']);
-                                          $date2 = new DateTime(date("Y-m-d"));
-                                          $diff = $date1->diff($date2);
-                                          // Ambil selisih tahun dan bulan
-                                          $years = $diff->y;
-                                          $months = $diff->m;
-                                          
-
-                                          $status = "Aktif";
-
-                                          $periodedate = date('j F Y',strtotime($act['date_activation'])) . " - Sekarang";
-                                      } else {
-                                              //  print_r($periode);exit();
-                                          $date1 = new DateTime($act['date_activation']);
-                                          $date2 = new DateTime($periode['date_activation']);
-                                          
-                                          $diff = $date1->diff($date2);
-                                          // Ambil selisih tahun dan bulan
-                                          $years = $diff->y;
-                                          $months = $diff->m;
-                                          $status = "-";
-                                          
-                                          $periodedate = date('j F Y',strtotime($act['date_activation'])) . " - " . date('j F Y',strtotime($periode['date_activation']));
-                                      }
-                                  }
-                              
-                              } else{
-                                  $years = "-";
-                                      $months = "-";
-                                      $status = "-";
-                                      if($act['date_activation'] == '0000-00-00') {
-                                        $periodedate = "Masih Pengajuan";
-                                    } else {
-                                        $periodedate = date('j F Y',strtotime($act['date_activation'])) . "- Sekarang";
-                                    }
-                              }
-                          
-                          ?>
-  
-        <div class="career-entry">
-          <strong><?= $act['jabatan_activation'] ?></strong> <span class="text-muted">| <?= $periodedate ?></span><br>
-          <em>Kantor : <?= $act['name'] ?></em><br>
-          <span class="text-uppercase">Beneficial:</span>
-          <ul>
-          <?php 
-                                           $CI->load->model('KontrakModel');
-                                           $idkaryawan = $karyawan['id_karyawan'];
-                                           $idjabatan = $act['id_jabatan_activation'];
-                                           $beneficial = $CI->KontrakModel->getBeneficialJabatan($idkaryawan,$idjabatan);
-                                          
-                                          if (!empty($beneficial)) : ?>
-                                                <?php 
-                                                  
-                                                    $CI->load->model('KontrakModel');
-                                                    foreach ($beneficial as $ben) :
-                                                      $typebenef = $ben['type_beneficial'];
-                                                      $jabatan = $ben['id_jabatan'];
-                                                      $jab = $CI->KontrakModel->getBeneficialItem($typebenef,$jabatan,$idkaryawan);
-                                                        $names = array_column($jab, 'name_beneficial');
-                                                        $namaBeneficial = implode(', ', $names);
-                                                ?>
-                                                  
-                                                
-                                                    <li class="pb-1"><b><?= $ben['type_beneficial'] ?></b>( <?= $namaBeneficial ?> )</li>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
-                                                <li>
-                                                    <span class="text-center text-muted">Tidak Ada</span>
-                                                  </li>
-                                                
-                                            <?php endif; ?>
-           
-          </ul>
-        </div>
-        <?php } ?>
-
-  
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <h5 class="section-title">Kontrak</h5>
-          <ul class="list-unstyled">
-            <li><strong>No. Kontrak:</strong> 092/VI/2026/OOMMN <span class="text-muted">| 20 April 2025 – Sekarang</span></li>
-            <li><strong>Badan Hukum:</strong> RKR</li>
-            <li><strong>Total Gaji:</strong> Rp2.400.000</li>
-          </ul>
-        </div>
+        <?= strtoupper($nama_type) ?>
       </div>
     </div>
+
+    <div class="col-6">
+      <h6>Jabatan Terakhir</h6>
+      <div class="sub-bio">
+        <?= strtoupper($row['last_position']) ?>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <h6>Kontrak Selesai</h6>
+      <div class="sub-bio">
+        <?= is_null($row['last_year']) || $row['last_year'] == '' ? 'Belum' : 'Selesai' ?>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <h6>Deskripsi Pekerjaan</h6>
+      <p class="sub-bio">
+        <?= htmlentities(htmlspecialchars($row['description'])) ?>
+      </p>
+      <hr class="horizontal dark">
+    </div>
+  <?php endforeach; ?>
+</div>
+<?php else: ?>
+  <p>Tidak ada data pengalaman kerja.</p>
+<?php endif; ?>
+
+    <!-- ===== File Pendukung ===== -->
+    <h5 class="section-title">File Pendukung</h5>
+    <?php if (!empty($pendukung)): ?>
+      <ul>
+        <?php foreach ($pendukung as $file): ?>
+          <li>
+            <a href="<?= base_url('uploads/kandidat/files/' . $file['file_pendukung']) ?>" target="_blank">
+              <?= $file['file_pendukung'] ?>
+            </a> (<?= ucfirst($file['jenis_file']) ?>)
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php else: ?>
+      <p>Tidak ada file pendukung yang diunggah.</p>
+    <?php endif; ?>
+  </div>
 
   <script>
-  window.onload = function () {
-    setTimeout(() => {
-      window.print();
-    }, 500); // beri delay kecil agar semua gambar selesai load
-  };
-</script>
+    // Cetak otomatis setelah halaman termuat
+    window.onload = function () {
+      setTimeout(() => { window.print(); }, 500);
+    };
+  </script>
 
 </body>
 </html>

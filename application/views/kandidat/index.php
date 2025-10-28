@@ -21,9 +21,8 @@
                         <?= $this->session->flashdata('message') ?>
                     </div>
                     <?php endif ?>
-                    <div class="row mb-3">
- <form method="get" action="">
-  <div class="row mb-3">
+<form method="get" action="">
+  <div class="row mb-3 align-items-end">
       <div class="col-md-4">
           <label>Filter Berdasarkan</label>
           <select name="filter_type" id="filter-type" class="form-control">
@@ -40,14 +39,14 @@
                  value="<?= $this->input->get('keyword') ?>">
       </div>
 
-      <div class="col-md-4 d-flex align-items-end">
-          <button type="submit" class="btn btn-primary">Cari</button>
-          <a href="<?= site_url('kandidat') ?>" class="btn btn-secondary ms-2">Reset</a>
+      <div class="col-md-5">
+          <div class="d-flex justify-content-start mt-4">
+              <button type="submit" class="btn btn-primary me-2">Cari</button>
+              <a href="<?= site_url('kandidat') ?>" class="btn btn-secondary">Reset</a>
+          </div>
       </div>
   </div>
 </form>
-
-
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0" id="table-kandidat">
                             <thead>

@@ -253,10 +253,10 @@
                                 </div>
                                 <hr class="horizontal dark mt-2">
                                 <h5>Pendidikan Terakhir</h5>
-                                <div class="sub-bio">
+                                <h6><div class="sub-bio">
 
                                     <?= strtoupper($laststudy['jenjang_']) ?>
-                                </div>
+                                </div></h6>
                                 <div class="sub-bio">
                                     <?= strtoupper($laststudy['name_school']) ?>
 

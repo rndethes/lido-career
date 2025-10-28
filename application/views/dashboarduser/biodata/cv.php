@@ -298,6 +298,7 @@ if (isset($biodata['religion_candidate'])) {
 <?php else: ?>
   <p>Tidak ada data pengalaman kerja.</p>
 <?php endif; ?>
+</br>
 
     <!-- ===== File Pendukung ===== -->
     <h5 class="section-title">File Pendukung</h5>

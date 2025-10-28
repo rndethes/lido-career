@@ -91,7 +91,6 @@
                                 <span class="sub-bio">
 
                                     <?= $biodata['jk_candidate'] == 1 ? 'LAKI LAKI' : ($biodata['jk_candidate'] == 2 ? 'PEREMPUAN' : ($biodata['jk_candidate'] == 3 ? 'TRANSGENDER' : 'TIDAK INGIN MENYEBUTKAN')) ?>
-
                                 </span>
                                 <hr class="horizontal dark mt-2">
                             </div>

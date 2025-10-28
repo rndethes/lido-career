@@ -101,7 +101,25 @@ class CandidateBiodata extends CI_Controller
         'experience' => $exprience,
         'pendukung'  => $pendukung,
     ]);
+    
 }
+  public function cetak_cv($id)
+{
+    $biodata    = $this->kandidat_model->getBiodataById($id);
+    $address    = $this->kandidat_model->getKandidatAddress($id);
+    $laststudy  = $this->kandidat_model->getKandidatStudy($id);
+    $experience = $this->kandidat_model->getKandidatExperience($id);
+    $pendukung  = $this->kandidat_model->getFilePendukung($id);
+
+    $this->load->view('dashboarduser/biodata/cv', [
+        'biodata'    => $biodata,
+        'address'    => $address,
+        'laststudy'  => $laststudy,
+        'experience' => $experience,
+        'pendukung'  => $pendukung
+    ]);
+}
+
     public function delete_experience($id)
     {
         $delete = $this->kandidat_model->deletePengalamanKerja($id);

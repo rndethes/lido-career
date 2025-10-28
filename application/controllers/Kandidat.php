@@ -25,18 +25,24 @@ class Kandidat extends CI_Controller
         $this->load->library('Sendmail');
     }
 
-    public function index()
-    {
-        $this->load->view('templates/header', [
-            'title' => 'Daftar Kandidat'
-        ]);
+  public function index()
+{
+    // Ambil data filter dari GET
+    $filters = [
+        'filter_type' => $this->input->get('filter_type'),
+        'keyword' => $this->input->get('keyword')
+    ];
 
-        $this->load->view('kandidat/index', [
-            'kandidat' => $this->kandidat_model->getAllKandidat()
-        ]);
+    // Panggil model dengan filter
+    $data['kandidat'] = $this->kandidat_model->getAllKandidatJoin($filters);
 
-        $this->load->view('templates/footer');
-    }
+    // Load view
+    $this->load->view('templates/header', ['title' => 'Daftar Kandidat']);
+    $this->load->view('kandidat/index', $data);
+    $this->load->view('templates/footer');
+}
+
+
 
     public function transfer($id = null)
     {
@@ -242,7 +248,10 @@ class Kandidat extends CI_Controller
 
     public function detail($id = null)
     {
-        $biodata    = $this->kandidat_model->getBiodata($id);
+
+       
+        $biodata    = $this->kandidat_model->getBiodataById($id);
+        //  print_r($biodata); exit();
         $address    = $this->kandidat_model->getKandidatAddress($biodata['id']);
         $laststudy  = $this->kandidat_model->getKandidatStudy($biodata['id']);
         $exprience  = $this->kandidat_model->getKandidatExperience($biodata['id']);

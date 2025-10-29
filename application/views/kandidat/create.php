@@ -75,6 +75,17 @@
                                                                 type="date" />
                                                         </div>
                                                     </div>
+                                                      <div class="col-md-6">
+                                                    <div class="form-group">
+                                                            <label class="form-control-label">Agama</label>
+                                                            <select v-model="data_diri.religion_candidate" class="form-control" name="religion_candidate">
+                                                                <option value="">-- pilih --</option>
+                                                                <option v-for="agm in agama_list" :key="agm.id" :value="agm.id">
+                                                                    {{ agm.text }}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="example-text-input"
@@ -88,6 +99,41 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                     <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Status</label>
+                                        <select v-model="data_diri.marital_candidate" class="form-control" name="marital_candidate">
+                                            <option value="">-- pilih --</option>
+                                            <option v-for="st in marital_list" :key="st.id" :value="st.id">
+                                                {{ st.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Media Sosial -->
+                                <div class="col-md-6">
+                                   <div class="form-group">
+                                        <label class="form-control-label">LinkedIn</label>
+                                        <input type="text"
+                                               v-model="data_diri.socialmedia2_candidate"
+                                               class="form-control"
+                                               name="socialmedia2_candidate"
+                                               placeholder="Contoh: ida-fania-872b441b2">
+                                        <small class="text-muted">
+                                            Isi hanya bagian akhir URL setelah <strong>linkedin.com/in/</strong>
+                                        </small>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label class="form-control-label">Instagram</label>
+                                        <input type="text" v-model="data_diri.socialmedia2_candidate" class="form-control"
+                                            name="socialmedia2_candidate" placeholder="Contoh: ida_fania">
+                                   <small class="text-muted">
+                                         Isi hanya username tanpa <strong>@</strong> 
+                                 </small>
+                                        </div>
+                                </div>
+                                                </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12 d-flex justify-content-end">
@@ -557,7 +603,7 @@
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-12">
-                                                                <h6 class="card-title">CV</h6>
+                                                                <h6 class="card-title">Ijazah</h6>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <input name="file_pendukung" class="form-control"
@@ -655,6 +701,21 @@
                             text: 'TIDAK INGIN MENYEBUTKAN'
                         },
                     ],
+                        agama_list: [
+                        { id: 1, text: 'ISLAM' },
+                        { id: 2, text: 'KRISTEN' },
+                        { id: 3, text: 'HINDU' },
+                        { id: 4, text: 'BUDDHA' },
+                        { id: 5, text: 'KATOLIK' },
+                        { id: 6, text: 'TIDAK INGIN MENYEBUTKAN' },
+                    ],
+                    marital_list: [
+                    { id: 1, text: 'BELUM MENIKAH' },
+                    { id: 2, text: 'MENIKAH' },
+                    { id: 3, text: 'CERAI HIDUP' },
+                    { id: 4, text: 'CERAI MATI' },
+                     { id: 5, text: 'TIDAK INGIN MENYEBUTKAN' },
+                    ],
                     study_level_list: [{
                             id: 1,
                             text: 'SD'
@@ -702,7 +763,11 @@
                         no_candidate: '',
                         tempat_lahir_candidate: '',
                         birthdate_candidate: '',
-                        jk_candidate: ''
+                        jk_candidate: '',
+                        religion_candidate: '',
+                        marital_candidate: '',
+                        socialmedia2_candidate: '',
+                        socialmedia_candidate: ''
                     },
                     pendidikan: {
                         study_level: 'SMK',

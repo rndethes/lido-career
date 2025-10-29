@@ -74,7 +74,7 @@
 
                                 <h6>No. Handphone</h6>
 
-                                <span
+                              <span
                                     class="sub-bio"><?= $biodata['no_candidate'] ?></span>
                                 <hr class="horizontal dark mt-2">
                                 <h6>Tempat Lahir</h6>

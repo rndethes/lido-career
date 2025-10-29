@@ -197,48 +197,64 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Tahun Pendidikan</label>
-                                        <select v-model="pendidikan.year_first" name="year_first"
-                                            placeholder="-- pilih --" class="form-control tt-gede tt-selectize"
-                                            data-selectize="pendidikan_yf">
-                                            <?php for($i=0; $i<350; $i++): ?>
-                                            <option
-                                                value="<?= 1950 + $i ?>">
-                                                <?= 1950 + $i ?>
-                                            </option>
-                                            <?php endfor ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Sampai
-                                            Dengan</label>
-                                        <select v-model="pendidikan.year_last" name="year_last"
-                                            placeholder="-- pilih --" class="form-control tt-gede tt-selectize"
-                                            data-selectize="pendidikan_yl">
-                                            <?php for($i=0; $i<350; $i++): ?>
-                                            <option
-                                                value="<?= 1950 + $i ?>">
-                                                <?= 1950 + $i ?>
-                                            </option>
-                                            <?php endfor ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Masih Aktif</label>
-                                        <select v-model="pendidikan.active" name="active" class="form-control">
-                                            <option value="1">Aktif</option>
-                                            <option value="0">Tidak Aktif</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                           <div class="row">
+  <!-- Tanggal Mulai -->
+  <label class="form-control-label fw-bold mb-2">Tanggal Mulai</label>
+  <div class="col-md-6 mb-3">
+    <select name="month_start" class="form-control">
+      <option value="">Bulan</option>
+      <option>Januari</option>
+      <option>Februari</option>
+      <option>Maret</option>
+      <option>April</option>
+      <option>Mei</option>
+      <option>Juni</option>
+      <option>Juli</option>
+      <option>Agustus</option>
+      <option>September</option>
+      <option>Oktober</option>
+      <option>November</option>
+      <option>Desember</option>
+    </select>
+  </div>
+  <div class="col-md-6 mb-3">
+    <select name="year_start" class="form-control">
+      <option value="">Tahun</option>
+      <?php for($i = date('Y'); $i >= 1950; $i--): ?>
+        <option value="<?= $i ?>"><?= $i ?></option>
+      <?php endfor; ?>
+    </select>
+  </div>
+
+  <!-- Tanggal Berakhir -->
+  <label class="form-control-label fw-bold mb-2">Tanggal Berakhir (atau perkiraan)</label>
+  <div class="col-md-6 mb-3">
+    <select name="month_end" class="form-control">
+      <option value="">Bulan</option>
+      <option>Januari</option>
+      <option>Februari</option>
+      <option>Maret</option>
+      <option>April</option>
+      <option>Mei</option>
+      <option>Juni</option>
+      <option>Juli</option>
+      <option>Agustus</option>
+      <option>September</option>
+      <option>Oktober</option>
+      <option>November</option>
+      <option>Desember</option>
+    </select>
+  </div>
+  <div class="col-md-6 mb-3">
+    <select name="year_end" class="form-control">
+      <option value="">Tahun</option>
+      <?php for($i = date('Y'); $i >= 1950; $i--): ?>
+        <option value="<?= $i ?>"><?= $i ?></option>
+      <?php endfor; ?>
+    </select>
+  </div>
+</div>
+
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-end">
                                     <button @click="saveDataPendidikan" type="button"
@@ -722,7 +738,6 @@
             <label>Jenis Dokumen</label>
             <select name="jenis_file" v-model="formFilePendukungJenis" class="form-select" required>
               <option disabled value="">-- Pilih Jenis Dokumen --</option>
-              <option value="Ijazah">Ijazah</option>
               <option value="Portofolio">Portofolio</option>
               <option value="Sertifikat">Sertifikat</option>
             </select>
@@ -801,6 +816,14 @@
                         {
                             id: 2,
                             text: 'PEREMPUAN'
+                        },
+                        {
+                            id: 3,
+                            text: 'TRANSGENDER'
+                        },
+                        {
+                            id: 4,
+                            text: 'TIDAK INGIN MENYEBUTKAN'
                         },
                     ],
                     study_level_list: [{
@@ -928,12 +951,14 @@
                         { id: 3, text: 'HINDU' },
                         { id: 4, text: 'BUDDHA' },
                         { id: 5, text: 'KATOLIK' },
+                        { id: 6, text: 'TIDAK INGIN MENYEBUTKAN' },
                     ],
                     marital_list: [
                     { id: 1, text: 'BELUM MENIKAH' },
                     { id: 2, text: 'MENIKAH' },
                     { id: 3, text: 'CERAI HIDUP' },
                     { id: 4, text: 'CERAI MATI' },
+                    { id: 5, text: 'TIDAK INGIN MENYEBUTKAN' },
                     ],
                     pengalaman: {
                         name_company: '',
@@ -1261,67 +1286,119 @@
                             });
                         });
                 },
-                saveDataPendidikan() {
-                    var data = new FormData();
+            saveDataPendidikan() {
+  var data = new FormData();
 
-                    data.append("study_level", this.pendidikan.study_level);
-                    if (!this.showMajor) {
-                        data.append("major_school", '');
-                    } else {
-                        data.append("major_school", this.pendidikan.major_school);
-                    }
+  // basic fields
+  data.append("study_level", this.pendidikan.study_level);
+  data.append("name_school", this.pendidikan.name_school || '');
+  data.append("jurusan", this.pendidikan.jurusan || '');
 
-                    var $control2 = $(
-                        'select.tt-selectize[data-selectize="pendidikan_yl"]')[0]?.selectize;
+  if (!this.showMajor) {
+    data.append("major_school", '');
+  } else {
+    data.append("major_school", this.pendidikan.major_school || '');
+  }
 
-                    this.pendidikan.year_first = $(
-                        'select.tt-selectize[data-selectize="pendidikan_yf"]').text().trim();
+  data.append("active", this.pendidikan.active ? this.pendidikan.active : 0);
 
-                    console.log($control2.isDisabled);
-                    if ($control2.isDisabled) {
-                        this.pendidikan.year_last = '';
-                    } else {
-                        this.pendidikan.year_last = $(
-                            'select.tt-selectize[data-selectize="pendidikan_yl"]').text().trim();
+  // ----- Ambil bulan/tahun — robust (select biasa, selectize, atau fallback text) -----
+  function getSelectValue(selector) {
+    // 1) select normal -> val()
+    var $sel = $(selector);
+    if ($sel.length) {
+      var v = $sel.val();
+      if (v !== undefined && v !== null && String(v).trim() !== '') return String(v).trim();
+    }
 
-                    }
+    // 2) selectize (nilai di instance)
+    var inst = $sel[0]?.selectize;
+    if (inst) {
+      var val2 = inst.getValue ? inst.getValue() : (inst.getValue === 0 ? inst.getValue : null);
+      if (val2 !== undefined && val2 !== null && String(val2).trim() !== '') return String(val2).trim();
+    }
+
+    // 3) fallback ke teks visible (mis. .text())
+    var txt = $sel.text ? $sel.text().trim() : '';
+    if (txt) return txt;
+
+    return '';
+  }
+
+  const monthStart = getSelectValue('select[name="month_start"], select.tt-selectize[data-selectize="pendidikan_mf"]');
+  const yearStart  = getSelectValue('select[name="year_start"], select.tt-selectize[data-selectize="pendidikan_yf"]');
+  const monthEnd   = getSelectValue('select[name="month_end"], select.tt-selectize[data-selectize="pendidikan_ml"]');
+  const yearEnd    = getSelectValue('select[name="year_end"], select.tt-selectize[data-selectize="pendidikan_yl"]');
+
+  // mapping bulan -> angka
+  const bulanMap = {
+    'Januari': '01','Februari': '02','Maret': '03','April': '04','Mei': '05','Juni': '06',
+    'Juli': '07','Agustus': '08','September': '09','Oktober': '10','November': '11','Desember': '12',
+    'jan': '01','feb': '02','mar': '03','apr': '04','may': '05','jun': '06','jul': '07','aug': '08','sep': '09','oct': '10','nov': '11','dec': '12'
+  };
+
+  // ----- Validasi wajib tanggal mulai -----
+  if (!yearStart && !monthStart) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Gagal',
+      text: 'Tanggal mulai wajib diisi (bulan dan/atau tahun).'
+    });
+    return; // stop
+  }
+
+  // jika ada tahun, minimal gunakan tahun; kalau bulan ada gunakan bulan juga
+  let startDate = '';
+  if (yearStart) {
+    let mm = '01';
+    if (monthStart && bulanMap[monthStart]) mm = bulanMap[monthStart];
+    startDate = `${yearStart}-${mm}-01`;
+  }
+
+  // tanggal akhir optional: bila tidak diisi, set kosong / null (backend menandai active=1)
+  let endDate = '';
+  if (yearEnd) {
+    let mmEnd = '01';
+    if (monthEnd && bulanMap[monthEnd]) mmEnd = bulanMap[monthEnd];
+    endDate = `${yearEnd}-${mmEnd}-01`;
+  } else {
+    // kosong -> backend akan menganggap active = 1
+    endDate = '';
+  }
+
+  // debugging cepat saat develop
+  console.log('monthStart, yearStart:', monthStart, yearStart);
+  console.log('monthEnd, yearEnd:', monthEnd, yearEnd);
+  console.log('startDate, endDate =>', startDate, endDate);
+
+  data.append("year_first", startDate);
+  data.append("year_last", endDate);
+
+  // terakhir kirim
+  axios.post('<?= site_url("candidate-biodata/update-biodata/save-data-pendidikan") ?>', data)
+    .then((response) => {
+      if (!this.showMajor) this.pendidikan.major_school = '';
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: response.data.message || 'Berhasil memperbarui data pendidikan.',
+        showCloseButton: true,
+        confirmButtonText: '<i class="fas fa-arrow-right"></i> Lanjutkan Edit Alamat',
+      }).then((x) => {
+        if (x.isConfirmed) this.changeTab('alamat');
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed!',
+        text: error?.response?.data?.message || 'Gagal memperbarui data pendidikan.'
+      });
+    });
+},
 
 
-                    data.append("name_school", this.pendidikan.name_school);
-                    data.append("jurusan", this.pendidikan.jurusan);
-                    data.append("year_first", this.pendidikan.year_first);
-                    data.append("year_last", this.pendidikan.year_last);
-                    data.append("active", this.pendidikan.active);
-
-                    axios.post(
-                            '<?= site_url("candidate-biodata/update-biodata/save-data-pendidikan") ?>',
-                            data)
-                        .then((response) => {
-                            if (!this.showMajor) {
-                                this.pendidikan.major_school = '';
-                            }
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: 'Berhasil memperbarui data pendidikan.',
-                                showCloseButton: true,
-                                confirmButtonText: '<i class="fas fa-arrow-right"></i> Lanjutkan Edit Alamat',
-                            }).then((x) => {
-                                if (x.isConfirmed) {
-                                    this.changeTab('alamat');
-                                }
-                            });
-                        }).catch((error) => {
-                            console.log(error);
-
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Failed!',
-                                text: error.response.data.message ||
-                                    'Gagal memperbarui data pendidikan.'
-                            });
-                        });
-                },
                 saveDataDiri() {
                     var data = new FormData();
                     data.append("name_candidate", this.data_diri.name_candidate);

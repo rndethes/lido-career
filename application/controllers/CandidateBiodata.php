@@ -416,56 +416,90 @@ private function response($success, $message, $code)
         }
     }
 
-    public function save_data_pendidikan()
-    {
-        $request = [];
+  public function save_data_pendidikan()
+{
+    // Ambil data bulan & tahun dari form
+    $month_start = $this->input->post('month_start');
+    $year_start  = $this->input->post('year_start');
+    $month_end   = $this->input->post('month_end');
+    $year_end    = $this->input->post('year_end');
 
-        foreach ($_POST as $k => $v) {
-            if ($k == 'jurusan') {
-                $request['jurusan_'] = $this->input->post($k);
-                continue;
-            }
+    // Validasi tanggal mulai
+    if (empty($month_start) || empty($year_start)) {
+        http_response_code(400);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Tanggal mulai wajib diisi.'
+        ]);
+        exit;
+    }
 
-            $request[$k] = $this->input->post($k);
+    // Konversi bulan ke angka (01 - 12)
+    $bulan_map = [
+        'Januari' => '01', 'Februari' => '02', 'Maret' => '03',
+        'April' => '04', 'Mei' => '05', 'Juni' => '06',
+        'Juli' => '07', 'Agustus' => '08', 'September' => '09',
+        'Oktober' => '10', 'November' => '11', 'Desember' => '12'
+    ];
 
-            if ($k == 'major_school' && in_array(strtolower($_POST['study_level']), ['sma', 'smk', 'sd', 'smp'])) {
-                continue;
-            }
+    // Buat format tanggal ke YYYY-MM-DD (tanggal selalu 01)
+    $year_first = $year_start . '-' . ($bulan_map[$month_start] ?? '01') . '-01';
 
-            if ($k == 'year_last' && $_POST['active'] == 1) {
-                continue;
-            }
+    if (!empty($month_end) && !empty($year_end)) {
+        $year_last = $year_end . '-' . ($bulan_map[$month_end] ?? '01') . '-01';
+        $active = 0; // tidak aktif (sudah selesai)
+    } else {
+        $year_last = null;
+        $active = 1; // masih aktif
+    }
 
-            if (strlen(trim($v)) === 0) {
-                http_response_code(400);
+    // Ambil data lain dari form
+    $request = [];
+    foreach ($_POST as $k => $v) {
+        if (in_array($k, ['month_start', 'year_start', 'month_end', 'year_end'])) continue;
 
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Harap melengkapi semua data.'
-                ]);
-                exit;
-            }
+        if ($k == 'jurusan') {
+            $request['jurusan_'] = $this->input->post($k);
+            continue;
         }
 
-        $cand = $this->kandidat_model->getKandidatStudy(getLoggedInUser('id'));
-        $save = $this->kandidat_model->updatePendidikanKandidat($cand['id_candidate_study'], $request);
+        $request[$k] = $this->input->post($k);
 
-        if ($save) {
-            http_response_code(200);
-
-            echo json_encode([
-                'success' => true,
-                'message' => 'Data pendidikan berhasil diperbarui.'
-            ]);
-        } else {
-            http_response_code(500);
-
+        if (strlen(trim($v)) === 0 && $k != 'major_school') {
+            http_response_code(400);
             echo json_encode([
                 'success' => false,
-                'message' => 'Data pendidikan gagal diperbarui.'
+                'message' => 'Harap melengkapi semua data pendidikan.'
             ]);
+            exit;
         }
     }
+
+    // Tambahkan field tanggal
+    $request['year_first'] = $year_first;
+    $request['year_last']  = $year_last;
+    $request['active']     = $active;
+
+    // Ambil data kandidat yang sedang login
+    $cand = $this->kandidat_model->getKandidatStudy(getLoggedInUser('id'));
+
+    // Update data ke database
+    $save = $this->kandidat_model->updatePendidikanKandidat($cand['id_candidate_study'], $request);
+
+    if ($save) {
+        http_response_code(200);
+        echo json_encode([
+            'success' => true,
+            'message' => 'Data pendidikan berhasil diperbarui.'
+        ]);
+    } else {
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Gagal memperbarui data pendidikan.'
+        ]);
+    }
+}
 
     public function save_data_diri()
     {

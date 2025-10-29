@@ -139,8 +139,23 @@ public function getAllKandidatJoin($filters = [])
     
     public function getBiodataById($id)
 {
-    
-    return $this->db->get_where('candidate', ['id' => $id])->row_array();
+    $biodata = $this->db->get_where('candidate', ['id' => $id])->row_array();
+
+    if ($biodata && isset($biodata['birthdate_candidate'])) {
+        $raw = $biodata['birthdate_candidate'];
+
+        // Coba pisahkan pakai koma, kalau gagal pakai spasi
+        if (str_contains($raw, ',')) {
+            $tsp = explode(',', $raw);
+        } else {
+            $tsp = preg_split('/\s+/', $raw, 2); // pisah jadi 2 bagian pertama
+        }
+
+        $biodata['tempat_lahir_candidate'] = trim($tsp[0] ?? '');
+        $biodata['tanggal_lahir_candidate'] = trim($tsp[1] ?? '');
+    }
+
+    return $biodata;
 }
 
 
@@ -487,7 +502,7 @@ public function getAllKandidatJoin($filters = [])
         return $this->db->get_where('candidate', ['lower(email_candidate)' => strtolower($email)])->row_array();
     }
 
-  public function insertPendidikan($id, $data)
+ public function insertPendidikan($id, $data)
 {
     $check = $this->db->get_where('candidate_study', ['id_candidate' => $id])->row_array();
     if ($check) {
@@ -497,16 +512,18 @@ public function getAllKandidatJoin($filters = [])
     $level = '';
     $jurusan = '';
 
-    // konversi tahun ke format DATE sebelum disimpan
-    if (!empty($data['year_first']) && strlen($data['year_first']) == 4) {
-        $data['year_first'] = $data['year_first'] . '-01-01';
+    // Jika year_first dan year_last berasal dari form (sudah format YYYY-MM-DD dari controller)
+    if (!empty($data['year_first'])) {
+        $this->db->set('year_first', $data['year_first']);
     }
 
-    if (!empty($data['year_last']) && strlen($data['year_last']) == 4) {
-        $data['year_last'] = $data['year_last'] . '-01-01';
+    if (!empty($data['year_last'])) {
+        $this->db->set('year_last', $data['year_last']);
     }
 
     foreach ($data as $k => $v) {
+        if (in_array($k, ['jurusan_', 'study_level', 'year_first', 'year_last', 'id_candidate'])) continue;
+
         if ($k == 'jurusan_') {
             $jurusan = $v;
             continue;
@@ -520,12 +537,12 @@ public function getAllKandidatJoin($filters = [])
         $this->db->set($k, $v);
     }
 
-    $study_level = sprintf('%s, %s', $level, $jurusan);
-
+    // Gabungkan study_level dan jurusan agar konsisten dengan data lama
+    $study_level = trim(sprintf('%s, %s', $level, $jurusan), ', ');
     $this->db->set('study_level', $study_level);
     $this->db->set('id_candidate', $id);
-    $this->db->insert('candidate_study');
 
+    $this->db->insert('candidate_study');
     return $this->db->affected_rows() > 0;
 }
 
@@ -665,21 +682,23 @@ public function updatePendidikanKandidat($id_candidate_study, $data)
     $level = '';
     $jurusan = '';
 
-    // konversi tahun ke format DATE (YYYY-01-01)
-    if (!empty($data['year_first']) && strlen($data['year_first']) == 4) {
-        $data['year_first'] = $data['year_first'] . '-01-01';
+    // Jika year_first dan year_last sudah dalam format YYYY-MM-DD dari controller
+    if (!empty($data['year_first'])) {
+        $this->db->set('year_first', $data['year_first']);
     }
 
-    if (!empty($data['year_last']) && strlen($data['year_last']) == 4) {
-        $data['year_last'] = $data['year_last'] . '-01-01';
+    if (!empty($data['year_last'])) {
+        $this->db->set('year_last', $data['year_last']);
     }
 
     foreach ($data as $k => $v) {
-        if ($k == 'id_candidate_study' || $k == 'id_candidate') continue;
+        if (in_array($k, ['id_candidate_study', 'id_candidate', 'jurusan_', 'study_level', 'year_first', 'year_last'])) continue;
+
         if ($k == 'jurusan_') {
             $jurusan = $v;
             continue;
         }
+
         if ($k == 'study_level') {
             $level = $v;
             continue;
@@ -688,13 +707,13 @@ public function updatePendidikanKandidat($id_candidate_study, $data)
         $this->db->set($k, $v);
     }
 
-    $study_level = sprintf('%s, %s', $level, $jurusan);
+    // Gabungkan level + jurusan
+    $study_level = trim(sprintf('%s, %s', $level, $jurusan), ', ');
     $this->db->set('study_level', $study_level);
     $this->db->update('candidate_study');
 
     return $this->db->affected_rows() > 0;
 }
-
 
     public function getFilePendukung($id)
     {

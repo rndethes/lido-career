@@ -46,29 +46,32 @@
 
 <div class="row">
     <div class="col-lg-12 mb-lg-0 mb-4">
-        <!--- PROFILE --->
-        <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-                <h6 class="text-capitalize"></h6>
-            </div>
-            <div class="card-body p-3">
+      <!--- PROFILE --->
+<div class="card z-index-2 h-100">
+    <div class="card-header pb-0 pt-3 bg-transparent">
+        <h6 class="text-capitalize"></h6>
+    </div>
+    <div class="card-body p-3">
+        <div class="row">
+            <div class="col-lg-3">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="photo-circle">
-                                    <?php
-                                    $path = FCPATH . 'uploads/kandidat/profiles' . $biodata['photo_candidate'];
-                                    if (file_exists($path) && is_file($path)) {
-                                        $img = base_url('uploads/kandidat/profiles/' . $biodata['photo_candidate']);
-                                    } else {
-                                        $img = base_url('assets/default/file_lido-default-photo.jpg');
-                                    }
-                                    ?>
-                                    <img class="img-fluid border-radius-lg"
-                                        src="<?= $img ?>">
-                                </div>
-                            </div>
+                    <div class="col-lg-12">
+                        <?php
+                        $path = FCPATH . 'uploads/kandidat/profiles/' . $biodata['photo_candidate'];
+                        if (file_exists($path) && is_file($path)) {
+                            $img = base_url('uploads/kandidat/profiles/' . $biodata['photo_candidate']);
+                        } else {
+                            $img = base_url('assets/default/file_lido-default-photo.jpg');
+                        }
+                        ?>
+                        <div class="photo-circle" style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden;">
+                            <img src="<?= $img ?>" 
+                                alt="Foto Kandidat" 
+                                style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                    </div>
+          
+
                             <div class="col-lg-12 ms-sm-2">
                                 <div class="mt-2"></div>
 

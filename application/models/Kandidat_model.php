@@ -550,61 +550,67 @@ public function getAllKandidatJoin($filters = [])
         return $this->db->affected_rows() > 0;
     }
 
-   public function saveKandidat(array $data)
-{
-    $mode = !empty($data['id']) ? 'update' : 'insert';
+     public function saveKandidat(array $data)
+    {
+        $mode = !empty($data['id']) ? 'update' : 'insert';
 
-    $birthdate_candidate = '';
-    $tempatlhr_candidate = '';
+        $birthdate_candidate = '';
+        $tempatlhr_candidate = '';
+        $photo_candidate = '';
 
-    foreach ($data as $k => $v) {
-        if ($k == 'id') continue;
+        foreach ($data as $k => $v) {
+            if ($k == 'id') continue;
 
-        if ($k == 'tempat_lahir_candidate') {
-            $tempatlhr_candidate = $v;
-            continue;
+            if ($k == 'tempat_lahir_candidate') {
+                $tempatlhr_candidate = $v;
+                continue;
+            }
+
+            if ($k == 'birthdate_candidate') {
+                $birthdate_candidate = $v;
+                continue;
+            }
+
+            if ($k == 'photo_candidate') {
+                $photo_candidate = $v; // Hanya nama file
+                continue;
+            }
+
+            if (in_array($k, [
+                'name_candidate',
+                'email_candidate',
+                'no_candidate',
+                'birthdate_candidate',
+                'religion_candidate',
+                'jk_candidate',
+                'marital_candidate',
+                'socialmedia2_candidate',
+                'socialmedia_candidate',
+            ])) {
+                $this->db->set($k, $v);
+            }
         }
 
-        if ($k == 'birthdate_candidate') {
-            $birthdate_candidate = $v;
-            continue;
+        // Gabungkan tempat & tanggal lahir
+        if (!empty($tempatlhr_candidate) && !empty($birthdate_candidate)) {
+            $this->db->set('birthdate_candidate', $tempatlhr_candidate . ', ' . $birthdate_candidate);
         }
 
-        if (in_array($k, [
-            'name_candidate',
-            'email_candidate',
-            'no_candidate',
-            'birthdate_candidate',
-            'religion_candidate',
-            'jk_candidate',
-            'marital_candidate',
-            'socialmedia2_candidate',
-            'socialmedia_candidate',
-        ])) {
-            $this->db->set($k, $v);
+        // Set photo_candidate jika ada
+        if (!empty($photo_candidate)) {
+            $this->db->set('photo_candidate', $photo_candidate);
         }
+
+        if ($mode === 'update') {
+            $this->db->where('id', $data['id']); // Primary key
+            $this->db->update($this->table);
+        } else {
+            $this->db->set('id', generateIdCandidate()); // Buat ID baru
+            $this->db->insert($this->table);
+        }
+
+        return $this->db->affected_rows() > 0;
     }
-
-    // Gabungkan tempat & tanggal lahir
-    if (!empty($tempatlhr_candidate) && !empty($birthdate_candidate)) {
-        $this->db->set('birthdate_candidate', $tempatlhr_candidate . ', ' . $birthdate_candidate);
-    }
-
-    if ($mode === 'update') {
-        $this->db->where('id', $data['id']); // ❌ perbaiki key sesuai DB
-        $this->db->update($this->table);
-    } else {
-        $this->db->set('id', generateIdCandidate());
-        $this->db->insert($this->table);
-    }
-
-    echo "<pre>";
-    echo "SQL terakhir: " . $this->db->last_query() . "\n";
-    echo "Affected rows: " . $this->db->affected_rows();
-    exit;
-
-    return $this->db->affected_rows() > 0;
-}
 
     // TODO: rollback operation
     public function deleteKandidat($id)

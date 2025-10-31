@@ -4,6 +4,13 @@ $CI->load->model('main_model');
 
 $content_zero = $CI->main_model->getSettingZero();
 ?>
+<?php
+$id_user = getLoggedInUser('id');
+$user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
+$img = !empty($user['photo_candidate']) 
+    ? base_url('uploads/kandidat/profiles/' . $user['photo_candidate'])
+    : base_url('assets/img/default-profile.png'); // fallback jika belum ada foto
+?>
 
 <!DOCTYPE html>
 <html lang="id">
@@ -14,7 +21,7 @@ $content_zero = $CI->main_model->getSettingZero();
     <title>Lido Group</title>
     <link
         href="<?= base_url() ?>assets/img/img-landing/logo_webpage.png"
-        rel="shortcut icon" />
+        rel="shortcut icon" /> 
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -161,50 +168,44 @@ $content_zero = $CI->main_model->getSettingZero();
                         <li class="nav-item d-flex align-items-center">
                         </li>
                         <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                            <a href="#" class="nav-link text-white p-0" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user cursor-pointer"></i>
-                                <span class="d-sm-inline d-none">Profile</span>
-                            </a>
-                            <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
-                                aria-labelledby="dropdownMenuButton">
-                                <li class="mb-2">
-                                    <a class="dropdown-item border-radius-md"
-                                        href="<?= site_url('candidate-biodata/change-password') ?>">
-                                        <div class="d-flex py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-sm font-weight-normal mb-1">
-                                                    <span class="font-weight-bold text-dark">Change Password</span>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a class="dropdown-item border-radius-md tombol-logout"
-                                        href="<?= site_url('candidatelogin/logout') ?>">
-                                        <div class="d-flex py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-sm font-weight-normal mb-1">
-                                                    <span class="font-weight-bold text-dark">Log Out</span>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                        </li>
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-                                <div class="sidenav-toggler-inner">
-                                    <i class="sidenav-toggler-line bg-white"></i>
-                                    <i class="sidenav-toggler-line bg-white"></i>
-                                    <i class="sidenav-toggler-line bg-white"></i>
-                                </div>
-                            </a>
-                        </li>
+    <a href="#" class="nav-link text-white p-0 d-flex align-items-center" id="dropdownMenuButton"
+        data-bs-toggle="dropdown" aria-expanded="false">
+       <img src="<?= $img ?>" 
+     alt="Foto Profil" 
+     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 8px;">
+
+        <!-- Icon dan teks Profile -->
+        <i class="fa fa-user cursor-pointer"></i>
+        <span class="d-sm-inline d-none ms-1">Profile</span>
+    </a>
+    
+    <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
+        aria-labelledby="dropdownMenuButton">
+        <li class="mb-2">
+            <a class="dropdown-item border-radius-md" href="<?= site_url('candidate-biodata/change-password') ?>">
+                <div class="d-flex py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold text-dark">Change Password</span>
+                        </h6>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li class="mb-2">
+            <a class="dropdown-item border-radius-md tombol-logout" href="<?= site_url('candidatelogin/logout') ?>">
+                <div class="d-flex py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                            <span class="font-weight-bold text-dark">Log Out</span>
+                        </h6>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</li>
+
                     </ul>
                 </div>
             </div>

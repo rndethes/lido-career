@@ -20,7 +20,7 @@ body { display:flex; flex-direction:row; width:210mm; height:297mm; background:#
     align-items:center;
 }
 
-.left img { width:130px; height:130px; object-fit:cover; border-radius:50%; border:3px solid #fff; margin-bottom:16px; }
+.left img { width:130px; height:130px; object-fit:cover; border-radius:50%; border:3px solid #646464ff; margin-bottom:16px; }
 .left h2 { font-size:22px; margin-bottom:6px; text-align:center; line-height:1.3; font-weight:700; }
 .biodata-item { font-size:13px; line-height:1.4; margin-bottom:6px; text-align:center; }
 .social-links a { color:#fff; text-decoration:none; display:flex; align-items:center; margin-bottom:4px; word-break:break-all; font-size:13px; }
@@ -70,7 +70,7 @@ body { display:flex; flex-direction:row; width:210mm; height:297mm; background:#
 <div class="left">
    
     <?php
-        $path = FCPATH . 'uploads/kandidat/profiles' . $biodata['photo_candidate'];
+        $path = FCPATH . 'uploads/kandidat/profiles/' . $biodata['photo_candidate'];
         $img = (file_exists($path) && is_file($path)) ? base_url('uploads/kandidat/profiles/' . $biodata['photo_candidate']) : base_url('assets/default/file_lido-default-photo.jpg');
     ?>
     <img src="<?= $img ?>">

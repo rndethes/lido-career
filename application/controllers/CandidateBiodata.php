@@ -168,66 +168,45 @@ class CandidateBiodata extends CI_Controller
         }
     }
 
-    public function save_data_profile()
+ public function save_data_profile()
 {
-    log_message('error', 'DEBUG: save_data_profile() triggered');
-    log_message('error', 'FILES: ' . print_r($_FILES, true));
-
-    if (!isset($_FILES['photo_candidate']) || $_FILES['photo_candidate']['error'] === UPLOAD_ERR_NO_FILE) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'Tidak ada file yang dipilih.']);
-        return;
-    }
-
-    $file = $_FILES['photo_candidate'];
-    $target_dir = FCPATH . 'uploads/kandidat/profiles/';
-    $target_file = 'file_' . time() . '_' . $file['name'];
-    $target_file_path = $target_dir . $target_file;
-
-    if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
-
-    $allowed_type = ['png', 'jpg', 'jpeg'];
-    $file_type = strtolower(pathinfo($target_file_path, PATHINFO_EXTENSION));
-
-    if (!in_array($file_type, $allowed_type)) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'message' => 'File tidak valid.']);
-        return;
-    }
-
-    if (!move_uploaded_file($file['tmp_name'], $target_file_path)) {
-        http_response_code(500);
-        echo json_encode(['success' => false, 'message' => 'Gagal memindahkan file.']);
-        return;
-    }
-
-    // Simpan ke database
-    $id_user = getLoggedInUser('id');
+    $id_user = getLoggedInUser('id'); 
     if (!$id_user) {
         http_response_code(401);
         echo json_encode(['success' => false, 'message' => 'Session tidak ditemukan.']);
         return;
     }
 
-    $save = $this->kandidat_model->saveKandidat([
-        'id' => $id_user,
-        'photo_candidate' => $target_file
-    ]);
+    if (!empty($_FILES['photo_candidate']['name'])) {
+        $file = $_FILES['photo_candidate'];
+        $target_dir = FCPATH . 'uploads/kandidat/profiles/';
+        if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
 
-    if ($save) {
-        echo json_encode([
-            'success' => true,
-            'message' => 'Foto berhasil diunggah.',
-            'uploaded' => [
-                'name' => $target_file,
-                'url' => base_url('uploads/kandidat/profiles/' . $target_file)
-            ]
-        ]);
-    } else {
+        $target_file = 'file_' . time() . '_' . $file['name'];
+        if (move_uploaded_file($file['tmp_name'], $target_dir . $target_file)) {
+            // Kirim nama file string ke model
+            $save = $this->kandidat_model->saveKandidat([
+                'id' => $id_user,
+                'photo_candidate' => $target_file  // ❌ Hanya nama file, bukan $_FILES array
+            ]);
+            if ($save) {
+                echo json_encode([
+                    'success' => true,
+                    'uploaded' => ['url' => base_url('uploads/kandidat/profiles/' . $target_file)]
+                ]);
+                return;
+            }
+        }
+
         http_response_code(500);
-        echo json_encode(['success' => false, 'message' => 'Gagal menyimpan ke database.']);
+        echo json_encode(['success' => false, 'message' => 'Gagal upload atau simpan ke database.']);
+        return;
     }
+
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Tidak ada file yang dipilih.']);
 }
+
 
 
    public function save_data_pendukung()

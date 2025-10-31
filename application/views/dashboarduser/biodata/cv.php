@@ -1,68 +1,140 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV - <?= $biodata['name_candidate'] ?></title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-body { display:flex; flex-direction:row; width:210mm; height:297mm; background:#fff; color:#333; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
+body {
+  display: flex;
+  flex-direction: row;
+  width: 210mm;
+  height: 297mm;
+  background: #fff;
+  color: #333;
+}
+
+/* ======== KIRI ======== */
 .left {
-    width:33%;
-    background:#333;
-    color:#fff;
-    padding:36px 26px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+  width: 33%;
+  background: #333;
+  color: #fff;
+  padding: 36px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* rata kiri */
+  text-align: left; /* pastikan teks rata kiri */
 }
 
-.left img { width:130px; height:130px; object-fit:cover; border-radius:50%; border:3px solid #646464ff; margin-bottom:16px; }
-.left h2 { font-size:22px; margin-bottom:6px; text-align:center; line-height:1.3; font-weight:700; }
-.biodata-item { font-size:13px; line-height:1.4; margin-bottom:6px; text-align:center; }
-.social-links a { color:#fff; text-decoration:none; display:flex; align-items:center; margin-bottom:4px; word-break:break-all; font-size:13px; }
-.social-links a svg { margin-right:4px; }
+.left img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  display: block;
+}
 
+.left h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  text-align: center;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 16px 0 10px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.biodata-item {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.social-links a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  word-break: break-all;
+  font-size: 14px;
+}
+.footer-credit {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #fffefeff;
+}
+
+.footer-credit img {
+  width: 30px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ======== KANAN ======== */
 .right {
-    width:67%;
-    background:#fff;
-    padding:25px 30px;
-    height:297mm; /* tinggi A4 */
-    overflow:hidden; /* lebih dari tinggi akan dipotong */
-    display:flex;
-    flex-direction:column;
+  width: 67%;
+  background: #fff;
+  padding: 30px 35px;
+  height: 297mm;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.section { margin-bottom:12px; }
-.sub-bio { font-size:12px; line-height:1.4; }
+
+.section {
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
 
 .section h3 {
-    font-size:16px;
-    margin-bottom:6px;
-    border-bottom:1px solid #333;
-    padding-bottom:2px;
+  font-size: 18px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 4px;
 }
 
 .sub-bio {
-    font-size:12px;
-    line-height:1.3;
-    margin-bottom:6px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
 }
 
 .sub-bio small {
-    font-size:11px;
-    color:#555;
+  font-size: 13px;
+  color: #555;
 }
 
-/* Print Settings */
-@page { size:A4; margin:0; }
+/* ======== PRINT ======== */
+@page {
+  size: A4;
+  margin: 0;
+}
 @media print {
-    body { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-    .left, .right { page-break-inside:avoid; }
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .left, .right {
+    page-break-inside: avoid;
+  }
 }
 </style>
+
 </head>
 <body>
 
@@ -92,6 +164,7 @@ body { display:flex; flex-direction:row; width:210mm; height:297mm; background:#
     <div class="biodata-item"><b>Kode Pos:</b> <?= $address['kode_pos']??'-' ?></div>
     <div class="biodata-item"><b>Agama:</b> <?= $agama ?></div>
 
+</br>
     <div class="section-title" style="margin-top:20px;">SOCIAL MEDIA LINKS</div>
     <div class="social-links">
     <?php
@@ -108,7 +181,7 @@ body { display:flex; flex-direction:row; width:210mm; height:297mm; background:#
         if(!empty($instagram)){
             $instaUrl=build_social_url($instagram,'instagram');
             echo '<a href="'.htmlspecialchars($instaUrl).'" target="_blank">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E1306C" viewBox="0 0 24 24" style="margin-right:4px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f7f3f4ff" viewBox="0 0 24 24" style="margin-right:4px;">
                   <path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.9.3 2.4.5.6.2 1 .5 1.5 1s.8.9 1 1.5c.2.5.4 1.2.5 2.4.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.9-.5 2.4-.2.6-.5 1-1 1.5s-.9.8-1.5 1c-.5.2-1.2.4-2.4.5-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.9-.3-2.4-.5-.6-.2-1-.5-1.5-1s-.8-.9-1-1.5c-.2-.5-.4-1.2-.5-2.4-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.3-1.9.5-2.4.2-.6.5-1 1-1.5s.9-.8 1.5-1c.5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.9.2 5 .4 4.2.7c-.8.3-1.5.7-2.1 1.3s-1 .8-1.3 2.1c-.3.8-.5 1.7-.6 2.9C0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.2.3 2.1.6 2.9.3.8.7 1.5 1.3 2.1s1.3 1 2.1 1.3c.8.3 1.7.5 2.9.6 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c1.2-.1 2.1-.3 2.9-.6.8-.3 1.5-.7 2.1-1.3s1-1.3 1.3-2.1c.3-.8.5-1.7.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.2-.3-2.1-.6-2.9-.3-.8-.7-1.5-1.3-2.1S20.7.8 19.9.5c-.8-.3-1.7-.5-2.9-.6C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.5a1.44 1.44 0 1 0 0-2.88 1.44 1.44 0 0 0 0 2.88z"/></svg>';
             echo '@'.htmlspecialchars(ltrim($instagram,'@'));
             echo '</a>';
@@ -117,7 +190,7 @@ body { display:flex; flex-direction:row; width:210mm; height:297mm; background:#
         if(!empty($linkedin)){
             $linkedinUrl=build_social_url($linkedin,'linkedin');
             echo '<a href="'.htmlspecialchars($linkedinUrl).'" target="_blank">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#0077B5" viewBox="0 0 24 24" style="margin-right:4px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f8f9faff" viewBox="0 0 24 24" style="margin-right:4px;">
                   <path d="M4.98 3.5C3.33 3.5 2 4.84 2 6.5s1.33 3 2.98 3C6.63 9.5 8 8.16 8 6.5S6.63 3.5 4.98 3.5zM2 21h6V9H2v12zm7.5-12H16v1.5h.1c.7-1.2 2.5-2.4 5.1-2.4 5.5 0 6.5 3.6 6.5 8.3V21h-6v-7c0-1.7 0-3.8-2.3-3.8s-2.7 1.8-2.7 3.7V21h-6V9z"/>
                   </svg>';
             echo '@'.htmlspecialchars(ltrim($linkedin,'@'));
@@ -126,6 +199,10 @@ body { display:flex; flex-direction:row; width:210mm; height:297mm; background:#
         if(empty($instagram)&&empty($linkedin)){ echo '<span>-</span>'; }
     ?>
     </div>
+    <div class="footer-credit">
+  <img src="<?= base_url('assets/img/img-landing/logo_lidowhite.png') ?>" alt="Lido Career Logo">
+  <span>Credit by Lido Career</span>
+</div>
 </div>
 
 <!-- KANAN: Pendidikan, Pengalaman Kerja, File Pendukung -->
@@ -133,14 +210,14 @@ body { display:flex; flex-direction:row; width:210mm; height:297mm; background:#
   <div class="section">
           <h2><?= strtoupper($biodata['name_candidate']) ?></h2>
     </div>
-    <!-- <div class="section">
+    <div class="section">
         <h3>EDUCATION</h3>
         <p class="sub-bio">
             <?= strtoupper($laststudy['jenjang_']??'-') ?> - <?= strtoupper($laststudy['name_school']??'-') ?><br>
             Jurusan: <?= strtoupper($laststudy['jurusan_']??'-') ?><br>
             Tahun: <?= date('Y',strtotime($laststudy['year_first']??date('Y'))) ?> - <?= date('Y',strtotime($laststudy['year_last']??date('Y'))) ?>
         </p>
-    </div> -->
+    </div>
 
     <div class="section">
         <h3>WORK EXPERIENCE</h3>

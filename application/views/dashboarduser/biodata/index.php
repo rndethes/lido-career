@@ -268,7 +268,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <h6>Kelompok Jurusan</h6>
+                                        <h6>Jurusan</h6>
                                         <div class="sub-bio">
 
                                             <?= strtoupper($laststudy['jurusan_']) ?>

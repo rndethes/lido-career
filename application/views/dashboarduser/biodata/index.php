@@ -114,6 +114,8 @@
             echo 'LAKI-LAKI';
         } elseif ($biodata['jk_candidate'] == 2) {
             echo 'PEREMPUAN';
+            } elseif ($biodata['jk_candidate'] == 3) {
+            echo 'TRANSGENDER';
         } else {
             echo 'TIDAK INGIN MENYEBUTKAN';
         }
@@ -273,9 +275,9 @@
                                     <div class="col-6">
                                         <h6>Tahun Pendidikan</h6>
                                         <div class="sub-bio">
-                                            <?= date('Y', strtotime($laststudy['year_first'])) ?>
+                                            <?= !empty($laststudy['year_first']) ? date('F Y', strtotime($laststudy['year_first'])) : '-' ?>
                                             -
-                                            <?= date('Y', strtotime($laststudy['year_last'])) ?>
+                                            <?= !empty($laststudy['year_last']) ? date('F Y', strtotime($laststudy['year_last'])) : '-' ?>
                                         </div>
                                     </div>
                                 </div>

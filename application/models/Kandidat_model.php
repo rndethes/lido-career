@@ -509,40 +509,26 @@ public function getAllKandidatJoin($filters = [])
         return $this->updatePendidikanKandidat($check['id_candidate_study'], $data);
     }
 
-    $level = '';
-    $jurusan = '';
-
-    // Jika year_first dan year_last berasal dari form (sudah format YYYY-MM-DD dari controller)
-    if (!empty($data['year_first'])) {
-        $this->db->set('year_first', $data['year_first']);
-    }
-
-    if (!empty($data['year_last'])) {
-        $this->db->set('year_last', $data['year_last']);
-    }
-
-    foreach ($data as $k => $v) {
-        if (in_array($k, ['jurusan_', 'study_level', 'year_first', 'year_last', 'id_candidate'])) continue;
-
-        if ($k == 'jurusan_') {
-            $jurusan = $v;
-            continue;
-        }
-
-        if ($k == 'study_level') {
-            $level = $v;
-            continue;
-        }
-
-        $this->db->set($k, $v);
-    }
-
-    // Gabungkan study_level dan jurusan agar konsisten dengan data lama
+    $level = isset($data['study_level']) ? trim($data['study_level']) : '';
+    $jurusan = isset($data['jurusan_']) ? trim($data['jurusan_']) : '';
     $study_level = trim(sprintf('%s, %s', $level, $jurusan), ', ');
+
+    // Set field utama
     $this->db->set('study_level', $study_level);
+    $this->db->set('major_school', isset($data['major_school']) ? $data['major_school'] : '');
+    $this->db->set('name_school', isset($data['name_school']) ? $data['name_school'] : '');
+    $this->db->set('year_first', isset($data['year_first']) ? $data['year_first'] : null);
+    $this->db->set('year_last', isset($data['year_last']) ? $data['year_last'] : null);
+    $this->db->set('active', isset($data['active']) ? $data['active'] : 1);
     $this->db->set('id_candidate', $id);
 
+    // Insert
     $this->db->insert('candidate_study');
+
+    // Debug opsional
+    log_message('error', 'INSERT STUDY DATA: ' . print_r($data, true));
+    log_message('error', 'LAST QUERY: ' . $this->db->last_query());
+
     return $this->db->affected_rows() > 0;
 }
 
@@ -679,41 +665,28 @@ public function updatePendidikanKandidat($id_candidate_study, $data)
 {
     $this->db->where('id_candidate_study', $id_candidate_study);
 
-    $level = '';
-    $jurusan = '';
-
-    // Jika year_first dan year_last sudah dalam format YYYY-MM-DD dari controller
-    if (!empty($data['year_first'])) {
-        $this->db->set('year_first', $data['year_first']);
-    }
-
-    if (!empty($data['year_last'])) {
-        $this->db->set('year_last', $data['year_last']);
-    }
-
-    foreach ($data as $k => $v) {
-        if (in_array($k, ['id_candidate_study', 'id_candidate', 'jurusan_', 'study_level', 'year_first', 'year_last'])) continue;
-
-        if ($k == 'jurusan_') {
-            $jurusan = $v;
-            continue;
-        }
-
-        if ($k == 'study_level') {
-            $level = $v;
-            continue;
-        }
-
-        $this->db->set($k, $v);
-    }
-
-    // Gabungkan level + jurusan
+    $level = isset($data['study_level']) ? trim($data['study_level']) : '';
+    $jurusan = isset($data['jurusan_']) ? trim($data['jurusan_']) : '';
     $study_level = trim(sprintf('%s, %s', $level, $jurusan), ', ');
+
+    // set semua field utama
     $this->db->set('study_level', $study_level);
+    $this->db->set('major_school', isset($data['major_school']) ? $data['major_school'] : '');
+    $this->db->set('name_school', isset($data['name_school']) ? $data['name_school'] : '');
+    $this->db->set('year_first', isset($data['year_first']) ? $data['year_first'] : null);
+    $this->db->set('year_last', isset($data['year_last']) ? $data['year_last'] : null);
+    $this->db->set('active', isset($data['active']) ? $data['active'] : 1);
+
     $this->db->update('candidate_study');
+
+    // debug opsional
+    log_message('error', 'UPDATE STUDY DATA: ' . print_r($data, true));
+    log_message('error', 'LAST QUERY: ' . $this->db->last_query());
 
     return $this->db->affected_rows() > 0;
 }
+
+
 
     public function getFilePendukung($id)
     {

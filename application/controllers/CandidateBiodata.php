@@ -169,79 +169,66 @@ class CandidateBiodata extends CI_Controller
     }
 
     public function save_data_profile()
-    {
-        $file = $_FILES['photo_candidate'] ?? [];
+{
+    log_message('error', 'DEBUG: save_data_profile() triggered');
+    log_message('error', 'FILES: ' . print_r($_FILES, true));
 
-        if (empty($file) || (int)$file['error'] === UPLOAD_ERR_NO_FILE) {
-            http_response_code(400);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'Tidak ada file yang dipilih.'
-            ]);
-            exit;
-        }
-
-        $target_dir = 'uploads/kandidat/profiles/';
-        $target_dir = FCPATH . str_replace('/', DIRECTORY_SEPARATOR, $target_dir);
-        $target_file = 'file_' . time() . '_' . $file['name'];
-        $target_file_path = $target_dir . $target_file;
-
-        $allowed_type = ['png', 'jpg', 'jpeg'];
-        $file_type = strtolower(pathinfo($target_file_path, PATHINFO_EXTENSION));
-
-        if (!in_array($file_type, $allowed_type)) {
-            http_response_code(400);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'File yang dipilih tidak valid.'
-            ]);
-            exit;
-        }
-
-        if (move_uploaded_file($file['tmp_name'], $target_file_path)) {
-            $foto = getLoggedInUser('photo_candidate');
-            $save = $this->kandidat_model->saveKandidat([
-                'id' => getLoggedInUser('id'),
-                'photo_candidate' => $target_file
-            ]);
-
-            if ($save) {
-                http_response_code(200);
-
-                // Remove old photo
-                $filept = FCPATH . 'uploads/kandidat/profiles/' . $foto;
-                $filept = str_replace('/', DIRECTORY_SEPARATOR, $filept);
-
-                @unlink($filept);
-
-                echo json_encode([
-                    'success'  => true,
-                    'message'  => 'Foto profile berhasil diupload.',
-                    'uploaded' => [
-                        'name' => $target_file,
-                        'url'  => base_url('uploads/kandidat/profiles/' . $target_file)
-                    ]
-                ]);
-            } else {
-                http_response_code(500);
-
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Foto profile gagal diupload.'
-                ]);
-            }
-        } else {
-            http_response_code(500);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'Foto profile gagal diupload.'
-            ]);
-        }
+    if (!isset($_FILES['photo_candidate']) || $_FILES['photo_candidate']['error'] === UPLOAD_ERR_NO_FILE) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Tidak ada file yang dipilih.']);
+        return;
     }
-    
+
+    $file = $_FILES['photo_candidate'];
+    $target_dir = FCPATH . 'uploads/kandidat/profiles/';
+    $target_file = 'file_' . time() . '_' . $file['name'];
+    $target_file_path = $target_dir . $target_file;
+
+    if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
+
+    $allowed_type = ['png', 'jpg', 'jpeg'];
+    $file_type = strtolower(pathinfo($target_file_path, PATHINFO_EXTENSION));
+
+    if (!in_array($file_type, $allowed_type)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'File tidak valid.']);
+        return;
+    }
+
+    if (!move_uploaded_file($file['tmp_name'], $target_file_path)) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'Gagal memindahkan file.']);
+        return;
+    }
+
+    // Simpan ke database
+    $id_user = getLoggedInUser('id');
+    if (!$id_user) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'message' => 'Session tidak ditemukan.']);
+        return;
+    }
+
+    $save = $this->kandidat_model->saveKandidat([
+        'id' => $id_user,
+        'photo_candidate' => $target_file
+    ]);
+
+    if ($save) {
+        echo json_encode([
+            'success' => true,
+            'message' => 'Foto berhasil diunggah.',
+            'uploaded' => [
+                'name' => $target_file,
+                'url' => base_url('uploads/kandidat/profiles/' . $target_file)
+            ]
+        ]);
+    } else {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'Gagal menyimpan ke database.']);
+    }
+}
+
 
    public function save_data_pendukung()
 {
@@ -417,89 +404,57 @@ private function response($success, $message, $code)
     }
 
   public function save_data_pendidikan()
-{
-    // Ambil data bulan & tahun dari form
-    $month_start = $this->input->post('month_start');
-    $year_start  = $this->input->post('year_start');
-    $month_end   = $this->input->post('month_end');
-    $year_end    = $this->input->post('year_end');
+    {
+        $request = [];
 
-    // Validasi tanggal mulai
-    if (empty($month_start) || empty($year_start)) {
-        http_response_code(400);
-        echo json_encode([
-            'success' => false,
-            'message' => 'Tanggal mulai wajib diisi.'
-        ]);
-        exit;
-    }
+        foreach ($_POST as $k => $v) {
+            if ($k == 'jurusan_') {
+                $request['jurusan_'] = $this->input->post($k);
+                continue;
+            }
 
-    // Konversi bulan ke angka (01 - 12)
-    $bulan_map = [
-        'Januari' => '01', 'Februari' => '02', 'Maret' => '03',
-        'April' => '04', 'Mei' => '05', 'Juni' => '06',
-        'Juli' => '07', 'Agustus' => '08', 'September' => '09',
-        'Oktober' => '10', 'November' => '11', 'Desember' => '12'
-    ];
+            $request[$k] = $this->input->post($k);
 
-    // Buat format tanggal ke YYYY-MM-DD (tanggal selalu 01)
-    $year_first = $year_start . '-' . ($bulan_map[$month_start] ?? '01') . '-01';
+            if ($k == 'major_school' && in_array(strtolower($_POST['study_level']), ['sma', 'smk', 'sd', 'smp'])) {
+                continue;
+            }
 
-    if (!empty($month_end) && !empty($year_end)) {
-        $year_last = $year_end . '-' . ($bulan_map[$month_end] ?? '01') . '-01';
-        $active = 0; // tidak aktif (sudah selesai)
-    } else {
-        $year_last = null;
-        $active = 1; // masih aktif
-    }
+            if ($k == 'year_last' && $_POST['active'] == 1) {
+                continue;
+            }
 
-    // Ambil data lain dari form
-    $request = [];
-    foreach ($_POST as $k => $v) {
-        if (in_array($k, ['month_start', 'year_start', 'month_end', 'year_end'])) continue;
+            if (strlen(trim($v)) === 0) {
+                http_response_code(400);
 
-        if ($k == 'jurusan') {
-            $request['jurusan_'] = $this->input->post($k);
-            continue;
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Harap melengkapi semua data.'
+                ]);
+                exit;
+            }
         }
 
-        $request[$k] = $this->input->post($k);
+        $cand = $this->kandidat_model->getKandidatStudy(getLoggedInUser('id'));
+        $save = $this->kandidat_model->updatePendidikanKandidat($cand['id_candidate_study'], $request);
 
-        if (strlen(trim($v)) === 0 && $k != 'major_school') {
-            http_response_code(400);
+        if ($save) {
+            http_response_code(200);
+
+            echo json_encode([
+                'success' => true,
+                'message' => 'Data pendidikan berhasil diperbarui.'
+            ]);
+        } else {
+            http_response_code(500);
+
             echo json_encode([
                 'success' => false,
-                'message' => 'Harap melengkapi semua data pendidikan.'
+                'message' => 'Data pendidikan gagal diperbarui.'
             ]);
-            exit;
         }
     }
 
-    // Tambahkan field tanggal
-    $request['year_first'] = $year_first;
-    $request['year_last']  = $year_last;
-    $request['active']     = $active;
 
-    // Ambil data kandidat yang sedang login
-    $cand = $this->kandidat_model->getKandidatStudy(getLoggedInUser('id'));
-
-    // Update data ke database
-    $save = $this->kandidat_model->updatePendidikanKandidat($cand['id_candidate_study'], $request);
-
-    if ($save) {
-        http_response_code(200);
-        echo json_encode([
-            'success' => true,
-            'message' => 'Data pendidikan berhasil diperbarui.'
-        ]);
-    } else {
-        http_response_code(500);
-        echo json_encode([
-            'success' => false,
-            'message' => 'Gagal memperbarui data pendidikan.'
-        ]);
-    }
-}
 
     public function save_data_diri()
     {

@@ -203,7 +203,7 @@
   <div class="col-md-6 mb-3">
     <select name="month_start" class="form-control">
       <option value="">Bulan</option>
-      <option>Januari</option>
+      <option >Januari</option>
       <option>Februari</option>
       <option>Maret</option>
       <option>April</option>
@@ -496,16 +496,21 @@
                                 </div>
                             </div>
                             <div class="row" v-show="showFormAdd">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Deskripsi
-                                            Pekerjaan</label>
-                                        <textarea v-model="pengalaman.description" class="form-control tt-gede"
-                                            placeholder="Contoh : Saya bekerja di PT. SEJAHTERA sebagai HRD selama 3 tahun. Pada saat kerja saya menangani bagian input new member ke EPOS dan input regulasi dan non regulasi"
-                                            rows="5"></textarea>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="form-control-label">Deskripsi Pekerjaan</label>
+            <textarea 
+                v-model="pengalaman.description" 
+                class="form-control tt-gede"
+                placeholder="Contoh: Saya bekerja di PT. SEJAHTERA sebagai HRD selama 3 tahun..."
+                rows="5"
+                maxlength="150"
+            ></textarea>
+            <small class="text-muted">{{ pengalaman.description.length }}/150 karakter</small>
+        </div>
+    </div>
+</div>
+
 
                             <div id="form-pengalaman-kerja-vars" style="display: none;">
                                 <div v-for="row in pengalaman_list" :key="row.id">
@@ -925,8 +930,10 @@
                         name_school: '<?= $laststudy["name_school"] ?>',
                         major_school: '<?= $laststudy["major_school"] ?>',
                         jurusan: '<?= $laststudy["jurusan_"] ?>',
-                        year_first: '<?= $laststudy["year_first"] ?>',
-                        year_last: '<?= $laststudy["year_last"] ?>',
+                        month_start: '', 
+                        year_start: '',   
+                        month_end: '',   
+                        year_end: '' ,
                         active: '<?= $laststudy["active"] ?>'
                     },
                     alamat: {
@@ -1290,9 +1297,9 @@
   var data = new FormData();
 
   // basic fields
-  data.append("study_level", this.pendidikan.study_level);
+  data.append("study_level", this.pendidikan.study_level || '');
   data.append("name_school", this.pendidikan.name_school || '');
-  data.append("jurusan", this.pendidikan.jurusan || '');
+  data.append("jurusan_", this.pendidikan.jurusan || ''); // <- wajib underscore
 
   if (!this.showMajor) {
     data.append("major_school", '');
@@ -1302,26 +1309,20 @@
 
   data.append("active", this.pendidikan.active ? this.pendidikan.active : 0);
 
-  // ----- Ambil bulan/tahun — robust (select biasa, selectize, atau fallback text) -----
+  // ----- Ambil bulan/tahun -----
   function getSelectValue(selector) {
-    // 1) select normal -> val()
     var $sel = $(selector);
     if ($sel.length) {
       var v = $sel.val();
       if (v !== undefined && v !== null && String(v).trim() !== '') return String(v).trim();
     }
-
-    // 2) selectize (nilai di instance)
     var inst = $sel[0]?.selectize;
     if (inst) {
       var val2 = inst.getValue ? inst.getValue() : (inst.getValue === 0 ? inst.getValue : null);
       if (val2 !== undefined && val2 !== null && String(val2).trim() !== '') return String(val2).trim();
     }
-
-    // 3) fallback ke teks visible (mis. .text())
     var txt = $sel.text ? $sel.text().trim() : '';
     if (txt) return txt;
-
     return '';
   }
 
@@ -1330,24 +1331,17 @@
   const monthEnd   = getSelectValue('select[name="month_end"], select.tt-selectize[data-selectize="pendidikan_ml"]');
   const yearEnd    = getSelectValue('select[name="year_end"], select.tt-selectize[data-selectize="pendidikan_yl"]');
 
-  // mapping bulan -> angka
   const bulanMap = {
-    'Januari': '01','Februari': '02','Maret': '03','April': '04','Mei': '05','Juni': '06',
-    'Juli': '07','Agustus': '08','September': '09','Oktober': '10','November': '11','Desember': '12',
-    'jan': '01','feb': '02','mar': '03','apr': '04','may': '05','jun': '06','jul': '07','aug': '08','sep': '09','oct': '10','nov': '11','dec': '12'
+    'Januari':'01','Februari':'02','Maret':'03','April':'04','Mei':'05','Juni':'06',
+    'Juli':'07','Agustus':'08','September':'09','Oktober':'10','November':'11','Desember':'12',
+    'jan':'01','feb':'02','mar':'03','apr':'04','may':'05','jun':'06','jul':'07','aug':'08','sep':'09','oct':'10','nov':'11','dec':'12'
   };
 
-  // ----- Validasi wajib tanggal mulai -----
   if (!yearStart && !monthStart) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Gagal',
-      text: 'Tanggal mulai wajib diisi (bulan dan/atau tahun).'
-    });
-    return; // stop
+    Swal.fire({icon:'error',title:'Gagal',text:'Tanggal mulai wajib diisi.'});
+    return;
   }
 
-  // jika ada tahun, minimal gunakan tahun; kalau bulan ada gunakan bulan juga
   let startDate = '';
   if (yearStart) {
     let mm = '01';
@@ -1355,26 +1349,17 @@
     startDate = `${yearStart}-${mm}-01`;
   }
 
-  // tanggal akhir optional: bila tidak diisi, set kosong / null (backend menandai active=1)
   let endDate = '';
   if (yearEnd) {
     let mmEnd = '01';
     if (monthEnd && bulanMap[monthEnd]) mmEnd = bulanMap[monthEnd];
     endDate = `${yearEnd}-${mmEnd}-01`;
-  } else {
-    // kosong -> backend akan menganggap active = 1
-    endDate = '';
-  }
-
-  // debugging cepat saat develop
-  console.log('monthStart, yearStart:', monthStart, yearStart);
-  console.log('monthEnd, yearEnd:', monthEnd, yearEnd);
-  console.log('startDate, endDate =>', startDate, endDate);
+  } else endDate = '';
 
   data.append("year_first", startDate);
   data.append("year_last", endDate);
 
-  // terakhir kirim
+  // kirim
   axios.post('<?= site_url("candidate-biodata/update-biodata/save-data-pendidikan") ?>', data)
     .then((response) => {
       if (!this.showMajor) this.pendidikan.major_school = '';
@@ -1384,9 +1369,7 @@
         text: response.data.message || 'Berhasil memperbarui data pendidikan.',
         showCloseButton: true,
         confirmButtonText: '<i class="fas fa-arrow-right"></i> Lanjutkan Edit Alamat',
-      }).then((x) => {
-        if (x.isConfirmed) this.changeTab('alamat');
-      });
+      }).then((x) => { if (x.isConfirmed) this.changeTab('alamat'); });
     })
     .catch((error) => {
       console.error(error);

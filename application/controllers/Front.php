@@ -28,7 +28,7 @@ class Front extends CI_Controller
         // print_r($data['kosong']);
         // exit();
         // if ($this->session->userdata('candidate_is_log') != TRUE) {
-        $this->load->view('front/index', $data);
+        $this->load->view('front/landing-page', $data);
         // } else {
         //     $this->load->view('front/index', $data);
         // }

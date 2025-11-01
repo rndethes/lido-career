@@ -139,6 +139,7 @@ $monthLast = !empty($laststudy['year_last']) ? (int)date('m', strtotime($laststu
 
                                 <!-- Media Sosial -->
                                 <div class="col-md-6">
+
                                    <div class="form-group">
     <label class="form-control-label">LinkedIn</label>
     <input type="text"
@@ -158,6 +159,7 @@ $monthLast = !empty($laststudy['year_last']) ? (int)date('m', strtotime($laststu
                                          Isi hanya username tanpa <strong>@</strong> 
                                  </small>
                                         </div>
+
                                 </div>
                             </div>
                             <div class="row">

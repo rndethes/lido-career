@@ -2,11 +2,14 @@
     <div class="row">
         <div class="col-lg-3 mb-lg-0 mb-4">
             <div class="card">
-                <div class="card-header pb-0 pt-3 bg-transparent">
-                    <div class="photo-circle">
-                        <img class="img-fluid border-radius-lg" :src="profile.url">
+                <div class="card-header pb-0 pt-3 bg-transparent text-center">
+                    <!-- Container bulat -->
+                    <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 10px auto;">
+                        <img :src="profile.url" 
+                             alt="Foto Kandidat"
+                             style="width: 100%; height: 100%; object-fit: cover; display: block;">
                     </div>
-                    <div class="text-center mt-2">
+                    <div style="margin-top: 10px;">
                         <button class="btn btn-xs btn-danger" id="triggerUppyPhotoUploader">
                             Unggah Foto
                         </button>
@@ -953,12 +956,14 @@
                         { id: 3, text: 'HINDU' },
                         { id: 4, text: 'BUDDHA' },
                         { id: 5, text: 'KATOLIK' },
+                         { id: 6, text: 'TIDAK INGIN MENYEBUTKAN' },
                     ],
                     marital_list: [
                     { id: 1, text: 'BELUM MENIKAH' },
                     { id: 2, text: 'MENIKAH' },
                     { id: 3, text: 'CERAI HIDUP' },
                     { id: 4, text: 'CERAI MATI' },
+                    { id: 5, text: 'TIDAK INGIN MENYEBUTKAN' },
                     ],
                     pengalaman: {
                         name_company: '',

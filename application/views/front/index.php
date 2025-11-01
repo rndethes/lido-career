@@ -44,23 +44,62 @@
         <?= $content_zero['warna']; ?>
         !important;
     }
+.logo-brand {
+  height: 25px; 
+  width: auto;
+  margin-top: -2px; 
+}
+
+.brand-text {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+  margin-left: 3px; 
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+@media (max-width: 576px) {
+  .logo-brand {
+    height: 18px;
+  }
+  .brand-text {
+    font-size: 14px;
+  }
+}
+
   </style>
 
 </head>
 
 <body>
   <!--===== HEADER =====-->
-  <header class="header custom-color" style="z-index: 1000;">
-    <nav class="navbar navbar-expand-lg custom-color">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img class="logo-brand"
-            src="<?= base_url() ?>assets/img/img-landing/logo_lidowhite.png"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon">
-            <i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i>
-          </span>
-        </button>
+<header class="header custom-color" style="z-index: 1000;">
+  <nav class="navbar navbar-expand-lg custom-color">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img class="logo-brand me-2"
+             src="<?= base_url() ?>assets/img/img-landing/logo_lidowhite.png"
+             alt="Logo Lido Career">
+        <span class="text-white fw-bold fs-6">Lido Career</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <i class="fa fa-navicon" style="color:#fff; font-size:26px;"></i>
+        </span>
+      </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
 
@@ -69,7 +108,19 @@
               <a class="nav-link" aria-current="page" href="#home">Beranda</a>
             <li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#about">Tentang Kami</a>
+              <a class="nav-link" aria-current="page" href="#about">Tentang </a>
+            <li>
+               <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#about">Unit Bisnis</a>
+            <li>
+               <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#about">Budaya </a>
+            <li>
+               <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#about">Berita </a>
+            <li>
+               <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#about">Tanya jawab </a>
             <li>
               <!-- <li class="nav-item">
 

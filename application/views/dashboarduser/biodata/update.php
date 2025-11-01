@@ -775,10 +775,12 @@ $monthLast = !empty($laststudy['year_last']) ? (int)date('m', strtotime($laststu
   </div>
 </div>
 
+
 <script src="<?= base_url('assets/js/ext/vue.js') ?>">
 </script>
 <script src="<?= base_url('assets/js/ext/axios.min.js') ?>">
 </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=AbortController%2CBlob%2CPromise%2Cfetch"></script>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         var _PROVINSI =

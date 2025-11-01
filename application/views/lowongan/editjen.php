@@ -41,7 +41,7 @@
                     </div>
                   </div>
                   <div class="col-lg-6">
-                    <label>Tentukan kasta</label>
+                    <label>Tentukan Grade</label>
                     <div class="input-group mb-3">
                       <select class="form-select" id="inputGroupSelect01" name="kasta">
 

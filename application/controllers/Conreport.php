@@ -102,7 +102,6 @@ class Conreport extends CI_Controller
         $sheet->setCellValue('E1', 'Tanggal lahir');
         $sheet->setCellValue('F1', 'Alamat');
         $sheet->setCellValue('G1', 'Kode pos');
-        $sheet->setCellValue('H1', 'Nomor rumah');
         $sheet->setCellValue('I1', 'Status');
 
         //row untuk isi mulai dari
@@ -114,15 +113,16 @@ class Conreport extends CI_Controller
                 $sheet->setCellValue('B' . $rows, 'Laki-Laki');
             } elseif ($val['jk_candidate'] == 2) {
                 $sheet->setCellValue('B' . $rows, 'Perempuan');
+            } elseif ($val['jk_candidate'] == 3) {
+                $sheet->setCellValue('B' . $rows, 'Transgender');
             } else {
-                $sheet->setCellValue('B' . $rows, 'Netral');
+                $sheet->setCellValue('B' . $rows, 'Tidak Ingin Menyebutkan');
             }
             $sheet->setCellValue('C' . $rows, $val['email_candidate']);
             $sheet->setCellValue('D' . $rows, $val['no_candidate']);
             $sheet->setCellValue('E' . $rows, $val['birthdate_candidate']);
             $sheet->setCellValue('F' . $rows, $val['address_candidate']);
-            $sheet->setCellValue('G' . $rows, $val['noaddress_candidate']);
-            $sheet->setCellValue('H' . $rows, $val['poskode_candidate']);
+            $sheet->setCellValue('G' . $rows, $val['poskode_candidate']);
             if ($val['is_active'] == 0) {
                 $sheet->setCellValue('I' . $rows, 'OFF');
             } elseif ($val['is_active'] == 1) {

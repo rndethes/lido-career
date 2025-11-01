@@ -6,6 +6,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Pastikan body full A4 */
 body {
   display: flex;
   flex-direction: row;
@@ -13,6 +14,7 @@ body {
   height: 297mm;
   background: #fff;
   color: #333;
+  overflow: hidden;
 }
 
 /* ======== KIRI ======== */
@@ -23,8 +25,10 @@ body {
   padding: 36px 26px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* rata kiri */
-  text-align: left; /* pastikan teks rata kiri */
+  align-items: flex-start;
+  text-align: left;
+  height: 100%; /* biar penuh dari atas ke bawah */
+  min-height: 297mm; /* pastikan penuh sampai bawah */
 }
 
 .left img {
@@ -34,6 +38,7 @@ body {
   border-radius: 50%;
   margin: 0 auto 20px auto;
   display: block;
+  border: 2px solid #fff;
 }
 
 .left h2 {
@@ -68,10 +73,9 @@ body {
   word-break: break-all;
   font-size: 14px;
 }
+
 .footer-credit {
-  position: absolute;
-  bottom: 20px;
-  left: 30px;
+  margin-top: auto;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -83,6 +87,10 @@ body {
   width: 30px;
   height: auto;
   object-fit: contain;
+  border: none !important;
+  outline: none;
+  background: none;
+  box-shadow: none;
 }
 
 /* ======== KANAN ======== */
@@ -109,28 +117,39 @@ body {
 }
 
 .sub-bio {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   margin-bottom: 8px;
 }
 
 .sub-bio small {
-  font-size: 13px;
+  font-size: 15px;
   color: #555;
 }
 
 /* ======== PRINT ======== */
 @page {
   size: A4;
-  margin: 0;
+  margin: 0; 
 }
+
 @media print {
   body {
+    margin: 0;
+    width: 210mm;
+    height: 297mm;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
+
   .left, .right {
+    height: 297mm;
     page-break-inside: avoid;
+  }
+
+  /* Hilangkan shadow/efek tambahan */
+  * {
+    box-shadow: none !important;
   }
 }
 </style>
@@ -234,29 +253,29 @@ body {
         <?php endif; ?>
     </div>
 
-      <div class="section">
-        <h3>EDUCATION</h3>
-        <p class="sub-bio">
-            <?= strtoupper($laststudy['jenjang_']??'-') ?> - <?= strtoupper($laststudy['name_school']??'-') ?><br>
-            Jurusan: <?= strtoupper($laststudy['jurusan_']??'-') ?><br>
-            Tahun: <?= date('Y',strtotime($laststudy['year_first']??date('Y'))) ?> - <?= date('Y',strtotime($laststudy['year_last']??date('Y'))) ?>
-        </p>
-    </div>
-
-    <div class="section">
-        <h3>File Pendukung</h3>
-        <p class="sub-bio">
-        <?php if(!empty($pendukung)): ?>
-            <?php foreach($pendukung as $pd): ?>
-                • <?= ucfirst($pd['jenis_file']) ?><br>
+  <div class="section">
+    <h3>File Pendukung</h3>
+    <p class="sub-bio">
+        <?php if (!empty($pendukung)): ?>
+            <?php foreach ($pendukung as $pd): ?>
+                <?php 
+                    // Ambil nama file dari kolom 'file_pendukung'
+                    $file_name = $pd['file_pendukung']; 
+                    // Buat URL-nya mengarah ke folder tempat penyimpanan file
+                    $file_url = base_url('uploads/kandidat/files/' . $file_name);
+                ?>
+                • <a href="<?= $file_url ?>" 
+                     target="_blank" 
+                     style="text-decoration: none; color: #555;">
+                    <?= ucfirst($pd['jenis_file']) ?>
+                </a><br>
             <?php endforeach; ?>
         <?php else: ?>
             Belum ada
         <?php endif; ?>
-        </p>
-    </div>
+    </p>
 </div>
-
+        </div>
 <script>
 window.onload=function(){ setTimeout(()=>{ window.print(); },500); }
 </script>

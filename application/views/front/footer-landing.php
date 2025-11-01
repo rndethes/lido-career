@@ -1,35 +1,59 @@
-<footer id="footer" class="footer dark-background">
-      <div class="container">
-        <h3 class="sitename">Lido29</h3>
+<footer id="footer" class="footer dark-background pt-5">
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Kolom 1 - Alamat Kantor -->
+      <div class="col-lg-4 col-md-6 footer-info">
+        <h4 class="sitename">Lido29</h4>
         <p>
-          Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni
-          eligendi fuga maxime saepe commodi placeat.
+          Kantor Pusat:<br>
+          Jl. Contoh Raya No. 123<br>
+          Temanggung, Jawa Tengah<br><br>
+          <strong>Phone:</strong> 0812-3456-7890<br>
+          <strong>Email:</strong> info@lido29.com<br>
         </p>
-        <div class="social-links d-flex justify-content-center">
-          <a href=""><i class="bi bi-twitter-x"></i></a>
-          <a href=""><i class="bi bi-facebook"></i></a>
-          <a href=""><i class="bi bi-instagram"></i></a>
-          <a href=""><i class="bi bi-skype"></i></a>
-          <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
-        <div class="container">
-          <div class="copyright">
-            <span>Copyright</span>
-            <strong class="px-1 sitename">Lido29</strong>
-            <span>All Rights Reserved</span>
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you've purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by
-            <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed
-            by <a href=“https://themewagon.com>ThemeWagon
-          </div>
+      </div>
+
+      <!-- Kolom 2 - Layanan -->
+      <div class="col-lg-4 col-md-6 footer-links">
+        <h4>Layanan</h4>
+        <ul>
+          <li><i class="bi bi-chevron-right"></i> <a href="#">Lowongan Kerja</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="#">Daftar Kandidat</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="#">Cabang Kami</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="#">Tentang Lido29</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolom 3 - Ikuti Kami -->
+      <div class="col-lg-4 col-md-6 footer-links">
+        <h4>Ikuti Kami</h4>
+        <p>Terhubung dengan Lido29 melalui media sosial</p>
+        <div class="social-links d-flex">
+          <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="me-2"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="me-2"><i class="bi bi-tiktok"></i></a>
+          <a href="#" class="me-2"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
-    </footer>
+
+    </div>
+
+    <hr class="border-secondary my-4">
+
+    <div class="text-center pb-3">
+      <div class="copyright">
+        © <strong class="sitename">Lido29</strong> All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> |
+        Distributed by <a href="https://themewagon.com">ThemeWagon</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
     <!-- Scroll Top -->
     <a

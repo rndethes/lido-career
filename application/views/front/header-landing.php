@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-papq6..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 .about-tancorp {
   position: relative;
@@ -50,8 +51,8 @@
 }
 
 .card-img-top {
-    height: 180px; /* tinggi gambar tetap */
-    object-fit: cover; /* gambar menyesuaikan, tetap rapi */
+    height: 180px; 
+    object-fit: cover; 
 }
 
 .card-body {
@@ -59,6 +60,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.sitename {
+    position: relative;
+    top: 10px;
 }
 
 /* Responsive Fix */
@@ -119,16 +124,14 @@
   </head>
 
   <body class="index-page">
-    <header id="header" class="header d-flex align-items-center fixed-top">
-      <div
-        class="container position-relative d-flex align-items-center justify-content-between">
-        <a
-          href="index.html"
-          class="logo d-flex align-items-center me-auto me-xl-0">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="<?= base_url() ?>assets/img-landing/logo.png" alt=""> -->
-          <h1 class="sitename">LIDO29</h1>
-        </a>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="container position-relative d-flex align-items-center justify-content-between">
+    <a href="#" class="logo d-flex align-items-center me-auto me-xl-0">
+      <img src="<?= base_url('assets/img/img-landing/logo_lidowhite.png') ?>" 
+           alt="Lido Career Logo" 
+           style="width: 50px; height: auto;"> 
+      <h1 class="sitename" style="font-size: 18px;">LIDO29</h1>
+    </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>

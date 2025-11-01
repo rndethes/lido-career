@@ -46,35 +46,38 @@
 
 <div class="row">
     <div class="col-lg-12 mb-lg-0 mb-4">
-        <!--- PROFILE --->
-        <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-                <h6 class="text-capitalize"></h6>
-            </div>
-            <div class="card-body p-3">
+      <!--- PROFILE --->
+<div class="card z-index-2 h-100">
+    <div class="card-header pb-0 pt-3 bg-transparent">
+        <h6 class="text-capitalize"></h6>
+    </div>
+    <div class="card-body p-3">
+        <div class="row">
+            <div class="col-lg-3">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="photo-circle">
-                                    <?php
-                                    $path = FCPATH . 'uploads/kandidat/profiles' . $biodata['photo_candidate'];
-                                    if (file_exists($path) && is_file($path)) {
-                                        $img = base_url('uploads/kandidat/profiles/' . $biodata['photo_candidate']);
-                                    } else {
-                                        $img = base_url('assets/default/file_lido-default-photo.jpg');
-                                    }
-                                    ?>
-                                    <img class="img-fluid border-radius-lg"
-                                        src="<?= $img ?>">
-                                </div>
-                            </div>
+                    <div class="col-lg-12">
+                        <?php
+                        $path = FCPATH . 'uploads/kandidat/profiles/' . $biodata['photo_candidate'];
+                        if (file_exists($path) && is_file($path)) {
+                            $img = base_url('uploads/kandidat/profiles/' . $biodata['photo_candidate']);
+                        } else {
+                            $img = base_url('assets/default/file_lido-default-photo.jpg');
+                        }
+                        ?>
+                        <div class="photo-circle" style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden;">
+                            <img src="<?= $img ?>" 
+                                alt="Foto Kandidat" 
+                                style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                    </div>
+          
+
                             <div class="col-lg-12 ms-sm-2">
                                 <div class="mt-2"></div>
 
                                 <h6>No. Handphone</h6>
 
-                                <span
+                              <span
                                     class="sub-bio"><?= $biodata['no_candidate'] ?></span>
                                 <hr class="horizontal dark mt-2">
                                 <h6>Tempat Lahir</h6>
@@ -114,6 +117,8 @@
             echo 'LAKI-LAKI';
         } elseif ($biodata['jk_candidate'] == 2) {
             echo 'PEREMPUAN';
+            } elseif ($biodata['jk_candidate'] == 3) {
+            echo 'TRANSGENDER';
         } else {
             echo 'TIDAK INGIN MENYEBUTKAN';
         }
@@ -263,7 +268,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <h6>Kelompok Jurusan</h6>
+                                        <h6>Jurusan</h6>
                                         <div class="sub-bio">
 
                                             <?= strtoupper($laststudy['jurusan_']) ?>
@@ -273,9 +278,9 @@
                                     <div class="col-6">
                                         <h6>Tahun Pendidikan</h6>
                                         <div class="sub-bio">
-                                            <?= date('Y', strtotime($laststudy['year_first'])) ?>
+                                            <?= !empty($laststudy['year_first']) ? date('F Y', strtotime($laststudy['year_first'])) : '-' ?>
                                             -
-                                            <?= date('Y', strtotime($laststudy['year_last'])) ?>
+                                            <?= !empty($laststudy['year_last']) ? date('F Y', strtotime($laststudy['year_last'])) : '-' ?>
                                         </div>
                                     </div>
                                 </div>

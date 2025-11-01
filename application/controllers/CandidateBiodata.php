@@ -168,80 +168,46 @@ class CandidateBiodata extends CI_Controller
         }
     }
 
-    public function save_data_profile()
-    {
-        $file = $_FILES['photo_candidate'] ?? [];
-
-        if (empty($file) || (int)$file['error'] === UPLOAD_ERR_NO_FILE) {
-            http_response_code(400);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'Tidak ada file yang dipilih.'
-            ]);
-            exit;
-        }
-
-        $target_dir = 'uploads/kandidat/profiles/';
-        $target_dir = FCPATH . str_replace('/', DIRECTORY_SEPARATOR, $target_dir);
-        $target_file = 'file_' . time() . '_' . $file['name'];
-        $target_file_path = $target_dir . $target_file;
-
-        $allowed_type = ['png', 'jpg', 'jpeg'];
-        $file_type = strtolower(pathinfo($target_file_path, PATHINFO_EXTENSION));
-
-        if (!in_array($file_type, $allowed_type)) {
-            http_response_code(400);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'File yang dipilih tidak valid.'
-            ]);
-            exit;
-        }
-
-        if (move_uploaded_file($file['tmp_name'], $target_file_path)) {
-            $foto = getLoggedInUser('photo_candidate');
-            $save = $this->kandidat_model->saveKandidat([
-                'id' => getLoggedInUser('id'),
-                'photo_candidate' => $target_file
-            ]);
-
-            if ($save) {
-                http_response_code(200);
-
-                // Remove old photo
-                $filept = FCPATH . 'uploads/kandidat/profiles/' . $foto;
-                $filept = str_replace('/', DIRECTORY_SEPARATOR, $filept);
-
-                @unlink($filept);
-
-                echo json_encode([
-                    'success'  => true,
-                    'message'  => 'Foto profile berhasil diupload.',
-                    'uploaded' => [
-                        'name' => $target_file,
-                        'url'  => base_url('uploads/kandidat/profiles/' . $target_file)
-                    ]
-                ]);
-            } else {
-                http_response_code(500);
-
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Foto profile gagal diupload.'
-                ]);
-            }
-        } else {
-            http_response_code(500);
-
-            echo json_encode([
-                'success' => false,
-                'message' => 'Foto profile gagal diupload.'
-            ]);
-        }
+ public function save_data_profile()
+{
+    $id_user = getLoggedInUser('id'); 
+    if (!$id_user) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'message' => 'Session tidak ditemukan.']);
+        return;
     }
-    
+
+    if (!empty($_FILES['photo_candidate']['name'])) {
+        $file = $_FILES['photo_candidate'];
+        $target_dir = FCPATH . 'uploads/kandidat/profiles/';
+        if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
+
+        $target_file = 'file_' . time() . '_' . $file['name'];
+        if (move_uploaded_file($file['tmp_name'], $target_dir . $target_file)) {
+            // Kirim nama file string ke model
+            $save = $this->kandidat_model->saveKandidat([
+                'id' => $id_user,
+                'photo_candidate' => $target_file  // ❌ Hanya nama file, bukan $_FILES array
+            ]);
+            if ($save) {
+                echo json_encode([
+                    'success' => true,
+                    'uploaded' => ['url' => base_url('uploads/kandidat/profiles/' . $target_file)]
+                ]);
+                return;
+            }
+        }
+
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'Gagal upload atau simpan ke database.']);
+        return;
+    }
+
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Tidak ada file yang dipilih.']);
+}
+
+
 
    public function save_data_pendukung()
 {
@@ -416,12 +382,12 @@ private function response($success, $message, $code)
         }
     }
 
-    public function save_data_pendidikan()
+  public function save_data_pendidikan()
     {
         $request = [];
 
         foreach ($_POST as $k => $v) {
-            if ($k == 'jurusan') {
+            if ($k == 'jurusan_') {
                 $request['jurusan_'] = $this->input->post($k);
                 continue;
             }
@@ -466,6 +432,8 @@ private function response($success, $message, $code)
             ]);
         }
     }
+
+
 
     public function save_data_diri()
     {

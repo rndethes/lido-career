@@ -101,7 +101,10 @@
                                         <span
                                             class="text-secondary text-xs font-weight-bold"><?= $row['id_candidate'] ?></span>
                                     </td>
-                                    <td><?= strtoupper($row['study_level'] ?? '-') ?></td>
+                               <td>
+    <?= strtoupper(explode(',', $row['study_level'] ?? '-')[0]) ?>
+</td>
+
                                    <td>
                                     <?php 
                                         $alamat = strtoupper($row['address_candidate'] ?? '-');

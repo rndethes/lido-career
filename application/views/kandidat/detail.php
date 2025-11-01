@@ -79,20 +79,116 @@
                                     class="sub-bio"><?= $biodata['no_candidate'] ?></span>
                                 <hr class="horizontal dark mt-2">
                                 <h6>Tempat Lahir</h6>
-                                <span
-                                    class="sub-bio"><?= strtoupper($biodata['tempat_lahir_']) ?></span>
+                               <span class="sub-bio"><?= strtoupper($biodata['tempat_lahir_candidate'] ?? ($biodata['tempat_lahir_'] ?? '-')) ?></span>
 
                                 <hr class="horizontal dark mt-2">
-                                <h6>Tanggal Lahir</h6>
-                                <span
-                                    class="sub-bio"><?= $biodata['tanggal_lahir_'] ?></span>
-                                <hr class="horizontal dark mt-2">
-                                <h6>Jenis Kelamin</h6>
+                              <h6>Tanggal Lahir</h6>
                                 <span class="sub-bio">
-
-                                    <?= $biodata['jk_candidate'] == 1 ? 'LAKI LAKI' : ($biodata['jk_candidate'] == 2 ? 'PEREMPUAN' : ($biodata['jk_candidate'] == 3 ? 'TRANSGENDER' : 'TIDAK INGIN MENYEBUTKAN')) ?>
+                                    <?= !empty($biodata['tanggal_lahir_candidate']) ? $biodata['tanggal_lahir_candidate'] : '-' ?>
                                 </span>
-                                <hr class="horizontal dark mt-2">
+<hr class="horizontal dark mt-2">
+<h6>Agama</h6>
+<span class="sub-bio">
+    <?php
+        if ($biodata['religion_candidate'] == 1) {
+            echo 'ISLAM';
+        } elseif ($biodata['religion_candidate'] == 2) {
+            echo 'KRISTEN';
+        } elseif ($biodata['religion_candidate'] == 3) {
+            echo 'HINDU';
+        } elseif ($biodata['religion_candidate'] == 4) {
+            echo 'BUDDHA';
+        } elseif ($biodata['religion_candidate'] == 5) {
+            echo 'KATOLIK';
+        } else {
+            echo 'TIDAK INGIN MENYEBUTKAN';
+        }
+    ?>
+</span>
+
+<hr class="horizontal dark mt-2">
+<h6>Jenis Kelamin</h6>
+<span class="sub-bio">
+    <?php
+        if ($biodata['jk_candidate'] == 1) {
+            echo 'LAKI-LAKI';
+        } elseif ($biodata['jk_candidate'] == 2) {
+            echo 'PEREMPUAN';
+        } else {
+            echo 'TIDAK INGIN MENYEBUTKAN';
+        }
+    ?>
+</span>
+
+<hr class="horizontal dark mt-2">
+<h6>Status</h6>
+<span class="sub-bio">
+    <?php
+        if ($biodata['marital_candidate'] == 1) {
+            echo 'BELUM MENIKAH';
+        } elseif ($biodata['marital_candidate'] == 2) {
+            echo 'MENIKAH';
+        } elseif ($biodata['marital_candidate'] == 3) {
+            echo 'CERAI HIDUP';
+        } elseif ($biodata['marital_candidate'] == 4) {
+            echo 'CERAI MATI';
+        } else {
+            echo 'TIDAK INGIN MENYEBUTKAN';
+        }
+    ?>
+</span>
+
+<hr class="horizontal dark mt-2"> 
+<h6>Media Sosial</h6>
+<div class="sub-bio">
+    <?php
+        // Ambil username sosmed dari database
+        $linkedin  = $biodata['socialmedia2_candidate'] ?? '';
+        $instagram = $biodata['socialmedia_candidate'] ?? '';
+
+        // Fungsi bikin URL otomatis
+        function build_social_url($username, $platform) {
+            $username = trim($username);
+            if (empty($username)) return '';
+
+            switch ($platform) {
+                case 'linkedin':
+                    // hapus tanda @ jika ada
+                    $username = ltrim($username, '@');
+                    return 'https://www.linkedin.com/in/' . $username;
+                case 'instagram':
+                    $username = ltrim($username, '@');
+                    return 'https://www.instagram.com/' . $username . '/';
+                default:
+                    return $username;
+            }
+        }
+
+        // Jika dua-duanya kosong
+        if (empty($linkedin) && empty($instagram)) {
+            echo '<span>TIDAK DICANTUMKAN</span>';
+        } else {
+            echo '<ul class="list-unstyled mb-0">';
+
+            // LinkedIn
+            if (!empty($linkedin)) {
+                $linkedinUrl = build_social_url($linkedin, 'linkedin');
+                echo '<li><strong>LinkedIn:</strong> <a href="' . htmlspecialchars($linkedinUrl) . '" target="_blank">@' 
+                     . htmlspecialchars(ltrim($linkedin, '@')) . '</a></li>';
+            }
+
+            // Instagram
+            if (!empty($instagram)) {
+                $instagramUrl = build_social_url($instagram, 'instagram');
+                echo '<li><strong>Instagram:</strong> <a href="' . htmlspecialchars($instagramUrl) . '" target="_blank">@' 
+                     . htmlspecialchars(ltrim($instagram, '@')) . '</a></li>';
+            }
+
+            echo '</ul>';
+        }
+    ?>
+</div>
+                               <hr class="horizontal dark mt-2">
                             </div>
                         </div>
                     </div>
@@ -107,12 +203,19 @@
                                     <?= $biodata['email_candidate'] ?>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <a class="btn btn-xs bg-primary text-white mb-0"
-                                    href="<?= site_url('kandidat/edit/' . $biodata['id']) ?>">
-                                    <i class="fas fa-edit"></i>&nbsp;&nbsp;Edit Biodata</i>
-                                </a>
-                            </div>
+                     <div class="col-lg-3 d-flex flex-column gap-2">
+                    <a class="btn bg-gradient-danger mb-0"
+                        href="<?= site_url('kandidat/edit/' . $biodata['id']) ?>">
+                        <i class="fas fa-edit"></i>&nbsp;&nbsp;Edit Biodata
+                    </a>
+
+                    <a class="btn btn-primary mb-0"
+                        href="<?= site_url('kandidat/cetak-cv/' . $biodata['id']) ?>"
+                        target="_blank">
+                        <i class="fas fa-print"></i>&nbsp;&nbsp;Cetak CV
+                    </a>
+                </div>
+
                             <hr class="horizontal dark mt-2">
                             <div class="col-lg-12">
                                 <h5>Alamat</h5>
@@ -205,12 +308,28 @@
                                             </script>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                   <div class="col-6">
                                         <h6>Status Pegawai</h6>
                                         <div class="sub-bio">
-
-                                            <?= strtoupper($row['employee_company']) ?>
-
+                                            <?php
+                                                $status_pegawai_list = [
+                                                    0 => 'PEKERJA PARUH WAKTU',
+                                                    1 => 'PKWT',
+                                                    2 => 'PEKERJA TETAP',
+                                                    3 => 'PEKERJA SEMENTARA',
+                                                    4 => 'PEKERJA MUSIMAN',
+                                                    5 => 'FREELANCER/PEKERJA LEPAS',
+                                                    6 => 'PEKERJA KONTRAK',
+                                                    7 => 'OUTSOURCING',
+                                                    8 => 'MAGANG',
+                                                    9 => 'PKWTT'
+                                                ];
+                                                $id_type = $row['employee_company'];
+                                                $nama_type = isset($status_pegawai_list[$id_type]) 
+                                                    ? $status_pegawai_list[$id_type] 
+                                                    : 'TIDAK DICANTUMKAN';
+                                            ?>
+                                            <?= strtoupper($nama_type) ?>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -240,44 +359,37 @@
                                 </div>
                                 <hr class="horizontal dark mt-2">
                                 <h5>File Pendukung</h5>
-                                <div class="mt-2">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <?php if (empty($pendukung)): ?>
-                                            <div class="alert bg-warning text-white">
-                                                Anda belum mengunggah file pendukung apapun, <a
-                                                    href="<?= site_url('candidate-biodata/update-biodata?tab=data-pendukung') ?>">klik
-                                                    disini</a> untuk
-                                                menambahkan file pendukung.
-                                            </div>
-                                            <?php else: ?>
-                                            <?php foreach ($pendukung as $row): ?>
-                                            <div class="col-12 mb-3"
-                                                style="background: rgba(233, 233, 233, 0.8); border-radius: 10px; padding: 15px;">
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <p class="text-dark">
-                                                            <a href="<?= base_url('uploads/kandidat/files/' . $row['file_pendukung']) ?>"
-                                                                target="_blank">
-                                                                <i class="fas fa-file"></i>
-                                                                <?= $row['file_pendukung'] ?>
-                                                            </a>
-                                                        </p>
-                                                    </div>
-                                                    <div class="d-none d-md-block">
-                                                        <a href="<?= base_url('uploads/kandidat/files/' . $row['file_pendukung']) ?>"
-                                                            class="btn btn-xs btn-primary" download>
-                                                            <i class="fas fa-download"></i>
-                                                        </a>
-                                                        &nbsp;
-                                                        <a href="<?= base_url('uploads/kandidat/files/' . $row['file_pendukung']) ?>"
-                                                            target="_blank" class="btn btn-xs btn-success">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                        &nbsp;
-                                                    </div>
-                                                </div>
-                                                <div class="d-block d-md-none">
+<div class="mt-2">
+    <div class="row">
+        <div class="col-12">
+            <?php if (empty($pendukung)): ?>
+                <div class="alert bg-warning text-white">
+                    Anda belum mengunggah file pendukung apapun,
+                    <a href="<?= site_url('candidate-biodata/update-biodata?tab=data-pendukung') ?>">
+                        klik disini
+                    </a>
+                    untuk menambahkan file pendukung.
+                </div>
+            <?php else: ?>
+                <?php foreach ($pendukung as $row): ?>
+                    <div class="col-12 mb-3"
+                         style="background: rgba(233, 233, 233, 0.8); border-radius: 10px; padding: 15px;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-dark mb-1">
+                                    <a href="<?= base_url('uploads/kandidat/files/' . $row['file_pendukung']) ?>"
+                                       target="_blank">
+                                        <i class="fas fa-file"></i>
+                                        <?= $row['file_pendukung'] ?>
+                                    </a>
+                                </p>
+                                <small class="text-muted">
+                                    <i class="fas fa-tag"></i> Jenis File:
+                                    <strong><?= ucfirst($row['jenis_file']) ?></strong>
+                                </small>
+                            </div>
+                        </div>
+                           <div class="d-block d-md-none">
                                                     <button class="btn btn-xs btn-primary">
                                                         <i class="fas fa-download"></i>
                                                     </button>
@@ -290,18 +402,9 @@
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
-                                            </div>
-                                            <?php endforeach ?>
-                                            <?php endif ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-
-            </div>
+                <?php endforeach ?>
+            <?php endif ?>
         </div>
     </div>
 </div>

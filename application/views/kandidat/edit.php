@@ -121,20 +121,20 @@
                                 <!-- Media Sosial -->
                                 <div class="col-md-6">
                                    <div class="form-group">
-    <label class="form-control-label">LinkedIn</label>
-    <input type="text"
-           v-model="data_diri.socialmedia2_candidate"
-           class="form-control"
-           name="socialmedia2_candidate"
-           placeholder="Contoh: ida-fania-872b441b2">
-    <small class="text-muted">
-        Isi hanya bagian akhir URL setelah <strong>linkedin.com/in/</strong>
-    </small>
-</div>
+                                <label class="form-control-label">LinkedIn</label>
+                                <input type="text"
+                                    v-model="data_diri.socialmedia2_candidate"
+                                    class="form-control"
+                                    name="socialmedia2_candidate"
+                                    placeholder="Contoh: ida-fania-872b441b2">
+                                <small class="text-muted">
+                                    Isi hanya bagian akhir URL setelah <strong>linkedin.com/in/</strong>
+                                </small>
+                            </div>
                                     <div class="form-group mt-2">
                                         <label class="form-control-label">Instagram</label>
                                         <input type="text" v-model="data_diri.socialmedia_candidate" class="form-control"
-                                            name="socialmedia2_candidate" placeholder="Contoh: ida_fania">
+                                            name="socialmedia_candidate" placeholder="Contoh: ida_fania">
                                    <small class="text-muted">
                                          Isi hanya username tanpa <strong>@</strong> 
                                  </small>
@@ -648,6 +648,7 @@
           </div>
         </div>
 
+       
         <div v-else>
          <div
             v-for="(file, index) in pendukung"
@@ -662,9 +663,11 @@
                 </p>
                 <p class="text-dark mb-0">
                     <a :href="file.url" target="_blank">
-                    <i class="fas fa-file"></i> {{ file.name }}
+                        <i class="fas fa-file"></i>
+                        {{ file.name.length > 15 ? file.name.substr(0, 15) + '...' : file.name }}
                     </a>
-                </p>
+                    </p>
+
                 </div>
 
               <!-- Tombol untuk desktop -->
@@ -720,7 +723,6 @@
             <label>Jenis Dokumen</label>
             <select name="jenis_file" v-model="formFilePendukungJenis" class="form-select" required>
               <option disabled value="">-- Pilih Jenis Dokumen --</option>
-              <option value="Ijazah">Ijazah</option>
               <option value="Portofolio">Portofolio</option>
               <option value="Sertifikat">Sertifikat</option>
             </select>
@@ -914,7 +916,11 @@
                         no_candidate: '<?= $biodata["no_candidate"] ?>',
                         tempat_lahir_candidate: '<?= $biodata["tempat_lahir_"] ?>',
                         birthdate_candidate: '<?= trim($biodata["tanggal_lahir_"]) ?>',
-                        jk_candidate: '<?= $biodata["jk_candidate"] ?>'
+                        jk_candidate: '<?= $biodata["jk_candidate"] ?>',
+                        religion_candidate: '<?= $biodata["religion_candidate"] ?>',
+                        marital_candidate: '<?= $biodata["marital_candidate"] ?>',
+                        socialmedia_candidate: '<?= $biodata["socialmedia_candidate"] ?? "" ?>',
+                        socialmedia2_candidate: '<?= $biodata["socialmedia2_candidate"] ?? "" ?>'
                     },
                     pendidikan: {
                         study_level: '<?= $laststudy["jenjang_"] ?>',
@@ -1326,12 +1332,17 @@
                 },
                 saveDataDiri() {
                     var data = new FormData();
+                    data.append("id", this.data_diri.id);
                     data.append("name_candidate", this.data_diri.name_candidate);
                     data.append("email_candidate", this.data_diri.email_candidate);
                     data.append("no_candidate", this.data_diri.no_candidate);
                     data.append("tempat_lahir_candidate", this.data_diri.tempat_lahir_candidate);
                     data.append("birthdate_candidate", this.data_diri.birthdate_candidate);
                     data.append("jk_candidate", this.data_diri.jk_candidate);
+                    data.append("religion_candidate", this.data_diri.religion_candidate);
+                    data.append("marital_candidate", this.data_diri.marital_candidate);
+                    data.append("socialmedia_candidate", this.data_diri.socialmedia_candidate);
+                    data.append("socialmedia2_candidate", this.data_diri.socialmedia2_candidate);
 
                     axios.post(
                             '<?= site_url("candidate-api/update-biodata/save-data-diri") ?>',

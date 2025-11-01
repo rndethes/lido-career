@@ -123,3 +123,7 @@ $route['notification/send-email'] = 'Notification/send_email';
 
 $route['candidate-notification'] = 'CandidateNotification/index';
 $route['candidate-notification/read/(:num)'] = 'CandidateNotification/read/$1';
+
+$route['kandidat/detail/(:num)'] = 'kandidat/detail/$1';
+$route['kandidat/edit/(:num)']   = 'kandidat/edit/$1';
+$route['kandidat/cetak-cv/(:num)'] = 'kandidat/cetak_cv/$1';

@@ -139,8 +139,23 @@ public function getAllKandidatJoin($filters = [])
     
     public function getBiodataById($id)
 {
-    
-    return $this->db->get_where('candidate', ['id' => $id])->row_array();
+    $biodata = $this->db->get_where('candidate', ['id' => $id])->row_array();
+
+    if ($biodata && isset($biodata['birthdate_candidate'])) {
+        $raw = $biodata['birthdate_candidate'];
+
+        // Coba pisahkan pakai koma, kalau gagal pakai spasi
+        if (str_contains($raw, ',')) {
+            $tsp = explode(',', $raw);
+        } else {
+            $tsp = preg_split('/\s+/', $raw, 2); // pisah jadi 2 bagian pertama
+        }
+
+        $biodata['tempat_lahir_candidate'] = trim($tsp[0] ?? '');
+        $biodata['tanggal_lahir_candidate'] = trim($tsp[1] ?? '');
+    }
+
+    return $biodata;
 }
 
 
@@ -487,44 +502,32 @@ public function getAllKandidatJoin($filters = [])
         return $this->db->get_where('candidate', ['lower(email_candidate)' => strtolower($email)])->row_array();
     }
 
-  public function insertPendidikan($id, $data)
+ public function insertPendidikan($id, $data)
 {
     $check = $this->db->get_where('candidate_study', ['id_candidate' => $id])->row_array();
     if ($check) {
         return $this->updatePendidikanKandidat($check['id_candidate_study'], $data);
     }
 
-    $level = '';
-    $jurusan = '';
+    $level = isset($data['study_level']) ? trim($data['study_level']) : '';
+    $jurusan = isset($data['jurusan_']) ? trim($data['jurusan_']) : '';
+    $study_level = trim(sprintf('%s, %s', $level, $jurusan), ', ');
 
-    // konversi tahun ke format DATE sebelum disimpan
-    if (!empty($data['year_first']) && strlen($data['year_first']) == 4) {
-        $data['year_first'] = $data['year_first'] . '-01-01';
-    }
-
-    if (!empty($data['year_last']) && strlen($data['year_last']) == 4) {
-        $data['year_last'] = $data['year_last'] . '-01-01';
-    }
-
-    foreach ($data as $k => $v) {
-        if ($k == 'jurusan_') {
-            $jurusan = $v;
-            continue;
-        }
-
-        if ($k == 'study_level') {
-            $level = $v;
-            continue;
-        }
-
-        $this->db->set($k, $v);
-    }
-
-    $study_level = sprintf('%s, %s', $level, $jurusan);
-
+    // Set field utama
     $this->db->set('study_level', $study_level);
+    $this->db->set('major_school', isset($data['major_school']) ? $data['major_school'] : '');
+    $this->db->set('name_school', isset($data['name_school']) ? $data['name_school'] : '');
+    $this->db->set('year_first', isset($data['year_first']) ? $data['year_first'] : null);
+    $this->db->set('year_last', isset($data['year_last']) ? $data['year_last'] : null);
+    $this->db->set('active', isset($data['active']) ? $data['active'] : 1);
     $this->db->set('id_candidate', $id);
+
+    // Insert
     $this->db->insert('candidate_study');
+
+    // Debug opsional
+    log_message('error', 'INSERT STUDY DATA: ' . print_r($data, true));
+    log_message('error', 'LAST QUERY: ' . $this->db->last_query());
 
     return $this->db->affected_rows() > 0;
 }
@@ -547,61 +550,67 @@ public function getAllKandidatJoin($filters = [])
         return $this->db->affected_rows() > 0;
     }
 
-   public function saveKandidat(array $data)
-{
-    $mode = !empty($data['id']) ? 'update' : 'insert';
+     public function saveKandidat(array $data)
+    {
+        $mode = !empty($data['id']) ? 'update' : 'insert';
 
-    $birthdate_candidate = '';
-    $tempatlhr_candidate = '';
+        $birthdate_candidate = '';
+        $tempatlhr_candidate = '';
+        $photo_candidate = '';
 
-    foreach ($data as $k => $v) {
-        if ($k == 'id') continue;
+        foreach ($data as $k => $v) {
+            if ($k == 'id') continue;
 
-        if ($k == 'tempat_lahir_candidate') {
-            $tempatlhr_candidate = $v;
-            continue;
+            if ($k == 'tempat_lahir_candidate') {
+                $tempatlhr_candidate = $v;
+                continue;
+            }
+
+            if ($k == 'birthdate_candidate') {
+                $birthdate_candidate = $v;
+                continue;
+            }
+
+            if ($k == 'photo_candidate') {
+                $photo_candidate = $v; // Hanya nama file
+                continue;
+            }
+
+            if (in_array($k, [
+                'name_candidate',
+                'email_candidate',
+                'no_candidate',
+                'birthdate_candidate',
+                'religion_candidate',
+                'jk_candidate',
+                'marital_candidate',
+                'socialmedia2_candidate',
+                'socialmedia_candidate',
+            ])) {
+                $this->db->set($k, $v);
+            }
         }
 
-        if ($k == 'birthdate_candidate') {
-            $birthdate_candidate = $v;
-            continue;
+        // Gabungkan tempat & tanggal lahir
+        if (!empty($tempatlhr_candidate) && !empty($birthdate_candidate)) {
+            $this->db->set('birthdate_candidate', $tempatlhr_candidate . ', ' . $birthdate_candidate);
         }
 
-        if (in_array($k, [
-            'name_candidate',
-            'email_candidate',
-            'no_candidate',
-            'birthdate_candidate',
-            'religion_candidate',
-            'jk_candidate',
-            'marital_candidate',
-            'socialmedia2_candidate',
-            'socialmedia_candidate',
-        ])) {
-            $this->db->set($k, $v);
+        // Set photo_candidate jika ada
+        if (!empty($photo_candidate)) {
+            $this->db->set('photo_candidate', $photo_candidate);
         }
+
+        if ($mode === 'update') {
+            $this->db->where('id', $data['id']); // Primary key
+            $this->db->update($this->table);
+        } else {
+            $this->db->set('id', generateIdCandidate()); // Buat ID baru
+            $this->db->insert($this->table);
+        }
+
+        return $this->db->affected_rows() > 0;
     }
-
-    // Gabungkan tempat & tanggal lahir
-    if (!empty($tempatlhr_candidate) && !empty($birthdate_candidate)) {
-        $this->db->set('birthdate_candidate', $tempatlhr_candidate . ', ' . $birthdate_candidate);
-    }
-
-    if ($mode === 'update') {
-        $this->db->where('id', $data['id']); // ❌ perbaiki key sesuai DB
-        $this->db->update($this->table);
-    } else {
-        $this->db->set('id', generateIdCandidate());
-        $this->db->insert($this->table);
-    }
-
-    echo "<pre>";
-    echo "SQL terakhir: " . $this->db->last_query() . "\n";
-    echo "Affected rows: " . $this->db->affected_rows();
-    exit;
-
-    return $this->db->affected_rows() > 0;
-}
 
     // TODO: rollback operation
     public function deleteKandidat($id)
@@ -662,38 +671,27 @@ public function updatePendidikanKandidat($id_candidate_study, $data)
 {
     $this->db->where('id_candidate_study', $id_candidate_study);
 
-    $level = '';
-    $jurusan = '';
+    $level = isset($data['study_level']) ? trim($data['study_level']) : '';
+    $jurusan = isset($data['jurusan_']) ? trim($data['jurusan_']) : '';
+    $study_level = trim(sprintf('%s, %s', $level, $jurusan), ', ');
 
-    // konversi tahun ke format DATE (YYYY-01-01)
-    if (!empty($data['year_first']) && strlen($data['year_first']) == 4) {
-        $data['year_first'] = $data['year_first'] . '-01-01';
-    }
-
-    if (!empty($data['year_last']) && strlen($data['year_last']) == 4) {
-        $data['year_last'] = $data['year_last'] . '-01-01';
-    }
-
-    foreach ($data as $k => $v) {
-        if ($k == 'id_candidate_study' || $k == 'id_candidate') continue;
-        if ($k == 'jurusan_') {
-            $jurusan = $v;
-            continue;
-        }
-        if ($k == 'study_level') {
-            $level = $v;
-            continue;
-        }
-
-        $this->db->set($k, $v);
-    }
-
-    $study_level = sprintf('%s, %s', $level, $jurusan);
+    // set semua field utama
     $this->db->set('study_level', $study_level);
+    $this->db->set('major_school', isset($data['major_school']) ? $data['major_school'] : '');
+    $this->db->set('name_school', isset($data['name_school']) ? $data['name_school'] : '');
+    $this->db->set('year_first', isset($data['year_first']) ? $data['year_first'] : null);
+    $this->db->set('year_last', isset($data['year_last']) ? $data['year_last'] : null);
+    $this->db->set('active', isset($data['active']) ? $data['active'] : 1);
+
     $this->db->update('candidate_study');
+
+    // debug opsional
+    log_message('error', 'UPDATE STUDY DATA: ' . print_r($data, true));
+    log_message('error', 'LAST QUERY: ' . $this->db->last_query());
 
     return $this->db->affected_rows() > 0;
 }
+
 
 
     public function getFilePendukung($id)

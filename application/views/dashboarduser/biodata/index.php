@@ -142,7 +142,7 @@
 <h6>Media Sosial</h6>
 <div class="sub-bio">
     <?php
-        // Ambil username sosmed dari database
+
         $linkedin  = $biodata['socialmedia2_candidate'] ?? '';
         $instagram = $biodata['socialmedia_candidate'] ?? '';
 

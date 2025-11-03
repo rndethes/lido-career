@@ -1,59 +1,55 @@
-<footer id="footer" class="footer dark-background pt-5">
+<footer id="footer" class="footer pt-5">
   <div class="container">
-    <div class="row gy-4">
+    <div class="row gy-4 text-center text-lg-start">
 
-      <!-- Kolom 1 - Alamat Kantor -->
-      <div class="col-lg-4 col-md-6 footer-info">
-        <h4 class="sitename">Lido29</h4>
-        <p>
-          Kantor Pusat:<br>
-          Jl. Contoh Raya No. 123<br>
-          Temanggung, Jawa Tengah<br><br>
-          <strong>Phone:</strong> 0812-3456-7890<br>
-          <strong>Email:</strong> info@lido29.com<br>
+      <!-- Kolom 1 - Alamat -->
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-title">
+          <i class="bi bi-geo-alt-fill me-2"></i> ALAMAT KANTOR
+        </h4>
+        <p class="mt-2">
+          Krajan 1 Kandangan, RT 001/RW 007, Krajan, Kec. Kandangan, 
+          Kab. Temanggung, Jawa Tengah, 56281.
         </p>
       </div>
 
       <!-- Kolom 2 - Layanan -->
-      <div class="col-lg-4 col-md-6 footer-links">
-        <h4>Layanan</h4>
-        <ul>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">Lowongan Kerja</a></li>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">Daftar Kandidat</a></li>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">Cabang Kami</a></li>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">Tentang Lido29</a></li>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-title">
+          <i class="bi bi-link-45deg me-2"></i> LAYANAN
+        </h4>
+        <ul class="footer-links mt-2">
+          <li><a href="#">Toko yang tersebar di Jawa Tengah</a></li>
+          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="#">Hubungi Kami</a></li>
+          <li><a href="#">Bantuan</a></li>
         </ul>
       </div>
 
-      <!-- Kolom 3 - Ikuti Kami -->
-      <div class="col-lg-4 col-md-6 footer-links">
-        <h4>Ikuti Kami</h4>
-        <p>Terhubung dengan Lido29 melalui media sosial</p>
-        <div class="social-links d-flex">
-          <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="me-2"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="me-2"><i class="bi bi-tiktok"></i></a>
-          <a href="#" class="me-2"><i class="bi bi-youtube"></i></a>
+      <!-- Kolom 3 - Sosial Media -->
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-title">
+          <i class="bi bi-people-fill me-2"></i> IKUTI KAMI
+        </h4>
+       <div class="social-links d-flex justify-content-center justify-content-lg-center mt-2" style="margin-left: 20px;">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-tiktok"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
 
     </div>
+  </div>
 
-    <hr class="border-secondary my-4">
-
-    <div class="text-center pb-3">
-      <div class="copyright">
-        © <strong class="sitename">Lido29</strong> All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> |
-        Distributed by <a href="https://themewagon.com">ThemeWagon</a>
-      </div>
+  <!-- Footer Bottom -->
+  <div class="footer-bottom mt-4 py-3">
+    <div class="container d-flex flex-column flex-lg-row justify-content-between text-center">
+      <span>Pemberitahuan Privasi</span>
+      <span>Copyright © 2024 PT Lido29</span>
     </div>
   </div>
 </footer>
-
 
     <!-- Scroll Top -->
     <a

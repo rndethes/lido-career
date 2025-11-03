@@ -36,4 +36,61 @@ class Front extends CI_Controller
         //     $this->load->view('front/index', $data);
         // }
     }
+
+    public function about_details()
+{
+    $data['title'] = 'Tentang Lido';
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/about-details', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
+public function news_details()
+{
+    $data['title'] = 'Berita Lido';
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/news-details', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
+public function contact_details()
+{
+    $data['title'] = 'Tanya Jawab Lido';
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/contact-details', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
+public function culture_details()
+{
+    $data['title'] = 'Budaya Lido';
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/culture-details', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
+public function business_details()
+{
+    $data['title'] = 'Unit Bisnis Lido';
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/business-details', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
+public function retail()
+{
+    $data['title'] = 'Retail Lido';
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/retail', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
+public function distribution()
+{
+    $data['title'] = 'Distribusi Lido';
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/distribution', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
 }

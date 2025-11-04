@@ -15,18 +15,30 @@
   color: #fff !important;
 }
 
-.feature-boxes {
-  position: relative;
-  margin-top: -120px;  
-  z-index: 5;          
-}
 
 #hero {
   position: relative;
-  z-index: 1;
+  min-height: 650px; 
   overflow: visible !important;
-  min-height: 760px;
+  z-index: 1;
 }
+
+.feature-boxes {
+  position: absolute;
+  bottom: -140px;  
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;   
+  z-index: 10;
+  background: transparent !important;
+}
+
+/* Hilangkan background hitam dari container / row jika ada */
+.feature-boxes .row,
+.feature-boxes .container {
+  background: transparent !important;
+}
+
 
 /* Box style */
 .box-item {
@@ -86,7 +98,7 @@
 .about-tancorp {
   position: relative;
   background: #f7f7f7;
-  margin-top:-60px;
+  margin-top:60px;
   margin-left: -10%;
   padding-left: 0;
   margin-bottom:-60px;
@@ -298,6 +310,9 @@
   .feature-boxes {
     margin-top: 0;
   }
+  .feature-boxes {
+    top: 70%;   
+  }
 
   .box-item {
     padding: 30px 15px;
@@ -357,6 +372,14 @@
 }
 
 @media (max-width: 768px) {
+  .all-page {
+      padding-top: -50px !important;
+    }
+    
+     .feature-boxes {
+    top: 78%;  
+  }
+
   #cabang-kota .col-lg-3 {
     width: 50%;
     margin-bottom: 20px;
@@ -398,14 +421,34 @@
   .image-content img {
     margin: 20px 0;
   }
-  
+  .feature-boxes .col-md-4 {
+    margin-top:0; 
+    padding: 0;
+  }
+  .feature-boxes .row{
+      margin-top:300%; 
+      margin-top:120px; 
+  }
 }
 
-/* HP max 576px */
+
 @media (max-width: 576px) {
   .box-item i {
     font-size: 28px;
     margin-bottom: 6px;
+  }
+
+  .all-page {
+      padding-top: -50px !important;
+    }
+
+     .feature-boxes {
+    top: 61.5%; 
+    padding-bottom: 650px;
+  }
+
+  .about-tancorp {
+    padding-top: 300px;
   }
 
   .box-item {
@@ -419,6 +462,7 @@
 
   .about-image img {
     width: 80%;
+    margin-bottom: -44px;
   }
 
   .about-box {
@@ -498,6 +542,7 @@
   #footer .social-links {
     justify-content: center;
   }
+  
 }
 
 

@@ -1,20 +1,5 @@
 
-  <main class="main">
-
-    <!-- Page Title -->
-    <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/page-title-bg.webp);">
-      <div class="container position-relative">
-        <h1>Blog Details</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Blog Details</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-
+  <main class="main all-page">
     <div class="container">
       <div class="row">
 
@@ -27,10 +12,10 @@
               <article class="article">
 
                 <div class="post-img">
-                  <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                  <img src="assets/img/bruce-mars.jpg" alt="" class="img-fluid">
                 </div>
 
-                <h2 class="title">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</h2>
+                <h2 class="title">30 Pertanyaan Interview Kerja yang Sering Ditanyakan dan Cara Menjawabnya</h2>
 
                 <div class="meta-top">
                   <ul>

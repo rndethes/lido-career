@@ -93,4 +93,22 @@ public function distribution()
     $this->load->view('front/footer-landing', $data);
 }
 
+public function career()
+{
+    $data['title'] = 'Karir Lido';
+   $data['all_divisi'] = $this->db->get('division')->result_array();
+   
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/career', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
+public function blog()
+{
+    $data['title'] = 'Distribusi Lido';
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/blog', $data);
+    $this->load->view('front/footer-landing', $data);
+}
+
 }

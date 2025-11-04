@@ -14,7 +14,7 @@
           </h2>
           <div id="faq1" class="accordion-collapse collapse" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
             <div class="accordion-body">
-              Anda dapat mendaftar melalui halaman <a href="<?= base_url('register') ?>">pendaftaran</a> dengan mengisi data diri lengkap.
+              Anda dapat mendaftar melalui halaman  <a href="<?= base_url('CandidateLogin/registration') ?>">pendaftaran</a> dengan mengisi data diri lengkap.
             </div>
           </div>
         </div>
@@ -28,7 +28,9 @@
           </h2>
           <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
             <div class="accordion-body">
-              Lido29 memiliki 2 unit bisnis yaitu retail dan distribusi. Detail lengkap dapat dilihat di <a href="<?= base_url('business') ?>">unit bisnis</a>.
+              Lido29 memiliki 2 unit bisnis yaitu retail dan distribusi. 
+              Detail lengkap dapat dilihat di 
+              <a href="<?= base_url('front/business_details') ?>">unit bisnis</a>.
             </div>
           </div>
         </div>

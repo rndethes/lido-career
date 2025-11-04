@@ -3,13 +3,12 @@
 <section>
   <div class="container">
     <div class="row align-items-center">
-       
       <div class="col-lg-6">
          <img src="<?= base_url('assets/img/bio.png') ?>" class="img-fluid rounded shadow" alt="Budaya Lido29" 
           style="width: 80%; height: auto; display: block;">
       </div>
 
-      <div class="col-lg-6" style="font-size: 17px; line-height: 1.7;">
+      <div class="col-lg-6" style="font-size: 17px; line-height: 1.7; margin-bottom:-60px;">
 
         <p>
           LIDO29 menyadari bahwa sumber daya manusia merupakan aset penting dalam membangun ekosistem karier yang profesional dan berdaya saing. Oleh karena itu, LIDO29 berkomitmen untuk terus mengembangkan kompetensi setiap individu melalui budaya kerja yang positif, adaptif, dan berorientasi pada hasil.
@@ -21,6 +20,10 @@
 
         <p>
           Dengan semangat kerja yang solid dan terarah, LIDO29 terus bergerak maju, menciptakan peluang kerja baru, serta berperan aktif dalam peningkatan kualitas sumber daya manusia di Indonesia.
+        </p>
+
+        <p>
+          LIDO29 membangun lingkungan kerja yang suportif agar setiap talenta dapat berkembang maksimal. Melalui pelatihan dan apresiasi kinerja, perusahaan mendorong terciptanya inovasi yang berdampak. Dengan itu, LIDO29 menjaga tim tetap produktif dan solid.
         </p>
 
       </div>

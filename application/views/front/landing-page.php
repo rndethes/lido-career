@@ -15,13 +15,13 @@
       </section>
       <!-- /Hero Section -->
        <!-- 3 Feature Boxes Section -->
-<section class="feature-boxes">
+ <section class="feature-boxes">
   <div class="container">
     <div class="row justify-content-center g-4">
 
       <!-- Box 1 -->
       <div class="col-md-4">
-        <a href="<?= base_url() ?>about" class="box-item box-blue">
+        <a href="<?= base_url('front/about_details') ?>" class="box-item box-blue">
           <i class="bi bi-buildings"></i>
           <h4>TENTANG LIDO29</h4>
         </a>
@@ -29,7 +29,7 @@
 
       <!-- Box 2 -->
       <div class="col-md-4">
-        <a href="<?= base_url() ?>business" class="box-item box-dark">
+       <a href="<?= base_url('front/business_details') ?>" class="box-item box-dark">
           <i class="bi bi-diagram-3"></i>
           <h4>UNIT BISNIS</h4>
         </a>
@@ -37,7 +37,7 @@
 
       <!-- Box 3 -->
       <div class="col-md-4">
-        <a href="<?= base_url() ?>careers" class="box-item box-dark2">
+        <a href="<?= base_url('front/career') ?>" class="box-item box-dark2">
           <i class="bi bi-person-badge"></i>
           <h4>KARIER</h4>
         </a>
@@ -46,7 +46,6 @@
     </div>
   </div>
 </section>
-
 
  <section class="about-tancorp">
   <div class="container-fluid p-0">
@@ -231,9 +230,10 @@
                 <p class="post-category">Carier</p>
 
                 <h2 class="title">
-                  <a href="blog-details.html"
-                    >30 Pertanyaan Interview Kerja yang Sering Ditanyakan dan Cara Menjawabnya</a
-                  >
+                  <a href="<?= site_url('front/blog'); ?>">
+                    30 Pertanyaan Interview Kerja yang Sering Ditanyakan dan Cara Menjawabnya
+                  </a>
+
                 </h2>
 
                 <div class="d-flex align-items-center">

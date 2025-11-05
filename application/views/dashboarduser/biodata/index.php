@@ -211,10 +211,11 @@
                             </div>
                            <div class="col-lg-3 d-flex flex-column gap-2">
                         <!-- Tombol Edit Biodata -->
-                        <a class="btn bg-gradient-danger mb-0"
+                       <a class="btn bg-gradient-success mb-0"
                         href="<?= site_url('candidate-biodata/update-biodata') ?>">
                             <i class="fas fa-edit"></i>&nbsp;&nbsp;Edit Biodata
                         </a>
+
 
                         <!-- Tombol Cetak CV -->
                         <a class="btn btn-primary mb-0"

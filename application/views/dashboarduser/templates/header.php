@@ -16,6 +16,7 @@ $img = !empty($user['photo_candidate'])
 <html lang="id">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Lido Group</title>
@@ -50,9 +51,8 @@ $img = !empty($user['photo_candidate'])
     <!-- Global css -->
     <style>
         .custom-color {
-            background-color:
-                <?= $content_zero['warna'];?>
-        }
+        background: linear-gradient(90deg, #c21c2aff 0%, #c91a20ff 100%);
+       }
 
         .text-danger {
             color:
@@ -170,42 +170,45 @@ $img = !empty($user['photo_candidate'])
                         <li class="nav-item dropdown pe-2 d-flex align-items-center">
     <a href="#" class="nav-link text-white p-0 d-flex align-items-center" id="dropdownMenuButton"
         data-bs-toggle="dropdown" aria-expanded="false">
-       <img src="<?= $img ?>" 
-     alt="Foto Profil" 
-     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 8px;">
 
-        <!-- Icon dan teks Profile -->
-        <i class="fa fa-user cursor-pointer"></i>
-        <span class="d-sm-inline d-none ms-1">Profile</span>
+    <!-- Go to Landing Page Icon -->
+    <a class="nav-link d-flex align-items-center me-3" href="<?= site_url('front') ?>" title="Go to Landing Page">
+        <i class="fas fa-globe" style="color:#fff; font-size:18px;"></i>
     </a>
-    
-    <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
-        aria-labelledby="dropdownMenuButton">
-        <li class="mb-2">
-            <a class="dropdown-item border-radius-md" href="<?= site_url('candidate-biodata/change-password') ?>">
-                <div class="d-flex py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold text-dark">Change Password</span>
-                        </h6>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li class="mb-2">
-            <a class="dropdown-item border-radius-md tombol-logout" href="<?= site_url('candidatelogin/logout') ?>">
-                <div class="d-flex py-1">
-                    <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold text-dark">Log Out</span>
-                        </h6>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</li>
 
+    <!-- Profile Dropdown -->
+    <div class="nav-item dropdown pe-2 d-flex align-items-center">
+        <a href="#" class="nav-link p-0 d-flex align-items-center" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false" title="Profile">
+
+            <?php if (!empty($user['photo_candidate'])): ?>
+                <img src="<?= $img ?>" alt="Foto Profil"
+                    style="width:43px;height:43px;border-radius:50%;object-fit:cover;">
+            <?php else: ?>
+                <i class="fas fa-user-circle" style="color:#fff; font-size:28px;"></i>
+            <?php endif; ?>
+
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
+            aria-labelledby="dropdownMenuButton">
+
+            <li class="mb-2">
+                <a class="dropdown-item border-radius-md" href="<?= site_url('candidate-biodata/change-password') ?>">
+                    <i class="fas fa-key me-2"></i> Change Password
+                </a>
+            </li>
+
+            <li class="mb-2">
+                <a class="dropdown-item border-radius-md tombol-logout" href="<?= site_url('candidatelogin/logout') ?>">
+                    <i class="fas fa-sign-out-alt me-2"></i> Log Out
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+</li>
                     </ul>
                 </div>
             </div>

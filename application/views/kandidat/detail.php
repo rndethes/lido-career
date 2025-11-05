@@ -66,14 +66,17 @@
                                         $img = base_url('assets/default/file_lido-default-photo.jpg');
                                     }
                                     ?>
-                                    <img class="img-fluid border-radius-lg"
-                                        src="<?= $img ?>">
+                                   <div class="photo-circle" style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden;">
+                            <img src="<?= $img ?>" 
+                                alt="Foto Kandidat" 
+                                style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
                                 </div>
                             </div>
                             <div class="col-lg-12 ms-sm-2">
                                 <div class="mt-2"></div>
 
-                                <h6>No. Handphone</h6>
+                                <h6  style="margin-top: -70px;">No. Handphone</h6>
 
                                 <span
                                     class="sub-bio"><?= $biodata['no_candidate'] ?></span>
@@ -204,10 +207,11 @@
                                 </div>
                             </div>
                      <div class="col-lg-3 d-flex flex-column gap-2">
-                    <a class="btn bg-gradient-danger mb-0"
-                        href="<?= site_url('kandidat/edit/' . $biodata['id']) ?>">
+                    <!-- <a class="btn bg-gradient-success mb-0"
+                    href="<?= site_url('candidate-biodata/update-biodata') ?>">
                         <i class="fas fa-edit"></i>&nbsp;&nbsp;Edit Biodata
-                    </a>
+                    </a> -->
+
 
                     <a class="btn btn-primary mb-0"
                         href="<?= site_url('kandidat/cetak-cv/' . $biodata['id']) ?>"

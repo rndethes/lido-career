@@ -86,9 +86,8 @@ $content_zero = $CI->main_model->getSettingZero();
     }
 
     .custom-color {
-      background-color:
-        <?= $content_zero['warna'];?>
-    }
+        background: linear-gradient(90deg, #c21c2aff 0%, #c91a20ff 100%);
+       }
 
     .btn-dark {
       background-color:

@@ -278,11 +278,24 @@
                                     </div>
                                     <div class="col-6">
                                         <h6>Tahun Pendidikan</h6>
+                                      <?php
+                                        $bulan = [
+                                            'January' => 'Januari', 'February' => 'Februari', 'March' => 'Maret', 'April' => 'April',
+                                            'May' => 'Mei', 'June' => 'Juni', 'July' => 'Juli', 'August' => 'Agustus',
+                                            'September' => 'September', 'October' => 'Oktober', 'November' => 'November', 'December' => 'Desember'
+                                        ];
+
+                                        function indoBulan($date, $bulan) {
+                                            return strtr(date('F Y', strtotime($date)), $bulan);
+                                        }
+                                        ?>
+
                                         <div class="sub-bio">
-                                            <?= !empty($laststudy['year_first']) ? date('F Y', strtotime($laststudy['year_first'])) : '-' ?>
+                                            <?= !empty($laststudy['year_first']) ? indoBulan($laststudy['year_first'], $bulan) : '-' ?>
                                             -
-                                            <?= !empty($laststudy['year_last']) ? date('F Y', strtotime($laststudy['year_last'])) : '-' ?>
+                                            <?= !empty($laststudy['year_last']) ? indoBulan($laststudy['year_last'], $bulan) : '-' ?>
                                         </div>
+
                                     </div>
                                 </div>
                                 <hr class="horizontal dark mt-2">

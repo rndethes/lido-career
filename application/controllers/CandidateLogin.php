@@ -107,11 +107,13 @@ class CandidateLogin extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[candidate.email_candidate]', [
             'is_unique' => 'This email has already registered!'
         ]);
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|matches[passwordtwo]', [
-            'matches' => 'Password dont match!',
-            'min_length' => 'Password too short!'
+        // Atur rules di function registration
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|callback_valid_password|matches[passwordtwo]', [
+            'matches' => 'Kata sandi tidak cocok!',
+            'min_length' => 'Kata sandi terlalu pendek! Minimal harus 8 karakter.'
         ]);
-        $this->form_validation->set_rules('passwordtwo', 'Password', 'required|trim|matches[password]');
+
+        $this->form_validation->set_rules('passwordtwo', 'Confirm Password', 'required|trim|matches[password]');
 
 
         if ($this->form_validation->run() == false) {
@@ -161,6 +163,28 @@ class CandidateLogin extends CI_Controller
             </div>');
             redirect('candidatelogin');
         }
+    }
+
+
+    public function valid_password($password)
+    {
+        if (!preg_match('/[A-Z]/', $password)) {
+            $this->form_validation->set_message('valid_password', 'Kata sandi harus mengandung setidaknya satu huruf kapital.');
+            return false;
+        }
+        if (!preg_match('/[a-z]/', $password)) {
+            $this->form_validation->set_message('valid_password', 'Kata sandi harus mengandung setidaknya satu huruf kecil.');
+            return false;
+        }
+        if (!preg_match('/[0-9]/', $password)) {
+            $this->form_validation->set_message('valid_password', 'Kata sandi harus mengandung setidaknya satu angka.');
+            return false;
+        }
+        if (!preg_match('/[\W]/', $password)) {
+            $this->form_validation->set_message('valid_password', 'Kata sandi harus mengandung setidaknya satu simbol');
+            return false;
+        }
+        return true;
     }
 
     public function verify()

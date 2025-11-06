@@ -399,55 +399,72 @@ class KandidatApi extends CI_Controller
     }
 
     public function save_data_pendidikan()
-    {
-        $request = [];
+{
+    $request = [];
 
-        foreach ($_POST as $k => $v) {
-            if ($k == 'jurusan') {
-                $request['jurusan_'] = $this->input->post($k);
-                continue;
-            }
+    // List field yang wajib diisi
+    $required_fields = ['study_level', 'school_name', 'month_start', 'year_start'];
 
-            $request[$k] = $this->input->post($k);
+    foreach ($_POST as $k => $v) {
 
-            if ($k == 'major_school' && in_array(strtolower($_POST['study_level']), ['sma', 'smk', 'sd', 'smp'])) {
-                continue;
-            }
-
-            if ($k == 'year_last' && $_POST['active'] == 1) {
-                continue;
-            }
-
-            if (strlen(trim($v)) === 0) {
-                http_response_code(400);
-
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Harap melengkapi semua data.'
-                ]);
-                exit;
-            }
+        // Khusus jurusan → simpan ke kolom jurusan_
+        if ($k == 'jurusan') {
+            $request['jurusan_'] = $this->input->post($k);
+            continue;
         }
 
-        $cand = $this->kandidat_model->getKandidatStudy($this->id_candidate);
-        $save = $this->kandidat_model->updatePendidikanKandidat($cand['id_candidate_study'], $request);
+        // Simpan semua input
+        $request[$k] = $this->input->post($k);
 
-        if ($save) {
-            http_response_code(200);
+        // Field major_school tidak wajib untuk SMA/SMK/SD/SMP
+        if ($k == 'major_school' && in_array(strtolower($_POST['study_level']), ['sma', 'smk', 'sd', 'smp'])) {
+            continue;
+        }
 
-            echo json_encode([
-                'success' => true,
-                'message' => 'Data pendidikan berhasil diperbarui.'
-            ]);
-        } else {
-            http_response_code(500);
+        // Jika status masih aktif (active = 1), field bulan/tahun selesai boleh kosong
+        if ($_POST['active'] == 1 && in_array($k, ['month_last', 'year_last'])) {
+            continue;
+        }
+
+        // Validasi hanya field wajib
+        if (in_array($k, $required_fields) && strlen(trim($v)) === 0) {
+            http_response_code(400);
 
             echo json_encode([
                 'success' => false,
-                'message' => 'Data pendidikan gagal diperbarui.'
+                'message' => 'Harap melengkapi semua data bulan & tahun.'
             ]);
+            exit;
         }
     }
+
+    // Gabungkan menjadi format YYYY-MM, jika bulan/tahun ada
+    if (!empty($_POST['year_start']) && !empty($_POST['month_start'])) {
+        $request['date_start'] = $_POST['year_start'] . '-' . str_pad($_POST['month_start'], 2, '0', STR_PAD_LEFT);
+    }
+
+    if ($_POST['active'] == 0 && !empty($_POST['year_last']) && !empty($_POST['month_last'])) {
+        $request['date_last'] = $_POST['year_last'] . '-' . str_pad($_POST['month_last'], 2, '0', STR_PAD_LEFT);
+    }
+
+    // Simpan ke database
+    $cand = $this->kandidat_model->getKandidatStudy($this->id_candidate);
+    $save = $this->kandidat_model->updatePendidikanKandidat($cand['id_candidate_study'], $request);
+
+    if ($save) {
+        http_response_code(200);
+        echo json_encode([
+            'success' => true,
+            'message' => 'Data pendidikan berhasil diperbarui.'
+        ]);
+    } else {
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Data pendidikan gagal diperbarui.'
+        ]);
+    }
+}
 
     public function save_data_diri()
     {

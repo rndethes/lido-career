@@ -1,16 +1,4 @@
-<?php
-$bulanIndo = [
-  1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April',
-  5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus',
-  9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
-];
 
-// Ambil data dari DB yang dikirim controller ke view
-$yearFirst = !empty($laststudy['year_first']) ? date('Y', strtotime($laststudy['year_first'])) : '';
-$monthFirst = !empty($laststudy['year_first']) ? (int)date('m', strtotime($laststudy['year_first'])) : '';
-$yearLast = !empty($laststudy['year_last']) ? date('Y', strtotime($laststudy['year_last'])) : '';
-$monthLast = !empty($laststudy['year_last']) ? (int)date('m', strtotime($laststudy['year_last'])) : '';
-?>
 <div id="update-biodata-app-root" style="display: none;">
     <div class="row">
         <div class="col-lg-3 mb-lg-0 mb-4">
@@ -216,51 +204,63 @@ $monthLast = !empty($laststudy['year_last']) ? (int)date('m', strtotime($laststu
                                 </div>
                             </div>
                            <div class="row">
-  <!-- Tanggal Mulai -->
-<label class="form-control-label fw-bold mb-2">Tanggal Mulai</label>
-<div class="col-md-6 mb-3">
-  <select name="month_start" class="form-control">
-    <option value="">Bulan</option>
-    <?php foreach ($bulanIndo as $num => $nama): ?>
-      <option value="<?= $nama ?>" <?= ($num == $monthFirst) ? 'selected' : '' ?>>
-        <?= $nama ?>
-      </option>
-    <?php endforeach; ?>
-  </select>
-</div>
+                            <?php
+                            $bulanIndo = [
+                            1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April',
+                            5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus',
+                            9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
+                            ];
 
-<div class="col-md-6 mb-3">
-  <select name="year_start" class="form-control">
-    <option value="">Tahun</option>
-    <?php for ($i = date('Y'); $i >= 1950; $i--): ?>
-      <option value="<?= $i ?>" <?= ($i == $yearFirst) ? 'selected' : '' ?>><?= $i ?></option>
-    <?php endfor; ?>
-  </select>
-</div>
+                            // Ambil data dari DB yang dikirim controller ke view
+                            $yearFirst = !empty($laststudy['year_first']) ? date('Y', strtotime($laststudy['year_first'])) : '';
+                            $monthFirst = !empty($laststudy['year_first']) ? (int)date('m', strtotime($laststudy['year_first'])) : '';
+                            $yearLast = !empty($laststudy['year_last']) ? date('Y', strtotime($laststudy['year_last'])) : '';
+                            $monthLast = !empty($laststudy['year_last']) ? (int)date('m', strtotime($laststudy['year_last'])) : '';
+                            ?>
+                            <!-- Tanggal Mulai -->
+                            <label class="form-control-label fw-bold mb-2">Tanggal Mulai</label>
+                            <div class="col-md-6 mb-3">
+                            <select name="month_start" class="form-control">
+                                <option value="">Bulan</option>
+                                <?php foreach ($bulanIndo as $num => $nama): ?>
+                                <option value="<?= $nama ?>" <?= ($num == $monthFirst) ? 'selected' : '' ?>>
+                                    <?= $nama ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            </div>
 
-<!-- Tanggal Berakhir -->
-<label class="form-control-label fw-bold mb-2">Tanggal Berakhir (atau perkiraan)</label>
-<div class="col-md-6 mb-3">
-  <select name="month_end" class="form-control">
-    <option value="">Bulan</option>
-    <?php foreach ($bulanIndo as $num => $nama): ?>
-      <option value="<?= $nama ?>" <?= ($num == $monthLast) ? 'selected' : '' ?>>
-        <?= $nama ?>
-      </option>
-    <?php endforeach; ?>
-  </select>
-</div>
+                            <div class="col-md-6 mb-3">
+                            <select name="year_start" class="form-control">
+                                <option value="">Tahun</option>
+                                <?php for ($i = date('Y'); $i >= 1950; $i--): ?>
+                                <option value="<?= $i ?>" <?= ($i == $yearFirst) ? 'selected' : '' ?>><?= $i ?></option>
+                                <?php endfor; ?>
+                            </select>
+                            </div>
 
-<div class="col-md-6 mb-3">
-  <select name="year_end" class="form-control">
-    <option value="">Tahun</option>
-    <?php for ($i = date('Y'); $i >= 1950; $i--): ?>
-      <option value="<?= $i ?>" <?= ($i == $yearLast) ? 'selected' : '' ?>><?= $i ?></option>
-    <?php endfor; ?>
-  </select>
-</div>
-</div>
+                            <!-- Tanggal Berakhir -->
+                            <label class="form-control-label fw-bold mb-2">Tanggal Berakhir (atau perkiraan)</label>
+                            <div class="col-md-6 mb-3">
+                            <select name="month_end" class="form-control">
+                                <option value="">Bulan</option>
+                                <?php foreach ($bulanIndo as $num => $nama): ?>
+                                <option value="<?= $nama ?>" <?= ($num == $monthLast) ? 'selected' : '' ?>>
+                                    <?= $nama ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                            </div>
 
+                            <div class="col-md-6 mb-3">
+                            <select name="year_end" class="form-control">
+                                <option value="">Tahun</option>
+                                <?php for ($i = date('Y'); $i >= 1950; $i--): ?>
+                                <option value="<?= $i ?>" <?= ($i == $yearLast) ? 'selected' : '' ?>><?= $i ?></option>
+                                <?php endfor; ?>
+                            </select>
+                            </div>
+                            </div>
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-end">
                                     <button @click="saveDataPendidikan" type="button"

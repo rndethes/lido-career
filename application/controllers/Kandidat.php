@@ -497,6 +497,7 @@ class Kandidat extends CI_Controller
         }
     }
 
+
     public function cetak_cv($id)
 {
     $biodata    = $this->kandidat_model->getBiodataById($id);

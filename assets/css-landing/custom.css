@@ -30,6 +30,10 @@
   z-index: 10;
   background: transparent !important;
 }
+ .feature-boxes .col-md-4 {
+    margin-top:0; 
+    padding: 0;
+  }
 
 /* Hilangkan background hitam dari container / row jika ada */
 .feature-boxes .row,
@@ -54,9 +58,6 @@
   box-shadow: 0px 8px 18px rgba(0,0,0,0.15);
 }
 
-.feature-boxes .col-md-4 {
-  padding: 0; 
-}
 
 .box-item:hover {
   transform: translateY(-8px);
@@ -328,12 +329,11 @@
     object-fit: cover;
   }
 
-  /* Sembunyikan nama user biar tidak kepanjangan */
-  #header .d-flex.align-items-center span {
+ 
+  /* #header .d-flex.align-items-center span {
     display: none !important;
-  }
+  } */
 
-  /* Hamburger paling kanan */
   .mobile-nav-toggle {
     order: 3;
     margin-left: 0;
@@ -345,10 +345,6 @@
     width: 100%;
     transform: none;
     margin-top: 20px;
-  }
-  .feature-boxes {
-    margin-top: 0;
-    top: 70%;   
   }
 
   .box-item {
@@ -412,10 +408,6 @@
   .all-page {
       padding-top: -50px !important;
     }
-    
-     .feature-boxes {
-    top: 78%;  
-  }
 
   #cabang-kota .col-lg-3 {
     width: 50%;
@@ -462,12 +454,7 @@
     margin-top:0; 
     padding: 0;
   }
-  .feature-boxes .row{
-      margin-top:300%; 
-      margin-top:170px; 
-  }
 }
-
 
 @media (max-width: 576px) {
   .box-item i {
@@ -479,11 +466,6 @@
       padding-top: -50px !important;
     }
 
-     .feature-boxes {
-    top: 70%; 
-    padding-bottom: 650px;
-    width:100%;
-  }
 
   .about-tancorp {
     padding-top: 300px;
@@ -501,7 +483,7 @@
   .about-image img {
     width: 100%;
     margin-bottom: -10px;
-    margin-top: 80px;
+    margin-top: 40%;
   }
 
   .about-box {

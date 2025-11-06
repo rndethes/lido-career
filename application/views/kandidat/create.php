@@ -126,8 +126,8 @@
                                     </div>
                                     <div class="form-group mt-2">
                                         <label class="form-control-label">Instagram</label>
-                                        <input type="text" v-model="data_diri.socialmedia2_candidate" class="form-control"
-                                            name="socialmedia2_candidate" placeholder="Contoh: ida_fania">
+                                        <input type="text" v-model="data_diri.socialmedia_candidate" class="form-control"
+                                            name="socialmedia_candidate" placeholder="Contoh: ida_fania">
                                    <small class="text-muted">
                                          Isi hanya username tanpa <strong>@</strong> 
                                  </small>

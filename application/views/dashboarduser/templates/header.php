@@ -1,3 +1,15 @@
+<style>
+    @media (max-width: 991px) {
+  .profile-photo {
+    position: absolute !important;
+    left: 10px;
+    top: 2px;
+  }
+ .fa-solid, .fas {
+    margin-right: -50px;
+  }
+}
+</style>
 <?php
 $CI =& get_instance();
 $CI->load->model('main_model');
@@ -11,7 +23,6 @@ $img = !empty($user['photo_candidate'])
     ? base_url('uploads/kandidat/profiles/' . $user['photo_candidate'])
     : base_url('assets/img/default-profile.png'); // fallback jika belum ada foto
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -150,14 +161,14 @@ $img = !empty($user['photo_candidate'])
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
             data-scroll="false">
             <div class="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
+                <!-- <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
                         <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
                     </ol>
                     <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
-                </nav>
+                </nav> -->
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
@@ -171,44 +182,47 @@ $img = !empty($user['photo_candidate'])
     <a href="#" class="nav-link text-white p-0 d-flex align-items-center" id="dropdownMenuButton"
         data-bs-toggle="dropdown" aria-expanded="false">
 
-    <!-- Go to Landing Page Icon -->
-    <a class="nav-link d-flex align-items-center me-3" href="<?= site_url('front') ?>" title="Go to Landing Page">
-        <i class="fas fa-globe" style="color:#fff; font-size:18px;"></i>
-    </a>
+    <!-- Go to Landing Page -->
+    <li class="nav-item d-flex align-items-center me-2">
+        <a class="nav-link text-white" href="<?= site_url('front') ?>" title="Go to Landing Page">
+            <i class="fas fa-globe" style="font-size:18px;"></i>
+        </a>
+    </li>
 
     <!-- Profile Dropdown -->
-    <div class="nav-item dropdown pe-2 d-flex align-items-center">
-        <a href="#" class="nav-link p-0 d-flex align-items-center" id="dropdownMenuButton"
-            data-bs-toggle="dropdown" aria-expanded="false" title="Profile">
-
+    <li class="nav-item dropdown pe-2 d-flex align-items-center">
+        <a href="#" class="nav-link text-white p-0 d-flex align-items-center"
+           id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <?php if (!empty($user['photo_candidate'])): ?>
                 <img src="<?= $img ?>" alt="Foto Profil"
-                    style="width:43px;height:43px;border-radius:50%;object-fit:cover;">
+                     class="profile-photo"
+                     style="width:43px;height:43px;border-radius:50%;object-fit:cover;">
             <?php else: ?>
-                <i class="fas fa-user-circle" style="color:#fff; font-size:28px;"></i>
+                <i class="fas fa-user-circle" style="font-size:28px;"></i>
             <?php endif; ?>
-
         </a>
 
-        <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
-            aria-labelledby="dropdownMenuButton">
-
-            <li class="mb-2">
-                <a class="dropdown-item border-radius-md" href="<?= site_url('candidate-biodata/change-password') ?>">
-                    <i class="fas fa-key me-2"></i> Change Password
-                </a>
-            </li>
-
-            <li class="mb-2">
-                <a class="dropdown-item border-radius-md tombol-logout" href="<?= site_url('candidatelogin/logout') ?>">
-                    <i class="fas fa-sign-out-alt me-2"></i> Log Out
-                </a>
-            </li>
-
+        <ul class="dropdown-menu dropdown-menu-end px-2 py-3">
+            <li><a class="dropdown-item" href="<?= site_url('candidate-biodata/change-password') ?>">
+                <i class="fas fa-key me-2"></i> Change Password
+            </a></li>
+            <li><a class="dropdown-item tombol-logout" href="<?= site_url('candidatelogin/logout') ?>">
+                <i class="fas fa-sign-out-alt me-2"></i> Log Out
+            </a></li>
         </ul>
-    </div>
-
-</li>
+                 <li class="nav-item d-flex align-items-center">
+                        </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
+                </li>
                     </ul>
                 </div>
             </div>

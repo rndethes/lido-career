@@ -60,28 +60,12 @@
             <li><a href="<?= base_url('front/index') ?>">Beranda</a></li>
            <li><a href="<?= base_url('front/about_details') ?>">Tentang</a></li>
              <li class="dropdown">
-             <a href="<?= base_url('front/business_details') ?>"
-                ><span>Unit Bisnis</span>
+             <a href="<?= base_url('front/business_details') ?>"><span>Unit Bisnis</span>
                 <i class="bi bi-chevron-down toggle-dropdown"></i
               ></a>
               <ul>
                 <li><a href="<?= base_url('front/retail') ?>">Retail</a></li>
-                <!-- <li class="dropdown">
-                  <a href="#"
-                    ><span>Deep Dropdown</span>
-                    <i class="bi bi-chevron-down toggle-dropdown"></i
-                  ></a>
-                  <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                  </ul>
-                </li> -->
                 <li><a href="<?= base_url('front/distribution') ?>">Distribusi</a></li>
-                <!-- <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li> -->
               </ul>
             </li>
             <li><a href="<?= base_url('front/culture_details') ?>">Budaya</a></li>
@@ -97,7 +81,6 @@
     <a href="<?= site_url('candidatedashboard') ?>" class="d-flex align-items-center">
         <img src="<?= $img ?>" alt="Foto Profil" 
              style="width:43px; height:43px; border-radius:50%; object-fit:cover; margin-right:10px;">
-        <span style="color: #fff; font-weight: 600;"><?= $user_name ?></span>
     </a>
     <?php else: ?>
         <a class="cta-btn" href="<?= base_url('candidatelogin') ?>">Login</a>

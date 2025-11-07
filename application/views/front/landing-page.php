@@ -1,18 +1,24 @@
     <main class="main">
-      <!-- Hero Section -->
-      <section id="hero" class="hero section dark-background" style="z-index:1;">
-        <img src="<?= base_url() ?>assets/img-landing/bg1.jpeg" alt="" data-aos="fade-in" />
+     <!-- Hero Section -->
+<!-- Hero Section -->
+<section id="hero" class="hero section dark-background" style="z-index:1;">
 
-        <div
-          class="container d-flex flex-column align-items-center text-center">
-          <h2 data-aos="fade-up" data-aos-delay="100">
-            Welcome to Lido29 Platform
-          </h2>
-          <p data-aos="fade-up" data-aos-delay="200">
-            Connect, Grow, and Build Your Future
-          </p>
-        </div>
-      </section>
+  <img 
+    src="<?= base_url('assets/img-landing/' . $content_hero['image_homepage']) ?>" 
+    alt="Hero Background" 
+    data-aos="fade-in"
+  />
+
+  <div class="container d-flex flex-column align-items-center text-center">
+    <h2 data-aos="fade-up" data-aos-delay="100">
+      <?= $content_hero['tittle_homepage']; ?>
+    </h2>
+
+    <p data-aos="fade-up" data-aos-delay="200">
+      <?= $content_hero['subtitle_homepage']; ?>
+    </p>
+  </div>
+</section>
       <!-- /Hero Section -->
        <!-- 3 Feature Boxes Section -->
  <section class="feature-boxes">
@@ -47,59 +53,48 @@
   </div>
 </section>
 
- <section class="about-tancorp">
+ <!-- About Section -->
+<section class="about-tancorp">
   <div class="container-fluid p-0">
 
-    <!-- Full Image -->
+    <!-- Gambar About -->
     <div class="about-image">
-      <img src="<?= base_url('assets/img/b11.jpeg') ?>" alt="About Image">
+      <img src="<?= base_url('assets/img/' . $content_first['about_image']); ?>" alt="About Image">
     </div>
 
-    <!-- Overlapped Content -->
+    <!-- Konten About -->
     <div class="about-box">
-      <h2 class="fw-bold mb-3"style="color: white;">LIDO29</h2>
+      <h2 class="fw-bold mb-3" style="color: white;">
+        <?= $content_first['about_subtitle']; ?>
+      </h2>
       <hr class="about-line mb-4">
 
-           <p class="mb-4">
-          LIDO29 adalah platform resmi yang menyediakan informasi seputar bisnis, budaya,
-          dan peluang karier di bawah naungan Lido Group. Kami hadir sebagai penghubung
-          antara perusahaan dan talenta terbaik, menghadirkan akses menuju dunia kerja
-          yang profesional, inovatif, dan berkelanjutan.
-        </p>
+      <!-- <h5 class="mb-3" style="color: #f5f5f5;">
+        <?= $content_first['about_subtitle']; ?>
+      </h5> -->
 
-        <p class="mb-4">
-          Dengan semangat pertumbuhan, inovasi, dan tata kelola yang terpercaya, LIDO29
-          menjadi bagian dari proses transformasi talenta di berbagai sektor. Kami tidak
-          hanya membangun karier, tetapi juga memberikan ruang untuk berkembang dan
-          menciptakan dampak positif.
-        </p>
-
-        <p>
-          LIDO29 berkomitmen untuk menjadi wadah talenta unggul yang terus bergerak maju
-          membawa visi besar perusahaan ke tingkat nasional maupun global.
-        </p>
+      <p style="color: #eaeaea;">
+        <?= nl2br($content_first['about_description']); ?>
+      </p>
     </div>
 
   </div>
 </section>
 
 
+
      <!-- Services Section -->
-<section id="services" class="services section">
+<section id="visimisi-intro" class="py-5">
   <div class="container" data-aos="fade-up">
     <div class="row align-items-center">
-      
       <div class="col-lg-6">
-        <h2>Bagaimana kinerja kami dalam mewujudkan visi dan misi kami?</h2>
-        <p>
-          Hadir dengan tagline “For a Better Human Life”, Lido29 memiliki visi dan misi menyejahterakan Bangsa Indonesia. Dalam mewujudkan visi dan misi tersebut, kami membangun culture yang kami sebut dengan LIDO.
-        </p>
+        <h2><?= $visimisi_intro['intro_title']; ?></h2>
+        <p><?= $visimisi_intro['intro_description']; ?></p>
       </div>
 
-     
       <div class="col-lg-6 d-flex justify-content-center">
         <div class="video-wrapper" style="width: 70%; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen
+          <iframe src="<?= $visimisi_intro['intro_video_url']; ?>" frameborder="0" allowfullscreen
                   style="position: absolute; top:0; left:0; width:100%; height:100%;">
           </iframe>
         </div>
@@ -107,6 +102,7 @@
     </div>
   </div>
 </section>
+
 
         <section id="cabang-kota" class="section py-5">
   <div class="container">

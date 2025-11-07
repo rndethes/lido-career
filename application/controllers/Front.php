@@ -14,13 +14,13 @@ class Front extends CI_Controller
     public function index()
 {
     $data['title'] = 'Lido Career';
-
     $data['content_hero']   = $this->main_model->getSettingHero();
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
     $data['content_zero']   = $this->main_model->getSettingZero();
     $data['content_first']  = $this->main_model->getSettingFirst();
     $data['content_second'] = $this->main_model->getSettingSecond();
     $data['all_divisi']     = $this->main_model->cekDivisiKosong();
+    $data['visimisi_intro'] = $this->main_model->getVisiMisiIntro();
 
     $id_user = getLoggedInUser('id');
     if ($id_user) {
@@ -38,14 +38,18 @@ class Front extends CI_Controller
         $data['user_name'] = null;
     }
 
+    // Load semua bagian halaman
     $this->load->view('front/header-landing', $data);
     $this->load->view('front/landing-page', $data);
     $this->load->view('front/footer-landing', $data);
 }
 
+
     public function about_details()
 {
     $data['title'] = 'Tentang Lido';
+    $data['content_about'] = $this->main_model->getSettingFirst();
+    $data['content_zero'] = $this->main_model->getSettingZero();
 
      $id_user = getLoggedInUser('id');
     if ($id_user) {

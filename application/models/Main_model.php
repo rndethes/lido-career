@@ -89,6 +89,14 @@ class Main_model extends CI_Model
 
         return $query;
     }
+
+    public function getVisiMisiIntro()
+    {
+        $this->db->select('*');
+        $query = $this->db->get_where('setting_visimisi_intro', ['id' => 1])->row_array();
+        return $query;
+    }
+
     public function getAllDivisi()
     {
         $query = $this->db->get('division')->result_array();

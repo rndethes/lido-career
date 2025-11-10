@@ -56,7 +56,9 @@ $route['translate_uri_dashes'] = false;
 
 
 
-$route['pengaturan-landing-page'] = 'PengaturanLandingPage';
+$route['pengaturan-landing-page'] = 'PengaturanLandingPage/index';
+$route['pengaturan-landing-page/update'] = 'PengaturanLandingPage/update';
+
 
 $route['pengaturan-timeline'] = 'PengaturanTimeline';
 $route['pengaturan-timeline/batch'] = 'PengaturanTimeline/batch';

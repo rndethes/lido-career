@@ -92,352 +92,202 @@
         <p><?= $visimisi_intro['intro_description']; ?></p>
       </div>
 
-      <div class="col-lg-6 d-flex justify-content-center">
-        <div class="video-wrapper" style="width: 70%; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-          <iframe src="<?= $visimisi_intro['intro_video_url']; ?>" frameborder="0" allowfullscreen
-                  style="position: absolute; top:0; left:0; width:100%; height:100%;">
-          </iframe>
-        </div>
-      </div>
+     <?php
+if (!empty($visimisi_intro['intro_video_url'])) {
+    $url = $visimisi_intro['intro_video_url'];
+    $embed_url = '';
+
+    // Format panjang (watch?v=...)
+    if (strpos($url, 'watch?v=') !== false) {
+        $embed_url = str_replace('watch?v=', 'embed/', $url);
+        $embed_url = strtok($embed_url, '&'); // hilangkan parameter tambahan
+    }
+    // Format pendek (youtu.be)
+    elseif (strpos($url, 'youtu.be') !== false) {
+        $parts = parse_url($url);
+        $video_id = ltrim($parts['path'], '/');
+        $embed_url = 'https://www.youtube.com/embed/' . $video_id;
+    }
+?>
+<div class="col-lg-6 d-flex justify-content-center">
+    <div class="video-wrapper" style="width: 70%; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe src="<?= $embed_url; ?>" frameborder="0" allowfullscreen
+                style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+    </div>
+</div>
+<?php } ?>
+
     </div>
   </div>
 </section>
 
+<section id="cabang-kota" class="section py-5">
+  <div class="container-fluid px-0">
+    <div class="row g-0">
 
-        <section id="cabang-kota" class="section py-5">
-  <div class="container">
-    <div class="row gy-4">
       <?php 
-     $kota_cabang = [
-    'Temanggung' => [
-        ['nama'=>'Lido29 Tembarak', 'maps'=>'https://maps.app.goo.gl/ppQSHTRV9Ec93vct9'],
-        ['nama'=>'Lido29 Ngadirejo', 'maps'=>'https://goo.gl/maps/xxxx2'],
-        ['nama'=>'Lido29 Kandangan', 'maps'=>'https://goo.gl/maps/xxxx3'],
-        ['nama'=>'Lido29 Gemawang', 'maps'=>'https://goo.gl/maps/xxxx4'],
-        ['nama'=>'Lido29 Kaloran', 'maps'=>'https://goo.gl/maps/xxxx5'],
-        ['nama'=>'Lido29 Jumo', 'maps'=>'https://goo.gl/maps/xxxx6'],
-        ['nama'=>'Lido29 Kedu', 'maps'=>'https://goo.gl/maps/xxxx7'],
-        ['nama'=>'Lido29 Kranggan', 'maps'=>'https://goo.gl/maps/xxxx8'],
-        ['nama'=>'Lido29 Tegowanuh', 'maps'=>'https://goo.gl/maps/xxxx9'],
-    ],
-    'Wonosobo' => [
-        ['nama'=>'Lido29 Wonosobo', 'maps'=>'https://goo.gl/maps/yyyy1'],
-    ],
-    'Semarang' => [
-        ['nama'=>'Lido29 Sumowono', 'maps'=>'https://goo.gl/maps/yyyy2'],
-    ],
-    'Magelang' => [
-        ['nama'=>'Lido29 Borobudur', 'maps'=>'https://goo.gl/maps/yyyy3'],
-        ['nama'=>'Lido29 Salaman', 'maps'=>'https://goo.gl/maps/yyyy4'],
-    ],
-];
+      // Kelompokkan cabang berdasarkan area
+      $grouped = [];
+      foreach ($offices as $office) {
+          $grouped[$office['area']][] = $office;
+      }
 
+      $index = 0;
+      $colors = ['#6A1B1A', '#8B2F2C']; // maroon gelap dan terang bergantian
 
-      $foto_kota = [
-        'Temanggung' => 'carousel-2.jpg',
-        'Wonosobo' => 'carousel-3.jpg',
-        'Semarang' => 'carousel-1.jpg',
-        'Magelang' => 'carousel-3.jpg',
-      ];
+      foreach ($grouped as $area => $branches): 
+          $index++;
+          $bgColor = $colors[$index % 2];
+      ?>
+      <!-- Card area -->
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+        <div class="area-card text-center" 
+             style="background-color: <?= $bgColor ?>;"
+             data-bs-toggle="modal" data-bs-target="#modalArea<?= $index ?>">
+          <h1 class="fw-bold mb-1"><?= count($branches) ?></h1>
+          <h5 class="text-uppercase"><?= $area ?></h5>
+        </div>
+      </div>
 
-      foreach($foto_kota as $kota => $foto): ?>
-      <div class="col-lg-3 col-md-6 col-6 text-center">
-        <div class="card shadow-sm position-relative">
-          <img src="<?= base_url() ?>assets/img/<?= $foto ?>" class="card-img-top img-fluid" alt="<?= $kota ?>">
-          <div class="card-body">
-            <h5 class="card-title"><?= $kota ?></h5>
-            <!-- Dropdown -->
-            <div class="dropdown mt-auto">
-              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdown<?= $kota ?>" data-bs-toggle="dropdown" aria-expanded="false">
-                Lihat Cabang
-              </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdown<?= $kota ?>">
-  <?php foreach($kota_cabang[$kota] as $cabang): ?>
-    <li>
-      <a class="dropdown-item d-flex align-items-center" href="<?= $cabang['maps'] ?>" target="_blank">
-        <i class="fas fa-map-marker-alt me-2" style="color: red;"></i>
-        <?= $cabang['nama'] ?>
-      </a>
-    </li>
-  <?php endforeach; ?>
-</ul>
-
-
+      <!-- Modal daftar cabang -->
+      <div class="modal fade" id="modalArea<?= $index ?>" tabindex="-1" aria-labelledby="modalLabel<?= $index ?>" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: <?= $bgColor ?>; color: white;">
+              <h5 class="modal-title" id="modalLabel<?= $index ?>">Daftar Cabang - <?= $area ?></h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="accordion" id="accordion<?= $index ?>">
+                <?php foreach ($branches as $i => $branch): ?>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading<?= $index.$i ?>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                            data-bs-target="#collapse<?= $index.$i ?>" aria-expanded="false" 
+                            aria-controls="collapse<?= $index.$i ?>">
+                      <?= $branch['branch_name'] ?> (<?= $branch['type'] ?>)
+                    </button>
+                  </h2>
+                  <div id="collapse<?= $index.$i ?>" class="accordion-collapse collapse" 
+                       aria-labelledby="heading<?= $index.$i ?>" data-bs-parent="#accordion<?= $index ?>">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <img src="<?= base_url('assets/img/'.$branch['image']) ?>" 
+                               alt="<?= $branch['branch_name'] ?>" 
+                               class="img-fluid rounded shadow-sm mb-3">
+                        </div>
+                        <div class="col-md-7">
+                          <p><strong>Nama Cabang:</strong> <?= $branch['branch_name'] ?></p>
+                          <p><strong>Tipe:</strong> <?= $branch['type'] ?></p>
+                          <p><strong>Alamat:</strong> <?= $branch['address'] ?></p>
+                          <p><strong>Telepon:</strong> <?= $branch['phone_number'] ?></p>
+                          <p><strong>Email:</strong> <?= $branch['email'] ?></p>
+                          <a href="<?= $branch['maps_url'] ?>" target="_blank" class="btn btn-sm btn-outline-danger mt-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>Lihat di Maps
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <?php endforeach; ?>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <?php endforeach; ?>
+
     </div>
   </div>
 </section>
-            <!-- End Service Item -->
-          </div>
-        </div>
-      </section>
+
+
+
       <!-- /Services Section -->
 
-      <!-- Call To Action Section -->
-      <section
-        id="call-to-action"
-        class="call-to-action section dark-background">
-        <img src="<?= base_url() ?>assets/img-landing/cta-bg.jpg" alt="" />
+  <section
+    id="call-to-action"
+    class="call-to-action section dark-background"
+    style="position: relative; overflow: hidden;">
 
-        <div class="container">
-          <div class="row" data-aos="zoom-in" data-aos-delay="100">
-            <div class="col-xl-9 text-center text-xl-start">
-              <h3>Quotes of the day</h3>
-              <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-              </p>
+    <!-- Background image -->
+    <img src="<?= base_url('assets/img-landing/'.$quote['image']) ?>" 
+         alt="" 
+         style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;" />
+
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- Text content -->
+            <div class="col-xl-9 text-center text-xl-start" 
+                 data-aos="fade-up" 
+                 data-aos-delay="100">
+                <h3><?= $quote['title'] ?></h3>
+                <p><?= $quote['content'] ?></p>
             </div>
-          </div>
+
         </div>
-      </section>
+    </div>
+</section>
+
+
   
-      <!-- Recent Posts Section -->
-      <section id="recent-posts" class="recent-posts section">
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <h2>Berita Terbaru</h2>
-          <p>
-           Update terkini seputar informasi dan kegiatan terbaru dari Lido29
-          </p>
-        </div>
-        <!-- End Section Title -->
+    <!-- Recent Posts Section -->
+<section id="recent-posts" class="recent-posts section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Berita Terbaru</h2>
+        <p>Update terkini seputar informasi dan kegiatan terbaru dari Lido29</p>
+    </div>
+    <!-- End Section Title -->
 
-        <div class="container">
-          <div class="row gy-4">
-            <div
-              class="col-xl-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="100">
-              <article>
-                <div class="post-img">
-                  <img
-                    src="<?= base_url() ?>assets/img-landing/blog/blog-1.jpg"
-                    alt=""
-                    class="img-fluid" />
-                </div>
-
-                <p class="post-category">Carier</p>
-
-                <h2 class="title">
-                  <a href="<?= site_url('front/blog'); ?>">
-                    30 Pertanyaan Interview Kerja yang Sering Ditanyakan dan Cara Menjawabnya
-                  </a>
-
-                </h2>
-
-                <div class="d-flex align-items-center">
-                  <img
-                    src="<?= base_url() ?>assets/img-landing/blog/blog-author.jpg"
-                    alt=""
-                    class="img-fluid post-author-img flex-shrink-0" />
-                  <div class="post-meta">
-                    <p class="post-author">Maria Doe</p>
-                    <p class="post-date">
-                      <time datetime="2022-01-01">Jan 1, 2022</time>
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- End post list item -->
-
-            <div
-              class="col-xl-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="200">
-              <article>
-                <div class="post-img">
-                  <img
-                    src="<?= base_url() ?>assets/img-landing/blog/blog-2.jpg"
-                    alt=""
-                    class="img-fluid" />
-                </div>
-
-                <p class="post-category">Sports</p>
-
-                <h2 class="title">
-                  <a href="blog-details.html"
-                    >Nisi magni odit consequatur autem nulla dolorem</a
-                  >
-                </h2>
-
-                <div class="d-flex align-items-center">
-                  <img
-                    src="<?= base_url() ?>assets/img-landing/blog/blog-author-2.jpg"
-                    alt=""
-                    class="img-fluid post-author-img flex-shrink-0" />
-                  <div class="post-meta">
-                    <p class="post-author">Allisa Mayer</p>
-                    <p class="post-date">
-                      <time datetime="2022-01-01">Jun 5, 2022</time>
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- End post list item -->
-
-            <div
-              class="col-xl-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="300">
-              <article>
-                <div class="post-img">
-                  <img
-                    src="<?= base_url() ?>assets/img-landing/blog/blog-3.jpg"
-                    alt=""
-                    class="img-fluid" />
-                </div>
-
-                <p class="post-category">Entertainment</p>
-
-                <h2 class="title">
-                  <a href="blog-details.html"
-                    >Possimus soluta ut id suscipit ea ut in quo quia et
-                    soluta</a
-                  >
-                </h2>
-
-                <div class="d-flex align-items-center">
-                  <img
-                    src="<?= base_url() ?>assets/img-landing/blog/blog-author-3.jpg"
-                    alt=""
-                    class="img-fluid post-author-img flex-shrink-0" />
-                  <div class="post-meta">
-                    <p class="post-author">Mark Dower</p>
-                    <p class="post-date">
-                      <time datetime="2022-01-01">Jun 22, 2022</time>
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- End post list item -->
-          </div>
-          <!-- End recent posts list -->
-        </div>
-      </section>
-      <!-- /Recent Posts Section -->
-
-      <!-- Contact Section -->
-      <!-- <section id="contact" class="contact section light-background"> -->
-        <!-- Section Title -->
-        <!-- <div class="container section-title" data-aos="fade-up">
-          <h2>Contact</h2>
-          <p>
-            Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-            consectetur velit
-          </p>
-        </div> -->
-        <!-- End Section Title -->
-
-        <!-- <div class="container" data-aos="fade" data-aos-delay="100">
-          <div class="row gy-4">
-            <div class="col-lg-4">
-              <div
-                class="info-item d-flex"
-                data-aos="fade-up"
-                data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div> -->
-              <!-- End Info Item -->
-
-              <!-- <div
-                class="info-item d-flex"
-                data-aos="fade-up"
-                data-aos-delay="300">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
-                </div>
-              </div> -->
-              <!-- End Info Item -->
-
-              <!-- <div
-                class="info-item d-flex"
-                data-aos="fade-up"
-                data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email Us</h3>
-                  <p>info@example.com</p>
-                </div>
-              </div> -->
-              <!-- End Info Item -->
-            <!-- </div>
-
-            <div class="col-lg-8">
-              <form
-                action="forms/contact.php"
-                method="post"
-                class="php-email-form"
-                data-aos="fade-up"
-                data-aos-delay="200">
-                <div class="row gy-4">
-                  <div class="col-md-6">
-                    <input
-                      type="text"
-                      name="name"
-                      class="form-control"
-                      placeholder="Your Name"
-                      required="" />
-                  </div>
-
-                  <div class="col-md-6">
-                    <input
-                      type="email"
-                      class="form-control"
-                      name="email"
-                      placeholder="Your Email"
-                      required="" />
-                  </div>
-
-                  <div class="col-md-12">
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="subject"
-                      placeholder="Subject"
-                      required="" />
-                  </div>
-
-                  <div class="col-md-12">
-                    <textarea
-                      class="form-control"
-                      name="message"
-                      rows="6"
-                      placeholder="Message"
-                      required=""></textarea>
-                  </div>
-
-                  <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">
-                      Your message has been sent. Thank you!
+    <div class="container">
+        <div class="row gy-4">
+            <?php 
+            $delay = 100; // untuk data-aos-delay
+            foreach($news_list as $news): ?>
+            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+                <article>
+                    <div class="post-img">
+                        <img src="<?= base_url('assets/img-landing/blog/'.$news['image']) ?>" 
+                             alt="<?= $news['title'] ?>" 
+                             class="img-fluid" />
                     </div>
 
-                    <button type="submit">Send Message</button>
-                  </div>
-                </div>
-              </form>
-            </div> -->
-            <!-- End Contact Form -->
-          <!-- </div>
+                    <p class="post-category"><?= $news['category'] ?></p>
+
+                    <h2 class="title">
+                        <a href="<?= site_url('front/news_details/'.$news['id']) ?>">
+                            <?= $news['title'] ?>
+                        </a>
+                    </h2>
+
+                    <div class="d-flex align-items-center">
+                        <img src="<?= base_url('assets/img-landing/blog/blog-author.jpg') ?>" 
+                             alt="<?= $news['updated_by'] ?>" 
+                             class="img-fluid post-author-img flex-shrink-0" />
+                        <div class="post-meta">
+                            <p class="post-author"><?= $news['updated_by'] ?></p>
+                            <p class="post-date">
+                                <time datetime="<?= $news['release_date'] ?>">
+                                    <?= date('M d, Y', strtotime($news['release_date'])) ?>
+                                </time>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <?php 
+            $delay += 100; // naikkan delay setiap item
+            endforeach; ?>
         </div>
-      </section> -->
+        <!-- End recent posts list -->
+    </div>
+</section>
+    
 
        <section class="contact-map">
        <div class="container section-title" data-aos="fade-up">
@@ -449,3 +299,22 @@
     </section>
       <!-- /Contact Section -->
     </main>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            // tutup dropdown lain
+            dropdownToggles.forEach(function(other) {
+                if(other !== toggle){
+                    var menu = bootstrap.Dropdown.getInstance(other);
+                    if(menu) menu.hide();
+                }
+            });
+        });
+    });
+});
+</script>
+

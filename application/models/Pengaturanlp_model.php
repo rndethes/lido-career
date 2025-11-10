@@ -1,143 +1,120 @@
 <?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pengaturanlp_model extends CI_Model
 {
-    /**
-     * Setting ID
-     *
-     * @var int
-     */
-    public const LP_GLOBAL_SETTING_ID = 1;
+    private $table_homepage = 'setting_homepage';
+    private $table_about = 'setting_about';
+    private $table_office   = 'setting_office';
+    private $table_news = 'setting_news';
 
-    public function getAboutSet(int $id)
+    // --- HERO SECTION ---
+    public function get_data()
     {
-        if (!in_array($id, [1, 2])) {
-            return null;
-        }
-
-        $about = $this->db->get_where('setting_about', ['id' => $id])->row_array();
-
-        return $about;
+        return $this->db->get_where($this->table_homepage, ['id_hp' => 1])->row_array();
     }
 
-    public function getWebsiteSet()
+    public function update_data($data)
     {
-        $setting = $this->db->get_where('setting_landingpage', ['id' => static::LP_GLOBAL_SETTING_ID])->row_array();
-
-        return $setting;
-    }
-    public function getHeropage()
-    {
-        $setting = $this->db->get_where('setting_homepage', ['id_hp' => static::LP_GLOBAL_SETTING_ID])->row_array();
-
-        return $setting;
+        $this->db->where('id_hp', 1);
+        return $this->db->update($this->table_homepage, $data);
     }
 
-    public function saveWebsiteSet(array $settings)
+    // --- ABOUT SECTION ---
+    public function get_about()
     {
-        $this->db->where('id', static::LP_GLOBAL_SETTING_ID);
-
-        foreach ($settings as $k => $v) {
-            if ($k == 'id') {
-                continue;
-            }
-
-            $this->db->set($k, $v);
-        }
-
-        $this->db->update('setting_landingpage');
-
-        return $this->db->affected_rows() > 0;
-    }
-    public function saveHeroSet(array $settings)
-    {
-        $this->db->where('id_hp', $settings['id_hp']);
-
-        foreach ($settings as $k => $v) {
-            if ($k == 'id_hp') {
-                continue;
-            }
-
-            $this->db->set($k, $v);
-        }
-
-        $this->db->update('setting_homepage');
-
-        return $this->db->affected_rows() > 0;
+        return $this->db->get_where($this->table_about, ['id' => 1])->row_array();
     }
 
-    public function saveAboutSet(int $id, array $data)
+    public function update_about($data)
+    {
+        $this->db->where('id', 1);
+        return $this->db->update($this->table_about, $data);
+    }
+
+    public function get_intro_visimisi()
+    {
+        return $this->db->get('setting_visimisi_intro')->row_array();
+    }
+
+   
+    public function get_visimisi()
+    {
+        return $this->db->select('visi,misi')->get('setting_landingpage')->row_array();
+    }
+
+  
+    public function update_visimisi($data)
+    {
+        $this->db->where('id', 1); 
+        return $this->db->update('setting_landingpage', $data);
+    }
+
+    public function get_all_offices()
+    {
+        return $this->db->order_by('id', 'ASC')->get('setting_office')->result_array();
+    }
+
+
+    public function get_office($id)
+    {
+        return $this->db->get_where($this->table_office, ['id' => $id])->row_array();
+    }
+
+
+    public function insert_office($data)
+    {
+        return $this->db->insert($this->table_office, $data);
+    }
+
+    public function update_office($id, $data)
     {
         $this->db->where('id', $id);
-
-        foreach ($data as $k => $v) {
-            if ($k == 'id') {
-                continue;
-            }
-
-            $this->db->set($k, $v);
-        }
-
-        $this->db->update('setting_about');
-
-        return $this->db->affected_rows() > 0;
+        return $this->db->update($this->table_office, $data);
     }
 
-    private function createDefaultSettingsFor(string $table, int $id)
+   
+    public function delete_office($id)
     {
-        if ($table == 'setting_landingpage') {
-            $setting = [
-                'id' => $id,
-                'company_title' => 'Ethes Tech',
-                'company_name'  => 'Ethes Tech',
-                'company_logo'  => 'logo.jpg'
-            ];
-
-            return $this->db->insert('setting_landingpage', $setting);
-        } elseif ($table == 'setting_about') {
-            $about = [
-                'id' => $id,
-                'about_image' => 'about.jpg',
-                'about_title' => 'Di Lido Group',
-                'about_subtitle' => 'Ada apa aja sih?',
-                'about_description' => 'Lorem ipsum dolor sit amet consecterur adipising elit.'
-            ];
-
-            return $this->db->insert('setting_about', $about);
-        }
-
-        return false;
+        $this->db->where('id', $id);
+        return $this->db->delete($this->table_office);
     }
 
-    public function get_data_social()
-    {
-        return $this->db->get('setting_social')->result_array();
+    public function get_quote($id = 1)
+{
+    return $this->db->get_where('setting_quotes', ['id' => $id])->row_array();
+}
+
+
+public function save_quote($data, $id = null)
+{
+    if($id) {
+        $this->db->where('id', $id);
+        return $this->db->update('setting_quotes', $data);
+    } else {
+        return $this->db->insert('setting_quotes', $data);
     }
+}
 
+public function get_all_news() {
+    return $this->db->order_by('release_date', 'DESC')->get('setting_news')->result_array();
+}
 
-    public function save_data($data)
-    {
-       return $this->db->insert('setting_social', $data);
-    }
+public function get_news($id) {
+    return $this->db->get_where('setting_news', ['id' => $id])->row_array();
+}
 
-    public function delete_data_social($id)
-    {
-    $this->db->where('id_sc', $id);
-    $this->db->delete('setting_social');
-    return ($this->db->affected_rows() > 0) ? true : false;
-    }
+public function insert_news($data) {
+    $this->db->insert('setting_news', $data);
+}
 
-    function update_data_sosmed($id, $icon, $name, $link){
-        $data = array(
-          'icon_social' => $icon,
-          'name_social' => $name,
-          'link_social' => $link
-        );
-      
-        $this->db->where('id_sc', $id);
-        return $this->db->update('setting_social', $data);
-      }
-      
+public function update_news($id, $data) {
+    $this->db->where('id', $id);
+    $this->db->update('setting_news', $data);
+}
+
+public function delete_news($id) {
+    $this->db->where('id', $id);
+    $this->db->delete('setting_news');
+}
 }

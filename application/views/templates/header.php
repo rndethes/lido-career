@@ -127,9 +127,7 @@ $content_zero = $CI->main_model->getSettingZero();
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
         aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="#">
-        <img
-          src="<?= base_url() ?>uploads/<?= $content_zero['company_logo'];  ?>"
-          class="navbar-brand-img h-100" alt="main_logo">
+          <img src="<?= base_url('assets/img/img-landing/logo_webpage.png') ?>" alt="Foto Logo">
         <span
           class="ms-1 font-weight-bold"><?= $content_zero['company_name'];  ?></span>
       </a>

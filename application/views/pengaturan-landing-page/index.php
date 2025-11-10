@@ -1,643 +1,534 @@
-<div class="row">
-    <div class="col-lg-12 mb-lg-0 mb-4">
-        <!--- PROFILE --->
-        <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-                <h3>Pengaturan Website</h3>
+<style>
+/* Card style */
+.card {
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border: none;
+}
+.card-header {
+  background: linear-gradient(90deg, #f0f2f5ff, #f5f7faff);
+  color: #fff;
+  border-radius: 15px 15px 0 0;
+  text-align: center;
+}
+.card-body {
+  padding: 15px !important;
+}
+img.preview {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  /* max-height: 150px; 
+  max-width: 100%;  
+  object-fit: cover; */
+}
+.btn-primary {
+  background: #b30000;
+  border: none;
+}
+.btn-primary:hover {
+  background: #d41717;
+}
+</style>
+
+<body class="p-4">
+
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="hero-tab" data-bs-toggle="tab" data-bs-target="#hero" type="button" role="tab">🏠 Beranda</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab">ℹ️ Tentang</button>
+      </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" id="visi-tab" data-bs-toggle="tab" data-bs-target="#visi" type="button" role="tab">🎯 Visi & Misi</button>
+      </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" id="office-tab" data-bs-toggle="tab" data-bs-target="#office" type="button" role="tab">🏢 Office</button>
+      </li>
+     <li class="nav-item" role="presentation">
+        <button class="nav-link" id="quotes-tab" data-bs-toggle="tab" data-bs-target="#quotes" type="button" role="tab">💬 Quotes</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="berita-tab" data-bs-toggle="tab" data-bs-target="#berita" type="button" role="tab">
+        📰 Berita
+      </button>
+    </li>
+
+ 
+
+
+      <!-- Tambahkan tab lain sesuai kebutuhan -->
+    </ul>
+  </div>
+  <div class="card-body">
+    <div class="tab-content" id="myTabContent">
+      
+      <!-- Hero Tab -->
+      <div class="tab-pane fade show active" id="hero" role="tabpanel">
+        <form action="<?= base_url('PengaturanLandingPage/update_hero') ?>" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label>Judul</label>
+            <input type="text" class="form-control" name="tittle_homepage" value="<?= isset($content_hero['tittle_homepage']) ? $content_hero['tittle_homepage'] : '' ?>" required>
+          </div>
+          <div class="mb-3">
+            <label>Subjudul</label>
+            <textarea class="form-control" name="subtitle_homepage" rows="2"><?= isset($content_hero['subtitle_homepage']) ? $content_hero['subtitle_homepage'] : '' ?></textarea>
+          </div>
+         <div class="mb-3 text-center">
+            <img id="previewHero" 
+                src="<?= isset($content_hero['image_homepage']) ? base_url('assets/img-landing/' . $content_hero['image_homepage']) : base_url('assets/img/default.png') ?>" 
+                class="preview mb-2" 
+                style="width: 50%; height: auto;">
             </div>
-            <div class="card-body p-3">
-                <div class="nav-wrapper position-relative end-0">
-                    <ul class="nav nav-pills nav-fill p-1" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1 active" data-bs-toggle="tab" href="#tab-pengaturan-hero"
-                                role="tab" aria-controls="hero" aria-selected="true">
-                                Hero
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="#tab-pengaturan-widget1"
-                                role="tab" aria-controls="widget1" aria-selected="true">
-                                Konten 1
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="#tab-pengaturan-widget2"
-                                role="tab" aria-controls="widget2" aria-selected="true">
-                                Konten 2
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="#tab-pengaturan-website"
-                                role="tab" aria-controls="webiste" aria-selected="true">
-                                Setting perusahaan
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="#tab-pengaturan-sosmed"
-                                role="tab" aria-controls="sosmed" aria-selected="true">
-                                Sosial Media
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="#tab-pengaturan-footer"
-                                role="tab" aria-controls="footer" aria-selected="true">
-                                Footer
-                            </a>
-                        </li>
 
-                    </ul>
-                </div>
-                <div class="tab-content mt-4" id="pengaturanLPTabContent">
-                    <div class="tab-pane fade" id="tab-pengaturan-widget1" role="tabpanel" aria-labelledby="widget1">
-                        <!-- Beg Tab 1 -->
-                        <div class="row">
-                            <div class="col-lg-4 mb-4">
-                                <div class="card">
-                                    <div class="card-body" style="padding: 10px; padding-bottom: 1px">
-                                        <div class="text-center">
-                                            <img class="img-fluid border-radius-lg" id="tab-img-widget-1"
-                                                src="<?= base_url('uploads/' . $widget1['about_image']) ?>"
-                                                alt="<?= $widget1['about_image'] ?>" />
-                                        </div>
-                                        <div class="mt-2">
-                                            <!-- <button data-bs-toggle="modal" data-bs-target="#previewImageModal"
-                                                data-img="<?= base_url('uploads/' . $widget1['about_image']) ?>"
-                                            class="btn btn-sm btn-success w-100" style="margin-bottom: 12px">
-                                            <i class="fas fa-camera"></i> Preview Image
-                                            </button> -->
-                                            <button data-bs-toggle="modal" data-domimgtarget="tab-img-widget-1"
-                                                data-destination="about_image_1" data-bs-target="#changeImageModal"
-                                                class="btn btn-sm btn-primary w-100">
-                                                <i class="fas fa-camera"></i> Change Image
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form id="form-edit-lp-widget-1" onsubmit="return false;"
-                                            action="<?= site_url('/pengaturan-landing-page') ?>"
-                                            method="post">
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Name</label>
-                                                <input class="form-control" type="text" value="Widget 1" disabled />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Title</label>
-                                                <input id="field_about_title1" name="about_title" class="form-control"
-                                                    type="text"
-                                                    value="<?= $widget1['about_title'] ?>" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input"
-                                                    class="form-control-label">Subtitle</label>
-                                                <input id="field_about_subtitle1" name="about_subtitle"
-                                                    class="form-control" type="text"
-                                                    value="<?= $widget1['about_subtitle'] ?>" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <textarea id="field_about_description1" name="about_description"
-                                            class="form-control" cols="30"
-                                            rows="10"><?= $widget1['about_description'] ?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 d-flex justify-content-end">
-                                <button id="button-form-edit-lp-widget1" class="btn btn-success">
-                                    <i class="fas fa-save"></i> Simpan
-                                </button>
-                            </div>
-                        </div>
-                        <!-- End Tab 1 -->
-                    </div>
-                    <div class="tab-pane fade" id="tab-pengaturan-widget2" role="tabpanel" aria-labelledby="widget2">
-                        <!-- Beg Tab 2 -->
-                        <div class="row">
-                            <div class="col-lg-4 mb-4">
-                                <div class="card">
-                                    <div class="card-body" style="padding: 10px; padding-bottom: 1px">
-                                        <div class="text-center">
-                                            <img class="img-fluid border-radius-lg" id="tab-img-widget-2"
-                                                src="<?= base_url('uploads/' . $widget2['about_image']) ?>"
-                                                alt="<?= $widget2['about_image'] ?>" />
-                                        </div>
-                                        <div class="mt-2">
-                                            <!-- <button data-bs-toggle="modal" data-bs-target="#previewImageModal"
-                                                data-img="<?= base_url('uploads/' . $widget2['about_image']) ?>"
-                                            class="btn btn-sm btn-success w-100" style="margin-bottom: 12px">
-                                            <i class="fas fa-camera"></i> Preview Image
-                                            </button> -->
-                                            <button data-bs-toggle="modal" data-domimgtarget="tab-img-widget-2"
-                                                data-destination="about_image_2" data-bs-target="#changeImageModal"
-                                                class="btn btn-sm btn-primary w-100">
-                                                <i class="fas fa-camera"></i> Change Image
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form id="form-edit-lp-widget-2" onsubmit="return false;"
-                                            action="<?= site_url('/pengaturan-landing-page') ?>"
-                                            method="post">
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Name</label>
-                                                <input class="form-control" type="text" value="Widget 2" disabled />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Title</label>
-                                                <input id="field_about_title2" name="about_title" class="form-control"
-                                                    type="text"
-                                                    value="<?= $widget2['about_title'] ?>" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input"
-                                                    class="form-control-label">Subtitle</label>
-                                                <input id="field_about_subtitle2" name="about_subtitle"
-                                                    class="form-control" type="text"
-                                                    value="<?= $widget2['about_subtitle'] ?>" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <textarea id="field_about_description2" name="about_description"
-                                            class="form-control" cols="30"
-                                            rows="10"><?= $widget2['about_description'] ?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 d-flex justify-content-end">
-                                <button id="button-form-edit-lp-widget2" class="btn btn-success">
-                                    <i class="fas fa-save"></i> Simpan
-                                </button>
-                            </div>
-                        </div>
-                        <!-- End Tab 2 -->
-                    </div>
-                    <div class="tab-pane fade" id="tab-pengaturan-footer" role="tabpanel" aria-labelledby="footer">
-                        <!-- Beg footer -->
-                        <div class="row">
-                            <div class="col-lg-12 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form id="form-footer" onsubmit="return false;"
-                                            action="<?= site_url('/pengaturan-landing-page') ?>"
-                                            method="post">
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Judul
-                                                    Footer</label>
-                                                <input id="field_footer_title" name="judul_footer" class="form-control"
-                                                    type="text"
-                                                    value="<?= $setting['tittle_footer'] ?>" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Konten
-                                                    Footer</label>
-                                                <textarea id="field_footer_konten" name="konten_footer"
-                                                    class="form-control" cols="30"
-                                                    rows="10"><?= $setting['content_footer'] ?></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Alamat
-                                                    Perusahaan</label>
-                                                <input id="field_footer_address" name="address_footer"
-                                                    class="form-control" type="text"
-                                                    value="<?= $setting['address_footer'] ?>" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">No
-                                                    Perusahaan</label>
-                                                <input id="field_footer_no" name="no_footer" class="form-control"
-                                                    type="text"
-                                                    value="<?= $setting['no_footer'] ?>" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Email
-                                                    Perusahaan</label>
-                                                <input id="field_footer_email" name="email_footer" class="form-control"
-                                                    type="text"
-                                                    value="<?= $setting['email_footer'] ?>" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Link map
-                                                    perusahaan</label>
-                                                <input id="field_footer_map" name="link_map" class="form-control"
-                                                    type="text"
-                                                    value="<?= $setting['link_map'] ?>" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 d-flex justify-content-end">
-                                <button id="button-form-footer" class="btn btn-success">
-                                    <i class="fas fa-save"></i> Simpan
-                                </button>
-                            </div>
-                        </div>
-                        <!-- End footer-->
-                    </div>
-                    <div class="tab-pane fade" id="tab-pengaturan-sosmed" role="tabpanel" aria-labelledby="sosmed">
-                        <!-- sosmed -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped border-rounded">
-                                                <tr>
-                                                    <th class="">Nama / Username</th>
-                                                    <th class="">Link</th>
-                                                    <th class="">Aksi</th>
-                                                </tr>
-                                                <?php foreach ($setting_social as $row): ?>
-                                                <tr>
-                                                    <td class="">
-                                                        <div class="d-flex px-2 py-1">
-                                                            <div aria-hidden="true">
-                                                                <?= $row['icon_social'] ?>
-                                                            </div>
-                                                            <div class="d-flex flex-column justify-content-center">
+          <div class="mb-3">
+            <input type="file" class="form-control" name="image_homepage" id="imageHero" accept="image/*">
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">💾 Simpan</button>
+          </div>
+        </form>
+      </div>
 
-                                                                <?= ($row['name_social']) ?>
+      <!-- About Tab -->
+      <div class="tab-pane fade" id="about" role="tabpanel">
+        <form action="<?= base_url('PengaturanLandingPage/update_about') ?>" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label>Judul</label>
+            <input type="text" class="form-control" name="about_title" value="<?= isset($content_about['about_title']) ? $content_about['about_title'] : '' ?>" required>
+          </div>
+          <div class="mb-3">
+            <label>Subjudul</label>
+            <input type="text" class="form-control" name="about_subtitle" value="<?= isset($content_about['about_subtitle']) ? $content_about['about_subtitle'] : '' ?>">
+          </div>
+          <div class="mb-3">
+            <label>Deskripsi 1</label>
+            <textarea class="form-control" name="about_description" rows="2"><?= isset($content_about['about_description']) ? $content_about['about_description'] : '' ?></textarea>
+          </div>
+          <div class="mb-3">
+            <label>Deskripsi 2</label>
+            <textarea class="form-control" name="about_description2" rows="2"><?= isset($content_about['about_description2']) ? $content_about['about_description2'] : '' ?></textarea>
+          </div>
+         <div class="mb-3 text-center">
+            <!-- Image 1 (Portrait) -->
+           <label class="form-label d-block mb-1"><strong>Gambar 1 (Portrait)</strong></label>
+            <img id="previewAbout1" 
+                src="<?= isset($content_about['about_image']) ? base_url('assets/img/' . $content_about['about_image']) : base_url('assets/img/default.png') ?>" 
+                class="preview mb-2" 
+               style="width: 30%; height: auto;"> 
+            <input type="file" class="form-control mb-3" name="about_image" id="imageAbout1" accept="image/*">
 
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="">
-                                                        <?php echo $row['link_social']; ?>
-                                                    </td>
-                                                    <td class="">
-                                                        <button type="button" class="btn btn-primary btn-xs btn-edit"
-                                                            data-target="#editModal"
-                                                            data-id="<?= $row['id_sc']; ?>"
-                                                            data-icon="<?= $row['icon_social']; ?>"
-                                                            data-name="<?= $row['name_social']; ?>"
-                                                            data-link="<?= $row['link_social']; ?>">
-                                                            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-                                                        </button>
-                                                        <a href="<?= base_url('PengaturanLandingPage/delete_data_sc/'. $row['id_sc'])?>"
-                                                            class="btn bg-gradient-danger btn-xs tombol-hapus">
-                                                            <i class="fa-sharp fa-solid fa-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <?php endforeach; ?>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-12 d-flex justify-content-end mt-2">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#tambahsosmed">
-                                <i class="fas fa-plus"></i> Tambah
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- sosmed -->
-
-                    <!-- heropage -->
-                    <div class="tab-pane fade show active" id="tab-pengaturan-hero" role="tabpanel"
-                        aria-labelledby="hero">
-                        <div class="row">
-                            <div class="col-lg-4 mb-4">
-                                <div class="card">
-                                    <div class="card-body" style="padding: 10px; padding-bottom: 1px">
-                                        <div class="text-center">
-                                            <img class="img-fluid border-radius-lg" id="tab-img-widget-2"
-                                                src="<?= base_url('uploads/' . $hero['image_homepage']) ?>"
-                                                alt="<?= $hero['image_homepage'] ?>" />
-                                        </div>
-                                        <div class="mt-2">
-                                            <button data-bs-toggle="modal" data-domimgtarget="tab-img-widget-2"
-                                                data-destination="about_image_hero" data-bs-target="#changeImageModal"
-                                                class="btn btn-sm btn-primary w-100">
-                                                <i class="fas fa-camera"></i> Change Image
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form id="form-edit-lp-widget-2" onsubmit="return false;" action=""
-                                            method="post">
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Title</label>
-                                                <input id="field_about_titlehero" name="about_title"
-                                                    class="form-control" type="text"
-                                                    value="<?= $hero['tittle_homepage'] ?>" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input"
-                                                    class="form-control-label">Subtitle</label>
-                                                <input id="field_about_subtitlehero" name="about_subtitle"
-                                                    class="form-control" type="text"
-                                                    value="<?= $hero['subtitle_homepage'] ?>" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 d-flex justify-content-end">
-                                <button id="button-form-edit-lp-hero" class="btn btn-success">
-                                    <i class="fas fa-save"></i> Simpan
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="tab-pengaturan-website" role="tabpanel" aria-labelledby="website">
-                        <!-- Beg Tab 3 -->
-                        <div class="row">
-                            <div class="col-lg-4 mb-4">
-                                <div class="card">
-                                    <div class="card-body" style="padding: 10px; padding-bottom: 1px">
-                                        <div class="text-center">
-                                            <img class="img-fluid border-radius-lg" id="tab-img-company-logo"
-                                                src="<?= base_url('uploads/' . $setting['company_logo']) ?>"
-                                                alt="<?= $setting['company_logo'] ?>" />
-                                        </div>
-                                        <div class="mt-2">
-                                            <!-- <button data-bs-toggle="modal" data-bs-target="#previewImageModal"
-                                                data-img="<?= base_url('uploads/' . $setting['company_logo']) ?>"
-                                            class="btn btn-sm btn-success w-100" style="margin-bottom: 12px">
-                                            <i class="fas fa-camera"></i> Preview Image
-                                            </button> -->
-                                            <button data-bs-toggle="modal" data-domimgtarget="tab-img-company-logo"
-                                                data-destination="company_logo" data-bs-target="#changeImageModal"
-                                                class="btn btn-sm btn-primary w-100">
-                                                <i class="fas fa-camera"></i> Change Logo
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form id="form-edit-lp-website" onsubmit="return false;"
-                                            action="<?= site_url('/pengaturan-landing-page') ?>"
-                                            method="post">
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Company
-                                                    Name</label>
-                                                <input id="field_company_name" name="company_name" class="form-control"
-                                                    type="text"
-                                                    value="<?= $setting['company_name'] ?>"
-                                                    required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-text-input" class="form-control-label">Company
-                                                    Title</label>
-                                                <input id="field_company_title" name="company_title"
-                                                    class="form-control" type="text"
-                                                    value="<?= $setting['company_title'] ?>"
-                                                    required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="war" class="form-label">Theme Color</label>
-                                                <input type="color" class="form-control" id="war" name="warna"
-                                                    value="<?= $setting['warna'] ?>"
-                                                    required>
-                                            </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <label for="field_about_p">Pengumuman untuk user</label>
-                                    <textarea id="field_about_p" name="field_p" class="form-control" cols="30"
-                                        rows="10"><?= $setting['user_announcement'] ?></textarea>
-                                </div>
-
-                                <div class="card-body">
-                                    <div class="quill">
-                                        <label for="field_about_visi">Visi</label>
-                                        <textarea id="field_about_visi" name="field_visi" class="form-control" cols="30"
-                                            rows="10"><?= $setting['visi'] ?></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-                                    <div class="quill">
-                                        <label for="field_about_misi">Misi</label>
-                                        <textarea id="field_about_misi" name="field_misi" class="form-control" cols="30"
-                                            rows="10"><?= $setting['misi'] ?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            </form>
-                            <div class="form-group d-flex justify-content-end" style="margin-top: 30px">
-                                <button id="button-form-edit-lp-website" onclick="updateWebsiteSetting('setting')"
-                                    class="btn btn-success">
-                                    <i class="fa fa-save"></i> Simpan
-                                </button>
-                            </div>
-                            <!-- End Tab 3 -->
-                        </div>
-                    </div>
-                </div>
+            <!-- Image 2 (Landscape) -->
+           <label class="form-label d-block mb-1"><strong>Gambar 2 (Landscape)</strong></label>
+            <img id="previewAbout2" 
+                src="<?= isset($content_about['about_image2']) ? base_url('assets/img/' . $content_about['about_image2']) : base_url('assets/img/default.png') ?>" 
+                class="preview mb-2" 
+                style="width: 50%; height: auto;">
+            <input type="file" class="form-control" name="about_image2" id="imageAbout2" accept="image/*">
             </div>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">💾 Simpan</button>
+          </div>
+        </form>
+      </div>
+
+<!-- Tab Content -->
+<div class="tab-pane fade" id="visi" role="tabpanel">
+    <form action="<?= base_url('PengaturanLandingPage/update_visimisi') ?>" method="POST" enctype="multipart/form-data">
+
+        <!-- Intro dari setting_visimisi_intro -->
+        <div class="mb-4 text-center">
+            <label class="form-label"><strong>Judul Intro</strong></label>
+            <input type="text" class="form-control mb-2" name="intro_title" 
+                   value="<?= isset($intro['intro_title']) ? $intro['intro_title'] : '' ?>">
+
+            <label class="form-label"><strong>Deskripsi Intro</strong></label>
+            <textarea class="form-control mb-2" name="intro_description" rows="3"><?= isset($intro['intro_description']) ? $intro['intro_description'] : '' ?></textarea>
+
+            <label class="form-label"><strong>URL Video Intro</strong></label>
+            <input type="text" class="form-control mb-2" name="intro_video_url" 
+                   value="<?= isset($intro['intro_video_url']) ? $intro['intro_video_url'] : '' ?>">
+            
+        <?php if(!empty($intro['intro_video_url'])): 
+    $url = $intro['intro_video_url'];
+
+    $embed_url = '';
+
+    if (strpos($url, 'watch?v=') !== false) {
+        $embed_url = str_replace('watch?v=', 'embed/', $url);
+        $embed_url = strtok($embed_url, '&');
+    } elseif (strpos($url, 'youtu.be') !== false) {
+        $parts = parse_url($url);
+        $video_id = ltrim($parts['path'], '/');
+        $embed_url = 'https://www.youtube.com/embed/' . $video_id;
+    }
+?>
+<div class="mt-2 d-flex justify-content-center">
+    <div class="ratio ratio-16x9" style="max-width: 400px;"> <!-- atur max-width sesuai keinginan -->
+        <iframe src="<?= $embed_url ?>" title="Video Intro" allowfullscreen></iframe>
+    </div>
+</div>
+<?php endif; ?>
+
         </div>
-    </div>
 
-
-    <!-- Modal Preview Image -->
-    <div class="modal fade" id="previewImageModal" tabindex="-1" role="dialog" aria-labelledby="previewImageModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" style="background: transparent; border: none;">
-                <div class="modal-body">
-                    <div class="text-center">
-                        <img id="modal-preview-image-img-preview" class="img-fluid border-radius-lg" src="" alt="" />
-                    </div>
-                </div>
-            </div>
+        <!-- Visi -->
+        <div class="mb-4">
+            <label class="form-label"><strong>🌟 Visi</strong></label>
+            <textarea class="form-control" name="visi" rows="3"><?= isset($landingpage['visi']) ? $landingpage['visi'] : '' ?></textarea>
         </div>
-    </div>
 
-
-    <!-- Modal Change Image  -->
-    <div class="modal fade" id="changeImageModal" tabindex="-1" role="dialog" aria-labelledby="changeImageModalLabel"
-        aria-hidden="true" data-bs-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="changeImageModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center">
-                        <img id="form-change-image-img-preview" class="img-fluid border-radius-lg" src="" alt="" />
-                    </div>
-                    <form onsubmit="return false;" action="" class="mt-3" id="form-change-image" method="post"
-                        enctype="multipart/form-data">
-                        <div class="form-group" id="form-change-image-box-input">
-                            <input id="form-change-image-file-input" type="file" class="form-control"
-                                name="form_change_image_file" accept="image/*" />
-                            <p class="mt-1 text-danger" id="form-change-image-info-text"></p>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn bg-gradient-primary"
-                        id="form-change-image-button-update">Update</button>
-                </div>
-            </div>
+        <!-- Misi -->
+        <div class="mb-4">
+            <label class="form-label"><strong>📌 Misi</strong></label>
+            <textarea class="form-control" name="misi" rows="3"><?= isset($landingpage['misi']) ? $landingpage['misi'] : '' ?></textarea>
         </div>
-    </div>
 
-    <!-- Modal tambah -->
-    <div class="modal fade" id="tambahsosmed" tabindex="-1" role="dialog" aria-labelledby="tambahsosmed"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Sosial Media</h5>
-                </div>
-                <div class="modal-body">
-                    <form id="form-footer"
-                        action="<?= site_url('PengaturanLandingPage/save_form_sosmed'); ?>"
-                        method="post">
-                        <div class="form-group">
-                            <label for="icons" class="form-label">Pilih Sosial Media</label>
-                            <select name="iconselect" id="" class="form-select" aria-label="Default select example"
-                                required>
-                                <option selected>Pilih</option>
-                                <option value="<i class='fa-brands fa-instagram'></i>">Instagram</option>
-                                <option value="<i class='fa-brands fa-twitter'></i>">Twitter</option>
-                                <option value="<i class='fa-brands fa-facebook'></i>">Facebook</option>
-                                <option value="<i class='fa-brands fa-linkedin'></i>">Linkedin</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="field_sosmed_name" class="form-label">Nama/Username</label>
-                            <input id="field_sosmed_name" name="sosmed_name" class="form-control" type="text" value=""
-                                required />
-                        </div>
-                        <div class="form-group">
-                            <label for="field_sosmed_link" class="form-label">Link</label>
-                            <input id="field_sosmed_link" name="sosmed_link" class="form-control" type="text" value=""
-                                required />
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Simpan</button></form>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                </div>
-            </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">💾 Simpan</button>
         </div>
-    </div>
 
-    <!-- modal edit -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Sosial Media</h5>
-                </div>
-                <div class="modal-body">
-                    <form id="form-footer"
-                        action="<?= site_url('PengaturanLandingPage/update_form_sosmed'); ?>"
-                        method="post">
-                        <input type="hidden" name="id" id="edit_id">
-                        <div class="form-group">
-                            <label for="icons" class="form-label">Pilih Sosial Media</label>
-                            <select name="iconselect" id="edit_icon" class="form-select"
-                                aria-label="Default select example" required>
-                                <option selected>Pilih</option>
-                                <option value="<i class='fa-brands fa-instagram'></i>">Instagram</option>
-                                <option value="<i class='fa-brands fa-twitter'></i>">Twitter</option>
-                                <option value="<i class='fa-brands fa-facebook'></i>">Facebook</option>
-                                <option value="<i class='fa-brands fa-linkedin'></i>">Linkedin</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="field_sosmed_name" class="form-label">Nama/Username</label>
-                            <input id="edit_name" name="sosmed_name" class="form-control" type="text" value=""
-                                required />
-                        </div>
-                        <div class="form-group">
-                            <label for="field_sosmed_link" class="form-label">Link</label>
-                            <input id="edit_link" name="sosmed_link" class="form-control" type="text" value=""
-                                required />
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    </form>
+</div>
+
+<div class="tab-pane fade" id="office" role="tabpanel">
+    <h2>Daftar Kantor / Cabang</h2>
+
+    <!-- Tombol Tambah -->
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#officeModal" onclick="resetForm()">
+        Tambah Kantor
+    </button>
+
+  <div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>No</th>
+        <th>Area</th>
+        <th>Type</th>
+        <th>Branch Name</th>
+        <th>Address</th>
+        <th>Image</th>
+        <th>Maps URL</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php $no = 1; foreach ($offices as $office): ?>
+        <tr>
+          <td><?= $no++; ?></td>
+          <td><?= $office['area']; ?></td>
+          <td><?= $office['type']; ?></td>
+          <td><?= $office['branch_name']; ?></td>
+          <td><?= $office['address']; ?></td>
+          <td>
+            <?php if($office['image']): ?>
+              <img src="<?= base_url('assets/img/'.$office['image']); ?>" alt="" width="60">
+            <?php endif; ?>
+          </td>
+          <td>
+            <a href="<?= $office['maps_url']; ?>" target="_blank">Lihat Map</a>
+          </td>
+          <td><?= $office['phone_number']; ?></td>
+          <td><?= $office['email']; ?></td>
+          <td>
+            <button type="button" class="btn btn-sm btn-danger"
+              onclick='editOffice(<?= json_encode($office); ?>)'>
+              Edit
+            </button>
+            <a href="<?= base_url('PengaturanLandingPage/delete_office/'.$office['id']); ?>" 
+               class="btn btn-sm btn-primary" 
+               onclick="return confirm('Hapus data ini?')">
+               Delete
+            </a>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal Form Tambah/Edit Office -->
+<div class="modal fade" id="officeModal" tabindex="-1" aria-labelledby="officeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form id="officeForm" method="post" enctype="multipart/form-data" action="<?= base_url('PengaturanLandingPage/save_office') ?>">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="officeModalLabel">Tambah / Edit Kantor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-    </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" id="office_id">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label>Area</label>
+              <input type="text" name="area" id="area" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label>Type</label>
+              <input type="text" name="type" id="type" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label>Branch Name</label>
+              <input type="text" name="branch_name" id="branch_name" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label>Phone Number</label>
+              <input type="text" name="phone_number" id="phone_number" class="form-control">
+            </div>
+            <div class="col-md-12">
+              <label>Address</label>
+              <textarea name="address" id="address" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="col-md-6">
+              <label>Email</label>
+              <input type="email" name="email" id="email" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label>Maps URL</label>
+              <input type="text" name="maps_url" id="maps_url" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label>Image</label>
+              <input type="file" name="image" id="image" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
 
-    <?php if ($this->session->flashdata('success')): ?>
-    <div id="flashdata-success">
-        <?= $this->session->flashdata('success') ?>
-    </div>
-    <?php elseif ($this->session->flashdata('error')): ?>
-    <div id="flashdata-error">
-        <?= $this->session->flashdata('error') ?>
-    </div>
-    <?php endif ?>
+<div class="tab-pane fade" id="quotes" role="tabpanel">
+    <form action="<?= base_url('PengaturanLandingPage/save_quote') ?>" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?= $quote['id'] ?>">
+        <div class="mb-3">
+            <label>Judul</label>
+            <input type="text" name="title" class="form-control" value="<?= $quote['title'] ?>" required>
+        </div>
+        <div class="mb-3">
+            <label>Konten</label>
+            <textarea name="content" class="form-control"><?= $quote['content'] ?></textarea>
+        </div>
+        <div class="mb-3 text-center">
+            <img id="previewQuote" src="<?= base_url('assets/img-landing/' . $quote['image']) ?>" class="preview" style="width:30%">
+            <input type="file" name="image" class="form-control" id="imageQuote">
+        </div>
+         <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">💾 Simpan</button>
+          </div>
+    </form>
+</div>
 
-    <script>
-        window.addEventListener("DOMContentLoaded", function() {
+<!-- Tab Berita -->
+<div class="tab-pane fade" id="berita" role="tabpanel">
+    <h2>Manajemen Berita</h2>
 
-            // Init CK
-            CKEDITOR.replace('field_about_visi');
-            CKEDITOR.replace('field_about_misi');
+    <!-- Tombol Tambah -->
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#beritaModal" onclick="resetBeritaForm()">
+        Tambah Berita
+    </button>
+    
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th width="5%">#</th>
+          <th>Kategori</th>
+          <th>Judul</th>
+          <th>Subjudul</th>
+          <th>Tanggal Rilis</th>
+          <th>Gambar</th>
+          <th>Diperbarui Oleh</th>
+          <th width="15%">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (!empty($berita)): $no=1; foreach ($berita as $b): ?>
+          <tr>
+            <td><?= $no++ ?></td>
+            <td><?= htmlspecialchars($b['category']) ?></td>
+            <td><?= htmlspecialchars($b['title']) ?></td>
+            <td><?= htmlspecialchars($b['subtitle']) ?></td>
+            <td><?= date('d M Y', strtotime($b['release_date'])) ?></td>
+            <td>
+              <?php if ($b['image']): ?>
+                <img src="<?= base_url('assets/img-landing/blog/'.$b['image']) ?>" width="70" class="rounded">
+              <?php else: ?>
+                <span class="text-muted">Tidak ada</span>
+              <?php endif; ?>
+            </td>
+            <td><?= htmlspecialchars($b['updated_by']) ?></td>
+            <td>
+            <button type="button" class="btn btn-sm btn-danger"
+                onclick='editBerita(<?= json_encode($b); ?>)'>
+                Edit
+            </button>
+            <a href="<?= base_url('PengaturanLandingPage/delete_news/'.$b['id']); ?>" 
+              class="btn btn-sm btn-primary" 
+              onclick="return confirm('Hapus berita ini?')">
+              Delete
+            </a>
+        </td>
 
-            var flashDataSuccess = $("#flashdata-success").text();
-            var flashDataError = $("#flashdata-error").text();
-            console.log(flashDataSuccess)
-            console.log(flashDataError)
+          </tr>
+        <?php endforeach; else: ?>
+          <tr><td colspan="8" class="text-center text-muted">Belum ada berita</td></tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-            if (flashDataSuccess.trim().length > 0) {
-                Swal.fire({
-                    title: "Sukses",
-                    text: flashDataSuccess,
-                    icon: "success",
-                });
-            }
+<!-- Modal Tambah/Edit Berita -->
+<div class="modal fade" id="beritaModal" tabindex="-1" aria-labelledby="beritaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <form id="beritaForm" method="post" enctype="multipart/form-data" action="<?= base_url('PengaturanLandingPage/save_news') ?>">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="beritaModalLabel">Tambah / Edit Berita</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" id="berita_id">
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label>Kategori</label>
+              <input type="text" name="category" id="category" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label>Judul</label>
+              <input type="text" name="title" id="title" class="form-control" required>
+            </div>
+            <div class="col-md-12">
+              <label>Subjudul</label>
+              <input type="text" name="subtitle" id="subtitle" class="form-control">
+            </div>
+            <div class="col-md-12">
+              <label>Konten</label>
+              <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
+            </div>
+            <div class="col-md-6">
+              <label>Tanggal Rilis</label>
+              <input type="date" name="release_date" id="release_date" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label>Gambar</label>
+              <input type="file" name="image" id="image" class="form-control" accept="image/*" onchange="document.getElementById('previewBerita').src = window.URL.createObjectURL(this.files[0])">
+              <img id="previewBerita" src="" width="120" class="mt-2 rounded">
+          </div>
+
+            <div class="col-md-6">
+              <label>Diperbarui Oleh</label>
+              <input type="text" name="updated_by" id="updated_by" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">💾 Simpan</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 
-            if (flashDataError.trim().length > 0) {
-                Swal.fire({
-                    title: "Gagal",
-                    text: flashDataError,
-                    icon: "error",
-                });
-            }
-        });
-    </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const hash = window.location.hash;
+    if(hash) {
+        const tabEl = document.querySelector(`button[data-bs-target="${hash}"]`);
+        if(tabEl) {
+            const tab = new bootstrap.Tab(tabEl);
+            tab.show();
+        }
+    }
+});
+ 
+  document.getElementById('imageHero').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if(file) document.getElementById('previewHero').src = URL.createObjectURL(file);
+  });
+
+  // Preview About
+  document.getElementById('imageAbout1').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if(file) document.getElementById('previewAbout1').src = URL.createObjectURL(file);
+  });
+  document.getElementById('imageAbout2').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if(file) document.getElementById('previewAbout2').src = URL.createObjectURL(file);
+  });
+   document.getElementById('imageOffice').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if(file) document.getElementById('previewOffice').src = URL.createObjectURL(file);
+  });
+  document.getElementById('imageQuote').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if(file) document.getElementById('previewQuote').src = URL.createObjectURL(file);
+});
+
+function resetBeritaForm() {
+  document.getElementById('beritaForm').reset();
+  document.getElementById('berita_id').value = '';
+  document.getElementById('previewBerita').src = '';
+  document.getElementById('beritaModalLabel').innerText = 'Tambah Berita';
+}
+
+function editBerita(data) {
+  document.getElementById('berita_id').value = data.id;
+  document.getElementById('category').value = data.category;
+  document.getElementById('title').value = data.title;
+  document.getElementById('subtitle').value = data.subtitle;
+  document.getElementById('content').value = data.content;
+  document.getElementById('release_date').value = data.release_date;
+  document.getElementById('updated_by').value = data.updated_by;
+
+  // Preview gambar jika ada
+  if(data.image) {
+    document.getElementById('previewBerita').src = '<?= base_url("assets/img-landing/blog/") ?>'+data.image;
+  } else {
+    document.getElementById('previewBerita').src = '';
+  }
+
+  document.getElementById('beritaModalLabel').innerText = 'Edit Berita';
+  new bootstrap.Modal(document.getElementById('beritaModal')).show();
+}
+
+
+  function resetForm() {
+    document.getElementById('officeForm').reset();
+    document.getElementById('office_id').value = '';
+    document.getElementById('officeModalLabel').innerText = 'Tambah Kantor';
+}
+
+function editOffice(data) {
+    document.getElementById('office_id').value = data.id;
+    document.getElementById('area').value = data.area;
+    document.getElementById('type').value = data.type;
+    document.getElementById('branch_name').value = data.branch_name;
+    document.getElementById('address').value = data.address;
+    document.getElementById('phone_number').value = data.phone_number;
+    document.getElementById('email').value = data.email;
+    document.getElementById('maps_url').value = data.maps_url;
+    document.getElementById('officeModalLabel').innerText = 'Edit Kantor';
+    var modal = new bootstrap.Modal(document.getElementById('officeModal'));
+    modal.show();
+}
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

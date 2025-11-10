@@ -47,27 +47,20 @@
 
   <body class="index-page">
   <header id="header" class="header d-flex align-items-center fixed-top">
-  <div class="container position-relative d-flex align-items-center justify-content-between">
-    <a href="#" class="logo d-flex align-items-center me-auto me-xl-0">
-      <img src="<?= base_url('assets/img/img-landing/logo_lidowhite.png') ?>" 
-           alt="Lido Career Logo" 
-           style="width: 45px; height: auto;"> 
-      <h1 class="sitename" style="font-size: 15px;">LIDO29</h1>
-    </a>
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+      
+      <a href="<?= site_url('front/index') ?>" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="<?= base_url('assets/img/img-landing/' . $company['company_logo']) ?>" 
+             alt="<?= $company['company_name'] ?>" 
+             style="width: 45px; height: auto;">
+        <h1 class="sitename" style="font-size: 15px;"><?= $company['company_name'] ?></h1>
+      </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
             <li><a href="<?= base_url('front/index') ?>">Beranda</a></li>
            <li><a href="<?= base_url('front/about_details') ?>">Tentang</a></li>
-             <li class="dropdown">
-             <a href="<?= base_url('front/business_details') ?>"><span>Unit Bisnis</span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i
-              ></a>
-              <ul>
-                <li><a href="<?= base_url('front/retail') ?>">Retail</a></li>
-                <li><a href="<?= base_url('front/distribution') ?>">Distribusi</a></li>
-              </ul>
-            </li>
+            <li><a href="<?= base_url('front/business_details') ?>">Unit Bisnis</a></li>
             <li><a href="<?= base_url('front/culture_details') ?>">Budaya</a></li>
             <!-- <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#pricing">Pricing</a></li> -->

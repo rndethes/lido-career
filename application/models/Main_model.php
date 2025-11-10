@@ -4,7 +4,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Main_model extends CI_Model
 {
-
     public function count_candidate()
     {
         $query = $this->db->get('candidate')->num_rows();
@@ -41,18 +40,18 @@ class Main_model extends CI_Model
 
         return $query;
     }
-    public function getSettingSosmed()
+       public function getCompany()
     {
-        // $query = $this->db->order_by('id', 'ASC')->get_compiled_select('setting_about', FALSE);
-
+        return $this->db->get_where('settings', ['id' => 1])->row_array();
+    }
+    
+   public function getSettingSosmed()
+    {
         $this->db->select('*');
-        $query = $this->db->get_where('setting_social')->result_array();
-
-        // $this->db->get('setting_about')->row_array();
-
-
+        $query = $this->db->get('setting_social')->result_array();
         return $query;
     }
+
     public function getSettingZero()
     {
         // $query = $this->db->order_by('id', 'ASC')->get_compiled_select('setting_about', FALSE);
@@ -130,4 +129,46 @@ class Main_model extends CI_Model
         // exit();
         return $query->result_array();
         }
+       
+        public function getSettingOffice()
+    {
+    $this->db->select('*');
+    $this->db->from('setting_office');
+    $this->db->order_by('area', 'ASC');
+    $query = $this->db->get();
+    return $query->result_array();
+    }
+
+        public function get_quote($id = 1) {
+        return $this->db->get_where('setting_quotes', ['id' => $id])->row_array();
+    }
+
+      public function get_all_news() {
+        $this->db->order_by('release_date', 'DESC');
+        return $this->db->get('setting_news')->result_array();
+    }
+
+    // Ambil berita berdasarkan ID
+    public function get_news($id) {
+        return $this->db->get_where('setting_news', ['id' => $id])->row_array();
+    }
+
+    public function getUnitBusiness()
+    {
+        return $this->db->order_by('id', 'ASC')->get('setting_unit_business')->result_array();
+    }
+    public function getBusinessDetail($unit_name)
+    {
+        return $this->db->get_where('setting_business_detail', ['unit_name' => $unit_name])->row_array();
+    }
+
+       public function getCulture()
+    {
+        return $this->db->get('setting_culture')->row_array();
+    }
+
+    public function getCultureDetails()
+    {
+        return $this->db->get('setting_culture_detail')->result_array();
+    }
 }

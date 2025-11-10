@@ -8,11 +8,49 @@
   padding-top: 80px !important;
 }
 
+.area-card {
+  color: white;
+  height: 180px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.area-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+.area-card h1, 
+.area-card h5 {
+  color: white;
+  margin: 0;
+}
+
 .feature-boxes,
 .feature-boxes * {
   color: #fff !important;
 }
 
+
+.dropdown-menu {
+    position: absolute;  
+    z-index: 2000 !important; 
+}
+
+
+#call-to-action img {
+    position: relative;  
+    z-index: 1;          
+}
+
+.card {
+    position: relative; 
+    z-index: 10;         
+}
 
 #hero {
   position: relative;
@@ -22,8 +60,8 @@
 }
 
 .feature-boxes {
-  position: absolute;
-  bottom: -160px;  
+  position: relative; 
+  top:-120px;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;   
@@ -35,7 +73,6 @@
     padding: 0;
   }
 
-/* Hilangkan background hitam dari container / row jika ada */
 .feature-boxes .row,
 .feature-boxes .container {
   background: transparent !important;
@@ -97,10 +134,9 @@
 .about-tancorp {
   position: relative;
   background: #f7f7f7;
-  margin-top:60px;
   margin-left: -10%;
   padding-left: 0;
-  margin-bottom:-60px;
+  margin-top:-200px;
 }
 
 .about-image {
@@ -378,17 +414,7 @@
   header .logo img {
     width: 38px !important;
   }
-    #cabang-kota .col-lg-3 {
-    width: 33.33%;
-  }
 
-  #cabang-kota .card-img-top {
-    height: 160px;
-  }
-
-  #cabang-kota .card-title {
-    font-size: 16px;
-  }
    #footer .row {
     padding-left: 0 !important;
   }
@@ -408,15 +434,8 @@
   .all-page {
       padding-top: -50px !important;
     }
+  
 
-  #cabang-kota .col-lg-3 {
-    width: 50%;
-    margin-bottom: 20px;
-  }
-
-  #cabang-kota .card-img-top {
-    height: 150px;
-  }
    #footer {
     text-align: center;
   }
@@ -450,10 +469,7 @@
   .image-content img {
     margin: 20px 0;
   }
-  .feature-boxes .col-md-4 {
-    margin-top:0; 
-    padding: 0;
-  }
+ 
 }
 
 @media (max-width: 576px) {
@@ -466,11 +482,6 @@
       padding-top: -50px !important;
     }
 
-
-  .about-tancorp {
-    padding-top: 300px;
-  }
-
   .box-item {
     font-size: 13px;
     padding: 22px 12px;
@@ -480,10 +491,9 @@
     min-height: 520px;
   }
 
+
   .about-image img {
     width: 100%;
-    margin-bottom: -10px;
-    margin-top: 40%;
   }
 
   .about-box {
@@ -516,29 +526,6 @@
     font-size: 13px;
   }
 
-  #cabang-kota .col-lg-3,
-  #cabang-kota .col-md-6,
-  #cabang-kota .col-6 {
-    width: 50%;
-    padding: 0 6px;
-  }
-
-  #cabang-kota .card {
-    border-radius: 10px;
-  }
-
-  #cabang-kota .card-img-top {
-    height: 120px;
-  }
-
-  #cabang-kota .card-title {
-    font-size: 14px;
-  }
-
-  #cabang-kota .btn-sm {
-    font-size: 12px;
-    padding: 4px 8px;
-  }
    #footer {
     font-size: 14px;
   }
@@ -563,5 +550,28 @@
   #footer .social-links {
     justify-content: center;
   }
-  
+   .area-card {
+      height: 160px;
+      font-size: 14px;
+    }
+   .feature-boxes {
+    width: 100%;
+    left: 0;
+    transform: none;
+    margin-top:30%;
+  }
+
+  .feature-boxes .row {
+    margin: 0;
+  }
+
+  .feature-boxes .col-md-4 {
+    width: 100%;
+  }
+
+  .feature-boxes .box-item {
+    height: 200px;
+    padding: 40px 0;
+  }
+
 }

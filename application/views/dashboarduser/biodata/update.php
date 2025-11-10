@@ -1,5 +1,5 @@
 
-<div id="update-biodata-app-root" style="display: none;">
+<div id="update-biodata-app-root" style="display: block;">
     <div class="row">
         <div class="col-lg-3 mb-lg-0 mb-4">
             <div class="card">
@@ -782,7 +782,7 @@
 </script>
 <script src="<?= base_url('assets/js/ext/axios.min.js') ?>">
 </script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=AbortController%2CBlob%2CPromise%2Cfetch"></script>
+<script src="https://cdn.jsdelivr.net/npm/core-js-bundle@3.33.2/minified.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         var _PROVINSI =

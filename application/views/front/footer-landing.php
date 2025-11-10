@@ -31,12 +31,16 @@
         <h4 class="footer-title">
           <i class="bi bi-people-fill me-2"></i> IKUTI KAMI
         </h4>
-       <div class="social-links d-flex justify-content-center justify-content-lg-center mt-2" style="margin-left: 20px;">
-          <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
-          <a href="#"><i class="bi bi-tiktok"></i></a>
-          <a href="#"><i class="bi bi-youtube"></i></a>
-        </div>
+      <div class="social-links d-flex justify-content-center justify-content-lg-center mt-2" style="margin-left: 20px;">
+    <?php if(!empty($content_sosmed)): ?>
+        <?php foreach($content_sosmed as $social): ?>
+            <a href="<?= $social['link_social'] ?>" target="_blank">
+                <?= $social['icon_social'] ?>
+            </a>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
       </div>
 
     </div>

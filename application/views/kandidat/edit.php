@@ -1,4 +1,4 @@
-<div id="update-biodata-app-root" style="display: block;">
+<div id="update-biodata-app-root">
     <div class="row">
         <div class="col-lg-3 mb-lg-0 mb-4">
             <div class="card">

@@ -244,49 +244,56 @@ if (!empty($visimisi_intro['intro_video_url'])) {
     </div>
     <!-- End Section Title -->
 
-    <div class="container">
-        <div class="row gy-4">
-            <?php 
-            $delay = 100; // untuk data-aos-delay
-            foreach($news_list as $news): ?>
-            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
-                <article>
-                    <div class="post-img">
-                        <img src="<?= base_url('assets/img-landing/blog/'.$news['image']) ?>" 
-                             alt="<?= $news['title'] ?>" 
+   <div class="container">
+    <div class="row gy-4">
+        <?php 
+        $delay = 100; // untuk data-aos-delay
+        foreach($news_list as $news): ?>
+        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+            <article>
+                <div class="post-img">
+                    <?php if(!empty($news['cover_image'])): ?>
+                        <img src="<?= base_url('assets/img-landing/blog/'.$news['cover_image']) ?>" 
+                             alt="<?= htmlspecialchars($news['title']) ?>" 
                              class="img-fluid" />
+                    <?php else: ?>
+                        <img src="<?= base_url('assets/img-landing/blog/default.jpg') ?>" 
+                             alt="No Image" 
+                             class="img-fluid" />
+                    <?php endif; ?>
+                </div>
+
+                <p class="post-category"><?= htmlspecialchars($news['category']) ?></p>
+
+                <h2 class="title">
+                    <a href="<?= site_url('front/blog/'.$news['id']) ?>">
+                        <?= htmlspecialchars($news['title']) ?>
+                    </a>
+                </h2>
+
+                <div class="d-flex align-items-center">
+                    <img src="<?= base_url('assets/img-landing/blog/blog-author.jpg') ?>" 
+                         alt="<?= htmlspecialchars($news['updated_by']) ?>" 
+                         class="img-fluid post-author-img flex-shrink-0" />
+                    <div class="post-meta">
+                        <p class="post-author"><?= htmlspecialchars($news['updated_by']) ?></p>
+                        <p class="post-date">
+                            <time datetime="<?= $news['release_date'] ?>">
+                                <?= date('M d, Y', strtotime($news['release_date'])) ?>
+                            </time>
+                        </p>
                     </div>
-
-                    <p class="post-category"><?= $news['category'] ?></p>
-
-                    <h2 class="title">
-                        <a href="<?= site_url('front/news_details/'.$news['id']) ?>">
-                            <?= $news['title'] ?>
-                        </a>
-                    </h2>
-
-                    <div class="d-flex align-items-center">
-                        <img src="<?= base_url('assets/img-landing/blog/blog-author.jpg') ?>" 
-                             alt="<?= $news['updated_by'] ?>" 
-                             class="img-fluid post-author-img flex-shrink-0" />
-                        <div class="post-meta">
-                            <p class="post-author"><?= $news['updated_by'] ?></p>
-                            <p class="post-date">
-                                <time datetime="<?= $news['release_date'] ?>">
-                                    <?= date('M d, Y', strtotime($news['release_date'])) ?>
-                                </time>
-                            </p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <?php 
-            $delay += 100; // naikkan delay setiap item
-            endforeach; ?>
+                </div>
+            </article>
         </div>
-        <!-- End recent posts list -->
+        <?php 
+        $delay += 100; // naikkan delay setiap item
+        endforeach; ?>
     </div>
-</section>
+    <!-- End recent posts list -->
+</div>
+      </section>
+
     
 
        <section class="contact-map">

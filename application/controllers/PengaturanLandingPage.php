@@ -288,35 +288,77 @@ public function save_news()
 
     $id = $this->input->post('id');
     $data = [
-        'category' => $this->input->post('category'),
-        'title' => $this->input->post('title'),
-        'subtitle' => $this->input->post('subtitle'),
-        'content' => $this->input->post('content'),
+        'category'     => $this->input->post('category'),
+        'title'        => $this->input->post('title'),
+        'subtitle'     => $this->input->post('subtitle'),
+        'content'      => $this->input->post('content'),
         'release_date' => $this->input->post('release_date'),
-        'updated_by' => $this->session->userdata('nama')
+        'updated_by'   => $this->session->userdata('nama')
     ];
 
-    // Upload image
-    if (!empty($_FILES['image']['name'])) {
-        $config['upload_path'] = './assets/img-landing/blog/';
+    // ===== Upload COVER =====
+    if (!empty($_FILES['cover_image']['name'])) {
+        $config['upload_path']   = './assets/img-landing/blog/';
         $config['allowed_types'] = 'jpg|jpeg|png|webp';
-        $config['max_size'] = 2048;
+        // $config['max_size']      = 2048;
         $this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('image')) {
+        if ($this->upload->do_upload('cover_image')) {
             $uploadData = $this->upload->data();
-            $data['image'] = $uploadData['file_name'];
+            $data['cover_image'] = $uploadData['file_name'];
         } else {
             $this->session->set_flashdata('error', $this->upload->display_errors());
             redirect('PengaturanLandingPage/berita');
             return;
         }
     } else if ($id) {
-        // kalau edit dan tidak upload baru, ambil gambar lama
         $old = $this->Pengaturanlp_model->get_news($id);
-        $data['image'] = $old['image'];
+        $data['cover_image'] = $old['cover_image'] ?? null;
     }
 
+    // ===== Upload MEDIA (bisa banyak) =====
+    $mediaFiles = [];
+    if (!empty($_FILES['media']['name'][0])) {
+        $filesCount = count($_FILES['media']['name']);
+        $this->load->library('upload');
+
+        for ($i = 0; $i < $filesCount; $i++) {
+            $_FILES['file']['name']     = $_FILES['media']['name'][$i];
+            $_FILES['file']['type']     = $_FILES['media']['type'][$i];
+            $_FILES['file']['tmp_name'] = $_FILES['media']['tmp_name'][$i];
+            $_FILES['file']['error']    = $_FILES['media']['error'][$i];
+            $_FILES['file']['size']     = $_FILES['media']['size'][$i];
+
+            $config['upload_path']   = './assets/img-landing/blog/';
+            $config['allowed_types'] = 'jpg|jpeg|png|webp|mp4|webm|ogg';
+            $config['max_size']      = 5120; // 5MB
+            $config['file_name']     = time().'_'.$i.'_'.$_FILES['file']['name'];
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $mediaFiles[] = $uploadData['file_name'];
+            }
+        }
+    } else if ($id) {
+        $old = $this->Pengaturanlp_model->get_news($id);
+        $mediaFiles = json_decode($old['media'] ?? "[]", true);
+    }
+
+    // ===== Hapus media lama jika ada yang di-remove =====
+    $removed_media = json_decode($this->input->post('removed_media') ?? "[]", true);
+    if(!empty($removed_media) && !empty($mediaFiles)) {
+        $mediaFiles = array_diff($mediaFiles, $removed_media);
+
+        foreach($removed_media as $file) {
+            $file_path = FCPATH.'assets/img-landing/blog/'.$file;
+            if(file_exists($file_path)) unlink($file_path);
+        }
+    }
+
+    $data['media'] = json_encode($mediaFiles);
+
+    // ===== Simpan ke database =====
     if ($id) {
         $this->Pengaturanlp_model->update_news($id, $data);
     } else {
@@ -326,6 +368,8 @@ public function save_news()
     $this->session->set_flashdata('success', 'Berita berhasil disimpan.');
     redirect('PengaturanLandingPage/berita');
 }
+
+
 
 public function delete_news($id)
 {

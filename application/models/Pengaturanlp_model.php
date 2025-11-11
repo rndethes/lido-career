@@ -97,8 +97,17 @@ public function save_quote($data, $id = null)
 }
 
 public function get_all_news() {
-    return $this->db->order_by('release_date', 'DESC')->get('setting_news')->result_array();
+    $news = $this->db->get('setting_news')->result_array();
+
+    // Tambahkan media_count
+    foreach ($news as &$n) {
+        $mediaArray = json_decode($n['media'] ?? "[]", true);
+        $n['media_count'] = count($mediaArray);
+    }
+
+    return $news;
 }
+
 
 public function get_news($id) {
     return $this->db->get_where('setting_news', ['id' => $id])->row_array();

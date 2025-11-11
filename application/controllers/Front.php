@@ -82,10 +82,10 @@ class Front extends CI_Controller
 }
 
 
-public function news_details($id = null)
+public function news_details()
 {
     $data['title'] = 'Berita Lido';
-    $data['news'] = $this->main_model->get_news($id);
+    $data['news_list'] = $this->main_model->get_all_news(); // ambil semua berita
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
     $data['company'] = $this->main_model->getCompany();
 
@@ -96,7 +96,6 @@ public function news_details($id = null)
         $data['img'] = !empty($user['photo_candidate'])
             ? base_url('uploads/kandidat/profiles/' . $user['photo_candidate'])
             : base_url('assets/img/default-profile.png');
-
         $data['user_logged_in'] = true;
         $data['user_name'] = $user['name_candidate']; 
     } else {
@@ -106,9 +105,10 @@ public function news_details($id = null)
     }
 
     $this->load->view('front/header-landing', $data);
-    $this->load->view('front/news-details', $data);
+    $this->load->view('front/news-details', $data); // view untuk semua berita
     $this->load->view('front/footer-landing', $data);
 }
+
 
 
 public function contact_details()
@@ -273,21 +273,21 @@ public function career()
     $this->load->view('front/footer-landing', $data);
 }
 
-public function blog()
+public function blog($id)
 {
     $data['title'] = 'Blog Lido';
-     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
-      $data['company'] = $this->main_model->getCompany();
-     $id_user = getLoggedInUser('id');
+    $data['news'] = $this->main_model->get_news($id);
+    $data['content_sosmed'] = $this->main_model->getSettingSosmed();
+    $data['company'] = $this->main_model->getCompany();
+
+    $id_user = getLoggedInUser('id');
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
-
         $data['img'] = !empty($user['photo_candidate'])
             ? base_url('uploads/kandidat/profiles/' . $user['photo_candidate'])
             : base_url('assets/img/default-profile.png');
-
         $data['user_logged_in'] = true;
-        $data['user_name'] = $user['name_candidate']; 
+        $data['user_name'] = $user['name_candidate'];
     } else {
         $data['img'] = base_url('assets/img/default-profile.png');
         $data['user_logged_in'] = false;
@@ -295,7 +295,7 @@ public function blog()
     }
 
     $this->load->view('front/header-landing', $data);
-    $this->load->view('front/blog', $data);
+    $this->load->view('front/blog', $data); // detail berita
     $this->load->view('front/footer-landing', $data);
 }
 }

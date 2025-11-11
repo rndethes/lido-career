@@ -338,58 +338,73 @@ img.preview {
         Tambah Berita
     </button>
     
-  <div class="table-responsive">
-    <table class="table table-bordered table-striped align-middle">
-      <thead class="table-dark">
+ <div class="table-responsive">
+  <table class="table table-bordered table-striped align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th width="5%">#</th>
+        <th>Kategori</th>
+        <th>Judul</th>
+        <th>Subjudul</th>
+        <th>Konten</th>
+        <th>Tanggal Rilis</th>
+        <th>Cover</th>
+        <th>Jumlah Media</th>
+        <th>Diperbarui Oleh</th>
+        <th width="15%">Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if (!empty($berita)): $no=1; foreach ($berita as $b): ?>
         <tr>
-          <th width="5%">#</th>
-          <th>Kategori</th>
-          <th>Judul</th>
-          <th>Subjudul</th>
-          <th>Tanggal Rilis</th>
-          <th>Gambar</th>
-          <th>Diperbarui Oleh</th>
-          <th width="15%">Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php if (!empty($berita)): $no=1; foreach ($berita as $b): ?>
-          <tr>
-            <td><?= $no++ ?></td>
-            <td><?= htmlspecialchars($b['category']) ?></td>
-            <td><?= htmlspecialchars($b['title']) ?></td>
-            <td><?= htmlspecialchars($b['subtitle']) ?></td>
-            <td><?= date('d M Y', strtotime($b['release_date'])) ?></td>
-            <td>
-              <?php if ($b['image']): ?>
-                <img src="<?= base_url('assets/img-landing/blog/'.$b['image']) ?>" width="70" class="rounded">
-              <?php else: ?>
-                <span class="text-muted">Tidak ada</span>
-              <?php endif; ?>
-            </td>
-            <td><?= htmlspecialchars($b['updated_by']) ?></td>
-            <td>
+          <td><?= $no++ ?></td>
+          <td><?= htmlspecialchars($b['category']) ?></td>
+          <td>
+            <?= htmlspecialchars(mb_strimwidth(strip_tags($b['title']), 0, 20, '...')) ?>
+        </td>
+          <td>
+            <?= htmlspecialchars(mb_strimwidth(strip_tags($b['subtitle']), 0, 20, '...')) ?>
+        </td>
+          <td>
+            <?= htmlspecialchars(mb_strimwidth(strip_tags($b['content']), 0, 20, '...')) ?>
+        </td>
+          <td><?= date('d M Y', strtotime($b['release_date'])) ?></td>
+
+          <!-- Cover -->
+          <td>
+            <?php if (!empty($b['cover_image'])): ?>
+              <img src="<?= base_url('assets/img-landing/blog/'.$b['cover_image']) ?>" width="70" class="rounded">
+            <?php else: ?>
+              <span class="text-muted">Tidak ada</span>
+            <?php endif; ?>
+          </td>
+
+          <!-- Jumlah Media -->
+          <td><?= isset($b['media_count']) ? $b['media_count'].' file' : '0 file' ?></td>
+
+          <td><?= htmlspecialchars($b['updated_by']) ?></td>
+
+          <!-- Tombol Aksi -->
+          <td>
             <button type="button" class="btn btn-sm btn-danger"
-                onclick='editBerita(<?= json_encode($b); ?>)'>
-                Edit
+              onclick='editBerita(<?= json_encode($b); ?>)'>
+              Edit
             </button>
             <a href="<?= base_url('PengaturanLandingPage/delete_news/'.$b['id']); ?>" 
               class="btn btn-sm btn-primary" 
               onclick="return confirm('Hapus berita ini?')">
               Delete
             </a>
-        </td>
-
-          </tr>
-        <?php endforeach; else: ?>
-          <tr><td colspan="8" class="text-center text-muted">Belum ada berita</td></tr>
-        <?php endif; ?>
-      </tbody>
-    </table>
-  </div>
+          </td>
+        </tr>
+      <?php endforeach; else: ?>
+        <tr><td colspan="9" class="text-center text-muted">Belum ada berita</td></tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
+</div>
 </div>
 
-<!-- Modal Tambah/Edit Berita -->
 <div class="modal fade" id="beritaModal" tabindex="-1" aria-labelledby="beritaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <form id="beritaForm" method="post" enctype="multipart/form-data" action="<?= base_url('PengaturanLandingPage/save_news') ?>">
@@ -423,14 +438,34 @@ img.preview {
               <input type="date" name="release_date" id="release_date" class="form-control" required>
             </div>
             <div class="col-md-6">
-              <label>Gambar</label>
-              <input type="file" name="image" id="image" class="form-control" accept="image/*" onchange="document.getElementById('previewBerita').src = window.URL.createObjectURL(this.files[0])">
-              <img id="previewBerita" src="" width="120" class="mt-2 rounded">
+              <label>Gambar Cover</label>
+              <input type="file" name="cover_image" id="cover_image" class="form-control" accept="image/*" onchange="previewCover(event)">
+              <img id="previewCover" src="" width="120" class="mt-2 rounded">
+            </div>
+
+         <!-- MEDIA KONTEN -->
+          <div class="col-md-12 mt-3">
+            <label>Gambar / Video Konten</label>
+
+            <!-- Hidden input untuk menyimpan media yang dihapus -->
+            <input type="hidden" name="removed_media" id="removed_media" value="">
+
+            <div id="mediaWrapper">
+              <div class="d-flex gap-2 mb-2">
+                <input type="file" name="media[]" id="media" class="form-control media-input" accept="image/*,video/*" onchange="previewMedia(event)">
+                <button type="button" class="btn btn-sm btn-success" onclick="addMediaInput()">+</button>
+              </div>
+            </div>
+
+            <div id="previewContainer" class="mt-2 d-flex flex-wrap gap-2"></div>
+            <small class="text-muted">Klik + untuk menambahkan input file baru</small>
           </div>
 
-            <div class="col-md-6">
+
+            <div class="form-group mt-3">
               <label>Diperbarui Oleh</label>
-              <input type="text" name="updated_by" id="updated_by" class="form-control">
+              <input type="text" name="updated_by" id="updated_by" class="form-control"
+                     value="<?= isset($_SESSION['nama']) ? htmlspecialchars($_SESSION['nama']) : '' ?>" readonly>
             </div>
           </div>
         </div>
@@ -443,6 +478,8 @@ img.preview {
     </form>
   </div>
 </div>
+
+
 
 
 
@@ -481,31 +518,173 @@ img.preview {
     if(file) document.getElementById('previewQuote').src = URL.createObjectURL(file);
 });
 
+function previewCover(event) {
+  const cover = document.getElementById('previewCover');
+  cover.src = URL.createObjectURL(event.target.files[0]);
+}
+
+// Preview untuk media konten
+function previewMedia(event) {
+  const container = document.getElementById('previewContainer');
+  container.innerHTML = '';
+
+  const files = event.target.files;
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const fileURL = URL.createObjectURL(file);
+
+    const wrapper = document.createElement('div');
+    wrapper.style.position = 'relative';
+    wrapper.style.width = '120px';
+    wrapper.style.height = '120px';
+    wrapper.style.overflow = 'hidden';
+    wrapper.style.borderRadius = '10px';
+    wrapper.style.border = '1px solid #ddd';
+
+    if (file.type.startsWith('image/')) {
+      const img = document.createElement('img');
+      img.src = fileURL;
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      wrapper.appendChild(img);
+    } else if (file.type.startsWith('video/')) {
+      const video = document.createElement('video');
+      video.src = fileURL;
+      video.style.width = '100%';
+      video.style.height = '100%';
+      video.controls = true;
+      wrapper.appendChild(video);
+    }
+
+    container.appendChild(wrapper);
+  }
+}
+
 function resetBeritaForm() {
   document.getElementById('beritaForm').reset();
   document.getElementById('berita_id').value = '';
-  document.getElementById('previewBerita').src = '';
+  document.getElementById('previewCover').src = '';
+  document.getElementById('previewContainer').innerHTML = '';
   document.getElementById('beritaModalLabel').innerText = 'Tambah Berita';
 }
 
+// Tombol Edit
 function editBerita(data) {
-  document.getElementById('berita_id').value = data.id;
-  document.getElementById('category').value = data.category;
-  document.getElementById('title').value = data.title;
-  document.getElementById('subtitle').value = data.subtitle;
-  document.getElementById('content').value = data.content;
-  document.getElementById('release_date').value = data.release_date;
-  document.getElementById('updated_by').value = data.updated_by;
+  document.getElementById('berita_id').value = data.id || '';
+  document.getElementById('category').value = data.category || '';
+  document.getElementById('title').value = data.title || '';
+  document.getElementById('subtitle').value = data.subtitle || '';
+  document.getElementById('content').value = data.content || '';
+  document.getElementById('release_date').value = data.release_date || '';
 
-  // Preview gambar jika ada
-  if(data.image) {
-    document.getElementById('previewBerita').src = '<?= base_url("assets/img-landing/blog/") ?>'+data.image;
+  // Cover lama
+  if (data.cover_image) {
+    document.getElementById('previewCover').src = "<?= base_url('assets/img-landing/blog/') ?>" + data.cover_image;
   } else {
-    document.getElementById('previewBerita').src = '';
+    document.getElementById('previewCover').src = '';
   }
+
+  // Media lama
+  const container = document.getElementById('previewContainer');
+  container.innerHTML = '';
+
+  let removedMedia = [];
+  if(data.media) {
+    try {
+      const mediaArray = JSON.parse(data.media);
+      mediaArray.forEach(file => {
+        const wrapper = document.createElement('div');
+        wrapper.style.width = '120px';
+        wrapper.style.height = '120px';
+        wrapper.style.border = '1px solid #ddd';
+        wrapper.style.borderRadius = '10px';
+        wrapper.style.overflow = 'hidden';
+        wrapper.style.marginRight = '10px';
+         wrapper.style.position = 'relative';
+
+        const btnDelete = document.createElement('button');
+      btnDelete.type = 'button';
+      btnDelete.innerHTML = '&times;';
+      btnDelete.className = 'btn btn-sm btn-danger position-absolute top-0 end-0';
+      btnDelete.onclick = function() {
+        removedMedia.push(file);
+        document.getElementById('removed_media').value = JSON.stringify(removedMedia);
+        wrapper.remove();
+      };
+      wrapper.appendChild(btnDelete);
+
+        if (file.match(/\.(mp4|webm|ogg)$/i)) {
+          const video = document.createElement('video');
+          video.src = "<?= base_url('assets/img-landing/blog/') ?>" + file;
+          video.controls = true;
+          video.style.width = '100%';
+          video.style.height = '100%';
+          wrapper.appendChild(video);
+        } else {
+          const img = document.createElement('img');
+          img.src = "<?= base_url('assets/img-landing/blog/') ?>" + file;
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'cover';
+          wrapper.appendChild(img);
+        }
+
+        container.appendChild(wrapper);
+      });
+    } catch(e) { console.error(e); }
+  }
+
+  // Reset input file
+  document.getElementById('cover_image').value = '';
+  document.getElementById('media').value = '';
 
   document.getElementById('beritaModalLabel').innerText = 'Edit Berita';
   new bootstrap.Modal(document.getElementById('beritaModal')).show();
+}
+
+// Preview cover
+function previewCover(event){
+  document.getElementById('previewCover').src = URL.createObjectURL(event.target.files[0]);
+}
+
+
+
+// Preview media baru
+function previewMedia(event){
+  const container = document.getElementById('previewContainer');
+  container.innerHTML = '';
+  const files = event.target.files;
+  for(let i=0; i<files.length; i++){
+    const file = files[i];
+    const wrapper = document.createElement('div');
+    wrapper.style.width='120px'; wrapper.style.height='120px'; wrapper.style.border='1px solid #ddd';
+    wrapper.style.borderRadius='10px'; wrapper.style.overflow='hidden'; wrapper.style.marginRight='10px';
+
+    if(file.type.startsWith('image/')){
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover';
+      wrapper.appendChild(img);
+    } else if(file.type.startsWith('video/')){
+      const video = document.createElement('video');
+      video.src = URL.createObjectURL(file);
+      video.controls = true;
+      video.style.width='100%'; video.style.height='100%';
+      wrapper.appendChild(video);
+    }
+
+    container.appendChild(wrapper);
+  }
+}
+
+// Tambah input media baru
+function addMediaInput(){
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('d-flex','gap-2','mb-2');
+  wrapper.innerHTML = `<input type="file" name="media[]" class="form-control media-input" accept="image/*,video/*" onchange="previewMedia(event)">
+                       <button type="button" class="btn btn-sm btn-danger" onclick="this.parentElement.remove()">-</button>`;
+  document.getElementById('mediaWrapper').appendChild(wrapper);
 }
 
 

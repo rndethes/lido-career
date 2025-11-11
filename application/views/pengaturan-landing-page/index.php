@@ -55,6 +55,17 @@ img.preview {
         📰 Berita
       </button>
     </li>
+    <li class="nav-item" role="presentation">
+  <button class="nav-link" id="unit-tab" data-bs-toggle="tab" data-bs-target="#unit" type="button" role="tab">
+    🏢 Unit Bisnis
+  </button>
+</li>
+    <li class="nav-item" role="presentation">
+    <button class="nav-link" id="culture-tab" data-bs-toggle="tab" data-bs-target="#culture" type="button" role="tab" aria-controls="culture" aria-selected="false">
+      🌿 Budaya
+    </button>
+  </li>
+
 
  
 
@@ -197,7 +208,7 @@ img.preview {
     <h2>Daftar Kantor / Cabang</h2>
 
     <!-- Tombol Tambah -->
-    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#officeModal" onclick="resetForm()">
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#officeModal" onclick="resetForm()">
         Tambah Kantor
     </button>
 
@@ -334,7 +345,7 @@ img.preview {
     <h2>Manajemen Berita</h2>
 
     <!-- Tombol Tambah -->
-    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#beritaModal" onclick="resetBeritaForm()">
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#beritaModal" onclick="resetBeritaForm()">
         Tambah Berita
     </button>
     
@@ -479,6 +490,252 @@ img.preview {
   </div>
 </div>
 
+<!-- Tab Unit Bisnis -->
+<div class="tab-pane fade" id="unit" role="tabpanel">
+    <h2>Manajemen Unit Bisnis</h2>
+
+    <!-- Tombol Tambah -->
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#unitModal" onclick="resetUnitForm()">
+        Tambah Unit Bisnis
+    </button>
+    
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>No</th>
+            <th>Judul</th>
+            <th>Deskripsi Singkat</th>
+            <th>Deskripsi Lengkap</th>
+            <th>Gambar</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if(!empty($units)): $no=1; foreach($units as $unit): ?>
+          <tr>
+            <td><?= $no++ ?></td>
+            <td><?= htmlspecialchars($unit['title']) ?></td>
+            <td><?= htmlspecialchars(mb_strimwidth($unit['description'],0,20,'...')) ?></td>
+            <td><?= htmlspecialchars(mb_strimwidth($unit['description1'],0,20,'...')) ?></td>
+            <td>
+              <?php if($unit['image']): ?>
+                <img src="<?= base_url('assets/img/'.$unit['image']) ?>" width="70" class="rounded">
+              <?php else: ?>
+                <span class="text-muted">Tidak ada</span>
+              <?php endif; ?>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-danger" onclick='editUnit(<?= json_encode($unit) ?>)'>Edit</button>
+              <a href="<?= base_url('PengaturanLandingPage/delete_unit/'.$unit['id']) ?>" class="btn btn-sm btn-primary" onclick="return confirm('Hapus unit ini?')">Delete</a>
+            </td>
+          </tr>
+          <?php endforeach; else: ?>
+            <tr><td colspan="6" class="text-center text-muted">Belum ada unit bisnis</td></tr>
+          <?php endif; ?>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<!-- Modal Form Tambah/Edit Unit Bisnis -->
+<div class="modal fade" id="unitModal" tabindex="-1" aria-labelledby="unitModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form id="unitForm" method="post" enctype="multipart/form-data" action="<?= base_url('PengaturanLandingPage/save_unit') ?>">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="unitModalLabel">Tambah / Edit Unit Bisnis</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" id="unit_id">
+          <div class="mb-3">
+            <label>Judul</label>
+            <input type="text" name="title" id="unit_title" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Deskripsi Singkat</label>
+            <textarea name="description" id="unit_description" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label>Deskripsi Lengkap</label>
+            <textarea name="description1" id="unit_description1" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="mb-3 text-center">
+            <label>Gambar</label>
+            <input type="file" name="image" id="unit_image" class="form-control" accept="image/*">
+            <img id="previewUnit" src="" class="preview mt-2" style="width: 50%; height: auto;">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">💾 Simpan</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div> 
+
+<!-- ===================== TAB SECTION CULTURE ===================== -->
+<div class="tab-pane fade" id="culture" role="tabpanel">
+  <div class="container mt-4">
+    
+
+    <!-- ===================== FORM EDIT SECTION CULTURE ===================== -->
+    <div class="card shadow-sm mb-5">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Edit Section Culture</h5>
+      </div>
+      <div class="card-body">
+        <form action="<?= base_url('PengaturanLandingPage/update_main') ?>" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="<?= $culture['id'] ?>">
+
+          <div class="row align-items-center">
+            <!-- Kolom Gambar -->
+            <div class="col-lg-6 text-center mb-4 mb-lg-0">
+              <label class="form-label fw-bold mb-2">Gambar Budaya</label>
+              <div class="mb-3">
+                <img src="<?= base_url('assets/img/' . $culture['image']) ?>" 
+                     alt="<?= $culture['title'] ?>" 
+                     class="img-fluid rounded shadow-sm mb-3" 
+                     style="width: 80%; height: auto;">
+                <input type="file" name="image" class="form-control mt-2" accept="image/*">
+                <small class="text-muted d-block mt-1">Kosongkan jika tidak ingin mengganti gambar</small>
+              </div>
+            </div>
+
+            <!-- Kolom Teks -->
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="form-label fw-bold">Judul Budaya</label>
+                <input type="text" name="title" class="form-control" 
+                       value="<?= htmlspecialchars($culture['title']) ?>" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Deskripsi / Tentang Budaya</label>
+                <textarea name="about_culture" class="form-control" rows="6" required><?= htmlspecialchars($culture['about_culture']) ?></textarea>
+              </div>
+
+               <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">💾 Simpan</button>
+          </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===================== TABEL DETAIL BUDAYA ===================== -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Detail Culture</h5>
+         <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#cultureModal" onclick="resetForm()">
+        Tambah Budaya
+    </button>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped align-middle mb-0">
+            <thead class="table-dark text-center">
+              <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 15%;">Judul</th>
+                <th style="width: 15%;">Subjudul</th>
+                <th>Deskripsi</th>
+                <th style="width: 15%;">Gambar</th>
+                <th style="width: 15%;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if (!empty($cultures)): $no=1; foreach ($cultures as $culture): ?>
+              <tr>
+                <td class="text-center"><?= $no++ ?></td>
+                <td><?= htmlspecialchars($culture['title']) ?></td>
+                <td><?= htmlspecialchars($culture['subtitle']) ?></td>
+                <td><?= htmlspecialchars(mb_strimwidth(strip_tags($culture['description']), 0, 60, '...')) ?></td>
+                <td class="text-center">
+                  <?php if(!empty($culture['image'])): ?>
+                    <img src="<?= base_url('assets/img/'.$culture['image']) ?>" width="70" class="rounded">
+                  <?php else: ?>
+                    <span class="text-muted">Tidak ada</span>
+                  <?php endif; ?>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-sm btn-danger" onclick='editCulture(<?= json_encode($culture) ?>)'>
+                    <i class="bi bi-pencil-square"></i> Edit
+                  </button>
+                  <a href="<?= base_url('PengaturanLandingPage/delete_culture/'.$culture['id']) ?>" 
+                     class="btn btn-sm btn-primary" 
+                     onclick="return confirm('Hapus data budaya ini?')">
+                    <i class="bi bi-trash"></i> Delete
+                  </a>
+                </td>
+              </tr>
+              <?php endforeach; else: ?>
+                <tr>
+                  <td colspan="6" class="text-center text-muted">Belum ada data budaya</td>
+                </tr>
+              <?php endif; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== MODAL TAMBAH/EDIT DETAIL CULTURE ===================== -->
+<div class="modal fade" id="cultureModal" tabindex="-1" aria-labelledby="cultureModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form id="cultureForm" method="post" enctype="multipart/form-data" action="<?= base_url('PengaturanLandingPage/save_culture_detail') ?>">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cultureModalLabel">Tambah / Edit Detail Budaya</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="id" id="culture_id">
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Judul</label>
+            <input type="text" name="title" id="culture_title" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Subjudul</label>
+            <input type="text" name="subtitle" id="culture_subtitle" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Deskripsi</label>
+            <textarea name="description" id="culture_description" class="form-control" rows="5"></textarea>
+          </div>
+
+          <div class="mb-3 text-center">
+            <label class="form-label fw-bold">Gambar</label>
+            <input type="file" name="image" id="culture_image" class="form-control" accept="image/*">
+            <img id="previewCulture" src="" class="img-fluid rounded shadow-sm mt-2" style="width:50%; height:auto; display:none;">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-success">💾 Simpan</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
 
 
 
@@ -517,6 +774,32 @@ img.preview {
     const file = e.target.files[0];
     if(file) document.getElementById('previewQuote').src = URL.createObjectURL(file);
 });
+
+  // Preview Image
+  document.getElementById('unit_image').addEventListener('change', function(e){
+    const file = e.target.files[0];
+    if(file) document.getElementById('previewUnit').src = URL.createObjectURL(file);
+  });
+
+  // Reset form modal
+  function resetUnitForm(){
+    document.getElementById('unitForm').reset();
+    document.getElementById('unit_id').value = '';
+    document.getElementById('previewUnit').src = '';
+    document.getElementById('unitModalLabel').innerText = 'Tambah Unit Bisnis';
+  }
+
+  // Edit unit
+  function editUnit(data){
+    document.getElementById('unit_id').value = data.id || '';
+    document.getElementById('unit_title').value = data.title || '';
+    document.getElementById('unit_description').value = data.description || '';
+    document.getElementById('unit_description1').value = data.description1 || '';
+    if(data.image) document.getElementById('previewUnit').src = "<?= base_url('assets/img-landing/unit/') ?>" + data.image;
+    else document.getElementById('previewUnit').src = '';
+    document.getElementById('unitModalLabel').innerText = 'Edit Unit Bisnis';
+    new bootstrap.Modal(document.getElementById('unitModal')).show();
+  }
 
 function previewCover(event) {
   const cover = document.getElementById('previewCover');
@@ -707,6 +990,31 @@ function editOffice(data) {
     var modal = new bootstrap.Modal(document.getElementById('officeModal'));
     modal.show();
 }
+
+
+  function resetCultureForm() {
+    document.getElementById('cultureForm').reset();
+    document.getElementById('culture_id').value = '';
+    document.getElementById('previewCulture').style.display = 'none';
+  }
+
+  // Isi form modal saat edit
+  function editCulture(data) {
+    document.getElementById('culture_id').value = data.id;
+    document.getElementById('culture_title').value = data.title;
+    document.getElementById('culture_subtitle').value = data.subtitle;
+    document.getElementById('culture_description').value = data.description;
+
+    if (data.image) {
+      document.getElementById('previewCulture').src = "<?= base_url('assets/img/') ?>" + data.image;
+      document.getElementById('previewCulture').style.display = 'block';
+    } else {
+      document.getElementById('previewCulture').style.display = 'none';
+    }
+
+    new bootstrap.Modal(document.getElementById('cultureModal')).show();
+  }
+
 </script>
 
 

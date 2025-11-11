@@ -161,6 +161,12 @@ class Main_model extends CI_Model
     {
         return $this->db->get_where('setting_business_detail', ['unit_name' => $unit_name])->row_array();
     }
+    
+    public function getUnitBusinessById($id)
+{
+    return $this->db->get_where('setting_unit_business', ['id' => $id])->row_array();
+}
+
 
        public function getCulture()
     {

@@ -6,7 +6,7 @@
         <?php foreach($unit_business as $unit): ?>
           <h2 class="fw-bold mb-3"><?= $unit['title'] ?></h2>
           <p><?= $unit['description'] ?></p>
-          <a href="<?= base_url($unit['link']) ?>" class="btn btn-primary mb-4">Lihat Selengkapnya</a>
+        <a href="<?= base_url('front/unit_details/'.$unit['id']) ?>" class="btn btn-primary mb-4">Lihat Selengkapnya</a>
         <?php endforeach; ?>
       </div>
 

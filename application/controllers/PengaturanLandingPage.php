@@ -20,6 +20,10 @@ class PengaturanLandingPage extends CI_Controller
         $data['offices']       = $this->Pengaturanlp_model->get_all_offices();
         $data['quote'] = $this->Pengaturanlp_model->get_quote();
         $data['berita'] = $this->Pengaturanlp_model->get_all_news();
+        $data['units'] = $this->Pengaturanlp_model->get_all_units();
+        $data['culture'] = $this->Pengaturanlp_model->get_culture();
+        $data['cultures'] = $this->Pengaturanlp_model->get_culture_details();
+
 
         //  var_dump($data['quote']); die();
 
@@ -378,4 +382,263 @@ public function delete_news($id)
     $this->session->set_flashdata('success', 'Berita berhasil dihapus.');
     redirect('PengaturanLandingPage/berita');
 }
+
+// =================== UNIT BISNIS ===================
+
+// List unit bisnis
+public function unit_bisnis()
+{
+    $data['units'] = $this->db->get('setting_unit_business')->result_array();
+    $data['title'] = 'Unit Bisnis';
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('pengaturan-landing-page/unit_bisnis_index', $data);
+    $this->load->view('templates/footer', $data);
+}
+
+// Form tambah unit bisnis
+public function add_unit()
+{
+    $this->load->view('templates/header');
+    $this->load->view('pengaturan-landing-page/unit_bisnis_create');
+    $this->load->view('templates/footer');
+}
+
+// Simpan unit bisnis
+public function save_unit()
+{
+    $id = $this->input->post('id'); // ambil id dari hidden input
+
+    $data = [
+        'title'       => $this->input->post('title'),
+        'description' => $this->input->post('description'),
+        'description1' => $this->input->post('description1')
+    ];
+
+    if (!empty($_FILES['image']['name'])) {
+        $config['upload_path']   = './assets/img/';
+        $config['allowed_types'] = 'jpg|jpeg|png|webp';
+        $config['file_name']     = time().'_'.$_FILES['image']['name'];
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            $data['image'] = $this->upload->data('file_name');
+        }
+    }
+
+    if($id){ // update
+        $this->db->where('id', $id)->update('setting_unit_business', $data);
+        echo "<script>alert('Unit Bisnis berhasil diperbarui!'); window.location.href='".base_url('PengaturanLandingPage#unit')."';</script>";
+    } else { // insert baru
+        $this->db->insert('setting_unit_business', $data);
+        echo "<script>alert('Unit Bisnis berhasil disimpan!'); window.location.href='".base_url('PengaturanLandingPage#unit')."';</script>";
+    }
+}
+
+// Form edit unit bisnis
+public function edit_unit($id)
+{
+    $data['unit'] = $this->db->get_where('setting_unit_business', ['id' => $id])->row_array();
+    if (!$data['unit']) {
+        echo "<script>alert('Unit Bisnis tidak ditemukan!'); window.history.back();</script>";
+        return;
+    }
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('pengaturan-landing-page/unit_bisnis_edit', $data);
+    $this->load->view('templates/footer', $data);
+}
+
+// Update unit bisnis
+public function update_unit()
+{
+    $id = $this->input->post('id');
+    $data = [
+        'title'        => $this->input->post('title'),
+        'description' => $this->input->post('description'),
+        'description1' => $this->input->post('description1')
+    ];
+
+    if (!empty($_FILES['image']['name'])) { 
+    $config['upload_path']   = './assets/img/';
+    $config['allowed_types'] = 'jpg|jpeg|png|webp';
+    $config['file_name']     = time().'_'.$_FILES['image']['name'];
+    $this->load->library('upload', $config);
+
+    if ($this->upload->do_upload('image')) {
+        $data['image'] = $this->upload->data('file_name');
+    } else {
+        echo "<script>alert('Upload gambar gagal! ".$this->upload->display_errors()."'); window.history.back();</script>";
+        return;
+    }
+}
+
+    $this->db->where('id', $id)->update('setting_unit_business', $data);
+    echo "<script>alert('Unit Bisnis berhasil diperbarui!'); window.location.href='".base_url('PengaturanLandingPage#unit')."';</script>";
+}
+
+// Hapus unit bisnis
+public function delete_unit($id)
+{
+    $this->db->where('id', $id)->delete('setting_unit_business');
+    echo "<script>alert('Unit Bisnis berhasil dihapus!'); window.location.href='".base_url('PengaturanLandingPage#unit_bisnis')."';</script>";
+}
+
+// =================== SECTION CULTURE ===================
+
+// Tampilkan halaman Culture (section utama + detail)
+public function culture()
+{
+    $data['culture'] = $this->Pengaturanlp_model->get_culture();
+    $data['cultures'] = $this->Pengaturanlp_model->get_culture_details();
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('pengaturan-landing-page/culture', $data);
+    $this->load->view('templates/footer');
+}
+
+
+// =================== CRUD SETTING_CULTURE ===================
+
+// Update data utama (section culture)
+public function update_main()
+{
+    $id = $this->input->post('id');
+    $title = $this->input->post('title');
+    $about_culture = $this->input->post('about_culture');
+    $image = $_FILES['image']['name'];
+
+    $data_update = [
+        'title' => $title,
+        'about_culture' => $about_culture,
+    ];
+
+    // Upload gambar jika ada
+    if (!empty($image)) {
+        $config['upload_path'] = './assets/img/';
+        $config['allowed_types'] = 'jpg|jpeg|png|webp';
+        $config['file_name'] = time() . '_' . $image;
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            $upload_data = $this->upload->data();
+            $data_update['image'] = $upload_data['file_name'];
+
+            // hapus gambar lama
+            $old = $this->db->get_where('setting_culture', ['id' => $id])->row_array();
+            if (!empty($old['image']) && file_exists('./assets/img/' . $old['image'])) {
+                unlink('./assets/img/' . $old['image']);
+            }
+        }
+    }
+
+    $this->db->where('id', $id);
+   
+    $update = $this->db->update('setting_culture', $data_update, ['id' => $id]);
+
+    if ($update) {
+        echo "<script>
+                alert('Section Culture berhasil diperbarui!');
+                window.location.href='" . base_url('PengaturanLandingPage#culture') . "';
+              </script>";
+    } else {
+        echo "<script>
+                alert('Gagal memperbarui Section Culture!');
+                window.history.back();
+              </script>";
+    }
+}
+
+
+// =================== CRUD DETAIL CULTURE ===================
+
+// Simpan data detail (tambah/edit)
+public function save_culture_detail()
+{
+    $id = $this->input->post('id');
+    $title = $this->input->post('title');
+    $subtitle = $this->input->post('subtitle');
+    $description = $this->input->post('description');
+    $image = $_FILES['image']['name'];
+
+    $data = [
+        'title' => $title,
+        'subtitle' => $subtitle,
+        'description' => $description
+    ];
+
+    if (!empty($image)) {
+        $config['upload_path'] = './assets/img/';
+        $config['allowed_types'] = 'jpg|jpeg|png|webp';
+        $config['file_name'] = time() . '_' . $image;
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            $upload_data = $this->upload->data();
+            $data['image'] = $upload_data['file_name'];
+        }
+    }
+
+    if (!empty($id)) {
+        // Update data lama
+        $old = $this->db->get_where('setting_culture_detail', ['id' => $id])->row_array();
+        if (!empty($data['image']) && !empty($old['image']) && file_exists('./assets/img/' . $old['image'])) {
+            unlink('./assets/img/' . $old['image']);
+        }
+
+        $update = $this->db->update('setting_culture_detail', $data, ['id' => $id]);
+
+        if ($update) {
+            echo "<script>
+                    alert('Detail Culture berhasil diperbarui!');
+                    window.location.href='" . base_url('PengaturanLandingPage#culture') . "';
+                  </script>";
+        } else {
+            echo "<script>
+                    alert('Gagal memperbarui Detail Culture!');
+                    window.history.back();
+                  </script>";
+        }
+    } else {
+        // Tambah baru
+        $insert = $this->db->insert('setting_culture_detail', $data);
+
+        if ($insert) {
+            echo "<script>
+                    alert('Detail Culture berhasil ditambahkan!');
+                    window.location.href='" . base_url('PengaturanLandingPage#culture') . "';
+                  </script>";
+        } else {
+            echo "<script>
+                    alert('Gagal menambahkan Detail Culture!');
+                    window.history.back();
+                  </script>";
+        }
+    }
+}
+
+public function delete_culture_detail($id)
+{
+    $data = $this->db->get_where('setting_culture_detail', ['id' => $id])->row_array();
+
+    if (!empty($data['image']) && file_exists('./assets/img/' . $data['image'])) {
+        unlink('./assets/img/' . $data['image']);
+    }
+
+    $delete = $this->db->delete('setting_culture_detail', ['id' => $id]);
+
+    if ($delete) {
+        echo "<script>
+                alert('Detail Culture berhasil dihapus!');
+                window.location.href='" . base_url('PengaturanLandingPage#culture') . "';
+              </script>";
+    } else {
+        echo "<script>
+                alert('Gagal menghapus Detail Culture!');
+                window.history.back();
+              </script>";
+    }
+}
+
+
 }

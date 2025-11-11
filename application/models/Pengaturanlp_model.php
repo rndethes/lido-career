@@ -7,6 +7,7 @@ class Pengaturanlp_model extends CI_Model
     private $table_about = 'setting_about';
     private $table_office   = 'setting_office';
     private $table_news = 'setting_news';
+    private $table_unit     = 'setting_unit_business';
 
     // --- HERO SECTION ---
     public function get_data()
@@ -126,4 +127,65 @@ public function delete_news($id) {
     $this->db->where('id', $id);
     $this->db->delete('setting_news');
 }
+
+    public function get_all_units()
+    {
+        return $this->db->order_by('id', 'ASC')->get($this->table_unit)->result_array();
+    }
+
+    public function get_unit($id)
+    {
+        return $this->db->get_where($this->table_unit, ['id' => $id])->row_array();
+    }
+
+    public function insert_unit($data)
+    {
+        return $this->db->insert($this->table_unit, $data);
+    }
+
+    public function update_unit($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update($this->table_unit, $data);
+    }
+
+    public function delete_unit($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete($this->table_unit);
+    }
+
+         public function get_culture()
+    {
+        return $this->db->get_where('setting_culture', ['id' => 1])->row_array();
+    }
+
+    public function get_culture_details()
+    {
+        return $this->db->get('setting_culture_detail')->result_array();
+    }
+
+    public function update_culture_main($data)
+    {
+        $this->db->where('id', 1);
+        return $this->db->update('setting_culture', $data);
+    }
+
+    public function insert_culture_detail($data)
+    {
+        return $this->db->insert('setting_culture_detail', $data);
+    }
+
+    public function update_culture_detail($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('setting_culture_detail', $data);
+    }
+
+    public function delete_culture_detail($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('setting_culture_detail');
+    }
+
 }

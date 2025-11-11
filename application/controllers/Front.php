@@ -298,4 +298,38 @@ public function blog($id)
     $this->load->view('front/blog', $data); // detail berita
     $this->load->view('front/footer-landing', $data);
 }
+
+public function unit_details($id = null)
+{
+    if ($id === null) {
+        show_404(); // jika ID tidak diberikan, tampilkan halaman 404
+        return;
+    }
+
+    $data['title'] = 'Detail Unit Bisnis';
+    $data['unit'] = $this->main_model->getUnitBusinessById($id); // pastikan model punya fungsi ini
+    $data['content_sosmed'] = $this->main_model->getSettingSosmed();
+    $data['company'] = $this->main_model->getCompany();
+
+    // cek login user
+    $id_user = getLoggedInUser('id');
+    if ($id_user) {
+        $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
+        $data['img'] = !empty($user['photo_candidate'])
+            ? base_url('uploads/kandidat/profiles/' . $user['photo_candidate'])
+            : base_url('assets/img/default-profile.png');
+        $data['user_logged_in'] = true;
+        $data['user_name'] = $user['name_candidate'];
+    } else {
+        $data['img'] = base_url('assets/img/default-profile.png');
+        $data['user_logged_in'] = false;
+        $data['user_name'] = null;
+    }
+
+    // load view
+    $this->load->view('front/header-landing', $data);
+    $this->load->view('front/unit_details', $data); // view baru unit_details.php
+    $this->load->view('front/footer-landing', $data);
+}
+
 }

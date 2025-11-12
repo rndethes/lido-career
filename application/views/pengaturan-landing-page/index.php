@@ -5,12 +5,39 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   border: none;
 }
+
 .card-header {
-  background: linear-gradient(90deg, #f0f2f5ff, #f5f7faff);
-  color: #fff;
-  border-radius: 15px 15px 0 0;
-  text-align: center;
+    background: linear-gradient(90deg, #f0f2f5ff, #f5f7faff);
+    color: #fff;
+    border-radius: 15px 15px 0 0;
+    text-align: center;
+    padding: 0; /* hilangkan padding default */
 }
+
+.card-header .nav {
+    display: flex;
+    flex-wrap: nowrap;  /* jangan wrap ke baris baru */
+    overflow-x: auto;   /*scroll horizontal jika muatannya banyak*/
+    -webkit-overflow-scrolling: touch; /* smooth scroll di mobile */
+}
+
+.card-header .nav .nav-item {
+    flex: 0 0 auto; /* setiap tab tidak mengecil */
+}
+
+.card-header .nav .nav-link {
+    white-space: nowrap; /* jangan pecah teks tab */
+}
+
+/* Optional: hapus scrollbar default agar lebih rapi */
+.card-header .nav::-webkit-scrollbar {
+    height: 5px;
+}
+.card-header .nav::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
 .card-body {
   padding: 15px !important;
 }
@@ -36,28 +63,28 @@ img.preview {
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="hero-tab" data-bs-toggle="tab" data-bs-target="#hero" type="button" role="tab">🏠 Beranda</button>
+        <button class="nav-link active" id="hero-tab" data-bs-toggle="tab" data-bs-target="#hero" type="button" role="tab">🏠Beranda</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab">ℹ️ Tentang</button>
+        <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab">ℹ️Tentang</button>
       </li>
       <li class="nav-item" role="presentation">
-          <button class="nav-link" id="visi-tab" data-bs-toggle="tab" data-bs-target="#visi" type="button" role="tab">🎯 Visi & Misi</button>
+          <button class="nav-link" id="visi-tab" data-bs-toggle="tab" data-bs-target="#visi" type="button" role="tab">🎯Visi & Misi</button>
       </li>
       <li class="nav-item" role="presentation">
-          <button class="nav-link" id="office-tab" data-bs-toggle="tab" data-bs-target="#office" type="button" role="tab">🏢 Office</button>
+          <button class="nav-link" id="office-tab" data-bs-toggle="tab" data-bs-target="#office" type="button" role="tab">🏢Office</button>
       </li>
      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="quotes-tab" data-bs-toggle="tab" data-bs-target="#quotes" type="button" role="tab">💬 Quotes</button>
+        <button class="nav-link" id="quotes-tab" data-bs-toggle="tab" data-bs-target="#quotes" type="button" role="tab">💬Quotes</button>
     </li>
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="berita-tab" data-bs-toggle="tab" data-bs-target="#berita" type="button" role="tab">
-        📰 Berita
+        📰Berita
       </button>
     </li>
     <li class="nav-item" role="presentation">
   <button class="nav-link" id="unit-tab" data-bs-toggle="tab" data-bs-target="#unit" type="button" role="tab">
-    🏢 Unit Bisnis
+    🏢Unit Bisnis
   </button>
 </li>
     <li class="nav-item" role="presentation">
@@ -115,12 +142,15 @@ img.preview {
             <input type="text" class="form-control" name="about_subtitle" value="<?= isset($content_about['about_subtitle']) ? $content_about['about_subtitle'] : '' ?>">
           </div>
           <div class="mb-3">
-            <label>Deskripsi 1</label>
-            <textarea class="form-control" name="about_description" rows="2"><?= isset($content_about['about_description']) ? $content_about['about_description'] : '' ?></textarea>
+            <label for="about_description"><strong>Deskripsi 1</strong></label>
+            <textarea id="about_description" name="about_description">
+              <?= isset($content_about['about_description']) ? $content_about['about_description'] : '' ?></textarea>
           </div>
+
           <div class="mb-3">
-            <label>Deskripsi 2</label>
-            <textarea class="form-control" name="about_description2" rows="2"><?= isset($content_about['about_description2']) ? $content_about['about_description2'] : '' ?></textarea>
+            <label for="about_description2"><strong>Deskripsi 2</strong></label>
+            <textarea id="about_description2" name="about_description2">
+              <?= isset($content_about['about_description2']) ? $content_about['about_description2'] : '' ?></textarea>
           </div>
          <div class="mb-3 text-center">
             <!-- Image 1 (Portrait) -->
@@ -155,9 +185,9 @@ img.preview {
             <input type="text" class="form-control mb-2" name="intro_title" 
                    value="<?= isset($intro['intro_title']) ? $intro['intro_title'] : '' ?>">
 
-            <label class="form-label"><strong>Deskripsi Intro</strong></label>
-            <textarea class="form-control mb-2" name="intro_description" rows="3"><?= isset($intro['intro_description']) ? $intro['intro_description'] : '' ?></textarea>
-
+          <label for="intro_description"><strong>Deskripsi Intro</strong></label>
+            <textarea id="intro_description" name="intro_description">
+              <?= isset($intro['intro_description']) ? $intro['intro_description'] : '' ?></textarea>
             <label class="form-label"><strong>URL Video Intro</strong></label>
             <input type="text" class="form-control mb-2" name="intro_video_url" 
                    value="<?= isset($intro['intro_video_url']) ? $intro['intro_video_url'] : '' ?>">
@@ -189,14 +219,14 @@ img.preview {
         <div class="mb-4">
             <label class="form-label"><strong>🌟 Visi</strong></label>
             <textarea class="form-control" name="visi" rows="3"><?= isset($landingpage['visi']) ? $landingpage['visi'] : '' ?></textarea>
-        </div>
+          </div>
 
         <!-- Misi -->
-        <div class="mb-4">
-            <label class="form-label"><strong>📌 Misi</strong></label>
-            <textarea class="form-control" name="misi" rows="3"><?= isset($landingpage['misi']) ? $landingpage['misi'] : '' ?></textarea>
+         <div class="mb-4">
+          <label for="misi"><strong>📌 Misi</strong></label>
+            <textarea id="misi" name="misi">
+              <?= isset($landingpage['misi']) ? $landingpage['misi'] : '' ?></textarea>
         </div>
-
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">💾 Simpan</button>
         </div>
@@ -440,10 +470,14 @@ img.preview {
               <label>Subjudul</label>
               <input type="text" name="subtitle" id="subtitle" class="form-control">
             </div>
-            <div class="col-md-12">
-              <label>Konten</label>
-              <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
-            </div>
+                      <div class="col-md-12 mb-4">
+            <label for="content" class="form-label fw-semibold">Konten</label>
+            <textarea name="content" id="content" class="form-control" rows="6" required>
+              <?= isset($news['content']) ? html_entity_decode($news['content']) : '' ?>
+            </textarea>
+          </div>
+
+
             <div class="col-md-6">
               <label>Tanggal Rilis</label>
               <input type="date" name="release_date" id="release_date" class="form-control" required>
@@ -476,7 +510,7 @@ img.preview {
             <div class="form-group mt-3">
               <label>Diperbarui Oleh</label>
               <input type="text" name="updated_by" id="updated_by" class="form-control"
-                     value="<?= isset($_SESSION['nama']) ? htmlspecialchars($_SESSION['nama']) : '' ?>" readonly>
+                     value="<?=isset($_SESSION['nama']) ? htmlspecialchars($_SESSION['nama']) : ''?>" readonly>
             </div>
           </div>
         </div>
@@ -740,6 +774,53 @@ img.preview {
 
 
 
+<script src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
+<script>
+  CKEDITOR.replace('about_description', {
+    height: 100,
+    enterMode: CKEDITOR.ENTER_BR, 
+    shiftEnterMode: CKEDITOR.ENTER_P,
+    removeButtons: 'PasteFromWord'
+  });
+
+  CKEDITOR.replace('about_description2', {
+    height: 100,
+    enterMode: CKEDITOR.ENTER_BR,
+    shiftEnterMode: CKEDITOR.ENTER_P,
+    removeButtons: 'PasteFromWord'
+  });
+  CKEDITOR.replace('intro_description', {
+    height: 100,
+    enterMode: CKEDITOR.ENTER_BR, 
+    shiftEnterMode: CKEDITOR.ENTER_P,
+    removeButtons: 'PasteFromWord'
+  });
+  CKEDITOR.replace('content', {
+    height: 100,
+    enterMode: CKEDITOR.ENTER_BR, 
+    shiftEnterMode: CKEDITOR.ENTER_P,
+    removeButtons: 'PasteFromWord'
+  });
+
+   CKEDITOR.replace('misi', {
+    height: 100,
+    enterMode: CKEDITOR.ENTER_BR, 
+    shiftEnterMode: CKEDITOR.ENTER_P,
+    removeButtons: 'PasteFromWord'
+  });
+  CKEDITOR.replace('description', {
+    height: 100,
+    enterMode: CKEDITOR.ENTER_BR, 
+    shiftEnterMode: CKEDITOR.ENTER_P,
+    removeButtons: 'PasteFromWord'
+  });
+  CKEDITOR.replace('description1', {
+    height: 100,
+    enterMode: CKEDITOR.ENTER_BR, 
+    shiftEnterMode: CKEDITOR.ENTER_P,
+    removeButtons: 'PasteFromWord'
+  });
+</script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const hash = window.location.hash;
@@ -791,6 +872,7 @@ img.preview {
 
   // Edit unit
   function editUnit(data){
+
     document.getElementById('unit_id').value = data.id || '';
     document.getElementById('unit_title').value = data.title || '';
     document.getElementById('unit_description').value = data.description || '';
@@ -858,7 +940,10 @@ function editBerita(data) {
   document.getElementById('category').value = data.category || '';
   document.getElementById('title').value = data.title || '';
   document.getElementById('subtitle').value = data.subtitle || '';
-  document.getElementById('content').value = data.content || '';
+  if (CKEDITOR.instances['content']) {
+    CKEDITOR.instances['content'].setData(data.content || '');
+}
+
   document.getElementById('release_date').value = data.release_date || '';
 
   // Cover lama

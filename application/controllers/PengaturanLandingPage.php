@@ -280,6 +280,7 @@ public function berita()
 
     // Tambahkan judul halaman (opsional)
     $data['title'] = 'Pengaturan Berita';
+    
 
     // Redirect ke halaman index dengan hash #berita
     // Ini akan otomatis scroll ke bagian berita di halaman index

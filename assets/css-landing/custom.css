@@ -143,7 +143,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 0; 
+  padding: 50px 0; 
 }
 
 .about-image img {
@@ -159,8 +159,8 @@
   transform: translateY(-50%);
   background: #8b000f;
   color: #fff;
-  width: 38%;          /* ukuran box lebih kecil dari gambar */
-  padding: 50px 40px;
+  width: 48%;          
+  padding: 40px 30px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 

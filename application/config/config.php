@@ -34,7 +34,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 //  $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 //  $config['base_url'] = $base_url;
 
- $config['base_url'] = 'http://192.168.0.123/lido-career/';
+  $config['base_url'] = 'http://192.168.0.121/lido-career/';
 
 
 /*

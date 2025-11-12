@@ -4,6 +4,7 @@
         <div class="container">
             <article class="blog-post">
 
+ <h1 class="title"><?= htmlspecialchars($news['title']) ?></h1>
                 <!-- Carousel Cover + Media -->
                 <div id="newsCarousel" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3000">
                     <div class="carousel-inner">
@@ -55,7 +56,6 @@
                 <p class="post-category"><?= htmlspecialchars($news['category']) ?></p>
 
                 <!-- Title & Subtitle -->
-                <h1 class="title"><?= htmlspecialchars($news['title']) ?></h1>
                 <?php if(!empty($news['subtitle'])): ?>
                     <h4 class="text-muted"><?= htmlspecialchars($news['subtitle']) ?></h4>
                 <?php endif; ?>

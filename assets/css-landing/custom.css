@@ -1,4 +1,4 @@
-  .header {
+ .header {
   background: linear-gradient(90deg, #d80415ff 0%, #d41920ff 100%) !important;
 }
 #hero.dark-background::before {

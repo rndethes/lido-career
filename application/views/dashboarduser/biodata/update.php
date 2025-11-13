@@ -1,5 +1,4 @@
-
-<div id="update-biodata-app-root" style="display: block;">
+<div id="update-biodata-app-root" display="block">
     <div class="row">
         <div class="col-lg-3 mb-lg-0 mb-4">
             <div class="card">
@@ -74,8 +73,12 @@
                                     <div class="form-group">
                                         <label class="form-control-label">Tempat
                                             Lahir</label>
-                                        <input v-model="data_diri.tempat_lahir_candidate" name="tempat_lahir_candidate"
-                                            placeholder="Kota/Kabupaten" class="form-control tt-gede" type="text" />
+                                       <input v-model="data_diri.tempat_lahir_candidate"
+                                            name="tempat_lahir_candidate"
+                                            placeholder="Kota/Kabupaten"
+                                            class="form-control"
+                                            type="text"
+                                            style="text-transform: uppercase;" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -91,7 +94,7 @@
                                     <div class="form-group">
                                         <label class="form-control-label">Agama</label>
                                         <select v-model="data_diri.religion_candidate" class="form-control" name="religion_candidate">
-                                            <option value="">-- pilih --</option>
+                                            <option value="" disabled selected hidden>-- pilih --</option>
                                             <option v-for="agm in agama_list" :key="agm.id" :value="agm.id">
                                                 {{ agm.text }}
                                             </option>
@@ -104,7 +107,7 @@
                                     <div class="form-group">
                                         <label class="form-control-label">Jenis Kelamin</label>
                                         <select v-model="data_diri.jk_candidate" class="form-control" name="jk_candidate">
-                                            <option value="">-- pilih --</option>
+                                            <option value="" disabled selected hidden>-- pilih --</option>
                                             <option v-for="kel in jenis_kelamin" :key="kel.id" :value="kel.id">
                                                 {{ kel.text }}
                                             </option>
@@ -117,7 +120,7 @@
                                     <div class="form-group">
                                         <label class="form-control-label">Status</label>
                                         <select v-model="data_diri.marital_candidate" class="form-control" name="marital_candidate">
-                                            <option value="">-- pilih --</option>
+                                            <option value="" disabled selected hidden>-- pilih --</option>
                                             <option v-for="st in marital_list" :key="st.id" :value="st.id">
                                                 {{ st.text }}
                                             </option>
@@ -185,30 +188,30 @@
                                         <label class="form-control-label">Nama
                                             Sekolah/Universitas</label>
                                         <input v-model="pendidikan.name_school" name="name_school"
-                                            placeholder="SMK 1 BAWANG" class="form-control tt-gede" type="text" />
+                                            placeholder="SMK 1 BAWANG" class="form-control tt-gede" type="text"   style="text-transform: uppercase;"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-control-label">Jurusan</label>
                                         <input v-model="pendidikan.jurusan" name="jurusan_" placeholder="TEKNIK"
-                                            class="form-control tt-gede" type="text" />
+                                            class="form-control tt-gede" type="text" style="text-transform: uppercase;"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6" v-show="showMajor">
                                     <div class="form-group">
                                         <label class="form-control-label">Fakultas</label>
                                         <input v-model="pendidikan.major_school" placeholder="HUKUM" name="major_school"
-                                            class="form-control tt-gede" type="text">
+                                            class="form-control tt-gede" type="text" style="text-transform: uppercase;">
                                     </div>
                                 </div>
                             </div>
                            <div class="row">
                             <?php
                             $bulanIndo = [
-                            1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April',
-                            5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus',
-                            9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
+                            1 => 'JANUARI', 2 => 'FEBRUARI', 3 => 'MARET', 4 => 'APRIL',
+                            5 => 'MEI', 6 => 'JUNI', 7 => 'JULI', 8 => 'AGUSTUS',
+                            9 => 'SEPTEMBER', 10 => 'OKTOBER', 11 => 'NOVEMBER', 12 => 'DESEMBER'
                             ];
 
                             // Ambil data dari DB yang dikirim controller ke view
@@ -289,7 +292,7 @@
                                                 style="color: red;">*</sup></label>
                                         <textarea v-model="alamat.alamat" name="alamat"
                                             placeholder="JL.KENANGA NO. 05, RT/RW 004/005, DESA KANDANGAN"
-                                            class="form-control tt-gede" id="input1" rows="3"></textarea>
+                                            class="form-control tt-gede" id="input1" rows="3"  style="text-transform: uppercase;" ></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -346,7 +349,7 @@
                             <div class="row mb-3 mt-3">
                                 <div class="col-md-12">
                                     <h6 class="text-capitalize">Alamat Saat Ini</h6>
-                                    <div class="form-check">
+                                    <div class="form-check" style="text-transform: uppercase;">
                                         <input @click="copyAddress" class="form-check-input" type="checkbox" value="yes"
                                             id="checkboxAddrIsEq">
                                         <label class="form-check-label" for="checkboxAddrIsEq">
@@ -361,7 +364,7 @@
                                         <label class="form-control-label">Alamat <sup
                                                 style="color: red;">*</sup></label>
                                         <textarea v-model="alamat2.alamat" name="alamat" class="form-control tt-gede"
-                                            id="input1" rows="3"></textarea>
+                                            id="input1" rows="3" ></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -439,7 +442,7 @@
                                         <label class="form-control-label">Nama
                                             Perusahaan</label>
                                         <input v-model="pengalaman.name_company" placeholder="PT. SEJAHTERA"
-                                            class="form-control tt-gede" type="text" />
+                                            class="form-control tt-gede" type="text"  style="text-transform: uppercase;" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -447,7 +450,7 @@
                                         <label class="form-control-label">Jenis
                                             Perusahaan</label>
                                         <input v-model="pengalaman.type_company" placeholder="APPAREL & KONVEKSI"
-                                            class="form-control tt-gede" type="text" />
+                                            class="form-control tt-gede" type="text"  style="text-transform: uppercase;"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -473,7 +476,7 @@
                                         <label class="form-control-label">Jabatan
                                             Terakhir</label>
                                         <input v-model="pengalaman.last_position" class="form-control tt-gede"
-                                            placeholder="HRD" type="text" />
+                                            placeholder="HRD" type="text"  style="text-transform: uppercase;"  />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -686,12 +689,12 @@
             >
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                <p class="text-dark mb-1">
+                <!-- <p class="text-dark mb-1">
                     <strong>{{ file.jenis_file }}</strong>
-                </p>
+                </p> -->
                 <p class="text-dark mb-0">
                     <a :href="file.url" target="_blank">
-                    <i class="fas fa-file"></i> {{ file.name }}
+                    <i class="fas fa-file"></i>  <strong>{{ file.jenis_file }}</strong>
                     </a>
                 </p>
                 </div>
@@ -748,7 +751,7 @@
           <div class="form-group mb-3">
             <label>Jenis Dokumen</label>
             <select name="jenis_file" v-model="formFilePendukungJenis" class="form-select" required>
-              <option disabled value="">-- Pilih Jenis Dokumen --</option>
+              <option disabled value="" disabled selected hidden>-- Pilih Jenis Dokumen --</option>
               <option value="Portofolio">Portofolio</option>
               <option value="Sertifikat">Sertifikat</option>
             </select>
@@ -857,27 +860,27 @@
                         },
                         {
                             id: 5,
-                            text: 'Diploma 1'
+                            text: 'DIPLOMA 1'
                         },
                         {
                             id: 6,
-                            text: 'Diploma 2'
+                            text: 'DIPLOMA 2'
                         },
                         {
                             id: 7,
-                            text: 'Diploma 3'
+                            text: 'DIPLOMA 3'
                         },
                         {
                             id: 8,
-                            text: 'Sarjana Strata 1'
+                            text: 'SARJANA STRATA 1'
                         },
                         {
                             id: 9,
-                            text: 'Sarjana Strata 2'
+                            text: 'SARJANA STRATA 2'
                         },
                         {
                             id: 10,
-                            text: 'Sarjana Strata 3'
+                            text: 'SARJANA STRATA 3'
                         },
                     ],
                     status_pegawai_list: [{
@@ -1340,8 +1343,8 @@
   const yearEnd    = getSelectValue('select[name="year_end"], select.tt-selectize[data-selectize="pendidikan_yl"]');
 
   const bulanMap = {
-    'Januari':'01','Februari':'02','Maret':'03','April':'04','Mei':'05','Juni':'06',
-    'Juli':'07','Agustus':'08','September':'09','Oktober':'10','November':'11','Desember':'12',
+    'JANUARI':'01','FEBRUARI':'02','MARET':'03','APRIL':'04','MEI':'05','JUNI':'06',
+    'JULI':'07','AGUSTUS':'08','SEPTEMBER':'09','OKTOBER':'10','NOVEMBER':'11','DESEMBER':'12',
     'jan':'01','feb':'02','mar':'03','apr':'04','may':'05','jun':'06','jul':'07','aug':'08','sep':'09','oct':'10','nov':'11','dec':'12'
   };
 

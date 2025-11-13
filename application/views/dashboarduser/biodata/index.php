@@ -78,7 +78,7 @@
                                 <h6>No. Handphone</h6>
 
                               <span
-                                    class="sub-bio"><?= $biodata['no_candidate'] ?></span>
+                                    class="sub-bio" ><?= $biodata['no_candidate'] ?></span>
                                 <hr class="horizontal dark mt-2">
                                 <h6>Tempat Lahir</h6>
                                 <span
@@ -86,8 +86,10 @@
 
                                 <hr class="horizontal dark mt-2">
                                 <h6>Tanggal Lahir</h6>
-                                <span
-                                    class="sub-bio"><?= $biodata['tanggal_lahir_'] ?></span>
+                                <span class="sub-bio">
+                                    <?= !empty($biodata['tanggal_lahir_']) ? date('d/m/Y', strtotime($biodata['tanggal_lahir_'])) : '-' ?>
+                                </span>
+
                                     
 <hr class="horizontal dark mt-2">
 <h6>Agama</h6>
@@ -225,12 +227,14 @@
                         </a>
                     </div>
 
-                            <hr class="horizontal dark mt-2">
-                            <div class="col-lg-12">
-                                <h5>Alamat</h5>
-                                <div class="sub-bio">
-                                    <?= $address['alamat_'] ?>
+                           <hr class="horizontal dark mt-2">
+                                <div class="col-lg-12">
+                                    <h5>Alamat</h5>
+                                    <div class="sub-bio" style="text-transform: uppercase;">
+                                        <?= $address['alamat_'] ?>
+                                    </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-4">
                                         <h6>Provinsi</h6>
@@ -280,9 +284,9 @@
                                         <h6>Tahun Pendidikan</h6>
                                       <?php
                                         $bulan = [
-                                            'January' => 'Januari', 'February' => 'Februari', 'March' => 'Maret', 'April' => 'April',
-                                            'May' => 'Mei', 'June' => 'Juni', 'July' => 'Juli', 'August' => 'Agustus',
-                                            'September' => 'September', 'October' => 'Oktober', 'November' => 'November', 'December' => 'Desember'
+                                            'January' => 'JANUARI', 'February' => 'FEBRUARI', 'March' => 'MARET', 'April' => 'APRIL',
+                                            'May' => 'MEI', 'June' => 'JUNI', 'July' => 'JULI', 'August' => 'AGUSTUS',
+                                            'September' => 'SEPTEMBER', 'October' => 'OKTOBER', 'November' => 'NOVEMBER', 'December' => 'DESEMBER'
                                         ];
 
                                         function indoBulan($date, $bulan) {
@@ -312,7 +316,7 @@
                                     </div>
                                     <div class="col-6">
                                         <h6>Jenis Perusahaan</h6>
-                                        <div class="sub-bio">
+                                        <div class="sub-bio" style="text-transform: uppercase;">
 
                                             <?= strtoupper($row['type_company']) ?>
 
@@ -320,7 +324,7 @@
                                     </div>
                                     <div class="col-6">
                                         <h6>Lama Bekerja</h6>
-                                        <div class="sub-bio">
+                                        <div class="sub-bio" style="text-transform: uppercase;">
                                             <script>
                                                 document.write(__diffDateForHuman(new Date(
                                                     '<?= $row['first_year'] ?>'
@@ -357,7 +361,7 @@
 
                                     <div class="col-6">
                                         <h6>Jabatan Terakhir</h6>
-                                        <div class="sub-bio">
+                                        <div class="sub-bio" style="text-transform: uppercase;">
 
                                             <?= strtoupper($row['last_position']) ?>
 
@@ -366,7 +370,7 @@
                                     <div class="col-6">
                                         <h6>Kontrak Selesai</h6>
 
-                                        <div class="sub-bio">
+                                        <div class="sub-bio" style="text-transform: uppercase;">
                                             <?= is_null($row['last_year']) ? 'Belum' : 'Selesai' ?>
                                         </div>
 
@@ -402,14 +406,13 @@
                                 <p class="text-dark mb-1">
                                     <a href="<?= base_url('uploads/kandidat/files/' . $row['file_pendukung']) ?>"
                                        target="_blank">
-                                        <i class="fas fa-file"></i>
-                                        <?= $row['file_pendukung'] ?>
+                                        <i class="fas fa-file"></i> <strong> <?= $row['jenis_file'] ?></strong>   
                                     </a>
                                 </p>
-                                <small class="text-muted">
+                                <!-- <small class="text-muted">
                                     <i class="fas fa-tag"></i> Jenis File:
                                     <strong><?= ucfirst($row['jenis_file']) ?></strong>
-                                </small>
+                                </small> -->
                             </div>
                         </div>
                     </div>

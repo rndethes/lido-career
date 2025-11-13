@@ -294,17 +294,16 @@ if (!empty($visimisi_intro['intro_video_url'])) {
 </div>
       </section>
 
-    
-
        <section class="contact-map">
-       <div class="container section-title" data-aos="fade-up">
+       <div class="container section-title" data-aos="fade-up" style="margin-bottom: -30px;">
         <h2>Lokasi Kantor</h2>
       </div>
+
       <iframe
         src="<?= $content_zero['link_map'] ?>"
         width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </section>
-      <!-- /Contact Section -->
+     
     </main>
 
     <script>

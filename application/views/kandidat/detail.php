@@ -86,8 +86,8 @@
 
                                 <hr class="horizontal dark mt-2">
                               <h6>Tanggal Lahir</h6>
-                                <span class="sub-bio">
-                                    <?= !empty($biodata['tanggal_lahir_candidate']) ? $biodata['tanggal_lahir_candidate'] : '-' ?>
+                                 <span class="sub-bio">
+                                    <?= !empty($biodata['tanggal_lahir_candidate']) ? date('d/m/Y', strtotime($biodata['tanggal_lahir_candidate'])) : '-' ?>
                                 </span>
 <hr class="horizontal dark mt-2">
 <h6>Agama</h6>
@@ -223,7 +223,7 @@
                             <hr class="horizontal dark mt-2">
                             <div class="col-lg-12">
                                 <h5>Alamat</h5>
-                                <div class="sub-bio">
+                                <div class="sub-bio" style="text-transform: uppercase;">
                                     <?= $address['alamat_'] ?>
                                 </div>
                                 <div class="row">
@@ -275,9 +275,9 @@
                                         <h6>Tahun Pendidikan</h6>
                                       <?php
                                         $bulan = [
-                                            'January' => 'Januari', 'February' => 'Februari', 'March' => 'Maret', 'April' => 'April',
-                                            'May' => 'Mei', 'June' => 'Juni', 'July' => 'Juli', 'August' => 'Agustus',
-                                            'September' => 'September', 'October' => 'Oktober', 'November' => 'November', 'December' => 'Desember'
+                                           'January' => 'JANUARI', 'February' => 'FEBRUARI', 'March' => 'MARET', 'April' => 'APRIL',
+                                            'May' => 'MEI', 'June' => 'JUNI', 'July' => 'JULI', 'August' => 'AGUSTUS',
+                                            'September' => 'SEPTEMBER', 'October' => 'OKTOBER', 'November' => 'NOVEMBER', 'December' => 'DESEMBER'
                                         ];
 
                                         function indoBulan($date, $bulan) {
@@ -315,7 +315,7 @@
                                     </div>
                                     <div class="col-6">
                                         <h6>Lama Bekerja</h6>
-                                        <div class="sub-bio">
+                                        <div class="sub-bio" style="text-transform: uppercase;">
                                             <script>
                                                 document.write(__diffDateForHuman(new Date(
                                                     '<?= $row['first_year'] ?>'
@@ -360,7 +360,7 @@
                                     <div class="col-6">
                                         <h6>Kontrak Selesai</h6>
 
-                                        <div class="sub-bio">
+                                        <div class="sub-bio" style="text-transform: uppercase;">
                                             <?= is_null($row['last_year']) ? 'Belum' : 'Selesai' ?>
                                         </div>
 
@@ -393,17 +393,12 @@
                          style="background: rgba(233, 233, 233, 0.8); border-radius: 10px; padding: 15px;">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <p class="text-dark mb-1">
+                                 <p class="text-dark mb-1">
                                     <a href="<?= base_url('uploads/kandidat/files/' . $row['file_pendukung']) ?>"
                                        target="_blank">
-                                        <i class="fas fa-file"></i>
-                                        <?= $row['file_pendukung'] ?>
+                                        <i class="fas fa-file"></i> <strong> <?= $row['jenis_file'] ?></strong>   
                                     </a>
                                 </p>
-                                <small class="text-muted">
-                                    <i class="fas fa-tag"></i> Jenis File:
-                                    <strong><?= ucfirst($row['jenis_file']) ?></strong>
-                                </small>
                             </div>
                         </div>
                            <div class="d-block d-md-none">

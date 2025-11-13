@@ -188,4 +188,59 @@ public function delete_news($id) {
         return $this->db->delete('setting_culture_detail');
     }
 
+
+    public function add_social($data)
+    {
+        return $this->db->insert('setting_social', $data);
+    }
+
+    public function get_social($id)
+    {
+        return $this->db->get_where('setting_social', ['id_sc' => $id])->row_array();
+    }
+
+
+    public function edit_social($id, $data)
+    {
+        $this->db->where('id_sc', $id);
+        return $this->db->update('setting_social', $data);
+    }
+
+
+    public function delete_social($id)
+    {
+        return $this->db->delete('setting_social', ['id_sc' => $id]);
+    }
+
+    public function get_all_social()
+    {
+        return $this->db->get('setting_social')->result_array();
+    }
+
+     public function get_footer_setting()
+    {
+        return $this->db->get_where('setting_landingpage', ['id' => 1])->row_array();
+    }
+
+    // update alamat footer
+    public function update_footer_setting($address)
+    {
+        $this->db->where('id', 1);
+        return $this->db->update('setting_landingpage', ['address_footer' => $address]);
+    }
+
+    public function update_map_link($link_map)
+{
+    // Update baris utama dengan id = 1
+    $this->db->where('id', 1);
+    return $this->db->update('setting_landingpage', ['link_map' => $link_map]);
+}
+
+public function get_map_link()
+{
+    $query = $this->db->get_where('setting_landingpage', ['id' => 1]);
+    return $query->row_array();
+}
+
+
 }

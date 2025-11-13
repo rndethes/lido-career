@@ -179,15 +179,22 @@ class CandidateBiodata extends CI_Controller
 
     if (!empty($_FILES['photo_candidate']['name'])) {
         $file = $_FILES['photo_candidate'];
+
+        
+    if ($file['size'] > 5120) { 
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => 'Ukuran file terlalu besar! Maksimal 2MB.']);
+            return;
+        }
         $target_dir = FCPATH . 'uploads/kandidat/profiles/';
         if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
 
         $target_file = 'file_' . time() . '_' . $file['name'];
         if (move_uploaded_file($file['tmp_name'], $target_dir . $target_file)) {
-            // Kirim nama file string ke model
+          
             $save = $this->kandidat_model->saveKandidat([
                 'id' => $id_user,
-                'photo_candidate' => $target_file  // ❌ Hanya nama file, bukan $_FILES array
+                'photo_candidate' => $target_file  
             ]);
             if ($save) {
                 echo json_encode([
@@ -224,6 +231,11 @@ class CandidateBiodata extends CI_Controller
         return $this->response(false, 'Access denied (Unauthorized).', 401);
     }
 
+    if ($file['size'] > 5120) { 
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => 'Ukuran file terlalu besar! Maksimal 2MB.']);
+            return;
+        }
     // Pastikan folder upload ada
     $target_dir = FCPATH . 'uploads/kandidat/files/';
     if (!file_exists($target_dir)) {

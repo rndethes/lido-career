@@ -8,10 +8,12 @@
           <i class="bi bi-geo-alt-fill me-2"></i> ALAMAT KANTOR
         </h4>
         <p class="mt-2">
-          Krajan 1 Kandangan, RT 001/RW 007, Krajan, Kec. Kandangan, 
-          Kab. Temanggung, Jawa Tengah, 56281.
+          <?= !empty($content_footer['address_footer']) 
+                ? $content_footer['address_footer'] 
+                : 'Alamat kantor belum diatur.'; ?>
         </p>
       </div>
+
 
       <!-- Kolom 2 - Layanan -->
       <div class="col-lg-4 col-md-6">
@@ -19,29 +21,31 @@
           <i class="bi bi-link-45deg me-2"></i> LAYANAN
         </h4>
         <ul class="footer-links mt-2">
-          <li><a href="#">Toko yang tersebar di Jawa Tengah</a></li>
-          <li><a href="#">Tentang Kami</a></li>
-          <li><a href="#">Hubungi Kami</a></li>
-          <li><a href="#">Bantuan</a></li>
+          <li><a href="<?= base_url('front/index#cabang-kota') ?>">Toko yang tersebar di Jawa Tengah</a></li>
+          <li><a href="<?= base_url('front/about_details') ?>">Tentang Kami</a></li>
+          <li><a href="<?= base_url('front/contact_details') ?>">Hubungi Kami</a></li>
         </ul>
       </div>
 
       <!-- Kolom 3 - Sosial Media -->
-      <div class="col-lg-4 col-md-6">
-        <h4 class="footer-title">
-          <i class="bi bi-people-fill me-2"></i> IKUTI KAMI
-        </h4>
-      <div class="social-links d-flex justify-content-center justify-content-lg-center mt-2" style="margin-left: 20px;">
-    <?php if(!empty($content_sosmed)): ?>
-        <?php foreach($content_sosmed as $social): ?>
-            <a href="<?= $social['link_social'] ?>" target="_blank">
-                <?= $social['icon_social'] ?>
-            </a>
-        <?php endforeach; ?>
-    <?php endif; ?>
-</div>
+      <div class="col-lg-4 col-md-6"> 
+  <h4 class="footer-title text-white">
+    <i class="bi bi-people-fill me-2"></i> IKUTI KAMI
+  </h4>
 
-      </div>
+  <div class="social-links d-flex justify-content-center justify-content-lg-center mt-2" style="margin-left: 20px;">
+    <?php if (!empty($content_sosmed)): ?>
+      <?php foreach ($content_sosmed as $social): ?>
+        <a href="<?= htmlspecialchars($social['link_social']) ?>" 
+           target="_blank" 
+           class="me-3"
+           style="font-size: 24px; color: #fff; transition: 0.3s;">
+          <i class="<?= htmlspecialchars($social['icon_social']) ?>"></i>
+        </a>
+      <?php endforeach; ?>
+    <?php endif; ?>
+  </div>
+</div>
 
     </div>
   </div>

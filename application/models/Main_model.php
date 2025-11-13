@@ -177,4 +177,16 @@ class Main_model extends CI_Model
     {
         return $this->db->get('setting_culture_detail')->result_array();
     }
+
+    public function getSettingFooter()
+{
+    $query = $this->db->select('address_footer')
+                      ->from('setting_landingpage')
+                      ->order_by('id', 'DESC') // biar ambil baris terbaru
+                      ->limit(1)
+                      ->get();
+
+    return $query->row_array(); // hasil array
+}
+
 }

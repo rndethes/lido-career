@@ -23,6 +23,9 @@ class PengaturanLandingPage extends CI_Controller
         $data['units'] = $this->Pengaturanlp_model->get_all_units();
         $data['culture'] = $this->Pengaturanlp_model->get_culture();
         $data['cultures'] = $this->Pengaturanlp_model->get_culture_details();
+        $data['socials']       = $this->Pengaturanlp_model->get_all_social();
+        $data['footer']        = $this->Pengaturanlp_model->get_footer_setting();
+        $data['map']            = $this->Pengaturanlp_model->get_map_link();
 
 
         //  var_dump($data['quote']); die();
@@ -639,6 +642,68 @@ public function delete_culture_detail($id)
                 window.history.back();
               </script>";
     }
+}
+
+
+    public function save_social()
+    {
+        $id = $this->input->post('id_sc'); 
+        $data = [
+            'name_social' => $this->input->post('name_social'),
+            'icon_social' => $this->input->post('icon_social'),
+            'link_social' => $this->input->post('link_social')
+        ];
+
+        if ($id) {
+           
+            $this->db->update('setting_social', $data, ['id_sc' => $id]);
+            $this->session->set_flashdata('success', 'Sosial media berhasil diperbarui.');
+        } else {
+           
+            $this->db->insert('setting_social', $data);
+            $this->session->set_flashdata('success', 'Sosial media berhasil ditambahkan.');
+        }
+
+        redirect('PengaturanLandingPage#footer');
+    }
+
+
+    public function delete_social($id)
+    {
+        $this->db->delete('setting_social', ['id_sc' => $id]);
+        $this->session->set_flashdata('success', 'Sosial media berhasil dihapus.');
+        redirect('PengaturanLandingPage');
+    }
+
+    public function save_footer_setting()
+{
+    $address = $this->input->post('address_footer');
+
+   
+    $this->db->where('id', 1);
+    $update = $this->db->update('setting_landingpage', ['address_footer' => $address]);
+
+    if ($update) {
+        $this->session->set_flashdata('success', 'Alamat footer berhasil disimpan.');
+    } else {
+        $this->session->set_flashdata('error', 'Gagal menyimpan alamat footer.');
+    }
+
+    redirect('PengaturanLandingPage#footer'); 
+}
+
+public function save_map_link()
+{
+    $link_map = $this->input->post('link_map', true);
+
+    if (!empty($link_map)) {
+        $this->Pengaturanlp_model->update_map_link($link_map);
+        $this->session->set_flashdata('success', 'Link lokasi kantor berhasil diperbarui!');
+    } else {
+        $this->session->set_flashdata('error', 'Link tidak boleh kosong!');
+    }
+
+    redirect('PengaturanLandingPage#footer');
 }
 
 

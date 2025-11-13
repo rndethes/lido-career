@@ -92,6 +92,11 @@ img.preview {
       🌿 Budaya
     </button>
   </li>
+  <li class="nav-item" role="presentation">
+  <button class="nav-link" id="footer-tab" data-bs-toggle="tab" data-bs-target="#footer" type="button" role="tab" aria-controls="footer" aria-selected="false">
+    📍 Footer
+  </button>
+</li>
 
 
  
@@ -134,27 +139,27 @@ img.preview {
       <div class="tab-pane fade" id="about" role="tabpanel">
         <form action="<?= base_url('PengaturanLandingPage/update_about') ?>" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
-            <label>Judul</label>
+            <label>Judul - Tentang</label>
             <input type="text" class="form-control" name="about_title" value="<?= isset($content_about['about_title']) ? $content_about['about_title'] : '' ?>" required>
           </div>
           <div class="mb-3">
-            <label>Subjudul</label>
+            <label>Judul - Beranda</label>
             <input type="text" class="form-control" name="about_subtitle" value="<?= isset($content_about['about_subtitle']) ? $content_about['about_subtitle'] : '' ?>">
           </div>
           <div class="mb-3">
-            <label for="about_description"><strong>Deskripsi 1</strong></label>
+            <label for="about_description"><strong>Profil LIDO29 - Beranda</strong></label>
             <textarea id="about_description" name="about_description">
               <?= isset($content_about['about_description']) ? $content_about['about_description'] : '' ?></textarea>
           </div>
 
           <div class="mb-3">
-            <label for="about_description2"><strong>Deskripsi 2</strong></label>
+            <label for="about_description2"><strong>Profil LIDO29 - Tentang</strong></label>
             <textarea id="about_description2" name="about_description2">
               <?= isset($content_about['about_description2']) ? $content_about['about_description2'] : '' ?></textarea>
           </div>
          <div class="mb-3 text-center">
             <!-- Image 1 (Portrait) -->
-           <label class="form-label d-block mb-1"><strong>Gambar 1 (Portrait)</strong></label>
+           <label class="form-label d-block mb-1"><strong>Gambar 1 (Portrait) - Beranda</strong></label>
             <img id="previewAbout1" 
                 src="<?= isset($content_about['about_image']) ? base_url('assets/img/' . $content_about['about_image']) : base_url('assets/img/default.png') ?>" 
                 class="preview mb-2" 
@@ -162,7 +167,7 @@ img.preview {
             <input type="file" class="form-control mb-3" name="about_image" id="imageAbout1" accept="image/*">
 
             <!-- Image 2 (Landscape) -->
-           <label class="form-label d-block mb-1"><strong>Gambar 2 (Landscape)</strong></label>
+           <label class="form-label d-block mb-1"><strong>Gambar 2 (Landscape - Tentang)</strong></label>
             <img id="previewAbout2" 
                 src="<?= isset($content_about['about_image2']) ? base_url('assets/img/' . $content_about['about_image2']) : base_url('assets/img/default.png') ?>" 
                 class="preview mb-2" 
@@ -181,14 +186,14 @@ img.preview {
 
         <!-- Intro dari setting_visimisi_intro -->
         <div class="mb-4 text-center">
-            <label class="form-label"><strong>Judul Intro</strong></label>
+            <label class="form-label"><strong>Judul Intro - Beranda</strong></label>
             <input type="text" class="form-control mb-2" name="intro_title" 
                    value="<?= isset($intro['intro_title']) ? $intro['intro_title'] : '' ?>">
 
-          <label for="intro_description"><strong>Deskripsi Intro</strong></label>
+          <label for="intro_description"><strong>Deskripsi Intro - Beranda</strong></label>
             <textarea id="intro_description" name="intro_description">
               <?= isset($intro['intro_description']) ? $intro['intro_description'] : '' ?></textarea>
-            <label class="form-label"><strong>URL Video Intro</strong></label>
+            <label class="form-label"><strong>URL Video Intro - Beranda</strong></label>
             <input type="text" class="form-control mb-2" name="intro_video_url" 
                    value="<?= isset($intro['intro_video_url']) ? $intro['intro_video_url'] : '' ?>">
             
@@ -217,13 +222,13 @@ img.preview {
 
         <!-- Visi -->
         <div class="mb-4">
-            <label class="form-label"><strong>🌟 Visi</strong></label>
+            <label class="form-label"><strong>🌟 Visi - Tentang</strong></label>
             <textarea class="form-control" name="visi" rows="3"><?= isset($landingpage['visi']) ? $landingpage['visi'] : '' ?></textarea>
           </div>
 
         <!-- Misi -->
          <div class="mb-4">
-          <label for="misi"><strong>📌 Misi</strong></label>
+          <label for="misi"><strong>📌 Misi Tentang</strong></label>
             <textarea id="misi" name="misi">
               <?= isset($landingpage['misi']) ? $landingpage['misi'] : '' ?></textarea>
         </div>
@@ -306,13 +311,25 @@ img.preview {
           <input type="hidden" name="id" id="office_id">
           <div class="row g-3">
             <div class="col-md-6">
-              <label>Area</label>
-              <input type="text" name="area" id="area" class="form-control" required>
-            </div>
-            <div class="col-md-6">
-              <label>Type</label>
-              <input type="text" name="type" id="type" class="form-control" required>
-            </div>
+            <label>Area</label>
+            <select name="area" id="area" class="form-select" required>
+              <option value="" disabled selected hidden>-- Pilih --</option>
+              <option value="Magelang">Magelang</option>
+              <option value="Temanggung">Temanggung</option>
+              <option value="Semarang">Semarang</option>
+              <option value="Wonosobo">Wonosobo</option>
+              <!-- tambah area -->
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label>Type</label>
+            <select name="type" id="type" class="form-select" required>
+              <option value="" disabled selected hidden>-- Pilih --</option>
+              <option value="Warehouse">Warehouse</option>
+              <option value="Store">Store</option>
+            </select>
+          </div>
             <div class="col-md-6">
               <label>Branch Name</label>
               <input type="text" name="branch_name" id="branch_name" class="form-control" required>
@@ -372,7 +389,7 @@ img.preview {
 
 <!-- Tab Berita -->
 <div class="tab-pane fade" id="berita" role="tabpanel">
-    <h2>Manajemen Berita</h2>
+    <h2>Daftar Berita</h2>
 
     <!-- Tombol Tambah -->
     <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#beritaModal" onclick="resetBeritaForm()">
@@ -526,50 +543,50 @@ img.preview {
 
 <!-- Tab Unit Bisnis -->
 <div class="tab-pane fade" id="unit" role="tabpanel">
-    <h2>Manajemen Unit Bisnis</h2>
+  <h2>Daftar Unit Bisnis</h2>
 
-    <!-- Tombol Tambah -->
-    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#unitModal" onclick="resetUnitForm()">
-        Tambah Unit Bisnis
-    </button>
-    
-    <div class="table-responsive">
-      <table class="table table-bordered table-striped align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>No</th>
-            <th>Judul</th>
-            <th>Deskripsi Singkat</th>
-            <th>Deskripsi Lengkap</th>
-            <th>Gambar</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if(!empty($units)): $no=1; foreach($units as $unit): ?>
-          <tr>
-            <td><?= $no++ ?></td>
-            <td><?= htmlspecialchars($unit['title']) ?></td>
-            <td><?= htmlspecialchars(mb_strimwidth($unit['description'],0,20,'...')) ?></td>
-            <td><?= htmlspecialchars(mb_strimwidth($unit['description1'],0,20,'...')) ?></td>
-            <td>
-              <?php if($unit['image']): ?>
-                <img src="<?= base_url('assets/img/'.$unit['image']) ?>" width="70" class="rounded">
-              <?php else: ?>
-                <span class="text-muted">Tidak ada</span>
-              <?php endif; ?>
-            </td>
-            <td>
-              <button class="btn btn-sm btn-danger" onclick='editUnit(<?= json_encode($unit) ?>)'>Edit</button>
-              <a href="<?= base_url('PengaturanLandingPage/delete_unit/'.$unit['id']) ?>" class="btn btn-sm btn-primary" onclick="return confirm('Hapus unit ini?')">Delete</a>
-            </td>
-          </tr>
-          <?php endforeach; else: ?>
-            <tr><td colspan="6" class="text-center text-muted">Belum ada unit bisnis</td></tr>
-          <?php endif; ?>
-        </tbody>
-      </table>
-    </div>
+  <!-- Tombol Tambah -->
+  <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#unitModal" onclick="resetUnitForm()">
+    Tambah Unit Bisnis
+  </button>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>No</th>
+          <th>Judul</th>
+          <th>Deskripsi Singkat</th>
+          <th>Deskripsi Lengkap</th>
+          <th>Gambar</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if(!empty($units)): $no=1; foreach($units as $unit): ?>
+        <tr>
+          <td><?= $no++ ?></td>
+          <td><?= htmlspecialchars($unit['title']) ?></td>
+          <td><?= htmlspecialchars(mb_strimwidth($unit['description'],0,20,'...')) ?></td>
+          <td><?= htmlspecialchars(mb_strimwidth($unit['description1'],0,20,'...')) ?></td>
+          <td>
+            <?php if($unit['image']): ?>
+              <img src="<?= base_url('assets/img/'.$unit['image']) ?>" width="70" class="rounded">
+            <?php else: ?>
+              <span class="text-muted">Tidak ada</span>
+            <?php endif; ?>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick='editUnit(<?= json_encode($unit) ?>)'>Edit</button>
+            <a href="<?= base_url('PengaturanLandingPage/delete_unit/'.$unit['id']) ?>" class="btn btn-sm btn-primary" onclick="return confirm('Hapus unit ini?')">Delete</a>
+          </td>
+        </tr>
+        <?php endforeach; else: ?>
+          <tr><td colspan="6" class="text-center text-muted">Belum ada unit bisnis</td></tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Modal Form Tambah/Edit Unit Bisnis -->
@@ -589,11 +606,11 @@ img.preview {
           </div>
           <div class="mb-3">
             <label>Deskripsi Singkat</label>
-            <textarea name="description" id="unit_description" class="form-control" rows="3"></textarea>
+            <textarea name="description" id="description" class="form-control" rows="3"></textarea>
           </div>
           <div class="mb-3">
             <label>Deskripsi Lengkap</label>
-            <textarea name="description1" id="unit_description1" class="form-control" rows="3"></textarea>
+            <textarea name="description1" id="description1" class="form-control" rows="3"></textarea>
           </div>
           <div class="mb-3 text-center">
             <label>Gambar</label>
@@ -609,18 +626,18 @@ img.preview {
     </form>
   </div>
 </div>
-</div> 
+
 
 <!-- ===================== TAB SECTION CULTURE ===================== -->
 <div class="tab-pane fade" id="culture" role="tabpanel">
   <div class="container mt-4">
-    
 
     <!-- ===================== FORM EDIT SECTION CULTURE ===================== -->
     <div class="card shadow-sm mb-5">
       <div class="card-header bg-primary text-white">
-        <h5 class="mb-0">Edit Section Culture</h5>
+        <h5 class="mb-0">Budaya Lido29</h5>
       </div>
+
       <div class="card-body">
         <form action="<?= base_url('PengaturanLandingPage/update_main') ?>" method="post" enctype="multipart/form-data">
           <input type="hidden" name="id" value="<?= $culture['id'] ?>">
@@ -652,23 +669,22 @@ img.preview {
                 <textarea name="about_culture" class="form-control" rows="6" required><?= htmlspecialchars($culture['about_culture']) ?></textarea>
               </div>
 
-               <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary">💾 Simpan</button>
-          </div>
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">💾 Simpan</button>
               </div>
-            </div>
-          </div>
+            </div> <!-- tutup col-lg-6 -->
+          </div> <!-- tutup row -->
         </form>
-      </div>
-    </div>
+      </div> <!-- tutup card-body -->
+    </div> <!-- tutup card -->
 
     <!-- ===================== TABEL DETAIL BUDAYA ===================== -->
     <div class="card shadow-sm">
       <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Detail Culture</h5>
-         <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#cultureModal" onclick="resetForm()">
-        Tambah Budaya
-    </button>
+        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#cultureModal" onclick="resetForm()">
+          Tambah Budaya
+        </button>
       </div>
 
       <div class="card-body">
@@ -684,6 +700,7 @@ img.preview {
                 <th style="width: 15%;">Aksi</th>
               </tr>
             </thead>
+
             <tbody>
               <?php if (!empty($cultures)): $no=1; foreach ($cultures as $culture): ?>
               <tr>
@@ -710,18 +727,18 @@ img.preview {
                 </td>
               </tr>
               <?php endforeach; else: ?>
-                <tr>
-                  <td colspan="6" class="text-center text-muted">Belum ada data budaya</td>
-                </tr>
+              <tr>
+                <td colspan="6" class="text-center text-muted">Belum ada data budaya</td>
+              </tr>
               <?php endif; ?>
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
+        </div> <!-- tutup table-responsive -->
+      </div> <!-- tutup card-body -->
+    </div> <!-- tutup card -->
 
-  </div>
-</div>
+  </div> <!-- tutup container -->
+</div> <!-- tutup tab-pane -->
 
 <!-- ===================== MODAL TAMBAH/EDIT DETAIL CULTURE ===================== -->
 <div class="modal fade" id="cultureModal" tabindex="-1" aria-labelledby="cultureModalLabel" aria-hidden="true">
@@ -756,18 +773,160 @@ img.preview {
             <input type="file" name="image" id="culture_image" class="form-control" accept="image/*">
             <img id="previewCulture" src="" class="img-fluid rounded shadow-sm mt-2" style="width:50%; height:auto; display:none;">
           </div>
-        </div>
+        </div> <!-- tutup modal-body -->
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-          <button type="submit" class="btn btn-success">💾 Simpan</button>
+          <button type="submit" class="btn btn-primary">💾 Simpan</button>
+        </div>
+      </div> <!-- tutup modal-content -->
+    </form>
+  </div> <!-- tutup modal-dialog -->
+</div> <!-- tutup modal -->
+
+<!-- ===================== TAB FOOTER ===================== -->
+<div class="tab-pane fade" id="footer" role="tabpanel">
+  <div class="container mt-4" >
+
+    <!-- ===================== FORM EDIT ALAMAT FOOTER ===================== -->
+    <div class="card shadow-sm mb-5" style="z-index:1;">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Alamat Footer</h5>
+      </div>
+      <div class="card-body">
+        <form action="<?= base_url('PengaturanLandingPage/save_footer_setting') ?>" method="post">
+          <div class="mb-3">
+            <label for="address_footer" class="form-label fw-bold">Alamat</label>
+            <textarea class="form-control" name="address_footer" id="address_footer" rows="3"><?= isset($footer['address_footer']) ? htmlspecialchars($footer['address_footer']) : '' ?></textarea>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">💾 Simpan Alamat</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===================== PENGATURAN LOKASI KANTOR ===================== -->
+<div class="mb-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Lokasi Kantor (Google Maps)</h5>
+    </div>
+    <div class="card-body">
+      <form action="<?= base_url('PengaturanLandingPage/save_map_link') ?>" method="post">
+  <div class="mb-3">
+    <label for="link_map" class="form-label fw-bold">🌍 Link Google Maps (Embed)</label>
+    <input type="url" name="link_map" id="link_map"
+           class="form-control"
+           placeholder="Masukkan link embed Google Maps..."
+           value="<?= isset($map['link_map']) ? $map['link_map'] : '' ?>"
+           required>
+    <small class="text-muted">
+      Masukkan <strong>embed link</strong> dari Google Maps, contoh:<br>
+      <code>https://www.google.com/maps/embed?pb=!1m18!...dst</code>
+    </small>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary">
+      💾 Simpan Lokasi
+    </button>
+  </div>
+</form>
+    </div>
+  </div>
+</div>
+
+
+    <!-- ===================== TABEL SOSIAL MEDIA ===================== -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Sosial Media</h5>
+        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#socialModal" onclick="resetSocialForm()">Tambah Sosial Media</button>
+      </div>
+      <div class="card-body">
+        <?php if(!empty($socials)): ?>
+          <div class="table-responsive">
+            <table class="table table-bordered align-middle mb-0">
+              <thead class="table-dark text-center">
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Icon</th>
+                  <th>Link</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+             <tbody>
+  <?php foreach($socials as $i => $s): ?>
+  <tr>
+    <td class="text-center"><?= $i+1 ?></td>
+    <td><?= htmlspecialchars($s['name_social']) ?></td>
+    <td class="text-center">
+      <i class="<?= htmlspecialchars($s['icon_social']) ?>"></i>
+    </td>
+    <td>
+      <a href="<?= htmlspecialchars($s['link_social']) ?>" target="_blank">
+        <?= htmlspecialchars($s['link_social']) ?>
+      </a>
+    </td>
+    <td class="text-center">
+      <button class="btn btn-warning btn-sm" onclick='editSocial(<?= json_encode($s) ?>)'>
+        <i class="bi bi-pencil-square"></i> Edit
+      </button>
+      <a href="<?= base_url('PengaturanLandingPage/delete_social/'.$s['id_sc']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">
+        <i class="bi bi-trash"></i> Hapus
+      </a>
+    </td>
+  </tr>
+  <?php endforeach; ?>
+</tbody>
+
+            </table>
+          </div>
+        <?php else: ?>
+          <p class="text-muted text-center">Belum ada data sosial media.</p>
+        <?php endif; ?>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== MODAL TAMBAH / EDIT SOSIAL MEDIA ===================== -->
+<div class="modal fade" id="socialModal" tabindex="-1" aria-labelledby="socialModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form id="socialForm" method="post" action="<?= base_url('PengaturanLandingPage/save_social') ?>">
+      <input type="hidden" name="id_sc" id="social_id">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="socialModalLabel">Tambah / Edit Sosial Media</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label fw-bold">Nama Sosial Media</label>
+            <input type="text" name="name_social" id="social_name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">Icon</label>
+            <input type="text" name="icon_social" id="social_icon" class="form-control" placeholder="misal: bi bi-facebook" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">Link</label>
+            <input type="url" name="link_social" id="social_link" class="form-control" placeholder="https://..." required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">💾 Simpan</button>
         </div>
       </div>
     </form>
   </div>
 </div>
-
-
+</div>
+</body>
 
 
 
@@ -875,8 +1034,13 @@ img.preview {
 
     document.getElementById('unit_id').value = data.id || '';
     document.getElementById('unit_title').value = data.title || '';
-    document.getElementById('unit_description').value = data.description || '';
-    document.getElementById('unit_description1').value = data.description1 || '';
+     if (CKEDITOR.instances['description']) {
+    CKEDITOR.instances['description'].setData(data.description || '');
+  }
+  if (CKEDITOR.instances['description1']) {
+    CKEDITOR.instances['description1'].setData(data.description1 || '');
+  }
+
     if(data.image) document.getElementById('previewUnit').src = "<?= base_url('assets/img-landing/unit/') ?>" + data.image;
     else document.getElementById('previewUnit').src = '';
     document.getElementById('unitModalLabel').innerText = 'Edit Unit Bisnis';
@@ -1098,6 +1262,38 @@ function editOffice(data) {
     }
 
     new bootstrap.Modal(document.getElementById('cultureModal')).show();
+  }
+
+  // Fungsi untuk membuka modal Edit Sosial Media
+  function editSocial(social) {
+    if (!social) return;
+
+    // Isi nilai input di modal
+    document.getElementById('social_id').value   = social.id_sc || '';
+    document.getElementById('social_name').value = social.name_social || '';
+    document.getElementById('social_icon').value = social.icon_social || '';
+    document.getElementById('social_link').value = social.link_social || '';
+
+    // Ganti judul modal
+    document.getElementById('socialModalLabel').innerText = 'Edit Sosial Media';
+
+    // Ubah action form ke controller update
+    document.getElementById('socialForm').action = '<?= base_url("PengaturanLandingPage/save_social") ?>';
+
+    // Tampilkan modal
+    const modal = new bootstrap.Modal(document.getElementById('socialModal'));
+    modal.show();
+  }
+
+  // Fungsi untuk tambah sosial media baru (pakai modal yang sama)
+  function addSocial() {
+    document.getElementById('socialForm').reset();
+    document.getElementById('social_id').value = '';
+    document.getElementById('socialModalLabel').innerText = 'Tambah Sosial Media';
+    document.getElementById('socialForm').action = '<?= base_url("PengaturanLandingPage/save_social") ?>';
+
+    const modal = new bootstrap.Modal(document.getElementById('socialModal'));
+    modal.show();
   }
 
 </script>

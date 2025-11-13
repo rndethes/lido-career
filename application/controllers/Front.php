@@ -25,6 +25,10 @@ class Front extends CI_Controller
     $data['offices'] = $this->main_model->getSettingOffice();
     $data['quote'] = $this->main_model->get_quote();
     $data['news_list'] = $this->main_model->get_all_news();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
+
+
+
 
     $id_user = getLoggedInUser('id');
     if ($id_user) {

@@ -56,14 +56,21 @@ class Sendmail
       
          $this->phpmailer->IsSMTP();
          $this->phpmailer->SMTPAuth   = true;
-         $this->phpmailer->Host       = 'smtp.ethes.my.id';
-         $this->phpmailer->Username   = 'lidocareer@ethes.my.id';                     //SMTP username
-         $this->phpmailer->Password   = 'Lido@2023';
+         $this->phpmailer->Host       = 'mail.lidogrosir.id';
+         $this->phpmailer->Username   = 'career@lidogrosir.id';                     //SMTP username
+         $this->phpmailer->Password   = 'career@2025';
 
          $this->phpmailer->SMTPSecure = 'ssl';
          $this->phpmailer->Port = 465;
       
-         $this->phpmailer->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+         $this->phpmailer->SMTPDebug = SMTP::DEBUG_SERVER;            
+         $this->phpmailer->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );            //Enable verbose debug output
 
     }
 
@@ -105,7 +112,7 @@ class Sendmail
             ], true);
           
           	 ob_start();
-            $this->phpmailer->setFrom('lidocareer@ethes.my.id', 'Account Verification');
+            $this->phpmailer->setFrom('career@lidogrosir.id', 'Account Verification');
             $this->send($email, $allname, 'Account Verification', $template);
             ob_get_clean();
             return true; 
@@ -121,7 +128,7 @@ class Sendmail
             ], true);
           
           	 ob_start();
-             $this->phpmailer->setFrom('lidocareer@ethes.my.id', 'Reset Password');
+             $this->phpmailer->setFrom('career@lidogrosir.id', 'Reset Password');
         	 $this->send($email, $allname, 'Reset Password', $template);
              ob_get_clean();
              return true; 

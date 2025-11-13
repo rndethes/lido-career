@@ -90,7 +90,6 @@
                                     <div class="form-group">
                                         <label class="form-control-label">Agama</label>
                                         <select v-model="data_diri.religion_candidate" class="form-control" name="religion_candidate">
-                                            <option value="">-- pilih --</option>
                                             <option v-for="agm in agama_list" :key="agm.id" :value="agm.id">
                                                 {{ agm.text }}
                                             </option>
@@ -201,9 +200,9 @@
                             <div class="row">
                                 <?php
                             $bulanIndo = [
-                            1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April',
-                            5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus',
-                            9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
+                            1 => 'JANUARI', 2 => 'FEBRUARI', 3 => 'MARET', 4 => 'APRIL',
+                            5 => 'MEI', 6 => 'JUNI', 7 => 'JULI', 8 => 'AGUSTUS',
+                            9 => 'SEPTEMBER', 10 => 'OKTOBER', 11 => 'NOVEMBER', 12 => 'DESEMBER'
                             ];
 
                             // Ambil data dari DB yang dikirim controller ke view
@@ -284,7 +283,7 @@
                                                 style="color: red;">*</sup></label>
                                         <textarea v-model="alamat.alamat" name="alamat"
                                             placeholder="JL.KENANGA NO. 05, RT/RW 004/005, DESA KANDANGAN"
-                                            class="form-control tt-gede" id="input1" rows="3"></textarea>
+                                            class="form-control tt-gede" id="input1" rows="3"  style="text-transform: uppercase;"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -356,7 +355,7 @@
                                         <label class="form-control-label">Alamat <sup
                                                 style="color: red;">*</sup></label>
                                         <textarea v-model="alamat2.alamat" name="alamat" class="form-control tt-gede"
-                                            id="input1" rows="3"></textarea>
+                                            id="input1" rows="3"  style="text-transform: uppercase;"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -1337,8 +1336,8 @@
   const yearEnd    = getSelectValue('select[name="year_end"], select.tt-selectize[data-selectize="pendidikan_yl"]');
 
   const bulanMap = {
-    'Januari':'01','Februari':'02','Maret':'03','April':'04','Mei':'05','Juni':'06',
-    'Juli':'07','Agustus':'08','September':'09','Oktober':'10','November':'11','Desember':'12',
+    'JANUARI':'01','FEBRUARI':'02','MARET':'03','APRIL':'04','MEI':'05','JUNI':'06',
+    'JULI':'07','AGUSTUS':'08','SEPTEMBER':'09','OKTOBER':'10','NOVEMBER':'11','DESEMBER':'12',
     'jan':'01','feb':'02','mar':'03','apr':'04','may':'05','jun':'06','jul':'07','aug':'08','sep':'09','oct':'10','nov':'11','dec':'12'
   };
 

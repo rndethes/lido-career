@@ -168,14 +168,29 @@ class CandidateJob extends CI_Controller
 
         // Get batch timelines for each job vacancy
         foreach ($jobVacancies as &$jobVacancy) {
-            $jobVacancy['batchs'] = $this->db->select('batch_timeline.*')
+            $activeBatches = $this->db->select('batch_timeline.*')
                 ->from('batch_job')
                 ->join('batch_timeline', 'batch_timeline.id_batch = batch_job.id_batch')
                 ->where('batch_job.id_job', $jobVacancy['id'])
-                ->where("batch_timeline.start_date >= NOW()")
+                ->where("batch_timeline.start_date >= NOW()") // Asumsi ini benar (batch punya tgl mulai)
                 ->get()
-                ->result_array();
+                ->result_array();    
+            $jobVacancy['batchs'] = $activeBatches;
+
+            $jobVacancy['scheduling_status'] = 'not_scheduled';
+
+            if (!empty($activeBatches)) {
+                $batch_ids = array_column($activeBatches, 'id_batch');
+                $timeline_count = $this->db
+                    ->where_in('id_batch', $batch_ids)
+                    ->count_all_results('timeline');
+
+                if ($timeline_count > 0) {
+                    $jobVacancy['scheduling_status'] = 'scheduled';
+                }
+            }
         }
+
         unset($jobVacancy);
 
         // Return as JSON
@@ -412,5 +427,31 @@ class CandidateJob extends CI_Controller
         }
         $this->session->set_flashdata('success', 'Lamaran berhasil dikirim');
         redirect('candidatejob/index/');
+    }
+
+
+    public function getTimelineByBatch() {
+        $id_batch = $this->input->get('id_batch');
+
+        if (!$id_batch) {
+            header("Content-type: application/json");
+            http_response_code(400); // Bad Request
+            echo json_encode([
+                'success' => false,
+                'message' => 'ID Batch diperlukan.'
+            ]);
+            return;
+        }
+
+        $timelines = $this->db
+            ->order_by('id_timeline', 'ASC')
+            ->get_where('timeline', ['id_batch' => $id_batch])
+            ->result_array();
+
+        header("Content-type: application/json");
+        echo json_encode([
+            'success' => true,
+            'timelines' => $timelines
+        ]);
     }
 }

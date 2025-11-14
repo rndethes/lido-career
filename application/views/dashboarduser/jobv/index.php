@@ -48,7 +48,7 @@
                                     </select>
                                 </div>
                                 <div class="mt-4">
-                                    <button @click="switchTab('#tabPemilihanBatch')" class="d-none d-md-block btn btn-md w-100 btn-info">
+                                    <button @click="switchTab('#tabPemilihanBatch')":disabled="selectedJobs.length === 0" class="d-none d-md-block btn btn-md w-100 btn-info">
                                         <i class="fas fa-arrow-right"></i> Apply Lamaran
                                     </button>
                                 </div>
@@ -63,9 +63,19 @@
                                                 <h5 class="font-medium">{{ job.name_job }}</h5>
                                             </div>
                                             <small>
-                                                <span v-if="job.is_active == 1"
-                                                    class="badge bg-success">Available</span>
-                                                <span v-else class="badge bg-danger">Unavailable</span>
+                                               <span v-if="job.is_active == 1 && job.scheduling_status === 'scheduled'"
+                                                    class="badge bg-success">
+                                                    Tersedia (Terjadwal)
+                                                </span>
+                                                
+                                                <span v-if="job.is_active == 1 && job.scheduling_status === 'not_scheduled'"
+                                                    class="badge bg-warning"> Tersedia (Belum Ada Jadwal)
+                                                </span>
+
+                                                <span v-if="job.is_active != 1" 
+                                                    class="badge bg-danger">
+                                                    Tidak Tersedia
+                                                </span>
                                             </small>
                                         </div>
                                         <p class="mb-1"></p>
@@ -250,7 +260,7 @@
                                             {{
                                             getDateForBatchSeparated(avBatch.due_date) }}</p>
                                         <div class="mt-3 d-flex justify-content-between">
-                                            <button class="btn btn-xs btn-blog btn-info">
+                                            <button @click="showTimelineModal(avBatch)" class="btn btn-xs btn-blog btn-info">
                                                 <i class="fas fa-book"></i> Lihat Jadwal
                                             </button>
                                             <button @click="pilihJadwalPenerbangan(avBatch)"
@@ -294,7 +304,52 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="timelineModal" tabindex="-1" role="dialog" aria-labelledby="timelineModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+                <h5 class="modal-title" id="timelineModalLabel">
+                    Detail Timeline: <span v-if="selectedBatchForModal">{{ selectedBatchForModal.name_batch }}</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <div v-if="isModalLoading" class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <p class="mt-2">Memuat data timeline...</p>
+                </div>
+
+                <ul v-if="!isModalLoading && modalTimelineData.length > 0" class="list-group">
+                    <li v-for="timeline in modalTimelineData" :key="timeline.id_timeline" class="list-group-item">
+                        <h6 class="font-weight-bold">{{ timeline.name_timeline }}</h6>
+                        <p class="mb-1">{{ timeline.description_timeline }}</p>
+                        <small class="text-muted">
+                            Mulai: {{ timeline.start_date_time }} | Selesai: {{ timeline.end_date_time }}
+                        </small>
+                    </li>
+                </ul>
+
+                <div v-if="!isModalLoading && modalTimelineData.length === 0" class="text-center">
+                    <p class="text-muted">Tidak ada data timeline yang tersedia untuk batch ini.</p>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
 </div>
+</div>
+
+
+
 
 <script src="<?= base_url('assets/js/ext/vue.js') ?>">
 </script>
@@ -306,6 +361,8 @@
             "<?= site_url('candidatejob/getJobAsJson') ?>";
         const LAMAR_MALA_URL =
             "<?= site_url('candidatejob/lamarJadwal') ?>";
+        const TIMELINE_URL = 
+            "<?= site_url('candidatejob/getTimelineByBatch') ?>";
 
         const app = new Vue({
             el: '#jobv-app-root',
@@ -318,6 +375,9 @@
                     selectedJobs: [],
                     availableBatchs: [],
                     filterDivision: 'all-division',
+                    selectedBatchForModal: null, 
+                    modalTimelineData: [], 
+                    isModalLoading: false
                 }
             },
             watch: {
@@ -335,7 +395,7 @@
 
                     const filter = parseInt(this.filterDivision);
 
-                    return this.jobLists.filter((job) => parseInt(job.id_division) !== filter);
+                    return this.jobLists.filter((job) => parseInt(job.id_division) === filter);
                 },
             },
             methods: {
@@ -629,7 +689,38 @@
                     }
 
                     return false;
-                }
+                },
+                showTimelineModal(batch) {
+                    this.selectedBatchForModal = batch;
+                    this.modalTimelineData = [];
+                    this.isModalLoading = true; // Mulai loading
+
+                    $('#timelineModal').modal('show');
+
+                    this.fetchTimelineData(batch.id_batch);
+                },
+                fetchTimelineData(id_batch) {
+                    axios.get(TIMELINE_URL, {
+                        params: {
+                            id_batch: id_batch
+                        }
+                    })
+                    .then(response => {
+                        if (response.data && response.data.timelines) {
+                            this.modalTimelineData = response.data.timelines;
+                        } else {
+                            this.modalTimelineData = [];
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching timeline:", error);
+                        Swal.fire('Error', 'Gagal memuat data timeline.', 'error');
+                        this.modalTimelineData = [];
+                    })
+                    .finally(() => {
+                        this.isModalLoading = false;
+                    });
+            },
             }
         });
 

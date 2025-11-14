@@ -83,26 +83,27 @@ class CandidateBiodata extends CI_Controller
         }
     }
 
-    public function update_biodata()
-{
-    $biodata    = $this->biodata_model->getMyBiodata();
-    $address    = $this->kandidat_model->getKandidatAddress($biodata['id']);
-    $address2   = $this->kandidat_model->getKandidatAddress($biodata['id'], $secondAddress = true);
-    $laststudy  = $this->kandidat_model->getKandidatStudy($biodata['id']);
-    $exprience  = $this->kandidat_model->getKandidatExperience($biodata['id']);
-    $pendukung  = $this->kandidat_model->getFilePendukung($biodata['id']);
+    public function update_biodata() {
+        $biodata    = $this->biodata_model->getMyBiodata();
+        $address    = $this->kandidat_model->getKandidatAddress($biodata['id']);
+        $address2   = $this->kandidat_model->getKandidatAddress($biodata['id'], $secondAddress = true);
+        $laststudy  = $this->kandidat_model->getKandidatStudy($biodata['id']);
+        $exprience  = $this->kandidat_model->getKandidatExperience($biodata['id']);
+        $pendukung  = $this->kandidat_model->getFilePendukung($biodata['id']);
 
-    $this->render('update', [
-        'title'      => 'Update Biodata',
-        'biodata'    => $biodata,
-        'address'    => $address,
-        'address2'   => $address2,
-        'laststudy'  => $laststudy,
-        'experience' => $exprience,
-        'pendukung'  => $pendukung,
-    ]);
-    
-}
+        $this->render('update', [
+            'title'      => 'Update Biodata',
+            'biodata'    => $biodata,
+            'address'    => $address,
+            'address2'   => $address2,
+            'laststudy'  => $laststudy,
+            'experience' => $exprience,
+            'pendukung'  => $pendukung,
+        ]);
+        
+    }
+
+
   public function cetak_cv($id)
 {
     $biodata    = $this->kandidat_model->getBiodataById($id);
@@ -168,8 +169,7 @@ class CandidateBiodata extends CI_Controller
         }
     }
 
- public function save_data_profile()
-{
+ public function save_data_profile() {
     $id_user = getLoggedInUser('id'); 
     if (!$id_user) {
         http_response_code(401);
@@ -189,12 +189,14 @@ class CandidateBiodata extends CI_Controller
         $target_dir = FCPATH . 'uploads/kandidat/profiles/';
         if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
 
-        $target_file = 'file_' . time() . '_' . $file['name'];
-        if (move_uploaded_file($file['tmp_name'], $target_dir . $target_file)) {
-          
+        $target_file = 'file_' . time() . '_' . basename($file['name']);
+        $upload_path = $target_dir . $target_file;
+     if (move_uploaded_file($file['tmp_name'], $upload_path)) {
+            // Kirim nama file string ke model
             $save = $this->kandidat_model->saveKandidat([
                 'id' => $id_user,
-                'photo_candidate' => $target_file  
+                'photo_candidate' => $target_file
+
             ]);
             if ($save) {
                 echo json_encode([

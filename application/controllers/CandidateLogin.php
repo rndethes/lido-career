@@ -156,7 +156,7 @@ class CandidateLogin extends CI_Controller
             // $this->_sendEmail();
 
 
-            $this->session->set_flashdata('message', '<div id="info" class="alert bg-success alert-dismissible fade show" role="alert"><span class="alert-text text-white">Selaman! akun anda telah dibuat. Mohon untuk aktifkan akun</span>
+            $this->session->set_flashdata('message', '<div id="info" class="alert bg-success alert-dismissible fade show" role="alert"><span class="alert-text text-white">Selamat! akun anda telah dibuat. Mohon untuk aktifkan akun</span>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -334,7 +334,7 @@ class CandidateLogin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title']      = 'Change Password';
-            //$data['emailses']   = $this->input->get('email');
+            $data['emailses']   = $this->input->get('email');
 
             // print_r($data);
             // exit();

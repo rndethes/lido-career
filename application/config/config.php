@@ -37,7 +37,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
   //$config['base_url'] = 'http://192.168.0.121/lido-career/';
 
-$config['base_url'] = 'http://localhost/projectinternship/lido-career/';
+$config['base_url'] = 'http://192.168.0.123/projectinternship/lido-career/';
 
 
 

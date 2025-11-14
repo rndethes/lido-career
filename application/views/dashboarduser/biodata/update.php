@@ -49,9 +49,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-control-label">Nama
-                                            Lengkap (Sesuai KTP)</label>
+                                            Lengkap (Sesuai KTPPP)</label>
                                         <input v-model="data_diri.name_candidate" name="name_candidate"
-                                            class="form-control tt-gede" type="text" />
+                                            class="form-control tt-gede" type="text"  style="text-transform: uppercase;" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -364,7 +364,7 @@
                                         <label class="form-control-label">Alamat <sup
                                                 style="color: red;">*</sup></label>
                                         <textarea v-model="alamat2.alamat" name="alamat" class="form-control tt-gede"
-                                            id="input1" rows="3" ></textarea>
+                                            id="input1" rows="3"  style="text-transform: uppercase;"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">

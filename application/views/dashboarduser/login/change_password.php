@@ -19,19 +19,25 @@
                             <div class="card-body">
                                 <?= $this->session->flashdata('message'); ?>
                                 <form method="post" action="<?= base_url('candidatelogin/changepassword'); ?>">
-                                     <div class="input-group mb-3">
-                                        <input class="form-control form-control-lg password" placeholder="Password" id="password" class="block mt-1 w-full" type="password" name="password" required />
-                                        <?= form_error('password', '<small class="text-danger pl-3" style="font-size: 12px;">', '</small>'); ?>
-                                        <span class="input-group-text togglePassword" id="">
-                                        <i class="far fa-eye" id="togglePassword2" style=" cursor: pointer; color: #5B5F63;"></i>
-                                    </span>
+                                    <div class="mb-3">
+                                        <div class="input-group mb-3">
+                                            <input class="form-control form-control-lg password" placeholder="Password" id="password" class="block mt-1 w-full" type="password" name="password" required />
+                                    
+                                            <span class="input-group-text togglePassword" id="">
+                                            <i class="far fa-eye" id="togglePassword2" style=" cursor: pointer; color: #5B5F63;"></i>
+                                            </span>
+                                            <?= form_error('password', '<small class="text-danger pl-3" style="font-size: 12px;">', '</small>'); ?>
+                                        </div>
                                     </div>
-                                    <div class="input-group mb-3">
-                                        <input class="form-control form-control-lg password" placeholder="Ulangi Password" id="passwordtwo" class="block mt-1 w-full" type="password" name="passwordtwo" required />
-                                        <?= form_error('passwordtwo', '<small class="text-danger pl-3" style="font-size: 12px;">', '</small>'); ?>
-                                        <span class="input-group-text togglePassword" id="">
-                                        <i class="far fa-eye" id="togglePassword2" style=" cursor: pointer; color: #5B5F63;"></i>
-                                        </span>
+                                     <div class="mb-3">
+                                        <div class="input-group">
+                                            <input class="form-control form-control-lg password" placeholder="Ulangi Password" id="passwordtwo" class="block mt-1 w-full" type="password" name="passwordtwo" required />
+                                        
+                                            <span class="input-group-text togglePassword" id="">
+                                            <i class="far fa-eye" id="togglePassword2" style=" cursor: pointer; color: #5B5F63;"></i>
+                                            </span>
+                                        </div>
+                                      <?= form_error('passwordtwo', '<small class="text-danger pl-3" style="font-size: 12px;">', '</small>'); ?>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-lg btn-danger btn-lg w-100 mt-4 mb-0">Ubah Password</button>

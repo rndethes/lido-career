@@ -53,16 +53,20 @@
                                         <?= form_error('email', '<small class="text-danger pl-3" style="font-size: 12px;">', '</small>'); ?>
                                     </div>
                                     <!-- form password 1 -->
-                                    <div class="input-group mb-3">
-                                        <input class="form-control form-control-lg password" placeholder="Password"
-                                            id="password" class="block mt-1 w-full" type="password" name="password"
-                                            required />
-                                        <?= form_error('password', '<small class="text-danger pl-3" style="font-size: 12px;">', '</small>'); ?>
-                                        <span class="input-group-text">
-                                            <i class="far fa-eye" id="togglePassword1"
-                                                style=" cursor: pointer; color: #5B5F63;"></i>
-                                        </span>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <input class="form-control form-control-lg password" placeholder="Password"
+                                                id="password" class="block mt-1 w-full" type="password" name="password"
+                                                required />
+                                            <span class="input-group-text">
+                                                <i class="far fa-eye" id="togglePassword1"
+                                                    style=" cursor: pointer; color: #5B5F63;"></i>
+                                            </span>
+                                        </div>
+                                           <?= form_error('password', '<small class="text-danger pl-3" style="font-size: 12px;">', '</small>'); ?>
                                     </div>
+                                  
+                                    
                                     <!-- form password 2 -->
                                     <div class="input-group mb-3">
                                         <input class="form-control form-control-lg password"

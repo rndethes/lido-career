@@ -33,7 +33,6 @@
                                     </div>
                                    <div class="text-center">
                                         <button type="submit" class="btn btn-lg btn-danger btn-lg w-100 mt-4 mb-0">Login</button>
-                                        <!-- <button type="button" class="btn btn-lg btn-danger btn-lg w-100 mt-4 mb-0">Sign in</button> -->
                                     </div>
                                 </form>
                             </div>
@@ -55,3 +54,26 @@
         </div>
     </section>
 </main>
+
+<script>
+    $(document).ready(function() {
+    $("#togglePassword2").on('click', function(e) {
+        // Ambil input password
+        var passwordField = $("#password");
+
+        // Cek tipe input saat ini
+        var fieldType = passwordField.attr('type');
+
+        // Ganti tipe inputnya
+        if (fieldType === 'password') {
+            passwordField.attr('type', 'text');
+            // Ganti ikon mata
+            $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            passwordField.attr('type', 'password');
+            // Ganti ikon mata kembali
+            $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+    });
+});
+</script>

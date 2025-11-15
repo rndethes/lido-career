@@ -185,6 +185,23 @@
     object-fit: cover; 
 }
 
+#cabang-kota .row {
+    display: flex;
+    flex-wrap: nowrap; 
+    overflow-x: auto;  
+}
+
+#cabang-kota .area-card {
+    min-width: 250px; 
+    padding: 40px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+#cabang-kota .row > div {
+    flex: 0 0 auto; 
+}
+
 .card-body {
     flex-grow: 1;
     display: flex;

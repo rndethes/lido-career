@@ -143,10 +143,10 @@ class Main_model extends CI_Model
         return $this->db->get_where('setting_quotes', ['id' => $id])->row_array();
     }
 
-      public function get_all_news() {
-        $this->db->order_by('release_date', 'DESC');
-        return $this->db->get('setting_news')->result_array();
-    }
+    //   public function get_all_news() {
+    //     $this->db->order_by('release_date', 'DESC');
+    //     return $this->db->get('setting_news')->result_array();
+    // }
 
     // Ambil berita berdasarkan ID
     public function get_news($id) {
@@ -187,6 +187,26 @@ class Main_model extends CI_Model
                       ->get();
 
     return $query->row_array(); // hasil array
+}
+public function count_all_news() {
+    return $this->db->count_all('setting_news'); 
+}
+
+public function get_news_pagination($limit, $offset)
+{
+    return $this->db
+        ->order_by('release_date', 'DESC')
+        ->limit($limit, $offset)
+        ->get('setting_news')
+        ->result_array();
+}
+
+public function get_latest_news($limit = 3) {
+    return $this->db
+        ->order_by('release_date', 'DESC')
+        ->limit($limit)
+        ->get('setting_news')
+        ->result_array();
 }
 
 }

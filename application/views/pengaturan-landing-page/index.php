@@ -1,9 +1,23 @@
 <style>
+  body, html {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+}
+
+.main-content {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+}
+
 /* Card style */
 .card {
   border-radius: 15px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   border: none;
+  position: relative;
+  z-index: 1 !important;
 }
 
 .card-header {
@@ -11,25 +25,25 @@
     color: #fff;
     border-radius: 15px 15px 0 0;
     text-align: center;
-    padding: 0; /* hilangkan padding default */
+    padding: 0; 
 }
 
 .card-header .nav {
     display: flex;
-    flex-wrap: nowrap;  /* jangan wrap ke baris baru */
-    overflow-x: auto;   /*scroll horizontal jika muatannya banyak*/
-    -webkit-overflow-scrolling: touch; /* smooth scroll di mobile */
+    flex-wrap: nowrap; 
+    overflow-x: auto;  
+    -webkit-overflow-scrolling: touch;
 }
 
 .card-header .nav .nav-item {
-    flex: 0 0 auto; /* setiap tab tidak mengecil */
+    flex: 0 0 auto; 
 }
 
 .card-header .nav .nav-link {
-    white-space: nowrap; /* jangan pecah teks tab */
+    white-space: nowrap; 
 }
 
-/* Optional: hapus scrollbar default agar lebih rapi */
+
 .card-header .nav::-webkit-scrollbar {
     height: 5px;
 }
@@ -314,6 +328,7 @@ img.preview {
             <label>Area</label>
             <select name="area" id="area" class="form-select" required>
               <option value="" disabled selected hidden>-- Pilih --</option>
+               <option value="Office">Office</option>
               <option value="Magelang">Magelang</option>
               <option value="Temanggung">Temanggung</option>
               <option value="Semarang">Semarang</option>
@@ -326,6 +341,7 @@ img.preview {
             <label>Type</label>
             <select name="type" id="type" class="form-select" required>
               <option value="" disabled selected hidden>-- Pilih --</option>
+               <option value="Office">Office</option>
               <option value="Warehouse">Warehouse</option>
               <option value="Store">Store</option>
             </select>
@@ -350,12 +366,19 @@ img.preview {
               <label>Maps URL</label>
               <input type="text" name="maps_url" id="maps_url" class="form-control">
             </div>
-            <div class="col-md-6">
-              <label>Image</label>
-              <input type="file" name="image" id="image" class="form-control">
+              <div class="col-md-6">
+                <label>Image</label>
+                <input type="file" name="image" id="image" class="form-control" onchange="previewOfficeImage(event)">
+                
+                <!-- PREVIEW GAMBAR -->
+                <img id="previewImage" 
+                    src="" 
+                    alt="Preview" 
+                    style="width:150px; margin-top:20px;">
+              </div>
             </div>
           </div>
-        </div>
+     
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
           <button type="submit" class="btn btn-primary">Simpan</button>
@@ -1006,6 +1029,7 @@ img.preview {
     const file = e.target.files[0];
     if(file) document.getElementById('previewAbout2').src = URL.createObjectURL(file);
   });
+  
    document.getElementById('imageOffice').addEventListener('change', function(e){
     const file = e.target.files[0];
     if(file) document.getElementById('previewOffice').src = URL.createObjectURL(file);
@@ -1020,6 +1044,7 @@ img.preview {
     const file = e.target.files[0];
     if(file) document.getElementById('previewUnit').src = URL.createObjectURL(file);
   });
+
 
   // Reset form modal
   function resetUnitForm(){
@@ -1226,20 +1251,6 @@ function addMediaInput(){
     document.getElementById('officeModalLabel').innerText = 'Tambah Kantor';
 }
 
-function editOffice(data) {
-    document.getElementById('office_id').value = data.id;
-    document.getElementById('area').value = data.area;
-    document.getElementById('type').value = data.type;
-    document.getElementById('branch_name').value = data.branch_name;
-    document.getElementById('address').value = data.address;
-    document.getElementById('phone_number').value = data.phone_number;
-    document.getElementById('email').value = data.email;
-    document.getElementById('maps_url').value = data.maps_url;
-    document.getElementById('officeModalLabel').innerText = 'Edit Kantor';
-    var modal = new bootstrap.Modal(document.getElementById('officeModal'));
-    modal.show();
-}
-
 
   function resetCultureForm() {
     document.getElementById('cultureForm').reset();
@@ -1296,6 +1307,47 @@ function editOffice(data) {
     modal.show();
   }
 
+function resetForm() {
+    document.getElementById("officeForm").reset();
+    document.getElementById("office_id").value = "";
+    document.getElementById("previewImage").style.display = "none";
+    document.getElementById("previewImage").src = "";
+}
+
+function editOffice(data) {
+    // buka modal
+    var modal = new bootstrap.Modal(document.getElementById('officeModal'));
+    modal.show();
+
+    // isi data field
+    document.getElementById("office_id").value = data.id;
+    document.getElementById("area").value = data.area;
+    document.getElementById("type").value = data.type;
+    document.getElementById("branch_name").value = data.branch_name;
+    document.getElementById("address").value = data.address;
+    document.getElementById("maps_url").value = data.maps_url;
+    document.getElementById("phone_number").value = data.phone_number;
+    document.getElementById("email").value = data.email;
+
+    // tampilkan preview gambar lama
+    if (data.image) {
+        document.getElementById("previewImage").src = "<?= base_url('assets/img/') ?>" + data.image;
+        document.getElementById("previewImage").style.display = "block";
+    } else {
+        document.getElementById("previewImage").style.display = "none";
+    }
+}
+
+// preview gambar baru
+function previewOfficeImage(event) {
+    const reader = new FileReader();
+    reader.onload = function(){
+        const output = document.getElementById('previewImage');
+        output.src = reader.result;
+        output.style.display = "block";
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
 </script>
 
 

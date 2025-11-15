@@ -52,10 +52,10 @@
 
     <!-- Misi -->
     <div>
-      <h5 class="fw-bold">Misi</h5>
-      <p>
+      <h5 class="fw-bold"  style="margin-bottom: -5px;">Misi</h5>
+            <div style="margin:0; padding:0; line-height:1;">
         <?= !empty($content_zero['misi']) ? nl2br($content_zero['misi']) : 'Belum ada misi yang ditambahkan.'; ?>
-      </p>
+      </div>
     </div>
   </div>
 </section>

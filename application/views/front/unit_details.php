@@ -10,7 +10,7 @@
       <h2 class="fw-bold mb-3"><?= htmlspecialchars($unit['title']) ?></h2>
 
       <div class="content text-start mx-auto" style="max-width: 850px; font-size: 17px; line-height: 1.7;">
-        <p><?= nl2br(htmlspecialchars($unit['description'])) ?></p>
+        <p><?= nl2br(htmlspecialchars($unit['description1'])) ?></p>
 
         <?php if(!empty($unit['advantages'])): 
           $advantages = json_decode($unit['advantages'], true);

@@ -24,8 +24,10 @@ class Front extends CI_Controller
     $data['visimisi_intro'] = $this->main_model->getVisiMisiIntro();
     $data['offices'] = $this->main_model->getSettingOffice();
     $data['quote'] = $this->main_model->get_quote();
-    $data['news_list'] = $this->main_model->get_all_news();
     $data['content_footer'] = $this->main_model->getSettingFooter();
+    $data['news_list'] = $this->main_model->get_latest_news(3);
+
+    
 
 
 
@@ -88,11 +90,31 @@ class Front extends CI_Controller
 
 public function news_details()
 {
+    $this->load->model('main_model');
+
     $data['title'] = 'Berita Lido';
-    $data['news_list'] = $this->main_model->get_all_news(); // ambil semua berita
+
+    // --- PAGINATION SETUP ---
+    $limit = 6; // berita per halaman
+    $page = $this->input->get('page') ? $this->input->get('page') : 1;
+    $offset = ($page - 1) * $limit;
+
+    // total berita
+    $total_news = $this->main_model->count_all_news();
+
+    // ambil berita sesuai limit
+    $data['news_list'] = $this->main_model->get_news_pagination($limit, $offset);
+
+    // hitung total halaman
+    $data['total_pages'] = ceil($total_news / $limit);
+    $data['current_page'] = $page;
+
+
+    // --- data lain ---
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
     $data['company'] = $this->main_model->getCompany();
 
+    // user profile
     $id_user = getLoggedInUser('id');
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
@@ -109,7 +131,7 @@ public function news_details()
     }
 
     $this->load->view('front/header-landing', $data);
-    $this->load->view('front/news-details', $data); // view untuk semua berita
+    $this->load->view('front/news-details', $data);
     $this->load->view('front/footer-landing', $data);
 }
 
@@ -335,5 +357,16 @@ public function unit_details($id = null)
     $this->load->view('front/unit_details', $data); // view baru unit_details.php
     $this->load->view('front/footer-landing', $data);
 }
+
+public function get_offices_json()
+{
+    $offices = $this->main_model->getSettingOffice();
+
+    echo json_encode([
+        "status" => "success",
+        "data" => $offices
+    ]);
+}
+
 
 }

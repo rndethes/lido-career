@@ -122,89 +122,17 @@ if (!empty($visimisi_intro['intro_video_url'])) {
 </section>
 
 <section id="cabang-kota" class="section py-5">
-  <div class="container-fluid px-0">
-    <div class="row g-0">
-
-      <?php 
-      // Kelompokkan cabang berdasarkan area
-      $grouped = [];
-      foreach ($offices as $office) {
-          $grouped[$office['area']][] = $office;
-      }
-
-      $index = 0;
-      $colors = ['#6A1B1A', '#8B2F2C']; // maroon gelap dan terang bergantian
-
-      foreach ($grouped as $area => $branches): 
-          $index++;
-          $bgColor = $colors[$index % 2];
-      ?>
-      <!-- Card area -->
-      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-        <div class="area-card text-center" 
-             style="background-color: <?= $bgColor ?>;"
-             data-bs-toggle="modal" data-bs-target="#modalArea<?= $index ?>">
-          <h1 class="fw-bold mb-1"><?= count($branches) ?></h1>
-          <h5 class="text-uppercase"><?= $area ?></h5>
-        </div>
-      </div>
-
-      <!-- Modal daftar cabang -->
-      <div class="modal fade" id="modalArea<?= $index ?>" tabindex="-1" aria-labelledby="modalLabel<?= $index ?>" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-           <div class="modal-header" style="background-color: <?= $bgColor ?>;">
-                <h5 class="modal-title" style="color: white !important;"> Daftar Cabang - <?= $area ?></h5>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="accordion" id="accordion<?= $index ?>">
-                <?php foreach ($branches as $i => $branch): ?>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="heading<?= $index.$i ?>">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                            data-bs-target="#collapse<?= $index.$i ?>" aria-expanded="false" 
-                            aria-controls="collapse<?= $index.$i ?>">
-                      <?= $branch['branch_name'] ?> (<?= $branch['type'] ?>)
-                    </button>
-                  </h2>
-                  <div id="collapse<?= $index.$i ?>" class="accordion-collapse collapse" 
-                       aria-labelledby="heading<?= $index.$i ?>" data-bs-parent="#accordion<?= $index ?>">
-                    <div class="accordion-body">
-                      <div class="row">
-                        <div class="col-md-5">
-                          <img src="<?= base_url('assets/img/'.$branch['image']) ?>" 
-                               alt="<?= $branch['branch_name'] ?>" 
-                               class="img-fluid rounded shadow-sm mb-3">
-                        </div>
-                        <div class="col-md-7">
-                          <p><strong>Nama Cabang:</strong> <?= $branch['branch_name'] ?></p>
-                          <p><strong>Tipe:</strong> <?= $branch['type'] ?></p>
-                          <p><strong>Alamat:</strong> <?= $branch['address'] ?></p>
-                          <p><strong>Telepon:</strong> <?= $branch['phone_number'] ?></p>
-                          <p><strong>Email:</strong> <?= $branch['email'] ?></p>
-                          <a href="<?= $branch['maps_url'] ?>" target="_blank" class="btn btn-sm btn-outline-danger mt-2">
-                            <i class="fas fa-map-marker-alt me-2"></i>Lihat di Maps
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <?php endforeach; ?>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <?php endforeach; ?>
-
+   <div class="container section-title" data-aos="fade-up">
+        <h2>Cabang Kita</h2>
+        <p>Cabang Lido29 merupakan pusat layanan strategis yang mendukung kebutuhan pelanggan dengan pelayanan cepat, ramah, dan profesional.</p>
     </div>
-  </div>
+
+    <div class="container-fluid px-0">
+        <div class="row g-0" id="branchContainer">
+            <!-- Data akan dirender oleh JavaScript -->
+        </div>
+    </div>
 </section>
-
-
 
       <!-- /Services Section -->
 
@@ -244,53 +172,55 @@ if (!empty($visimisi_intro['intro_video_url'])) {
     </div>
     <!-- End Section Title -->
 
-   <div class="container">
+  <div class="container">
     <div class="row gy-4">
         <?php 
-        $delay = 100; // untuk data-aos-delay
-        foreach($news_list as $news): ?>
-        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
-            <article>
-                <div class="post-img">
-                    <?php if(!empty($news['cover_image'])): ?>
-                        <img src="<?= base_url('assets/img-landing/blog/'.$news['cover_image']) ?>" 
-                             alt="<?= htmlspecialchars($news['title']) ?>" 
-                             class="img-fluid" />
-                    <?php else: ?>
-                        <img src="<?= base_url('assets/img-landing/blog/default.jpg') ?>" 
-                             alt="No Image" 
-                             class="img-fluid" />
-                    <?php endif; ?>
+        $delay = 100;
+        $limit = 0; // batas tampilan
+
+        foreach($news_list as $news): 
+            if ($limit >= 3) break;
+        ?>
+       <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="<?= $delay ?>">
+    <a href="<?= site_url('front/blog/'.$news['id']) ?>" class="card-link-wrapper">
+        <article>
+            <div class="post-img">
+                <?php if(!empty($news['cover_image'])): ?>
+                    <img src="<?= base_url('assets/img-landing/blog/'.$news['cover_image']) ?>" 
+                         alt="<?= htmlspecialchars($news['title']) ?>" 
+                         class="img-fluid" />
+                <?php else: ?>
+                    <img src="<?= base_url('assets/img-landing/blog/default.jpg') ?>" 
+                         alt="No Image" 
+                         class="img-fluid" />
+                <?php endif; ?>
+            </div>
+
+            <p class="post-category"><?= htmlspecialchars($news['category']) ?></p>
+
+            <h2 class="title"><?= htmlspecialchars($news['title']) ?></h2>
+
+            <div class="d-flex align-items-center">
+                <img src="<?= base_url('assets/img-landing/blog/blog-author.jpg') ?>" 
+                     alt="<?= htmlspecialchars($news['updated_by']) ?>" 
+                     class="img-fluid post-author-img flex-shrink-0" />
+                <div class="post-meta">
+                    <p class="post-author"><?= htmlspecialchars($news['updated_by']) ?></p>
+                    <p class="post-date">
+                        <time datetime="<?= $news['release_date'] ?>">
+                            <?= date('M d, Y', strtotime($news['release_date'])) ?>
+                        </time>
+                    </p>
                 </div>
-
-                <p class="post-category"><?= htmlspecialchars($news['category']) ?></p>
-
-                <h2 class="title">
-                    <a href="<?= site_url('front/blog/'.$news['id']) ?>">
-                        <?= htmlspecialchars($news['title']) ?>
-                    </a>
-                </h2>
-
-                <div class="d-flex align-items-center">
-                    <img src="<?= base_url('assets/img-landing/blog/blog-author.jpg') ?>" 
-                         alt="<?= htmlspecialchars($news['updated_by']) ?>" 
-                         class="img-fluid post-author-img flex-shrink-0" />
-                    <div class="post-meta">
-                        <p class="post-author"><?= htmlspecialchars($news['updated_by']) ?></p>
-                        <p class="post-date">
-                            <time datetime="<?= $news['release_date'] ?>">
-                                <?= date('M d, Y', strtotime($news['release_date'])) ?>
-                            </time>
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </div>
+            </div>
+        </article>
+    </a>
+</div>
         <?php 
-        $delay += 100; // naikkan delay setiap item
+            $delay += 100; 
+            $limit++; // naikkan counter
         endforeach; ?>
     </div>
-    <!-- End recent posts list -->
 </div>
       </section>
 
@@ -307,6 +237,118 @@ if (!empty($visimisi_intro['intro_video_url'])) {
     </main>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    fetch("<?= base_url('front/get_offices_json') ?>")
+        .then(response => response.json())
+        .then(res => {
+            if (res.status !== "success") return;
+
+            const data = res.data;
+
+            // urutan area
+            const order = ["Office", "Magelang", "Temanggung", "Semarang", "Wonosobo"];
+
+            // group
+            const grouped = {};
+            data.forEach(o => {
+                if (!grouped[o.area]) grouped[o.area] = [];
+                grouped[o.area].push(o);
+            });
+
+            // sort sesuai order
+            const sorted = {};
+            order.forEach(a => {
+                if (grouped[a]) sorted[a] = grouped[a];
+            });
+
+            const colors = ['#6A1B1A', '#8B2F2C'];
+            let index = 0;
+
+            let html = "";
+
+            Object.entries(sorted).forEach(([area, branches]) => {
+                index++;
+                const bg = colors[index % 2];
+                const modalId = "modalArea" + index;
+
+                // CARD
+                html += `
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="area-card text-center" 
+                         style="background-color:${bg}"
+                         data-bs-toggle="modal" data-bs-target="#${modalId}">
+                        <h1 class="fw-bold mb-1">${branches.length}</h1>
+                        <h5 class="text-uppercase">${area}</h5>
+                    </div>
+                </div>
+                `;
+
+                // MODAL
+                html += `
+                <div class="modal fade" id="${modalId}" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:${bg}">
+                                <h5 class="modal-title" style="color:white">Daftar Cabang - ${area}</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="accordion" id="accordion${index}">
+                `;
+
+                branches.forEach((b, i) => {
+                    html += `
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="h${index}${i}">
+                            <button class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#c${index}${i}">
+                                ${b.branch_name} (${b.type})
+                            </button>
+                        </h2>
+
+                        <div id="c${index}${i}" class="accordion-collapse collapse"
+                             data-bs-parent="#accordion${index}">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <img src="<?= base_url('assets/img/') ?>${b.image}"
+                                             class="img-fluid rounded shadow-sm mb-3">
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <p><strong>Nama Cabang:</strong> ${b.branch_name}</p>
+                                        <p><strong>Tipe:</strong> ${b.type}</p>
+                                        <p><strong>Alamat:</strong> ${b.address}</p>
+                                        <p><strong>Telepon:</strong> ${b.phone_number}</p>
+                                        <p><strong>Email:</strong> ${b.email}</p>
+
+                                        <a href="${b.maps_url}" target="_blank"
+                                           class="btn btn-sm btn-outline-danger mt-2">
+                                            <i class="fas fa-map-marker-alt me-2"></i>Lihat di Maps
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+
+                html += `
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            });
+
+            document.getElementById("branchContainer").innerHTML = html;
+        });
+});
+
+
 document.addEventListener('DOMContentLoaded', function() {
     var dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     

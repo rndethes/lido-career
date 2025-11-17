@@ -27,11 +27,6 @@ class Front extends CI_Controller
     $data['content_footer'] = $this->main_model->getSettingFooter();
     $data['news_list'] = $this->main_model->get_latest_news(3);
 
-    
-
-
-
-
     $id_user = getLoggedInUser('id');
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
@@ -275,9 +270,21 @@ public function distribution()
 public function career()
 {
     $data['title'] = 'Karir Lido';
-     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
-   $data['all_divisi'] = $this->db->get('division')->result_array();
- $data['company'] = $this->main_model->getCompany();
+
+    // Sosmed
+    $data['content_sosmed'] = $this->main_model->getSettingSosmed();
+
+    // Setting Career (banner image, title, desc)
+    $career = $this->main_model->getSettingCareer();
+    $data['career'] = $career;
+
+    // Divisi job
+    $data['all_divisi'] = $this->db->get('division')->result_array();
+
+    // Data Company
+    $data['company'] = $this->main_model->getCompany();
+
+    // Cek user login
     $id_user = getLoggedInUser('id');
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
@@ -287,17 +294,19 @@ public function career()
             : base_url('assets/img/default-profile.png');
 
         $data['user_logged_in'] = true;
-        $data['user_name'] = $user['name_candidate']; 
+        $data['user_name'] = $user['name_candidate'];
     } else {
         $data['img'] = base_url('assets/img/default-profile.png');
         $data['user_logged_in'] = false;
         $data['user_name'] = null;
     }
-   
+
+    // Load View
     $this->load->view('front/header-landing', $data);
     $this->load->view('front/career', $data);
     $this->load->view('front/footer-landing', $data);
 }
+
 
 public function blog($id)
 {

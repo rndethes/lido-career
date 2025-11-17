@@ -34,27 +34,67 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card card-body shadow-sm">
-                                    <label for="">FILTER BY DIVISI</label>
-                                    <select class="form-control" v-model="filterDivision">
-                                        <option value="all-division">SEMUA DIVISI</option>
-                                        <?php foreach ($division as $divisi): ?>
-                                        <option
-                                            value="<?= $divisi['id_division'] ?>">
+                           <div class="col-md-4 mb-3">
+                            <!-- Filter Divisi -->
+                            <div class="card card-body shadow-sm mb-3">
+                                <label>FILTER BY DIVISI</label>
+                                <select class="form-control" v-model="filterDivision">
+                                    <option value="all-division">SEMUA DIVISI</option>
+                                    <?php foreach ($division as $divisi): ?>
+                                        <option value="<?= $divisi['id_division'] ?>">
                                             <?= $divisi['name_division'] ?>
                                         </option>
-                                        <?php endforeach ?>
-                                    </select>
-                                </div>
-                                <div class="mt-4">
-                                    <button @click="switchTab('#tabPemilihanBatch')":disabled="selectedJobs.length === 0" class="d-none d-md-block btn btn-md w-100 btn-info">
-                                        <i class="fas fa-arrow-right"></i> Apply Lamaran
-                                    </button>
-                                </div>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
+
+                            <!-- Filter Pendidikan -->
+                         <div class="card card-body shadow-sm mb-3">
+                            <label>FILTER BY PENDIDIKAN</label>
+                            <select class="form-control" v-model="filterEducation">
+
+                                <option value="all-education">SEMUA PENDIDIKAN</option>
+
+                                <?php
+                                $pendidikan = [
+                                    'SEMUA JENJANG',
+                                    'SD / MI',
+                                    'SMP / MTS',
+                                    'SMA / SMK / MA',
+                                    'D3',
+                                    'D4',
+                                    'S1',
+                                    'S2',
+                                    'S3'
+                                ];
+
+                                foreach ($pendidikan as $edu):
+                                ?>
+                                    <option value="<?= $edu ?>"><?= strtoupper($edu) ?></option>
+                                <?php endforeach; ?>
+
+                            </select>
+                        </div>
+
+
+                            <!-- Tombol Apply -->
+                            <div class="mt-4">
+                                <button 
+                                    @click="switchTab('#tabPemilihanBatch')"
+                                    :disabled="selectedJobs.length === 0"
+                                    class="d-none d-md-block btn btn-md w-100 btn-info">
+                                    
+                                    <i class="fas fa-arrow-right"></i> Apply Lamaran
+                                </button>
+                            </div>
+
+                        </div>
                             <div class="col-md-8 mb-3">
                                 <!-- Begin List Loker -->
+                                 <div class="col-md-8 mb-3">
+                                    <div v-if="filteredJobs.length === 0" class="text-center text-muted py-4">
+                                        <h5 class="fw-bold">Lowongan tidak tersedia</h5>
+                                    </div>
                                 <div v-for="job in filteredJobs" :key="`cardLowonganCrx-${job.id}`"
                                     class="card card-body shadow-sm mb-3">
                                     <div class="list-group-item list-group-item-action" aria-current="true">
@@ -375,6 +415,7 @@
                     selectedJobs: [],
                     availableBatchs: [],
                     filterDivision: 'all-division',
+                    filterEducation: 'all-education',
                     selectedBatchForModal: null, 
                     modalTimelineData: [], 
                     isModalLoading: false
@@ -387,17 +428,29 @@
                     }
                 }
             },
-            computed: {
-                filteredJobs() {
-                    if (this.filterDivision == 'all-division') {
-                        return this.jobLists;
-                    }
+           computed: {
 
-                    const filter = parseInt(this.filterDivision);
+            filteredJobs() {
 
-                    return this.jobLists.filter((job) => parseInt(job.id_division) === filter);
-                },
-            },
+                return this.jobLists.filter(job => {
+
+                    // === FILTER DIVISI ===
+                    const matchDivision =
+                        this.filterDivision === 'all-division' ||
+                        job.id_division == this.filterDivision;
+
+                    // === FILTER PENDIDIKAN ===
+                    const matchEducation =
+                        this.filterEducation === 'all-education' ||      
+                        job.education_job === this.filterEducation;
+
+                    return matchDivision && matchEducation;
+                });
+            }
+
+        },
+
+
             methods: {
                 pilihJadwalPenerbangan(batch) {
                     Swal.fire({

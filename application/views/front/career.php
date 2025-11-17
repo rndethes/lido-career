@@ -1,10 +1,8 @@
 <style>
-  /* Hero Banner */
   .career-hero {
     width: 100%;
     height: 380px;
-    background: url('<?= base_url("assets/img-landing/features-bg.jpg") ?>') center/cover no-repeat;
-
+   background: url('<?= base_url("assets/img-landing/" . $career["banner_image"]) ?>') center/cover no-repeat; */
     position: relative;
   }
 
@@ -25,10 +23,11 @@
 
   .career-hero-overlay {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px !important;
     left: 60px;
     color: #fff;
-  }
+
+}
 
   .career-hero-overlay h1 {
     font-size: 42px;
@@ -40,7 +39,7 @@
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 100px;
     color: #4a4a4a;
   }
 
@@ -108,6 +107,13 @@
   background: #b10312ff;
   color: white;
 }
+@media (max-width: 768px) {
+    .career-hero-overlay {
+        bottom: 40px;  
+        left: 10px;  
+        margin-bottom:-70px;
+    }
+}
 
 </style>
 
@@ -116,7 +122,7 @@
 <div class="career-hero">
   <div class="career-hero-overlay">
     <div class="container section-title" data-aos="fade-up">
-        <h2>Karier Lido29</h2>
+       <h2><?= $career['banner_title'] ?></h2>
     </div>
   </div>
 </div>
@@ -124,11 +130,8 @@
 <div class="container">
 
   <!-- TITLE -->
-    <h3 class="career-title">Bergabung bersama kami</h3>
-  <p class="career-desc">
-    Kami beroperasi di berbagai wilayah di Indonesia. Kami mengundang Anda untuk bergabung dan tumbuh 
-    bersama kami melalui berbagai peluang karir yang tersedia.
-  </p>
+    <h3 class="career-title"><?= $career['title_page'] ?></h3>
+  <p class="career-desc"><?= $career['description_page'] ?></p>
 
   <!-- FILTER -->
   <div class="career-filter">

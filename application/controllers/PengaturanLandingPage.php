@@ -707,4 +707,52 @@ public function save_map_link()
 }
 
 
+// public function get_career()
+// {
+
+//     $data['content_career'] = $this->Pengaturanlp_model->get_career();
+
+
+//     $this->load->view('templates/header', $data);
+//     $this->load->view('pengaturan-landing-page/career', $data);
+//     $this->load->view('templates/footer', $data);
+// }
+
+// public function update_career()
+// {
+//     $banner_title  = $this->input->post('banner_title');
+//     $title_page    = $this->input->post('title_page');
+//     $description   = $this->input->post('description_page');
+//     $image         = $_FILES['banner_image']['name'];
+
+//     $data = [
+//         'banner_title'     => $banner_title,
+//         'title_page'       => $title_page,
+//         'description_page' => $description
+//     ];
+
+//     if ($image) {
+//         $config['upload_path']   = './assets/img-landing/';
+//         $config['allowed_types'] = 'jpg|jpeg|png';
+//         $config['file_name']     = time() . '_' . $image;
+//         $this->load->library('upload', $config);
+
+//         if ($this->upload->do_upload('banner_image')) {
+//             $data['banner_image'] = $this->upload->data('file_name');
+//         } else {
+//             echo "<script>alert('Upload gambar gagal!'); window.history.back();</script>";
+//             return;
+//         }
+//     }
+
+//     $update = $this->Pengaturanlp_model->update_career($data);
+
+//     if ($update) {
+//         echo "<script>alert('Career berhasil diperbarui!'); window.location.href='" . base_url('PengaturanLandingPage') . "';</script>";
+//     } else {
+//         echo "<script>alert('Gagal memperbarui Career!'); window.history.back();</script>";
+//     }
+// }
+
+
 }

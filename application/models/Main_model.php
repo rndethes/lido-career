@@ -209,4 +209,15 @@ public function get_latest_news($limit = 3) {
         ->result_array();
 }
 
+public function getSettingCareer()
+    {
+        return $this->db->get('setting_career')->row_array();
+    }
+
+    // Update setting career
+    public function updateSettingCareer($data)
+    {
+        return $this->db->update('setting_career', $data, ['id' => 1]);
+    }
+
 }

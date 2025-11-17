@@ -1,23 +1,9 @@
 <style>
-  body, html {
-    height: auto !important;
-    min-height: 100% !important;
-    overflow: visible !important;
-}
-
-.main-content {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: visible !important;
-}
-
 /* Card style */
 .card {
   border-radius: 15px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   border: none;
-  position: relative;
-  z-index: 1 !important;
 }
 
 .card-header {
@@ -25,25 +11,25 @@
     color: #fff;
     border-radius: 15px 15px 0 0;
     text-align: center;
-    padding: 0; 
+    padding: 0; /* hilangkan padding default */
 }
 
 .card-header .nav {
     display: flex;
-    flex-wrap: nowrap; 
-    overflow-x: auto;  
-    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;  /* jangan wrap ke baris baru */
+    overflow-x: auto;   /*scroll horizontal jika muatannya banyak*/
+    -webkit-overflow-scrolling: touch; /* smooth scroll di mobile */
 }
 
 .card-header .nav .nav-item {
-    flex: 0 0 auto; 
+    flex: 0 0 auto; /* setiap tab tidak mengecil */
 }
 
 .card-header .nav .nav-link {
-    white-space: nowrap; 
+    white-space: nowrap; /* jangan pecah teks tab */
 }
 
-
+/* Optional: hapus scrollbar default agar lebih rapi */
 .card-header .nav::-webkit-scrollbar {
     height: 5px;
 }
@@ -106,6 +92,11 @@ img.preview {
       🌿 Budaya
     </button>
   </li>
+  <!-- <li class="nav-item" role="presentation">
+  <button class="nav-link" id="career-tab" data-bs-toggle="tab" data-bs-target="#career" type="button" role="tab" aria-controls="career" aria-selected="false">
+    💼 Career
+  </button>
+</li> -->
   <li class="nav-item" role="presentation">
   <button class="nav-link" id="footer-tab" data-bs-toggle="tab" data-bs-target="#footer" type="button" role="tab" aria-controls="footer" aria-selected="false">
     📍 Footer
@@ -341,7 +332,7 @@ img.preview {
             <label>Type</label>
             <select name="type" id="type" class="form-select" required>
               <option value="" disabled selected hidden>-- Pilih --</option>
-               <option value="Office">Office</option>
+              <option value="Office">Office</option>
               <option value="Warehouse">Warehouse</option>
               <option value="Store">Store</option>
             </select>
@@ -366,19 +357,12 @@ img.preview {
               <label>Maps URL</label>
               <input type="text" name="maps_url" id="maps_url" class="form-control">
             </div>
-              <div class="col-md-6">
-                <label>Image</label>
-                <input type="file" name="image" id="image" class="form-control" onchange="previewOfficeImage(event)">
-                
-                <!-- PREVIEW GAMBAR -->
-                <img id="previewImage" 
-                    src="" 
-                    alt="Preview" 
-                    style="width:150px; margin-top:20px;">
-              </div>
+            <div class="col-md-6">
+              <label>Image</label>
+              <input type="file" name="image" id="image" class="form-control">
             </div>
           </div>
-     
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
           <button type="submit" class="btn btn-primary">Simpan</button>
@@ -796,16 +780,55 @@ img.preview {
             <input type="file" name="image" id="culture_image" class="form-control" accept="image/*">
             <img id="previewCulture" src="" class="img-fluid rounded shadow-sm mt-2" style="width:50%; height:auto; display:none;">
           </div>
-        </div> <!-- tutup modal-body -->
+        </div> 
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
           <button type="submit" class="btn btn-primary">💾 Simpan</button>
         </div>
-      </div> <!-- tutup modal-content -->
+      </div> 
     </form>
-  </div> <!-- tutup modal-dialog -->
-</div> <!-- tutup modal -->
+  </div> 
+</div> 
+
+<div class="tab-pane fade" id="career" role="tabpanel">
+  <form action="<?= base_url('PengaturanLandingPage/update_career') ?>" method="POST" enctype="multipart/form-data">
+    
+    <!-- Banner Title -->
+    <div class="mb-3">
+      <label>Judul Banner</label>
+      <input type="text" class="form-control" name="banner_title" value="<?= isset($content_career['banner_title']) ? $content_career['banner_title'] : '' ?>" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Judul Halaman</label>
+      <input type="text" class="form-control" name="title_page" value="<?= isset($content_career['title_page']) ? $content_career['title_page'] : '' ?>" required>
+    </div>
+
+  
+    <div class="mb-3">
+      <label>Deskripsi Halaman</label>
+      <textarea class="form-control" name="description_page" rows="3"><?= isset($content_career['description_page']) ? $content_career['description_page'] : '' ?></textarea>
+    </div>
+
+
+    <div class="mb-3 text-center">
+      <img id="previewCareer" 
+           src="<?= isset($content_career['banner_image']) ? base_url('assets/img-landing/' . $content_career['banner_image']) : base_url('assets/img/default.png') ?>" 
+           class="preview mb-2" 
+           style="width: 50%; height: auto;">
+    </div>
+
+    <div class="mb-3">
+      <input type="file" class="form-control" name="banner_image" id="imageCareer" accept="image/*">
+    </div>
+
+
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary">💾 Simpan</button>
+    </div>
+  </form>
+</div>
 
 <!-- ===================== TAB FOOTER ===================== -->
 <div class="tab-pane fade" id="footer" role="tabpanel">
@@ -1029,7 +1052,6 @@ img.preview {
     const file = e.target.files[0];
     if(file) document.getElementById('previewAbout2').src = URL.createObjectURL(file);
   });
-  
    document.getElementById('imageOffice').addEventListener('change', function(e){
     const file = e.target.files[0];
     if(file) document.getElementById('previewOffice').src = URL.createObjectURL(file);
@@ -1045,6 +1067,12 @@ img.preview {
     if(file) document.getElementById('previewUnit').src = URL.createObjectURL(file);
   });
 
+  //  document.getElementById('imageCareer').addEventListener('change', function(event){
+  //   const [file] = event.target.files;
+  //   if(file){
+  //     document.getElementById('previewCareer').src = URL.createObjectURL(file);
+  //   }
+  // });
 
   // Reset form modal
   function resetUnitForm(){
@@ -1251,6 +1279,20 @@ function addMediaInput(){
     document.getElementById('officeModalLabel').innerText = 'Tambah Kantor';
 }
 
+function editOffice(data) {
+    document.getElementById('office_id').value = data.id;
+    document.getElementById('area').value = data.area;
+    document.getElementById('type').value = data.type;
+    document.getElementById('branch_name').value = data.branch_name;
+    document.getElementById('address').value = data.address;
+    document.getElementById('phone_number').value = data.phone_number;
+    document.getElementById('email').value = data.email;
+    document.getElementById('maps_url').value = data.maps_url;
+    document.getElementById('officeModalLabel').innerText = 'Edit Kantor';
+    var modal = new bootstrap.Modal(document.getElementById('officeModal'));
+    modal.show();
+}
+
 
   function resetCultureForm() {
     document.getElementById('cultureForm').reset();
@@ -1307,47 +1349,6 @@ function addMediaInput(){
     modal.show();
   }
 
-function resetForm() {
-    document.getElementById("officeForm").reset();
-    document.getElementById("office_id").value = "";
-    document.getElementById("previewImage").style.display = "none";
-    document.getElementById("previewImage").src = "";
-}
-
-function editOffice(data) {
-    // buka modal
-    var modal = new bootstrap.Modal(document.getElementById('officeModal'));
-    modal.show();
-
-    // isi data field
-    document.getElementById("office_id").value = data.id;
-    document.getElementById("area").value = data.area;
-    document.getElementById("type").value = data.type;
-    document.getElementById("branch_name").value = data.branch_name;
-    document.getElementById("address").value = data.address;
-    document.getElementById("maps_url").value = data.maps_url;
-    document.getElementById("phone_number").value = data.phone_number;
-    document.getElementById("email").value = data.email;
-
-    // tampilkan preview gambar lama
-    if (data.image) {
-        document.getElementById("previewImage").src = "<?= base_url('assets/img/') ?>" + data.image;
-        document.getElementById("previewImage").style.display = "block";
-    } else {
-        document.getElementById("previewImage").style.display = "none";
-    }
-}
-
-// preview gambar baru
-function previewOfficeImage(event) {
-    const reader = new FileReader();
-    reader.onload = function(){
-        const output = document.getElementById('previewImage');
-        output.src = reader.result;
-        output.style.display = "block";
-    }
-    reader.readAsDataURL(event.target.files[0]);
-}
 </script>
 
 

@@ -8,6 +8,7 @@ class Pengaturanlp_model extends CI_Model
     private $table_office   = 'setting_office';
     private $table_news = 'setting_news';
     private $table_unit     = 'setting_unit_business';
+    private $table_career = 'setting_career';
 
     // --- HERO SECTION ---
     public function get_data()
@@ -241,6 +242,18 @@ public function get_map_link()
     $query = $this->db->get_where('setting_landingpage', ['id' => 1]);
     return $query->row_array();
 }
+
+// --- Career Section ---
+// public function get_career()
+// {
+//     return $this->db->get_where($this->setting_career, ['id' => 1])->row_array();
+// }
+
+// public function update_career($data)
+// {
+//     $this->db->where('id', 1);
+//     return $this->db->update($this->setting_career, $data);
+// }
 
 
 }

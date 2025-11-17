@@ -206,37 +206,44 @@ class CandidateJob extends CI_Controller
         return substr(rtrim($text), 0, $length) . '...';
     }
 
-    public function index()
-    {
-        $id_candidate = getLoggedInUser('id');
-        $division = $this->db->get_where('division')->result_array();
-        $result = $this->M_jobv->get_batch_timeline($id_candidate);
-        $batch = $this->M_jobv->tampilBatch();
-        $biodata = $this->M_jobv->checkDatadiri($id_candidate);
-        
-        // Cek kuota
-        $isQuotaL = $this->db->get_where('history_apply', [
-            'id_candidate_history' => getLoggedInUser('id')
-            ])->num_rows() > 2;
-            
-        $dapatMelamar = true;
-        if ($isQuotaL) {
-            $dapatMelamar = false;
-        }
+   public function index()
+{
+    $id_candidate = getLoggedInUser('id');
 
-        $isQuotaS = getLoggedInUser('state') == 1;
+    // Data divisi
+    $division = $this->db->get('division')->result_array();
 
-        $this->load->view('dashboarduser/templates/header');
-        $this->load->view('dashboarduser/jobv/index', [
-            'division'     => $division,
-            'result'     => $result,
-            'batch'     => $batch,
-            'dapatMelamar' => $dapatMelamar,
-            'biodataLengkap' => is_null($biodata)
-        ]);
+    // Ambil jenjang pendidikan dari job_vacancy
+    $education = $this->db
+        ->select('education_job')
+        ->from('job_vacancy')
+        ->group_by('education_job')
+        ->order_by('education_job', 'ASC')
+        ->get()
+        ->result_array();
 
-        $this->load->view('dashboarduser/templates/footer');
-    }
+    // Data lainnya
+    $result = $this->M_jobv->get_batch_timeline($id_candidate);
+    $batch = $this->M_jobv->tampilBatch();
+    $biodata = $this->M_jobv->checkDatadiri($id_candidate);
+
+    $isQuotaL = $this->db->get_where('history_apply', [
+        'id_candidate_history' => $id_candidate
+    ])->num_rows() > 2;
+
+    $dapatMelamar = !$isQuotaL;
+
+    $this->load->view('dashboarduser/templates/header');
+    $this->load->view('dashboarduser/jobv/index', [
+        'division'        => $division,
+        'education'       => $education,
+        'result'          => $result,
+        'batch'           => $batch,
+        'dapatMelamar'    => $dapatMelamar,
+        'biodataLengkap'  => is_null($biodata)
+    ]);
+    $this->load->view('dashboarduser/templates/footer');
+}
 
     public function index2()
     {

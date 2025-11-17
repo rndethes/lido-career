@@ -139,73 +139,81 @@ class Conjen extends CI_Controller
         redirect('conjen/showjen');
     }
 
-    public function edit($id)
-    {
-        $data['show_data_editjen'] = $this->Jenlok->getAllDataById($id);
-        $data2['tablejen'] = $this->Loker->getAllData();
+  public function edit($id)
+{
+    $data['show_data_editjen'] = $this->Jenlok->getAllDataById($id);
+    $data2['tablejen'] = $this->Loker->getAllData();
 
-        $aturan = array(
-            array(
-                    'field' => 'divisi',
-                    'label' => 'Nama Divisi',
-                    'rules' => 'required'
-            ),
-            array(
-                    'field' => 'nama',
-                    'label' => 'Nama Job',
-                    'rules' => 'required'
-            ),
-            array(
-                    'field' => 'kasta',
-                    'label' => 'Grade',
-                    'rules' => 'required'
-            ),
-            array(
-                    'field' => 'kualifikasi',
-                    'label' => 'Spec',
-                    'rules' => 'required'
-            ),
-            array(
-                    'field' => 'deskripsi',
-                    'label' => 'Deskripsi',
-                    'rules' => 'required'
-            ),
-
+    $aturan = array(
+        array(
+            'field' => 'divisi',
+            'label' => 'Nama Divisi',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'nama',
+            'label' => 'Nama Job',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'kasta',
+            'label' => 'Grade',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'kualifikasi',
+            'label' => 'Spec',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'deskripsi',
+            'label' => 'Deskripsi',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'education_job',
+            'label' => 'Jenjang Pendidikan',
+            'rules' => 'required'
+        ),
     );
 
-        $this->form_validation->set_rules($aturan);
-        if ($this->form_validation->run() == false) {
-            if ($this->input->method()=='post') {
-                $this->session->set_flashdata('error', 'Form tidak boleh kosong');
-            }
+    $this->form_validation->set_rules($aturan);
 
+    if ($this->form_validation->run() == false) {
 
-            $this->load->view('templates/header');
-            $this->load->view('lowongan/editjen', $data + $data2);
-            $this->load->view('templates/footer');
-        } else {
-            $divisi = $this->input->post('divisi');
-            $nama = $this->input->post('nama');
-            $kasta = $this->input->post('kasta');
-            $kualifikasi = $this->input->post('kualifikasi');
-            $des = $this->input->post('deskripsi');
-            //  $status = $this->input->post('status');
-
-            //  var_dump($namadiv, $desdiv, $tanggal);
-            //  exit();
-            // set in form
-            $this->db->set('id_division', $divisi);
-            $this->db->set('name_job', $nama);
-            $this->db->set('grade_value', $kasta);
-            $this->db->set('requirement_job', $kualifikasi);
-            $this->db->set('description_job', $des);
-            //  $this->db->set('is_active', $status);
-            $this->db->where('id', $id);
-            $this->db->update('job_vacancy');
-            $this->session->set_flashdata('success', 'Data berhasil edit');
-            redirect('conjen/showjen');
+        if ($this->input->method()=='post') {
+            $this->session->set_flashdata('error', 'Form tidak boleh kosong');
         }
+
+        $this->load->view('templates/header');
+        $this->load->view('lowongan/editjen', $data + $data2);
+        $this->load->view('templates/footer');
+
+    } else {
+
+        $divisi = $this->input->post('divisi');
+        $nama = $this->input->post('nama');
+        $kasta = $this->input->post('kasta');
+        $kualifikasi = $this->input->post('kualifikasi');
+        $des = $this->input->post('deskripsi');
+        $education = $this->input->post('education_job');
+
+        // Simpan ke DB
+        $this->db->set('id_division', $divisi);
+        $this->db->set('name_job', $nama);
+        $this->db->set('grade_value', $kasta);
+        $this->db->set('requirement_job', $kualifikasi);
+        $this->db->set('description_job', $des);
+        $this->db->set('education_job', $education);
+
+        $this->db->where('id', $id);
+        $this->db->update('job_vacancy');
+
+        $this->session->set_flashdata('success', 'Data berhasil edit');
+        redirect('conjen/showjen');
     }
+}
+
 
 public function toggle($id)
 {

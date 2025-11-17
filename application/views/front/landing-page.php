@@ -1,4 +1,52 @@
-    <main class="main">
+<style>
+
+.col-5-per-row {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+.about-box {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  background: #8b000f;
+  color: #fff;
+  width: 48%;          
+  padding: 40px 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 992px) {
+    .col-5-per-row {
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+    }
+
+     .about-box {
+    position: static;
+    width: 100%;
+    transform: none;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+    .col-5-per-row {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    #cabang-kota .area-card {
+        min-width: unset !important;
+        width: 100%;
+    }
+    
+}
+</style>
+
+
+<main class="main">
      <!-- Hero Section -->
 <!-- Hero Section -->
 <section id="hero" class="hero section dark-background" style="z-index:1;">
@@ -272,17 +320,16 @@ if (!empty($visimisi_intro['intro_video_url'])) {
                 const modalId = "modalArea" + index;
 
                 // CARD
-                html += `
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+               html += `
+                <div class="col-5-per-row">
                     <div class="area-card text-center" 
-                         style="background-color:${bg}"
-                         data-bs-toggle="modal" data-bs-target="#${modalId}">
+                        style="background-color:${bg}"
+                        data-bs-toggle="modal" data-bs-target="#${modalId}">
                         <h1 class="fw-bold mb-1">${branches.length}</h1>
                         <h5 class="text-uppercase">${area}</h5>
                     </div>
                 </div>
                 `;
-
                 // MODAL
                 html += `
                 <div class="modal fade" id="${modalId}" tabindex="-1">

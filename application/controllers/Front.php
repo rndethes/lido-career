@@ -191,6 +191,7 @@ public function business_details()
     $data['title'] = 'Unit Bisnis Lido';
      $data['content_sosmed'] = $this->main_model->getSettingSosmed();
     $data['unit_business'] = $this->main_model->getUnitBusiness();
+    $data['landingpage'] = $this->main_model->get_landingpage(); 
      $data['company'] = $this->main_model->getCompany();
      $id_user = getLoggedInUser('id');
     if ($id_user) {

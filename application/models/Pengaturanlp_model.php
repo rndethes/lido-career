@@ -244,16 +244,29 @@ public function get_map_link()
 }
 
 // --- Career Section ---
-// public function get_career()
-// {
-//     return $this->db->get_where($this->setting_career, ['id' => 1])->row_array();
-// }
+public function get_career()
+{
+    return $this->db->get_where('setting_career', ['id' => 1])->row_array();
+}
 
-// public function update_career($data)
-// {
-//     $this->db->where('id', 1);
-//     return $this->db->update($this->setting_career, $data);
-// }
+public function update_career($data)
+{
+    $this->db->where('id', 1);
+    return $this->db->update('setting_career', $data);
+}
+
+
+public function update_image_unit($data)
+{
+    $this->db->where('id', 1);
+    return $this->db->update('setting_landingpage', $data);
+}
+
+public function get_landingpage()
+{
+    return $this->db->get_where('setting_landingpage', ['id' => 1])->row_array();
+}
+
 
 
 }

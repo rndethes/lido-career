@@ -220,4 +220,10 @@ public function getSettingCareer()
         return $this->db->update('setting_career', $data, ['id' => 1]);
     }
 
+    public function get_landingpage()
+{
+    return $this->db->get_where('setting_landingpage', ['id' => 1])->row_array();
+}
+
+
 }

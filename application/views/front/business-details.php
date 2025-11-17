@@ -11,11 +11,12 @@
       </div>
 
       <div class="image-content" style="flex: 1 1 40%; text-align: center;">
-        <img src="<?= base_url('assets/img/unit-bisnis.jpeg') ?>" 
-             alt="LIDO29 Group" 
-             class="img-fluid" 
-             style="max-width: 500px; width: 100%; height: auto;">
+          <img src="<?= base_url('assets/img/' . $landingpage['image_unit']) ?>" 
+              alt="LIDO29 Group" 
+              class="img-fluid" 
+              style="max-width: 500px; width: 100%; height: auto;">
       </div>
+
 
     </div>
   </section>

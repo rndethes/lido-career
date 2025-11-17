@@ -92,11 +92,11 @@ img.preview {
       🌿 Budaya
     </button>
   </li>
-  <!-- <li class="nav-item" role="presentation">
+  <li class="nav-item" role="presentation">
   <button class="nav-link" id="career-tab" data-bs-toggle="tab" data-bs-target="#career" type="button" role="tab" aria-controls="career" aria-selected="false">
     💼 Career
   </button>
-</li> -->
+</li>
   <li class="nav-item" role="presentation">
   <button class="nav-link" id="footer-tab" data-bs-toggle="tab" data-bs-target="#footer" type="button" role="tab" aria-controls="footer" aria-selected="false">
     📍 Footer
@@ -594,44 +594,64 @@ img.preview {
       </tbody>
     </table>
   </div>
-</div>
 
-<!-- Modal Form Tambah/Edit Unit Bisnis -->
-<div class="modal fade" id="unitModal" tabindex="-1" aria-labelledby="unitModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <form id="unitForm" method="post" enctype="multipart/form-data" action="<?= base_url('PengaturanLandingPage/save_unit') ?>">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="unitModalLabel">Tambah / Edit Unit Bisnis</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+  <!-- Modal Form Tambah/Edit Unit Bisnis -->
+  <div class="modal fade" id="unitModal" tabindex="-1" aria-labelledby="unitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <form id="unitForm" method="post" enctype="multipart/form-data" action="<?= base_url('PengaturanLandingPage/save_unit') ?>">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="unitModalLabel">Tambah / Edit Unit Bisnis</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="id" id="unit_id">
+            <div class="mb-3">
+              <label>Judul</label>
+              <input type="text" name="title" id="unit_title" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Deskripsi Singkat</label>
+              <textarea name="description" id="description" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label>Deskripsi Lengkap</label>
+              <textarea name="description1" id="description1" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="mb-3 text-center">
+              <label>Gambar</label>
+              <input type="file" name="image" id="unit_image" class="form-control" accept="image/*">
+              <img id="previewUnit" src="" class="preview mt-2" style="width: 50%; height: auto;">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">💾 Simpan</button>
+          </div>
         </div>
-        <div class="modal-body">
-          <input type="hidden" name="id" id="unit_id">
-          <div class="mb-3">
-            <label>Judul</label>
-            <input type="text" name="title" id="unit_title" class="form-control" required>
-          </div>
-          <div class="mb-3">
-            <label>Deskripsi Singkat</label>
-            <textarea name="description" id="description" class="form-control" rows="3"></textarea>
-          </div>
-          <div class="mb-3">
-            <label>Deskripsi Lengkap</label>
-            <textarea name="description1" id="description1" class="form-control" rows="3"></textarea>
-          </div>
-          <div class="mb-3 text-center">
-            <label>Gambar</label>
-            <input type="file" name="image" id="unit_image" class="form-control" accept="image/*">
-            <img id="previewUnit" src="" class="preview mt-2" style="width: 50%; height: auto;">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-          <button type="submit" class="btn btn-primary">💾 Simpan</button>
-        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Form Update Gambar Unit Bisnis -->
+  <div class="mt-4">
+    <h5>Update Gambar Unit Bisnis</h5>
+    <form action="<?= base_url('PengaturanLandingPage/update_image_unit') ?>" method="post" enctype="multipart/form-data">
+      <div class="mb-3 text-center">
+        <input type="file" name="image_unit" id="image_unit_input" class="form-control mb-2" accept="image/*" onchange="previewImageUnit(event)">
+        <?php if(!empty($landingpage['image_unit'])): ?>
+          <img id="previewImageUnit" src="<?= base_url('assets/img/' . $landingpage['image_unit']) ?>" 
+               class="img-fluid rounded" style="max-width: 500px; width: 100%; height: auto;">
+        <?php else: ?>
+          <img id="previewImageUnit" src="" class="img-fluid rounded" style="max-width: 200px; width: 50%; height: auto;">
+        <?php endif; ?>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">💾 Update Gambar</button>
       </div>
     </form>
   </div>
+
 </div>
 
 
@@ -1067,13 +1087,13 @@ img.preview {
     if(file) document.getElementById('previewUnit').src = URL.createObjectURL(file);
   });
 
-  //  document.getElementById('imageCareer').addEventListener('change', function(event){
-  //   const [file] = event.target.files;
-  //   if(file){
-  //     document.getElementById('previewCareer').src = URL.createObjectURL(file);
-  //   }
-  // });
-
+   document.getElementById('imageCareer').addEventListener('change', function(event){
+    const [file] = event.target.files;
+    if(file){
+      document.getElementById('previewCareer').src = URL.createObjectURL(file);
+    }
+  });
+  
   // Reset form modal
   function resetUnitForm(){
     document.getElementById('unitForm').reset();
@@ -1261,6 +1281,15 @@ function previewMedia(event){
 
     container.appendChild(wrapper);
   }
+}
+
+function previewImageUnit(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+        var output = document.getElementById('previewImageUnit');
+        output.src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
 }
 
 // Tambah input media baru

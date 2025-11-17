@@ -5428,3 +5428,2052 @@ INFO - 2025-11-18 02:29:05 --> File loaded: C:\xampp\htdocs\lido-career\applicat
 INFO - 2025-11-18 02:29:05 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
 INFO - 2025-11-18 02:29:05 --> Final output sent to browser
 DEBUG - 2025-11-18 02:29:05 --> Total execution time: 0.4260
+INFO - 2025-11-18 02:38:56 --> Config Class Initialized
+INFO - 2025-11-18 02:38:56 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:38:56 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:38:56 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:38:56 --> URI Class Initialized
+INFO - 2025-11-18 02:38:56 --> Router Class Initialized
+INFO - 2025-11-18 02:38:56 --> Output Class Initialized
+INFO - 2025-11-18 02:38:56 --> Security Class Initialized
+DEBUG - 2025-11-18 02:38:56 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:38:56 --> Input Class Initialized
+INFO - 2025-11-18 02:38:56 --> Language Class Initialized
+INFO - 2025-11-18 02:38:56 --> Loader Class Initialized
+INFO - 2025-11-18 02:38:56 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:38:56 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:38:56 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:38:56 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:38:56 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:38:56 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:38:57 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:38:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:38:57 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:38:57 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:38:57 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:38:57 --> Controller Class Initialized
+INFO - 2025-11-18 02:38:57 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 02:38:57 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:38:57 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 02:38:57 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 02:38:57 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 02:38:57 --> Final output sent to browser
+DEBUG - 2025-11-18 02:38:57 --> Total execution time: 0.6307
+INFO - 2025-11-18 02:39:00 --> Config Class Initialized
+INFO - 2025-11-18 02:39:00 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:39:00 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:39:00 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:39:00 --> URI Class Initialized
+INFO - 2025-11-18 02:39:00 --> Router Class Initialized
+INFO - 2025-11-18 02:39:00 --> Output Class Initialized
+INFO - 2025-11-18 02:39:00 --> Security Class Initialized
+DEBUG - 2025-11-18 02:39:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:39:00 --> Input Class Initialized
+INFO - 2025-11-18 02:39:00 --> Language Class Initialized
+ERROR - 2025-11-18 02:39:01 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 02:44:12 --> Config Class Initialized
+INFO - 2025-11-18 02:44:12 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:44:12 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:44:12 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:44:12 --> URI Class Initialized
+INFO - 2025-11-18 02:44:12 --> Router Class Initialized
+INFO - 2025-11-18 02:44:12 --> Output Class Initialized
+INFO - 2025-11-18 02:44:12 --> Security Class Initialized
+DEBUG - 2025-11-18 02:44:12 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:44:12 --> Input Class Initialized
+INFO - 2025-11-18 02:44:12 --> Language Class Initialized
+INFO - 2025-11-18 02:44:12 --> Loader Class Initialized
+INFO - 2025-11-18 02:44:12 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:44:12 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:44:12 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:44:12 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:44:12 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:44:12 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:44:12 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:44:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:44:12 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:44:12 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:44:12 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:44:12 --> Controller Class Initialized
+INFO - 2025-11-18 02:44:12 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 02:44:12 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:44:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 02:44:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 02:44:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 02:44:12 --> Final output sent to browser
+DEBUG - 2025-11-18 02:44:12 --> Total execution time: 0.3128
+INFO - 2025-11-18 02:44:14 --> Config Class Initialized
+INFO - 2025-11-18 02:44:14 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:44:14 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:44:14 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:44:14 --> URI Class Initialized
+INFO - 2025-11-18 02:44:14 --> Router Class Initialized
+INFO - 2025-11-18 02:44:14 --> Output Class Initialized
+INFO - 2025-11-18 02:44:14 --> Security Class Initialized
+DEBUG - 2025-11-18 02:44:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:44:14 --> Input Class Initialized
+INFO - 2025-11-18 02:44:14 --> Language Class Initialized
+ERROR - 2025-11-18 02:44:14 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 02:49:49 --> Config Class Initialized
+INFO - 2025-11-18 02:49:49 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:49:49 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:49:49 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:49:49 --> URI Class Initialized
+INFO - 2025-11-18 02:49:49 --> Router Class Initialized
+INFO - 2025-11-18 02:49:49 --> Output Class Initialized
+INFO - 2025-11-18 02:49:49 --> Security Class Initialized
+DEBUG - 2025-11-18 02:49:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:49:49 --> Input Class Initialized
+INFO - 2025-11-18 02:49:49 --> Language Class Initialized
+INFO - 2025-11-18 02:49:49 --> Loader Class Initialized
+INFO - 2025-11-18 02:49:49 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:49:49 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:49:49 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:49:49 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:49:49 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:49:49 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:49:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:49:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:49:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:49:49 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:49:49 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:49:49 --> Controller Class Initialized
+INFO - 2025-11-18 02:49:49 --> Model "M_jobv" initialized
+INFO - 2025-11-18 02:49:49 --> Model "Timeline_model" initialized
+INFO - 2025-11-18 02:49:49 --> Helper loaded: text_helper
+INFO - 2025-11-18 02:49:49 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:49:49 --> Model "Notification_model" initialized
+INFO - 2025-11-18 02:49:49 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/partials/notification.php
+INFO - 2025-11-18 02:49:49 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/header.php
+INFO - 2025-11-18 02:49:49 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/jobv/index.php
+INFO - 2025-11-18 02:49:49 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/partials/firebase.php
+INFO - 2025-11-18 02:49:49 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/footer.php
+INFO - 2025-11-18 02:49:49 --> Final output sent to browser
+DEBUG - 2025-11-18 02:49:49 --> Total execution time: 0.3704
+INFO - 2025-11-18 02:49:51 --> Config Class Initialized
+INFO - 2025-11-18 02:49:51 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:49:51 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:49:51 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:49:51 --> URI Class Initialized
+INFO - 2025-11-18 02:49:51 --> Router Class Initialized
+INFO - 2025-11-18 02:49:51 --> Output Class Initialized
+INFO - 2025-11-18 02:49:51 --> Security Class Initialized
+DEBUG - 2025-11-18 02:49:51 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:49:51 --> Input Class Initialized
+INFO - 2025-11-18 02:49:51 --> Language Class Initialized
+INFO - 2025-11-18 02:49:51 --> Loader Class Initialized
+INFO - 2025-11-18 02:49:51 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:49:51 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:49:51 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:49:51 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:49:51 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:49:51 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:49:51 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:49:51 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:49:51 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:49:51 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:49:51 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:49:51 --> Controller Class Initialized
+INFO - 2025-11-18 02:49:51 --> Model "M_jobv" initialized
+INFO - 2025-11-18 02:49:51 --> Model "Timeline_model" initialized
+INFO - 2025-11-18 02:49:51 --> Helper loaded: text_helper
+INFO - 2025-11-18 02:49:51 --> Final output sent to browser
+DEBUG - 2025-11-18 02:49:51 --> Total execution time: 0.4138
+INFO - 2025-11-18 02:54:11 --> Config Class Initialized
+INFO - 2025-11-18 02:54:11 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:54:11 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:54:11 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:54:11 --> URI Class Initialized
+INFO - 2025-11-18 02:54:11 --> Router Class Initialized
+INFO - 2025-11-18 02:54:11 --> Output Class Initialized
+INFO - 2025-11-18 02:54:11 --> Security Class Initialized
+DEBUG - 2025-11-18 02:54:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:54:11 --> Input Class Initialized
+INFO - 2025-11-18 02:54:11 --> Language Class Initialized
+INFO - 2025-11-18 02:54:11 --> Loader Class Initialized
+INFO - 2025-11-18 02:54:11 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:54:11 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:54:11 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:54:11 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:54:11 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:54:11 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:54:11 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:54:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:54:12 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:54:12 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:54:12 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:54:12 --> Controller Class Initialized
+INFO - 2025-11-18 02:54:12 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:54:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:54:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/business-details.php
+INFO - 2025-11-18 02:54:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:54:12 --> Final output sent to browser
+DEBUG - 2025-11-18 02:54:12 --> Total execution time: 1.0168
+INFO - 2025-11-18 02:54:26 --> Config Class Initialized
+INFO - 2025-11-18 02:54:26 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:54:26 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:54:26 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:54:26 --> URI Class Initialized
+INFO - 2025-11-18 02:54:26 --> Router Class Initialized
+INFO - 2025-11-18 02:54:26 --> Output Class Initialized
+INFO - 2025-11-18 02:54:26 --> Security Class Initialized
+DEBUG - 2025-11-18 02:54:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:54:26 --> Input Class Initialized
+INFO - 2025-11-18 02:54:26 --> Language Class Initialized
+INFO - 2025-11-18 02:54:26 --> Loader Class Initialized
+INFO - 2025-11-18 02:54:26 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:54:26 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:54:26 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:54:26 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:54:26 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:54:26 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:54:26 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:54:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:54:26 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:54:26 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:54:26 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:54:26 --> Controller Class Initialized
+INFO - 2025-11-18 02:54:26 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:54:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:54:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/landing-page.php
+INFO - 2025-11-18 02:54:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:54:27 --> Final output sent to browser
+DEBUG - 2025-11-18 02:54:27 --> Total execution time: 1.2757
+INFO - 2025-11-18 02:54:30 --> Config Class Initialized
+INFO - 2025-11-18 02:54:30 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:54:31 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:54:31 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:54:31 --> URI Class Initialized
+INFO - 2025-11-18 02:54:31 --> Router Class Initialized
+INFO - 2025-11-18 02:54:31 --> Output Class Initialized
+INFO - 2025-11-18 02:54:31 --> Security Class Initialized
+DEBUG - 2025-11-18 02:54:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:54:31 --> Input Class Initialized
+INFO - 2025-11-18 02:54:31 --> Language Class Initialized
+INFO - 2025-11-18 02:54:31 --> Loader Class Initialized
+INFO - 2025-11-18 02:54:31 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:54:31 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:54:31 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:54:31 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:54:31 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:54:31 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:54:32 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:54:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:54:32 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:54:32 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:54:32 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:54:32 --> Controller Class Initialized
+INFO - 2025-11-18 02:54:32 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:54:32 --> Final output sent to browser
+DEBUG - 2025-11-18 02:54:32 --> Total execution time: 1.6450
+INFO - 2025-11-18 02:54:32 --> Config Class Initialized
+INFO - 2025-11-18 02:54:32 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:54:32 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:54:32 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:54:32 --> URI Class Initialized
+INFO - 2025-11-18 02:54:32 --> Router Class Initialized
+INFO - 2025-11-18 02:54:32 --> Output Class Initialized
+INFO - 2025-11-18 02:54:32 --> Security Class Initialized
+DEBUG - 2025-11-18 02:54:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:54:33 --> Input Class Initialized
+INFO - 2025-11-18 02:54:33 --> Language Class Initialized
+ERROR - 2025-11-18 02:54:33 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 02:54:38 --> Config Class Initialized
+INFO - 2025-11-18 02:54:38 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:54:38 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:54:38 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:54:38 --> URI Class Initialized
+INFO - 2025-11-18 02:54:38 --> Router Class Initialized
+INFO - 2025-11-18 02:54:38 --> Output Class Initialized
+INFO - 2025-11-18 02:54:38 --> Security Class Initialized
+DEBUG - 2025-11-18 02:54:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:54:38 --> Input Class Initialized
+INFO - 2025-11-18 02:54:38 --> Language Class Initialized
+INFO - 2025-11-18 02:54:38 --> Loader Class Initialized
+INFO - 2025-11-18 02:54:38 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:54:38 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:54:38 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:54:38 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:54:38 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:54:38 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:54:38 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:54:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:54:38 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:54:38 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:54:38 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:54:38 --> Controller Class Initialized
+INFO - 2025-11-18 02:54:38 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:54:38 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:54:38 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/business-details.php
+INFO - 2025-11-18 02:54:38 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:54:38 --> Final output sent to browser
+DEBUG - 2025-11-18 02:54:38 --> Total execution time: 0.2143
+INFO - 2025-11-18 02:54:38 --> Config Class Initialized
+INFO - 2025-11-18 02:54:38 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:54:38 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:54:38 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:54:38 --> URI Class Initialized
+INFO - 2025-11-18 02:54:38 --> Router Class Initialized
+INFO - 2025-11-18 02:54:38 --> Output Class Initialized
+INFO - 2025-11-18 02:54:38 --> Security Class Initialized
+DEBUG - 2025-11-18 02:54:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:54:38 --> Input Class Initialized
+INFO - 2025-11-18 02:54:38 --> Language Class Initialized
+ERROR - 2025-11-18 02:54:38 --> 404 Page Not Found: Uploads/kandidat
+INFO - 2025-11-18 02:55:07 --> Config Class Initialized
+INFO - 2025-11-18 02:55:07 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:55:07 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:55:07 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:55:07 --> URI Class Initialized
+INFO - 2025-11-18 02:55:07 --> Router Class Initialized
+INFO - 2025-11-18 02:55:07 --> Output Class Initialized
+INFO - 2025-11-18 02:55:07 --> Security Class Initialized
+DEBUG - 2025-11-18 02:55:07 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:55:07 --> Input Class Initialized
+INFO - 2025-11-18 02:55:07 --> Language Class Initialized
+INFO - 2025-11-18 02:55:07 --> Loader Class Initialized
+INFO - 2025-11-18 02:55:07 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:55:07 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:55:07 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:55:07 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:55:07 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:55:07 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:55:07 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:55:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:55:07 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:55:07 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:55:07 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:55:07 --> Controller Class Initialized
+INFO - 2025-11-18 02:55:07 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:55:07 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:55:07 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/unit_details.php
+INFO - 2025-11-18 02:55:07 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:55:07 --> Final output sent to browser
+DEBUG - 2025-11-18 02:55:07 --> Total execution time: 0.2209
+INFO - 2025-11-18 02:55:11 --> Config Class Initialized
+INFO - 2025-11-18 02:55:11 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:55:11 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:55:11 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:55:11 --> URI Class Initialized
+INFO - 2025-11-18 02:55:11 --> Router Class Initialized
+INFO - 2025-11-18 02:55:11 --> Output Class Initialized
+INFO - 2025-11-18 02:55:11 --> Security Class Initialized
+DEBUG - 2025-11-18 02:55:11 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:55:11 --> Input Class Initialized
+INFO - 2025-11-18 02:55:11 --> Language Class Initialized
+INFO - 2025-11-18 02:55:11 --> Loader Class Initialized
+INFO - 2025-11-18 02:55:11 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:55:11 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:55:11 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:55:11 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:55:11 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:55:11 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:55:11 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:55:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:55:11 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:55:11 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:55:11 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:55:11 --> Controller Class Initialized
+INFO - 2025-11-18 02:55:11 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:55:11 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:55:11 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/business-details.php
+INFO - 2025-11-18 02:55:11 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:55:11 --> Final output sent to browser
+DEBUG - 2025-11-18 02:55:11 --> Total execution time: 0.4671
+INFO - 2025-11-18 02:55:13 --> Config Class Initialized
+INFO - 2025-11-18 02:55:13 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:55:13 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:55:13 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:55:13 --> URI Class Initialized
+INFO - 2025-11-18 02:55:13 --> Router Class Initialized
+INFO - 2025-11-18 02:55:13 --> Output Class Initialized
+INFO - 2025-11-18 02:55:13 --> Security Class Initialized
+DEBUG - 2025-11-18 02:55:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:55:13 --> Input Class Initialized
+INFO - 2025-11-18 02:55:13 --> Language Class Initialized
+INFO - 2025-11-18 02:55:13 --> Loader Class Initialized
+INFO - 2025-11-18 02:55:13 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:55:13 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:55:13 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:55:13 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:55:13 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:55:13 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:55:13 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:55:13 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:55:13 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:55:13 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:55:13 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:55:13 --> Controller Class Initialized
+INFO - 2025-11-18 02:55:13 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:55:13 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:55:13 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/unit_details.php
+INFO - 2025-11-18 02:55:13 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:55:13 --> Final output sent to browser
+DEBUG - 2025-11-18 02:55:13 --> Total execution time: 0.2116
+INFO - 2025-11-18 02:57:39 --> Config Class Initialized
+INFO - 2025-11-18 02:57:39 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:57:39 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:57:39 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:57:39 --> URI Class Initialized
+INFO - 2025-11-18 02:57:39 --> Router Class Initialized
+INFO - 2025-11-18 02:57:39 --> Output Class Initialized
+INFO - 2025-11-18 02:57:39 --> Security Class Initialized
+DEBUG - 2025-11-18 02:57:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:57:39 --> Input Class Initialized
+INFO - 2025-11-18 02:57:39 --> Language Class Initialized
+INFO - 2025-11-18 02:57:39 --> Loader Class Initialized
+INFO - 2025-11-18 02:57:39 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:57:39 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:57:39 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:57:39 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:57:39 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:57:39 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:57:39 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:57:39 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:57:39 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:57:39 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:57:39 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:57:39 --> Controller Class Initialized
+INFO - 2025-11-18 02:57:39 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:57:39 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:57:39 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/unit_details.php
+INFO - 2025-11-18 02:57:39 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:57:39 --> Final output sent to browser
+DEBUG - 2025-11-18 02:57:39 --> Total execution time: 0.1465
+INFO - 2025-11-18 02:58:57 --> Config Class Initialized
+INFO - 2025-11-18 02:58:57 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:58:57 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:58:57 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:58:57 --> URI Class Initialized
+INFO - 2025-11-18 02:58:57 --> Router Class Initialized
+INFO - 2025-11-18 02:58:57 --> Output Class Initialized
+INFO - 2025-11-18 02:58:57 --> Security Class Initialized
+DEBUG - 2025-11-18 02:58:57 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:58:57 --> Input Class Initialized
+INFO - 2025-11-18 02:58:57 --> Language Class Initialized
+INFO - 2025-11-18 02:58:57 --> Loader Class Initialized
+INFO - 2025-11-18 02:58:57 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:58:57 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:58:57 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:58:57 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:58:57 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:58:57 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:58:57 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:58:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:58:57 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:58:57 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:58:57 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:58:57 --> Controller Class Initialized
+INFO - 2025-11-18 02:58:57 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:58:57 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:58:57 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/landing-page.php
+INFO - 2025-11-18 02:58:57 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:58:57 --> Final output sent to browser
+DEBUG - 2025-11-18 02:58:57 --> Total execution time: 0.2131
+INFO - 2025-11-18 02:58:58 --> Config Class Initialized
+INFO - 2025-11-18 02:58:58 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:58:58 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:58:58 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:58:58 --> URI Class Initialized
+INFO - 2025-11-18 02:58:58 --> Router Class Initialized
+INFO - 2025-11-18 02:58:58 --> Output Class Initialized
+INFO - 2025-11-18 02:58:58 --> Security Class Initialized
+DEBUG - 2025-11-18 02:58:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:58:58 --> Input Class Initialized
+INFO - 2025-11-18 02:58:58 --> Language Class Initialized
+INFO - 2025-11-18 02:58:58 --> Loader Class Initialized
+INFO - 2025-11-18 02:58:58 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:58:58 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:58:58 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:58:58 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:58:58 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:58:58 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:58:58 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:58:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:58:58 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:58:58 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:58:58 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:58:58 --> Controller Class Initialized
+INFO - 2025-11-18 02:58:58 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:58:59 --> Final output sent to browser
+DEBUG - 2025-11-18 02:58:59 --> Total execution time: 0.5431
+INFO - 2025-11-18 02:58:59 --> Config Class Initialized
+INFO - 2025-11-18 02:58:59 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:58:59 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:58:59 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:58:59 --> URI Class Initialized
+INFO - 2025-11-18 02:58:59 --> Router Class Initialized
+INFO - 2025-11-18 02:58:59 --> Output Class Initialized
+INFO - 2025-11-18 02:58:59 --> Security Class Initialized
+DEBUG - 2025-11-18 02:58:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:58:59 --> Input Class Initialized
+INFO - 2025-11-18 02:58:59 --> Language Class Initialized
+ERROR - 2025-11-18 02:58:59 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 02:59:03 --> Config Class Initialized
+INFO - 2025-11-18 02:59:03 --> Hooks Class Initialized
+DEBUG - 2025-11-18 02:59:03 --> UTF-8 Support Enabled
+INFO - 2025-11-18 02:59:03 --> Utf8 Class Initialized
+INFO - 2025-11-18 02:59:03 --> URI Class Initialized
+INFO - 2025-11-18 02:59:03 --> Router Class Initialized
+INFO - 2025-11-18 02:59:03 --> Output Class Initialized
+INFO - 2025-11-18 02:59:03 --> Security Class Initialized
+DEBUG - 2025-11-18 02:59:03 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 02:59:03 --> Input Class Initialized
+INFO - 2025-11-18 02:59:03 --> Language Class Initialized
+INFO - 2025-11-18 02:59:03 --> Loader Class Initialized
+INFO - 2025-11-18 02:59:03 --> Helper loaded: url_helper
+INFO - 2025-11-18 02:59:03 --> Helper loaded: form_helper
+INFO - 2025-11-18 02:59:03 --> Helper loaded: file_helper
+INFO - 2025-11-18 02:59:03 --> Helper loaded: download_helper
+INFO - 2025-11-18 02:59:03 --> Helper loaded: function_helper
+INFO - 2025-11-18 02:59:03 --> Helper loaded: menu_helper
+INFO - 2025-11-18 02:59:03 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 02:59:03 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 02:59:03 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 02:59:04 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 02:59:04 --> Encrypt Class Initialized
+INFO - 2025-11-18 02:59:04 --> Controller Class Initialized
+INFO - 2025-11-18 02:59:04 --> Model "Main_model" initialized
+INFO - 2025-11-18 02:59:04 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 02:59:04 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/career.php
+INFO - 2025-11-18 02:59:04 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 02:59:04 --> Final output sent to browser
+DEBUG - 2025-11-18 02:59:04 --> Total execution time: 0.1202
+INFO - 2025-11-18 03:06:04 --> Config Class Initialized
+INFO - 2025-11-18 03:06:04 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:06:04 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:06:04 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:06:04 --> URI Class Initialized
+INFO - 2025-11-18 03:06:04 --> Router Class Initialized
+INFO - 2025-11-18 03:06:04 --> Output Class Initialized
+INFO - 2025-11-18 03:06:04 --> Security Class Initialized
+DEBUG - 2025-11-18 03:06:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:06:04 --> Input Class Initialized
+INFO - 2025-11-18 03:06:04 --> Language Class Initialized
+INFO - 2025-11-18 03:06:04 --> Loader Class Initialized
+INFO - 2025-11-18 03:06:04 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:06:04 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:06:04 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:06:04 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:06:04 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:06:04 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:06:04 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:06:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:06:04 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:06:04 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:06:04 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:06:04 --> Controller Class Initialized
+INFO - 2025-11-18 03:06:04 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:06:04 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:06:04 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:06:04 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:06:04 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:06:04 --> Final output sent to browser
+DEBUG - 2025-11-18 03:06:04 --> Total execution time: 0.2543
+INFO - 2025-11-18 03:06:06 --> Config Class Initialized
+INFO - 2025-11-18 03:06:06 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:06:06 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:06:06 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:06:06 --> URI Class Initialized
+INFO - 2025-11-18 03:06:06 --> Router Class Initialized
+INFO - 2025-11-18 03:06:06 --> Output Class Initialized
+INFO - 2025-11-18 03:06:06 --> Security Class Initialized
+DEBUG - 2025-11-18 03:06:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:06:06 --> Input Class Initialized
+INFO - 2025-11-18 03:06:06 --> Language Class Initialized
+ERROR - 2025-11-18 03:06:06 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:06:25 --> Config Class Initialized
+INFO - 2025-11-18 03:06:25 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:06:25 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:06:25 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:06:25 --> URI Class Initialized
+INFO - 2025-11-18 03:06:25 --> Router Class Initialized
+INFO - 2025-11-18 03:06:25 --> Output Class Initialized
+INFO - 2025-11-18 03:06:25 --> Security Class Initialized
+DEBUG - 2025-11-18 03:06:25 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:06:25 --> Input Class Initialized
+INFO - 2025-11-18 03:06:25 --> Language Class Initialized
+INFO - 2025-11-18 03:06:25 --> Loader Class Initialized
+INFO - 2025-11-18 03:06:25 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:06:25 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:06:25 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:06:25 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:06:25 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:06:25 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:06:25 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:06:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:06:25 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:06:25 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:06:25 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:06:25 --> Controller Class Initialized
+INFO - 2025-11-18 03:06:25 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:06:25 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:06:25 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:06:25 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:06:25 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:06:25 --> Final output sent to browser
+DEBUG - 2025-11-18 03:06:25 --> Total execution time: 0.1710
+INFO - 2025-11-18 03:06:26 --> Config Class Initialized
+INFO - 2025-11-18 03:06:26 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:06:26 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:06:26 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:06:26 --> URI Class Initialized
+INFO - 2025-11-18 03:06:26 --> Router Class Initialized
+INFO - 2025-11-18 03:06:26 --> Output Class Initialized
+INFO - 2025-11-18 03:06:26 --> Security Class Initialized
+DEBUG - 2025-11-18 03:06:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:06:26 --> Input Class Initialized
+INFO - 2025-11-18 03:06:26 --> Language Class Initialized
+ERROR - 2025-11-18 03:06:26 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:12:02 --> Config Class Initialized
+INFO - 2025-11-18 03:12:02 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:12:02 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:12:02 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:12:02 --> URI Class Initialized
+INFO - 2025-11-18 03:12:02 --> Router Class Initialized
+INFO - 2025-11-18 03:12:02 --> Output Class Initialized
+INFO - 2025-11-18 03:12:02 --> Security Class Initialized
+DEBUG - 2025-11-18 03:12:02 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:12:02 --> Input Class Initialized
+INFO - 2025-11-18 03:12:02 --> Language Class Initialized
+ERROR - 2025-11-18 03:12:02 --> 404 Page Not Found: Pengaturan-landing-page/get_all_news
+INFO - 2025-11-18 03:14:26 --> Config Class Initialized
+INFO - 2025-11-18 03:14:26 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:14:26 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:14:26 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:14:26 --> URI Class Initialized
+INFO - 2025-11-18 03:14:26 --> Router Class Initialized
+INFO - 2025-11-18 03:14:26 --> Output Class Initialized
+INFO - 2025-11-18 03:14:26 --> Security Class Initialized
+DEBUG - 2025-11-18 03:14:26 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:14:26 --> Input Class Initialized
+INFO - 2025-11-18 03:14:26 --> Language Class Initialized
+INFO - 2025-11-18 03:14:26 --> Loader Class Initialized
+INFO - 2025-11-18 03:14:26 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:14:26 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:14:26 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:14:26 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:14:26 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:14:26 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:14:26 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:14:27 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:14:27 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:14:27 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:14:27 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:14:27 --> Controller Class Initialized
+INFO - 2025-11-18 03:14:27 --> Model "M_jobv" initialized
+INFO - 2025-11-18 03:14:27 --> Model "Timeline_model" initialized
+INFO - 2025-11-18 03:14:27 --> Helper loaded: text_helper
+INFO - 2025-11-18 03:14:27 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:14:27 --> Model "Notification_model" initialized
+INFO - 2025-11-18 03:14:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/partials/notification.php
+INFO - 2025-11-18 03:14:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/header.php
+INFO - 2025-11-18 03:14:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/jobv/index.php
+INFO - 2025-11-18 03:14:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/partials/firebase.php
+INFO - 2025-11-18 03:14:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/footer.php
+INFO - 2025-11-18 03:14:27 --> Final output sent to browser
+DEBUG - 2025-11-18 03:14:27 --> Total execution time: 0.3304
+INFO - 2025-11-18 03:14:27 --> Config Class Initialized
+INFO - 2025-11-18 03:14:27 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:14:27 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:14:27 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:14:27 --> URI Class Initialized
+INFO - 2025-11-18 03:14:27 --> Router Class Initialized
+INFO - 2025-11-18 03:14:27 --> Output Class Initialized
+INFO - 2025-11-18 03:14:27 --> Security Class Initialized
+DEBUG - 2025-11-18 03:14:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:14:27 --> Input Class Initialized
+INFO - 2025-11-18 03:14:27 --> Language Class Initialized
+ERROR - 2025-11-18 03:14:27 --> 404 Page Not Found: Uploads/kandidat
+INFO - 2025-11-18 03:14:28 --> Config Class Initialized
+INFO - 2025-11-18 03:14:28 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:14:28 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:14:28 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:14:28 --> URI Class Initialized
+INFO - 2025-11-18 03:14:28 --> Router Class Initialized
+INFO - 2025-11-18 03:14:28 --> Output Class Initialized
+INFO - 2025-11-18 03:14:28 --> Security Class Initialized
+DEBUG - 2025-11-18 03:14:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:14:28 --> Input Class Initialized
+INFO - 2025-11-18 03:14:28 --> Language Class Initialized
+INFO - 2025-11-18 03:14:28 --> Loader Class Initialized
+INFO - 2025-11-18 03:14:28 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:14:28 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:14:28 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:14:28 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:14:28 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:14:28 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:14:28 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:14:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:14:28 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:14:28 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:14:28 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:14:28 --> Controller Class Initialized
+INFO - 2025-11-18 03:14:28 --> Model "M_jobv" initialized
+INFO - 2025-11-18 03:14:28 --> Model "Timeline_model" initialized
+INFO - 2025-11-18 03:14:28 --> Helper loaded: text_helper
+INFO - 2025-11-18 03:14:28 --> Final output sent to browser
+DEBUG - 2025-11-18 03:14:28 --> Total execution time: 0.1431
+INFO - 2025-11-18 03:14:33 --> Config Class Initialized
+INFO - 2025-11-18 03:14:33 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:14:33 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:14:33 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:14:33 --> URI Class Initialized
+INFO - 2025-11-18 03:14:33 --> Router Class Initialized
+INFO - 2025-11-18 03:14:33 --> Output Class Initialized
+INFO - 2025-11-18 03:14:33 --> Security Class Initialized
+DEBUG - 2025-11-18 03:14:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:14:33 --> Input Class Initialized
+INFO - 2025-11-18 03:14:33 --> Language Class Initialized
+INFO - 2025-11-18 03:14:33 --> Loader Class Initialized
+INFO - 2025-11-18 03:14:33 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:14:33 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:14:33 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:14:33 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:14:33 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:14:33 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:14:33 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:14:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:14:33 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:14:33 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:14:33 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:14:33 --> Controller Class Initialized
+INFO - 2025-11-18 03:14:33 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:14:33 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:14:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:14:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:14:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:14:33 --> Final output sent to browser
+DEBUG - 2025-11-18 03:14:33 --> Total execution time: 0.1693
+INFO - 2025-11-18 03:14:34 --> Config Class Initialized
+INFO - 2025-11-18 03:14:34 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:14:34 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:14:34 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:14:34 --> URI Class Initialized
+INFO - 2025-11-18 03:14:34 --> Router Class Initialized
+INFO - 2025-11-18 03:14:34 --> Output Class Initialized
+INFO - 2025-11-18 03:14:34 --> Security Class Initialized
+DEBUG - 2025-11-18 03:14:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:14:34 --> Input Class Initialized
+INFO - 2025-11-18 03:14:34 --> Language Class Initialized
+ERROR - 2025-11-18 03:14:34 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:15:59 --> Config Class Initialized
+INFO - 2025-11-18 03:16:00 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:16:00 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:16:00 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:16:00 --> URI Class Initialized
+INFO - 2025-11-18 03:16:00 --> Router Class Initialized
+INFO - 2025-11-18 03:16:00 --> Output Class Initialized
+INFO - 2025-11-18 03:16:00 --> Security Class Initialized
+DEBUG - 2025-11-18 03:16:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:16:00 --> Input Class Initialized
+INFO - 2025-11-18 03:16:00 --> Language Class Initialized
+INFO - 2025-11-18 03:16:00 --> Loader Class Initialized
+INFO - 2025-11-18 03:16:00 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:16:00 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:16:00 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:16:00 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:16:00 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:16:00 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:16:00 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:16:00 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:16:00 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:16:00 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:16:00 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:16:00 --> Controller Class Initialized
+INFO - 2025-11-18 03:16:00 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:16:00 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:16:00 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:16:00 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:16:00 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:16:00 --> Final output sent to browser
+DEBUG - 2025-11-18 03:16:00 --> Total execution time: 0.2235
+INFO - 2025-11-18 03:16:00 --> Config Class Initialized
+INFO - 2025-11-18 03:16:00 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:16:00 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:16:00 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:16:00 --> URI Class Initialized
+INFO - 2025-11-18 03:16:00 --> Router Class Initialized
+INFO - 2025-11-18 03:16:00 --> Output Class Initialized
+INFO - 2025-11-18 03:16:00 --> Security Class Initialized
+DEBUG - 2025-11-18 03:16:00 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:16:00 --> Input Class Initialized
+INFO - 2025-11-18 03:16:00 --> Language Class Initialized
+ERROR - 2025-11-18 03:16:00 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:36:32 --> Config Class Initialized
+INFO - 2025-11-18 03:36:32 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:36:32 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:36:32 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:36:32 --> URI Class Initialized
+INFO - 2025-11-18 03:36:32 --> Router Class Initialized
+INFO - 2025-11-18 03:36:32 --> Output Class Initialized
+INFO - 2025-11-18 03:36:32 --> Security Class Initialized
+DEBUG - 2025-11-18 03:36:32 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:36:32 --> Input Class Initialized
+INFO - 2025-11-18 03:36:32 --> Language Class Initialized
+INFO - 2025-11-18 03:36:32 --> Loader Class Initialized
+INFO - 2025-11-18 03:36:33 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:36:33 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:36:33 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:36:33 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:36:33 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:36:33 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:36:33 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:36:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:36:33 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:36:33 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:36:33 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:36:33 --> Controller Class Initialized
+INFO - 2025-11-18 03:36:33 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:36:33 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:36:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:36:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:36:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:36:33 --> Final output sent to browser
+DEBUG - 2025-11-18 03:36:33 --> Total execution time: 1.0252
+INFO - 2025-11-18 03:36:36 --> Config Class Initialized
+INFO - 2025-11-18 03:36:36 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:36:36 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:36:36 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:36:36 --> URI Class Initialized
+INFO - 2025-11-18 03:36:36 --> Router Class Initialized
+INFO - 2025-11-18 03:36:36 --> Output Class Initialized
+INFO - 2025-11-18 03:36:36 --> Security Class Initialized
+DEBUG - 2025-11-18 03:36:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:36:36 --> Input Class Initialized
+INFO - 2025-11-18 03:36:36 --> Language Class Initialized
+ERROR - 2025-11-18 03:36:36 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:42:13 --> Config Class Initialized
+INFO - 2025-11-18 03:42:13 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:42:13 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:42:13 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:42:13 --> URI Class Initialized
+INFO - 2025-11-18 03:42:13 --> Router Class Initialized
+INFO - 2025-11-18 03:42:13 --> Output Class Initialized
+INFO - 2025-11-18 03:42:13 --> Security Class Initialized
+DEBUG - 2025-11-18 03:42:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:42:13 --> Input Class Initialized
+INFO - 2025-11-18 03:42:13 --> Language Class Initialized
+INFO - 2025-11-18 03:42:13 --> Loader Class Initialized
+INFO - 2025-11-18 03:42:13 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:42:13 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:42:13 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:42:13 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:42:14 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:42:14 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:42:14 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:42:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:42:14 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:42:14 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:42:14 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:42:14 --> Controller Class Initialized
+INFO - 2025-11-18 03:42:14 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:42:14 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:42:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:42:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:42:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:42:14 --> Final output sent to browser
+DEBUG - 2025-11-18 03:42:14 --> Total execution time: 0.2450
+INFO - 2025-11-18 03:42:15 --> Config Class Initialized
+INFO - 2025-11-18 03:42:15 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:42:15 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:42:15 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:42:15 --> URI Class Initialized
+INFO - 2025-11-18 03:42:15 --> Router Class Initialized
+INFO - 2025-11-18 03:42:15 --> Output Class Initialized
+INFO - 2025-11-18 03:42:15 --> Security Class Initialized
+DEBUG - 2025-11-18 03:42:15 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:42:15 --> Input Class Initialized
+INFO - 2025-11-18 03:42:15 --> Language Class Initialized
+ERROR - 2025-11-18 03:42:15 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:42:31 --> Config Class Initialized
+INFO - 2025-11-18 03:42:31 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:42:31 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:42:31 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:42:31 --> URI Class Initialized
+INFO - 2025-11-18 03:42:31 --> Router Class Initialized
+INFO - 2025-11-18 03:42:31 --> Output Class Initialized
+INFO - 2025-11-18 03:42:31 --> Security Class Initialized
+DEBUG - 2025-11-18 03:42:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:42:31 --> Input Class Initialized
+INFO - 2025-11-18 03:42:31 --> Language Class Initialized
+INFO - 2025-11-18 03:42:31 --> Loader Class Initialized
+INFO - 2025-11-18 03:42:31 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:42:31 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:42:31 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:42:31 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:42:31 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:42:31 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:42:31 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:42:31 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:42:31 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:42:31 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:42:31 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:42:31 --> Controller Class Initialized
+INFO - 2025-11-18 03:42:31 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:42:31 --> Upload Class Initialized
+INFO - 2025-11-18 03:42:31 --> Final output sent to browser
+DEBUG - 2025-11-18 03:42:31 --> Total execution time: 0.1830
+INFO - 2025-11-18 03:42:34 --> Config Class Initialized
+INFO - 2025-11-18 03:42:34 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:42:34 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:42:34 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:42:34 --> URI Class Initialized
+INFO - 2025-11-18 03:42:34 --> Router Class Initialized
+INFO - 2025-11-18 03:42:34 --> Output Class Initialized
+INFO - 2025-11-18 03:42:34 --> Security Class Initialized
+DEBUG - 2025-11-18 03:42:34 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:42:34 --> Input Class Initialized
+INFO - 2025-11-18 03:42:34 --> Language Class Initialized
+INFO - 2025-11-18 03:42:34 --> Loader Class Initialized
+INFO - 2025-11-18 03:42:34 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:42:34 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:42:34 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:42:34 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:42:34 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:42:34 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:42:34 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:42:34 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:42:34 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:42:34 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:42:34 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:42:34 --> Controller Class Initialized
+INFO - 2025-11-18 03:42:34 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:42:34 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:42:34 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:42:34 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:42:34 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:42:34 --> Final output sent to browser
+DEBUG - 2025-11-18 03:42:34 --> Total execution time: 0.1485
+INFO - 2025-11-18 03:42:34 --> Config Class Initialized
+INFO - 2025-11-18 03:42:34 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:42:34 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:42:34 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:42:34 --> URI Class Initialized
+INFO - 2025-11-18 03:42:34 --> Router Class Initialized
+INFO - 2025-11-18 03:42:34 --> Output Class Initialized
+INFO - 2025-11-18 03:42:35 --> Security Class Initialized
+DEBUG - 2025-11-18 03:42:35 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:42:35 --> Input Class Initialized
+INFO - 2025-11-18 03:42:35 --> Language Class Initialized
+ERROR - 2025-11-18 03:42:35 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:42:44 --> Config Class Initialized
+INFO - 2025-11-18 03:42:44 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:42:44 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:42:44 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:42:44 --> URI Class Initialized
+INFO - 2025-11-18 03:42:44 --> Router Class Initialized
+INFO - 2025-11-18 03:42:44 --> Output Class Initialized
+INFO - 2025-11-18 03:42:44 --> Security Class Initialized
+DEBUG - 2025-11-18 03:42:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:42:44 --> Input Class Initialized
+INFO - 2025-11-18 03:42:44 --> Language Class Initialized
+INFO - 2025-11-18 03:42:44 --> Loader Class Initialized
+INFO - 2025-11-18 03:42:44 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:42:44 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:42:44 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:42:44 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:42:44 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:42:44 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:42:44 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:42:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:42:45 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:42:45 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:42:45 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:42:45 --> Controller Class Initialized
+INFO - 2025-11-18 03:42:45 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:42:45 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 03:42:45 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/career.php
+INFO - 2025-11-18 03:42:45 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 03:42:45 --> Final output sent to browser
+DEBUG - 2025-11-18 03:42:45 --> Total execution time: 0.3110
+INFO - 2025-11-18 03:42:49 --> Config Class Initialized
+INFO - 2025-11-18 03:42:49 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:42:49 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:42:49 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:42:49 --> URI Class Initialized
+INFO - 2025-11-18 03:42:49 --> Router Class Initialized
+INFO - 2025-11-18 03:42:49 --> Output Class Initialized
+INFO - 2025-11-18 03:42:49 --> Security Class Initialized
+DEBUG - 2025-11-18 03:42:49 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:42:49 --> Input Class Initialized
+INFO - 2025-11-18 03:42:49 --> Language Class Initialized
+INFO - 2025-11-18 03:42:49 --> Loader Class Initialized
+INFO - 2025-11-18 03:42:49 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:42:49 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:42:49 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:42:49 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:42:49 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:42:49 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:42:49 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:42:49 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:42:49 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:42:49 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:42:49 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:42:49 --> Controller Class Initialized
+INFO - 2025-11-18 03:42:49 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:42:49 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 03:42:49 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/career.php
+INFO - 2025-11-18 03:42:49 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 03:42:49 --> Final output sent to browser
+DEBUG - 2025-11-18 03:42:49 --> Total execution time: 0.1081
+INFO - 2025-11-18 03:42:50 --> Config Class Initialized
+INFO - 2025-11-18 03:42:50 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:42:50 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:42:50 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:42:50 --> URI Class Initialized
+INFO - 2025-11-18 03:42:50 --> Router Class Initialized
+INFO - 2025-11-18 03:42:50 --> Output Class Initialized
+INFO - 2025-11-18 03:42:50 --> Security Class Initialized
+DEBUG - 2025-11-18 03:42:50 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:42:50 --> Input Class Initialized
+INFO - 2025-11-18 03:42:50 --> Language Class Initialized
+INFO - 2025-11-18 03:42:50 --> Loader Class Initialized
+INFO - 2025-11-18 03:42:50 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:42:50 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:42:50 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:42:50 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:42:50 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:42:50 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:42:50 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:42:50 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:42:50 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:42:50 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:42:50 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:42:50 --> Controller Class Initialized
+INFO - 2025-11-18 03:42:50 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:42:50 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 03:42:50 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/business-details.php
+INFO - 2025-11-18 03:42:50 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 03:42:50 --> Final output sent to browser
+DEBUG - 2025-11-18 03:42:50 --> Total execution time: 0.1014
+INFO - 2025-11-18 03:45:29 --> Config Class Initialized
+INFO - 2025-11-18 03:45:29 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:45:29 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:45:29 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:45:29 --> URI Class Initialized
+INFO - 2025-11-18 03:45:29 --> Router Class Initialized
+INFO - 2025-11-18 03:45:29 --> Output Class Initialized
+INFO - 2025-11-18 03:45:29 --> Security Class Initialized
+DEBUG - 2025-11-18 03:45:29 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:45:29 --> Input Class Initialized
+INFO - 2025-11-18 03:45:29 --> Language Class Initialized
+INFO - 2025-11-18 03:45:29 --> Loader Class Initialized
+INFO - 2025-11-18 03:45:29 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:45:29 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:45:29 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:45:29 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:45:29 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:45:29 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:45:29 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:45:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:45:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:45:29 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:45:29 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:45:29 --> Controller Class Initialized
+INFO - 2025-11-18 03:45:29 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:45:29 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:45:29 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:45:29 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:45:29 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:45:29 --> Final output sent to browser
+DEBUG - 2025-11-18 03:45:29 --> Total execution time: 0.1801
+INFO - 2025-11-18 03:45:30 --> Config Class Initialized
+INFO - 2025-11-18 03:45:30 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:45:30 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:45:30 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:45:30 --> URI Class Initialized
+INFO - 2025-11-18 03:45:30 --> Router Class Initialized
+INFO - 2025-11-18 03:45:30 --> Output Class Initialized
+INFO - 2025-11-18 03:45:30 --> Security Class Initialized
+DEBUG - 2025-11-18 03:45:30 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:45:30 --> Input Class Initialized
+INFO - 2025-11-18 03:45:30 --> Language Class Initialized
+ERROR - 2025-11-18 03:45:30 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:46:58 --> Config Class Initialized
+INFO - 2025-11-18 03:46:58 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:46:58 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:46:58 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:46:58 --> URI Class Initialized
+INFO - 2025-11-18 03:46:58 --> Router Class Initialized
+INFO - 2025-11-18 03:46:58 --> Output Class Initialized
+INFO - 2025-11-18 03:46:58 --> Security Class Initialized
+DEBUG - 2025-11-18 03:46:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:46:58 --> Input Class Initialized
+INFO - 2025-11-18 03:46:58 --> Language Class Initialized
+INFO - 2025-11-18 03:46:58 --> Loader Class Initialized
+INFO - 2025-11-18 03:46:58 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:46:58 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:46:58 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:46:58 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:46:58 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:46:58 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:46:58 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:46:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:46:58 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:46:58 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:46:58 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:46:58 --> Controller Class Initialized
+INFO - 2025-11-18 03:46:58 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:46:58 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:46:58 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:46:58 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:46:58 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:46:58 --> Final output sent to browser
+DEBUG - 2025-11-18 03:46:58 --> Total execution time: 0.1708
+INFO - 2025-11-18 03:46:59 --> Config Class Initialized
+INFO - 2025-11-18 03:46:59 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:46:59 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:46:59 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:46:59 --> URI Class Initialized
+INFO - 2025-11-18 03:46:59 --> Router Class Initialized
+INFO - 2025-11-18 03:46:59 --> Output Class Initialized
+INFO - 2025-11-18 03:46:59 --> Security Class Initialized
+DEBUG - 2025-11-18 03:46:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:46:59 --> Input Class Initialized
+INFO - 2025-11-18 03:46:59 --> Language Class Initialized
+ERROR - 2025-11-18 03:46:59 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:48:37 --> Config Class Initialized
+INFO - 2025-11-18 03:48:37 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:48:37 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:48:37 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:48:37 --> URI Class Initialized
+INFO - 2025-11-18 03:48:37 --> Router Class Initialized
+INFO - 2025-11-18 03:48:37 --> Output Class Initialized
+INFO - 2025-11-18 03:48:37 --> Security Class Initialized
+DEBUG - 2025-11-18 03:48:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:48:37 --> Input Class Initialized
+INFO - 2025-11-18 03:48:37 --> Language Class Initialized
+INFO - 2025-11-18 03:48:37 --> Loader Class Initialized
+INFO - 2025-11-18 03:48:37 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:48:37 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:48:37 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:48:37 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:48:37 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:48:37 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:48:37 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:48:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:48:37 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:48:37 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:48:37 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:48:37 --> Controller Class Initialized
+INFO - 2025-11-18 03:48:37 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:48:37 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:48:37 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:48:37 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:48:37 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:48:37 --> Final output sent to browser
+DEBUG - 2025-11-18 03:48:37 --> Total execution time: 0.1637
+INFO - 2025-11-18 03:48:38 --> Config Class Initialized
+INFO - 2025-11-18 03:48:38 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:48:38 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:48:38 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:48:38 --> URI Class Initialized
+INFO - 2025-11-18 03:48:38 --> Router Class Initialized
+INFO - 2025-11-18 03:48:38 --> Output Class Initialized
+INFO - 2025-11-18 03:48:38 --> Security Class Initialized
+DEBUG - 2025-11-18 03:48:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:48:38 --> Input Class Initialized
+INFO - 2025-11-18 03:48:38 --> Language Class Initialized
+ERROR - 2025-11-18 03:48:38 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:49:14 --> Config Class Initialized
+INFO - 2025-11-18 03:49:14 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:49:14 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:49:14 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:49:14 --> URI Class Initialized
+INFO - 2025-11-18 03:49:14 --> Router Class Initialized
+INFO - 2025-11-18 03:49:14 --> Output Class Initialized
+INFO - 2025-11-18 03:49:14 --> Security Class Initialized
+DEBUG - 2025-11-18 03:49:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:49:14 --> Input Class Initialized
+INFO - 2025-11-18 03:49:14 --> Language Class Initialized
+INFO - 2025-11-18 03:49:14 --> Loader Class Initialized
+INFO - 2025-11-18 03:49:14 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:49:14 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:49:14 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:49:14 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:49:14 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:49:14 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:49:14 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:49:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:49:14 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:49:14 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:49:14 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:49:14 --> Controller Class Initialized
+INFO - 2025-11-18 03:49:14 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:49:14 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:49:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:49:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:49:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:49:14 --> Final output sent to browser
+DEBUG - 2025-11-18 03:49:15 --> Total execution time: 0.1505
+INFO - 2025-11-18 03:49:15 --> Config Class Initialized
+INFO - 2025-11-18 03:49:15 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:49:15 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:49:15 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:49:15 --> URI Class Initialized
+INFO - 2025-11-18 03:49:15 --> Router Class Initialized
+INFO - 2025-11-18 03:49:15 --> Output Class Initialized
+INFO - 2025-11-18 03:49:15 --> Security Class Initialized
+DEBUG - 2025-11-18 03:49:15 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:49:15 --> Input Class Initialized
+INFO - 2025-11-18 03:49:15 --> Language Class Initialized
+ERROR - 2025-11-18 03:49:15 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:49:36 --> Config Class Initialized
+INFO - 2025-11-18 03:49:36 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:49:36 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:49:36 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:49:36 --> URI Class Initialized
+INFO - 2025-11-18 03:49:36 --> Router Class Initialized
+INFO - 2025-11-18 03:49:36 --> Output Class Initialized
+INFO - 2025-11-18 03:49:36 --> Security Class Initialized
+DEBUG - 2025-11-18 03:49:36 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:49:36 --> Input Class Initialized
+INFO - 2025-11-18 03:49:36 --> Language Class Initialized
+INFO - 2025-11-18 03:49:36 --> Loader Class Initialized
+INFO - 2025-11-18 03:49:36 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:49:36 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:49:36 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:49:36 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:49:36 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:49:36 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:49:36 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:49:36 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:49:36 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:49:36 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:49:36 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:49:36 --> Controller Class Initialized
+INFO - 2025-11-18 03:49:36 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:49:36 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:49:36 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:49:36 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:49:36 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:49:36 --> Final output sent to browser
+DEBUG - 2025-11-18 03:49:36 --> Total execution time: 0.1156
+INFO - 2025-11-18 03:49:37 --> Config Class Initialized
+INFO - 2025-11-18 03:49:37 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:49:37 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:49:37 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:49:37 --> URI Class Initialized
+INFO - 2025-11-18 03:49:37 --> Router Class Initialized
+INFO - 2025-11-18 03:49:37 --> Output Class Initialized
+INFO - 2025-11-18 03:49:37 --> Security Class Initialized
+DEBUG - 2025-11-18 03:49:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:49:37 --> Input Class Initialized
+INFO - 2025-11-18 03:49:37 --> Language Class Initialized
+ERROR - 2025-11-18 03:49:37 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:52:08 --> Config Class Initialized
+INFO - 2025-11-18 03:52:08 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:52:08 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:52:08 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:52:08 --> URI Class Initialized
+INFO - 2025-11-18 03:52:08 --> Router Class Initialized
+INFO - 2025-11-18 03:52:08 --> Output Class Initialized
+INFO - 2025-11-18 03:52:08 --> Security Class Initialized
+DEBUG - 2025-11-18 03:52:08 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:52:08 --> Input Class Initialized
+INFO - 2025-11-18 03:52:08 --> Language Class Initialized
+INFO - 2025-11-18 03:52:08 --> Loader Class Initialized
+INFO - 2025-11-18 03:52:08 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:52:08 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:52:08 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:52:08 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:52:08 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:52:08 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:52:08 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:52:08 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:52:08 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:52:08 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:52:08 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:52:08 --> Controller Class Initialized
+INFO - 2025-11-18 03:52:08 --> Model "Pengaturanlp_model" initialized
+ERROR - 2025-11-18 03:52:08 --> Severity: error --> Exception: Call to undefined method Pengaturanlp_model::get_careerk() C:\xampp\htdocs\lido-career\application\controllers\PengaturanLandingPage.php 29
+INFO - 2025-11-18 03:52:18 --> Config Class Initialized
+INFO - 2025-11-18 03:52:18 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:52:18 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:52:18 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:52:18 --> URI Class Initialized
+INFO - 2025-11-18 03:52:18 --> Router Class Initialized
+INFO - 2025-11-18 03:52:18 --> Output Class Initialized
+INFO - 2025-11-18 03:52:18 --> Security Class Initialized
+DEBUG - 2025-11-18 03:52:18 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:52:18 --> Input Class Initialized
+INFO - 2025-11-18 03:52:18 --> Language Class Initialized
+INFO - 2025-11-18 03:52:18 --> Loader Class Initialized
+INFO - 2025-11-18 03:52:18 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:52:18 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:52:18 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:52:18 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:52:18 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:52:18 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:52:18 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:52:18 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:52:18 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:52:18 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:52:18 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:52:18 --> Controller Class Initialized
+INFO - 2025-11-18 03:52:18 --> Model "Pengaturanlp_model" initialized
+ERROR - 2025-11-18 03:52:19 --> Severity: Warning --> Undefined property: PengaturanLandingPage::$setting_career C:\xampp\htdocs\lido-career\system\core\Model.php 74
+ERROR - 2025-11-18 03:52:19 --> Query error: No tables used - Invalid query: SELECT *
+WHERE `id` = 1
+ERROR - 2025-11-18 03:52:19 --> Severity: error --> Exception: Call to a member function row_array() on bool C:\xampp\htdocs\lido-career\application\models\Pengaturanlp_model.php 249
+INFO - 2025-11-18 03:54:21 --> Config Class Initialized
+INFO - 2025-11-18 03:54:21 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:54:21 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:54:21 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:54:21 --> URI Class Initialized
+INFO - 2025-11-18 03:54:21 --> Router Class Initialized
+INFO - 2025-11-18 03:54:21 --> Output Class Initialized
+INFO - 2025-11-18 03:54:21 --> Security Class Initialized
+DEBUG - 2025-11-18 03:54:21 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:54:21 --> Input Class Initialized
+INFO - 2025-11-18 03:54:21 --> Language Class Initialized
+INFO - 2025-11-18 03:54:21 --> Loader Class Initialized
+INFO - 2025-11-18 03:54:21 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:54:21 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:54:21 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:54:21 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:54:21 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:54:21 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:54:21 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:54:21 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:54:21 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:54:21 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:54:21 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:54:21 --> Controller Class Initialized
+INFO - 2025-11-18 03:54:21 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:54:21 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:54:21 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:54:21 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:54:21 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:54:21 --> Final output sent to browser
+DEBUG - 2025-11-18 03:54:21 --> Total execution time: 0.1825
+INFO - 2025-11-18 03:54:37 --> Config Class Initialized
+INFO - 2025-11-18 03:54:37 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:54:37 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:54:37 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:54:37 --> URI Class Initialized
+INFO - 2025-11-18 03:54:37 --> Router Class Initialized
+INFO - 2025-11-18 03:54:37 --> Output Class Initialized
+INFO - 2025-11-18 03:54:37 --> Security Class Initialized
+DEBUG - 2025-11-18 03:54:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:54:37 --> Input Class Initialized
+INFO - 2025-11-18 03:54:37 --> Language Class Initialized
+INFO - 2025-11-18 03:54:37 --> Loader Class Initialized
+INFO - 2025-11-18 03:54:37 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:54:37 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:54:37 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:54:37 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:54:37 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:54:37 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:54:37 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:54:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:54:37 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:54:37 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:54:37 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:54:37 --> Controller Class Initialized
+INFO - 2025-11-18 03:54:37 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:54:37 --> Final output sent to browser
+DEBUG - 2025-11-18 03:54:37 --> Total execution time: 0.1484
+INFO - 2025-11-18 03:54:40 --> Config Class Initialized
+INFO - 2025-11-18 03:54:40 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:54:40 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:54:40 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:54:40 --> URI Class Initialized
+INFO - 2025-11-18 03:54:40 --> Router Class Initialized
+INFO - 2025-11-18 03:54:40 --> Output Class Initialized
+INFO - 2025-11-18 03:54:40 --> Security Class Initialized
+DEBUG - 2025-11-18 03:54:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:54:40 --> Input Class Initialized
+INFO - 2025-11-18 03:54:40 --> Language Class Initialized
+INFO - 2025-11-18 03:54:40 --> Loader Class Initialized
+INFO - 2025-11-18 03:54:40 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:54:40 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:54:40 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:54:40 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:54:40 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:54:40 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:54:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:54:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:54:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:54:40 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:54:40 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:54:40 --> Controller Class Initialized
+INFO - 2025-11-18 03:54:40 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:54:40 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:54:40 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:54:40 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:54:40 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:54:40 --> Final output sent to browser
+DEBUG - 2025-11-18 03:54:40 --> Total execution time: 0.1196
+INFO - 2025-11-18 03:56:14 --> Config Class Initialized
+INFO - 2025-11-18 03:56:14 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:56:14 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:56:14 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:56:14 --> URI Class Initialized
+INFO - 2025-11-18 03:56:14 --> Router Class Initialized
+INFO - 2025-11-18 03:56:14 --> Output Class Initialized
+INFO - 2025-11-18 03:56:14 --> Security Class Initialized
+DEBUG - 2025-11-18 03:56:14 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:56:14 --> Input Class Initialized
+INFO - 2025-11-18 03:56:14 --> Language Class Initialized
+INFO - 2025-11-18 03:56:14 --> Loader Class Initialized
+INFO - 2025-11-18 03:56:14 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:56:14 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:56:14 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:56:14 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:56:14 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:56:14 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:56:14 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:56:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:56:14 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:56:14 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:56:14 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:56:14 --> Controller Class Initialized
+INFO - 2025-11-18 03:56:14 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:56:14 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:56:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:56:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:56:14 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:56:14 --> Final output sent to browser
+DEBUG - 2025-11-18 03:56:14 --> Total execution time: 0.1318
+INFO - 2025-11-18 03:56:28 --> Config Class Initialized
+INFO - 2025-11-18 03:56:28 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:56:28 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:56:28 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:56:28 --> URI Class Initialized
+INFO - 2025-11-18 03:56:28 --> Router Class Initialized
+INFO - 2025-11-18 03:56:28 --> Output Class Initialized
+INFO - 2025-11-18 03:56:28 --> Security Class Initialized
+DEBUG - 2025-11-18 03:56:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:56:28 --> Input Class Initialized
+INFO - 2025-11-18 03:56:28 --> Language Class Initialized
+INFO - 2025-11-18 03:56:28 --> Loader Class Initialized
+INFO - 2025-11-18 03:56:28 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:56:28 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:56:28 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:56:28 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:56:28 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:56:28 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:56:28 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:56:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:56:28 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:56:28 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:56:28 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:56:28 --> Controller Class Initialized
+INFO - 2025-11-18 03:56:28 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:56:28 --> Final output sent to browser
+DEBUG - 2025-11-18 03:56:28 --> Total execution time: 0.1057
+INFO - 2025-11-18 03:56:31 --> Config Class Initialized
+INFO - 2025-11-18 03:56:31 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:56:31 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:56:31 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:56:31 --> URI Class Initialized
+INFO - 2025-11-18 03:56:31 --> Router Class Initialized
+INFO - 2025-11-18 03:56:31 --> Output Class Initialized
+INFO - 2025-11-18 03:56:31 --> Security Class Initialized
+DEBUG - 2025-11-18 03:56:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:56:31 --> Input Class Initialized
+INFO - 2025-11-18 03:56:31 --> Language Class Initialized
+INFO - 2025-11-18 03:56:31 --> Loader Class Initialized
+INFO - 2025-11-18 03:56:31 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:56:31 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:56:31 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:56:31 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:56:31 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:56:31 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:56:31 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:56:31 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:56:31 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:56:31 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:56:31 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:56:31 --> Controller Class Initialized
+INFO - 2025-11-18 03:56:31 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:56:31 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:56:31 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:56:31 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:56:31 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:56:31 --> Final output sent to browser
+DEBUG - 2025-11-18 03:56:31 --> Total execution time: 0.1225
+INFO - 2025-11-18 03:57:31 --> Config Class Initialized
+INFO - 2025-11-18 03:57:31 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:57:31 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:57:31 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:57:31 --> URI Class Initialized
+INFO - 2025-11-18 03:57:31 --> Router Class Initialized
+INFO - 2025-11-18 03:57:31 --> Output Class Initialized
+INFO - 2025-11-18 03:57:31 --> Security Class Initialized
+DEBUG - 2025-11-18 03:57:31 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:57:31 --> Input Class Initialized
+INFO - 2025-11-18 03:57:31 --> Language Class Initialized
+INFO - 2025-11-18 03:57:31 --> Loader Class Initialized
+INFO - 2025-11-18 03:57:31 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:57:31 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:57:31 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:57:31 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:57:31 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:57:31 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:57:31 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:57:31 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:57:31 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:57:31 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:57:31 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:57:31 --> Controller Class Initialized
+INFO - 2025-11-18 03:57:31 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:57:31 --> Upload Class Initialized
+INFO - 2025-11-18 03:57:31 --> Final output sent to browser
+DEBUG - 2025-11-18 03:57:31 --> Total execution time: 0.1479
+INFO - 2025-11-18 03:57:33 --> Config Class Initialized
+INFO - 2025-11-18 03:57:33 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:57:33 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:57:33 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:57:33 --> URI Class Initialized
+INFO - 2025-11-18 03:57:33 --> Router Class Initialized
+INFO - 2025-11-18 03:57:33 --> Output Class Initialized
+INFO - 2025-11-18 03:57:33 --> Security Class Initialized
+DEBUG - 2025-11-18 03:57:33 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:57:33 --> Input Class Initialized
+INFO - 2025-11-18 03:57:33 --> Language Class Initialized
+INFO - 2025-11-18 03:57:33 --> Loader Class Initialized
+INFO - 2025-11-18 03:57:33 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:57:33 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:57:33 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:57:33 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:57:33 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:57:33 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:57:33 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:57:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:57:33 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:57:33 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:57:33 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:57:33 --> Controller Class Initialized
+INFO - 2025-11-18 03:57:33 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:57:33 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:57:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:57:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:57:33 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:57:33 --> Final output sent to browser
+DEBUG - 2025-11-18 03:57:33 --> Total execution time: 0.1690
+INFO - 2025-11-18 03:57:40 --> Config Class Initialized
+INFO - 2025-11-18 03:57:40 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:57:40 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:57:40 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:57:40 --> URI Class Initialized
+INFO - 2025-11-18 03:57:40 --> Router Class Initialized
+INFO - 2025-11-18 03:57:40 --> Output Class Initialized
+INFO - 2025-11-18 03:57:40 --> Security Class Initialized
+DEBUG - 2025-11-18 03:57:40 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:57:40 --> Input Class Initialized
+INFO - 2025-11-18 03:57:40 --> Language Class Initialized
+INFO - 2025-11-18 03:57:40 --> Loader Class Initialized
+INFO - 2025-11-18 03:57:40 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:57:40 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:57:40 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:57:40 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:57:40 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:57:40 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:57:40 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:57:40 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:57:40 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:57:40 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:57:40 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:57:40 --> Controller Class Initialized
+INFO - 2025-11-18 03:57:40 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:57:40 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 03:57:40 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/business-details.php
+INFO - 2025-11-18 03:57:40 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 03:57:40 --> Final output sent to browser
+DEBUG - 2025-11-18 03:57:40 --> Total execution time: 0.1088
+INFO - 2025-11-18 03:57:44 --> Config Class Initialized
+INFO - 2025-11-18 03:57:44 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:57:44 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:57:44 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:57:44 --> URI Class Initialized
+INFO - 2025-11-18 03:57:44 --> Router Class Initialized
+INFO - 2025-11-18 03:57:44 --> Output Class Initialized
+INFO - 2025-11-18 03:57:44 --> Security Class Initialized
+DEBUG - 2025-11-18 03:57:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:57:44 --> Input Class Initialized
+INFO - 2025-11-18 03:57:44 --> Language Class Initialized
+INFO - 2025-11-18 03:57:44 --> Loader Class Initialized
+INFO - 2025-11-18 03:57:44 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:57:44 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:57:44 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:57:44 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:57:44 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:57:44 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:57:44 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:57:44 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:57:44 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:57:44 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:57:44 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:57:44 --> Controller Class Initialized
+INFO - 2025-11-18 03:57:44 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:57:44 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 03:57:44 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/landing-page.php
+INFO - 2025-11-18 03:57:44 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 03:57:44 --> Final output sent to browser
+DEBUG - 2025-11-18 03:57:44 --> Total execution time: 0.1633
+INFO - 2025-11-18 03:57:45 --> Config Class Initialized
+INFO - 2025-11-18 03:57:45 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:57:45 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:57:45 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:57:45 --> URI Class Initialized
+INFO - 2025-11-18 03:57:45 --> Router Class Initialized
+INFO - 2025-11-18 03:57:45 --> Output Class Initialized
+INFO - 2025-11-18 03:57:45 --> Security Class Initialized
+DEBUG - 2025-11-18 03:57:45 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:57:45 --> Input Class Initialized
+INFO - 2025-11-18 03:57:45 --> Language Class Initialized
+INFO - 2025-11-18 03:57:45 --> Loader Class Initialized
+INFO - 2025-11-18 03:57:45 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:57:45 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:57:45 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:57:45 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:57:45 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:57:45 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:57:45 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:57:45 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:57:45 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:57:45 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:57:45 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:57:45 --> Controller Class Initialized
+INFO - 2025-11-18 03:57:45 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:57:45 --> Final output sent to browser
+DEBUG - 2025-11-18 03:57:45 --> Total execution time: 0.3521
+INFO - 2025-11-18 03:57:46 --> Config Class Initialized
+INFO - 2025-11-18 03:57:46 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:57:46 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:57:46 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:57:46 --> URI Class Initialized
+INFO - 2025-11-18 03:57:46 --> Router Class Initialized
+INFO - 2025-11-18 03:57:46 --> Output Class Initialized
+INFO - 2025-11-18 03:57:46 --> Security Class Initialized
+DEBUG - 2025-11-18 03:57:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:57:46 --> Input Class Initialized
+INFO - 2025-11-18 03:57:46 --> Language Class Initialized
+ERROR - 2025-11-18 03:57:46 --> 404 Page Not Found: Assets/img
+INFO - 2025-11-18 03:57:52 --> Config Class Initialized
+INFO - 2025-11-18 03:57:52 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:57:52 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:57:52 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:57:52 --> URI Class Initialized
+INFO - 2025-11-18 03:57:52 --> Router Class Initialized
+INFO - 2025-11-18 03:57:52 --> Output Class Initialized
+INFO - 2025-11-18 03:57:52 --> Security Class Initialized
+DEBUG - 2025-11-18 03:57:52 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:57:52 --> Input Class Initialized
+INFO - 2025-11-18 03:57:52 --> Language Class Initialized
+INFO - 2025-11-18 03:57:52 --> Loader Class Initialized
+INFO - 2025-11-18 03:57:52 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:57:52 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:57:52 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:57:52 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:57:52 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:57:52 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:57:52 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:57:52 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:57:52 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:57:52 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:57:52 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:57:52 --> Controller Class Initialized
+INFO - 2025-11-18 03:57:52 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:57:52 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 03:57:52 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/career.php
+INFO - 2025-11-18 03:57:52 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 03:57:52 --> Final output sent to browser
+DEBUG - 2025-11-18 03:57:52 --> Total execution time: 0.1032
+INFO - 2025-11-18 03:59:37 --> Config Class Initialized
+INFO - 2025-11-18 03:59:37 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:59:37 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:59:37 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:59:37 --> URI Class Initialized
+INFO - 2025-11-18 03:59:37 --> Router Class Initialized
+INFO - 2025-11-18 03:59:37 --> Output Class Initialized
+INFO - 2025-11-18 03:59:37 --> Security Class Initialized
+DEBUG - 2025-11-18 03:59:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:59:37 --> Input Class Initialized
+INFO - 2025-11-18 03:59:37 --> Language Class Initialized
+INFO - 2025-11-18 03:59:37 --> Loader Class Initialized
+INFO - 2025-11-18 03:59:37 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:59:37 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:59:37 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:59:37 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:59:37 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:59:37 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:59:37 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:59:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:59:37 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:59:37 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:59:37 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:59:37 --> Controller Class Initialized
+INFO - 2025-11-18 03:59:37 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:59:37 --> Upload Class Initialized
+INFO - 2025-11-18 03:59:37 --> Final output sent to browser
+DEBUG - 2025-11-18 03:59:37 --> Total execution time: 0.1693
+INFO - 2025-11-18 03:59:39 --> Config Class Initialized
+INFO - 2025-11-18 03:59:39 --> Hooks Class Initialized
+DEBUG - 2025-11-18 03:59:39 --> UTF-8 Support Enabled
+INFO - 2025-11-18 03:59:39 --> Utf8 Class Initialized
+INFO - 2025-11-18 03:59:39 --> URI Class Initialized
+INFO - 2025-11-18 03:59:39 --> Router Class Initialized
+INFO - 2025-11-18 03:59:39 --> Output Class Initialized
+INFO - 2025-11-18 03:59:39 --> Security Class Initialized
+DEBUG - 2025-11-18 03:59:39 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 03:59:39 --> Input Class Initialized
+INFO - 2025-11-18 03:59:39 --> Language Class Initialized
+INFO - 2025-11-18 03:59:39 --> Loader Class Initialized
+INFO - 2025-11-18 03:59:39 --> Helper loaded: url_helper
+INFO - 2025-11-18 03:59:39 --> Helper loaded: form_helper
+INFO - 2025-11-18 03:59:39 --> Helper loaded: file_helper
+INFO - 2025-11-18 03:59:39 --> Helper loaded: download_helper
+INFO - 2025-11-18 03:59:39 --> Helper loaded: function_helper
+INFO - 2025-11-18 03:59:39 --> Helper loaded: menu_helper
+INFO - 2025-11-18 03:59:39 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 03:59:39 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 03:59:39 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 03:59:39 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 03:59:39 --> Encrypt Class Initialized
+INFO - 2025-11-18 03:59:39 --> Controller Class Initialized
+INFO - 2025-11-18 03:59:39 --> Model "Pengaturanlp_model" initialized
+INFO - 2025-11-18 03:59:39 --> Model "Main_model" initialized
+INFO - 2025-11-18 03:59:39 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 03:59:39 --> File loaded: C:\xampp\htdocs\lido-career\application\views\pengaturan-landing-page/index.php
+INFO - 2025-11-18 03:59:39 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 03:59:39 --> Final output sent to browser
+DEBUG - 2025-11-18 03:59:39 --> Total execution time: 0.1161
+INFO - 2025-11-18 04:00:27 --> Config Class Initialized
+INFO - 2025-11-18 04:00:27 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:00:27 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:00:27 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:00:27 --> URI Class Initialized
+INFO - 2025-11-18 04:00:27 --> Router Class Initialized
+INFO - 2025-11-18 04:00:27 --> Output Class Initialized
+INFO - 2025-11-18 04:00:27 --> Security Class Initialized
+DEBUG - 2025-11-18 04:00:27 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:00:27 --> Input Class Initialized
+INFO - 2025-11-18 04:00:27 --> Language Class Initialized
+INFO - 2025-11-18 04:00:27 --> Loader Class Initialized
+INFO - 2025-11-18 04:00:27 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:00:27 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:00:27 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:00:27 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:00:27 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:00:27 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:00:27 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:00:27 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:00:27 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:00:27 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:00:27 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:00:27 --> Controller Class Initialized
+INFO - 2025-11-18 04:00:27 --> Model "Main_model" initialized
+INFO - 2025-11-18 04:00:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/header-landing.php
+INFO - 2025-11-18 04:00:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/career.php
+INFO - 2025-11-18 04:00:27 --> File loaded: C:\xampp\htdocs\lido-career\application\views\front/footer-landing.php
+INFO - 2025-11-18 04:00:27 --> Final output sent to browser
+DEBUG - 2025-11-18 04:00:27 --> Total execution time: 0.1440
+INFO - 2025-11-18 04:01:12 --> Config Class Initialized
+INFO - 2025-11-18 04:01:12 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:01:12 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:01:12 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:01:12 --> URI Class Initialized
+INFO - 2025-11-18 04:01:12 --> Router Class Initialized
+INFO - 2025-11-18 04:01:12 --> Output Class Initialized
+INFO - 2025-11-18 04:01:12 --> Security Class Initialized
+DEBUG - 2025-11-18 04:01:12 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:01:12 --> Input Class Initialized
+INFO - 2025-11-18 04:01:12 --> Language Class Initialized
+INFO - 2025-11-18 04:01:12 --> Loader Class Initialized
+INFO - 2025-11-18 04:01:12 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:01:12 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:01:12 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:01:12 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:01:12 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:01:12 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:01:12 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:01:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:01:12 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:01:12 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:01:12 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:01:12 --> Controller Class Initialized
+INFO - 2025-11-18 04:01:12 --> Model "Jenlok" initialized
+INFO - 2025-11-18 04:01:12 --> Model "Loker" initialized
+INFO - 2025-11-18 04:01:12 --> Model "Main_model" initialized
+INFO - 2025-11-18 04:01:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 04:01:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\lowongan/tabjen.php
+INFO - 2025-11-18 04:01:12 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 04:01:12 --> Final output sent to browser
+DEBUG - 2025-11-18 04:01:12 --> Total execution time: 0.1876
+INFO - 2025-11-18 04:01:13 --> Config Class Initialized
+INFO - 2025-11-18 04:01:13 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:01:13 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:01:13 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:01:13 --> URI Class Initialized
+INFO - 2025-11-18 04:01:13 --> Router Class Initialized
+INFO - 2025-11-18 04:01:13 --> Output Class Initialized
+INFO - 2025-11-18 04:01:13 --> Security Class Initialized
+DEBUG - 2025-11-18 04:01:13 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:01:13 --> Input Class Initialized
+INFO - 2025-11-18 04:01:13 --> Language Class Initialized
+ERROR - 2025-11-18 04:01:13 --> 404 Page Not Found: Conjen/sweetalert2.all.min.js
+INFO - 2025-11-18 04:01:19 --> Config Class Initialized
+INFO - 2025-11-18 04:01:19 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:01:19 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:01:19 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:01:19 --> URI Class Initialized
+INFO - 2025-11-18 04:01:19 --> Router Class Initialized
+INFO - 2025-11-18 04:01:19 --> Output Class Initialized
+INFO - 2025-11-18 04:01:19 --> Security Class Initialized
+DEBUG - 2025-11-18 04:01:19 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:01:19 --> Input Class Initialized
+INFO - 2025-11-18 04:01:19 --> Language Class Initialized
+INFO - 2025-11-18 04:01:19 --> Loader Class Initialized
+INFO - 2025-11-18 04:01:19 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:01:19 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:01:19 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:01:19 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:01:19 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:01:19 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:01:19 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:01:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:01:19 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:01:19 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:01:19 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:01:19 --> Controller Class Initialized
+INFO - 2025-11-18 04:01:19 --> Model "Jenlok" initialized
+INFO - 2025-11-18 04:01:19 --> Model "Loker" initialized
+INFO - 2025-11-18 04:01:20 --> Model "Main_model" initialized
+INFO - 2025-11-18 04:01:20 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 04:01:20 --> File loaded: C:\xampp\htdocs\lido-career\application\views\lowongan/tambahjen.php
+INFO - 2025-11-18 04:01:20 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 04:01:20 --> Final output sent to browser
+DEBUG - 2025-11-18 04:01:20 --> Total execution time: 0.2063
+INFO - 2025-11-18 04:01:28 --> Config Class Initialized
+INFO - 2025-11-18 04:01:28 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:01:28 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:01:28 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:01:28 --> URI Class Initialized
+INFO - 2025-11-18 04:01:28 --> Router Class Initialized
+INFO - 2025-11-18 04:01:28 --> Output Class Initialized
+INFO - 2025-11-18 04:01:28 --> Security Class Initialized
+DEBUG - 2025-11-18 04:01:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:01:28 --> Input Class Initialized
+INFO - 2025-11-18 04:01:28 --> Language Class Initialized
+INFO - 2025-11-18 04:01:28 --> Loader Class Initialized
+INFO - 2025-11-18 04:01:28 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:01:28 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:01:28 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:01:28 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:01:28 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:01:28 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:01:28 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:01:28 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:01:28 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:01:28 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:01:28 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:01:28 --> Controller Class Initialized
+INFO - 2025-11-18 04:01:28 --> Model "Jenlok" initialized
+INFO - 2025-11-18 04:01:28 --> Model "Loker" initialized
+INFO - 2025-11-18 04:01:28 --> Model "Main_model" initialized
+INFO - 2025-11-18 04:01:28 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 04:01:28 --> File loaded: C:\xampp\htdocs\lido-career\application\views\lowongan/editjen.php
+INFO - 2025-11-18 04:01:28 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 04:01:28 --> Final output sent to browser
+DEBUG - 2025-11-18 04:01:28 --> Total execution time: 0.1142
+INFO - 2025-11-18 04:01:28 --> Config Class Initialized
+INFO - 2025-11-18 04:01:28 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:01:28 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:01:28 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:01:28 --> URI Class Initialized
+INFO - 2025-11-18 04:01:28 --> Router Class Initialized
+INFO - 2025-11-18 04:01:28 --> Output Class Initialized
+INFO - 2025-11-18 04:01:28 --> Security Class Initialized
+DEBUG - 2025-11-18 04:01:28 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:01:28 --> Input Class Initialized
+INFO - 2025-11-18 04:01:28 --> Language Class Initialized
+INFO - 2025-11-18 04:01:29 --> Loader Class Initialized
+INFO - 2025-11-18 04:01:29 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:01:29 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:01:29 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:01:29 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:01:29 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:01:29 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:01:29 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:01:29 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:01:29 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:01:29 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:01:29 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:01:29 --> Controller Class Initialized
+INFO - 2025-11-18 04:01:29 --> Model "Jenlok" initialized
+INFO - 2025-11-18 04:01:29 --> Model "Loker" initialized
+INFO - 2025-11-18 04:01:29 --> Model "Main_model" initialized
+INFO - 2025-11-18 04:01:29 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 11
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 16
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 27
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 27
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 27
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 40
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 64
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 78
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 89
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 95
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 104
+ERROR - 2025-11-18 04:01:29 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\lido-career\application\views\lowongan\editjen.php 110
+INFO - 2025-11-18 04:01:29 --> File loaded: C:\xampp\htdocs\lido-career\application\views\lowongan/editjen.php
+INFO - 2025-11-18 04:01:29 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 04:01:29 --> Final output sent to browser
+DEBUG - 2025-11-18 04:01:29 --> Total execution time: 0.2002
+INFO - 2025-11-18 04:01:38 --> Config Class Initialized
+INFO - 2025-11-18 04:01:38 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:01:38 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:01:38 --> URI Class Initialized
+INFO - 2025-11-18 04:01:38 --> Router Class Initialized
+INFO - 2025-11-18 04:01:38 --> Output Class Initialized
+INFO - 2025-11-18 04:01:38 --> Security Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:01:38 --> Input Class Initialized
+INFO - 2025-11-18 04:01:38 --> Language Class Initialized
+INFO - 2025-11-18 04:01:38 --> Loader Class Initialized
+INFO - 2025-11-18 04:01:38 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:01:38 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:01:38 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:01:38 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:01:38 --> Controller Class Initialized
+INFO - 2025-11-18 04:01:38 --> Model "Jenlok" initialized
+INFO - 2025-11-18 04:01:38 --> Model "Loker" initialized
+INFO - 2025-11-18 04:01:38 --> Language file loaded: language/english/form_validation_lang.php
+INFO - 2025-11-18 04:01:38 --> Config Class Initialized
+INFO - 2025-11-18 04:01:38 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:01:38 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:01:38 --> URI Class Initialized
+INFO - 2025-11-18 04:01:38 --> Router Class Initialized
+INFO - 2025-11-18 04:01:38 --> Output Class Initialized
+INFO - 2025-11-18 04:01:38 --> Security Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:01:38 --> Input Class Initialized
+INFO - 2025-11-18 04:01:38 --> Language Class Initialized
+INFO - 2025-11-18 04:01:38 --> Loader Class Initialized
+INFO - 2025-11-18 04:01:38 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:01:38 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:01:38 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:01:38 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:01:38 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:01:38 --> Controller Class Initialized
+INFO - 2025-11-18 04:01:38 --> Model "Jenlok" initialized
+INFO - 2025-11-18 04:01:38 --> Model "Loker" initialized
+INFO - 2025-11-18 04:01:38 --> Model "Main_model" initialized
+INFO - 2025-11-18 04:01:38 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/header.php
+INFO - 2025-11-18 04:01:38 --> File loaded: C:\xampp\htdocs\lido-career\application\views\lowongan/tabjen.php
+INFO - 2025-11-18 04:01:38 --> File loaded: C:\xampp\htdocs\lido-career\application\views\templates/footer.php
+INFO - 2025-11-18 04:01:38 --> Final output sent to browser
+DEBUG - 2025-11-18 04:01:38 --> Total execution time: 0.1048
+INFO - 2025-11-18 04:01:38 --> Config Class Initialized
+INFO - 2025-11-18 04:01:38 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:01:38 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:01:38 --> URI Class Initialized
+INFO - 2025-11-18 04:01:38 --> Router Class Initialized
+INFO - 2025-11-18 04:01:38 --> Output Class Initialized
+INFO - 2025-11-18 04:01:38 --> Security Class Initialized
+DEBUG - 2025-11-18 04:01:38 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:01:38 --> Input Class Initialized
+INFO - 2025-11-18 04:01:38 --> Language Class Initialized
+ERROR - 2025-11-18 04:01:38 --> 404 Page Not Found: Conjen/sweetalert2.all.min.js
+INFO - 2025-11-18 04:02:05 --> Config Class Initialized
+INFO - 2025-11-18 04:02:05 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:02:05 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:02:05 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:02:05 --> URI Class Initialized
+INFO - 2025-11-18 04:02:05 --> Router Class Initialized
+INFO - 2025-11-18 04:02:05 --> Output Class Initialized
+INFO - 2025-11-18 04:02:05 --> Security Class Initialized
+DEBUG - 2025-11-18 04:02:05 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:02:05 --> Input Class Initialized
+INFO - 2025-11-18 04:02:05 --> Language Class Initialized
+INFO - 2025-11-18 04:02:05 --> Loader Class Initialized
+INFO - 2025-11-18 04:02:05 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:02:05 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:02:05 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:02:05 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:02:05 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:02:05 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:02:05 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:02:05 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:02:05 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:02:05 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:02:05 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:02:05 --> Controller Class Initialized
+INFO - 2025-11-18 04:02:05 --> Model "M_jobv" initialized
+INFO - 2025-11-18 04:02:05 --> Model "Timeline_model" initialized
+INFO - 2025-11-18 04:02:05 --> Helper loaded: text_helper
+INFO - 2025-11-18 04:02:05 --> Model "Main_model" initialized
+INFO - 2025-11-18 04:02:05 --> Model "Notification_model" initialized
+INFO - 2025-11-18 04:02:05 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/partials/notification.php
+INFO - 2025-11-18 04:02:05 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/header.php
+INFO - 2025-11-18 04:02:05 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/jobv/index.php
+INFO - 2025-11-18 04:02:05 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/partials/firebase.php
+INFO - 2025-11-18 04:02:05 --> File loaded: C:\xampp\htdocs\lido-career\application\views\dashboarduser/templates/footer.php
+INFO - 2025-11-18 04:02:05 --> Final output sent to browser
+DEBUG - 2025-11-18 04:02:05 --> Total execution time: 0.2002
+INFO - 2025-11-18 04:02:06 --> Config Class Initialized
+INFO - 2025-11-18 04:02:06 --> Hooks Class Initialized
+DEBUG - 2025-11-18 04:02:06 --> UTF-8 Support Enabled
+INFO - 2025-11-18 04:02:06 --> Utf8 Class Initialized
+INFO - 2025-11-18 04:02:06 --> URI Class Initialized
+INFO - 2025-11-18 04:02:06 --> Router Class Initialized
+INFO - 2025-11-18 04:02:06 --> Output Class Initialized
+INFO - 2025-11-18 04:02:06 --> Security Class Initialized
+DEBUG - 2025-11-18 04:02:06 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-11-18 04:02:06 --> Input Class Initialized
+INFO - 2025-11-18 04:02:06 --> Language Class Initialized
+INFO - 2025-11-18 04:02:06 --> Loader Class Initialized
+INFO - 2025-11-18 04:02:06 --> Helper loaded: url_helper
+INFO - 2025-11-18 04:02:06 --> Helper loaded: form_helper
+INFO - 2025-11-18 04:02:06 --> Helper loaded: file_helper
+INFO - 2025-11-18 04:02:06 --> Helper loaded: download_helper
+INFO - 2025-11-18 04:02:06 --> Helper loaded: function_helper
+INFO - 2025-11-18 04:02:06 --> Helper loaded: menu_helper
+INFO - 2025-11-18 04:02:06 --> Database Driver Class Initialized
+DEBUG - 2025-11-18 04:02:06 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2025-11-18 04:02:06 --> Session: Class initialized using 'files' driver.
+INFO - 2025-11-18 04:02:06 --> Form Validation Class Initialized
+DEBUG - 2025-11-18 04:02:06 --> Encrypt Class Initialized
+INFO - 2025-11-18 04:02:06 --> Controller Class Initialized
+INFO - 2025-11-18 04:02:06 --> Model "M_jobv" initialized
+INFO - 2025-11-18 04:02:06 --> Model "Timeline_model" initialized
+INFO - 2025-11-18 04:02:06 --> Helper loaded: text_helper
+INFO - 2025-11-18 04:02:06 --> Final output sent to browser
+DEBUG - 2025-11-18 04:02:06 --> Total execution time: 0.1439

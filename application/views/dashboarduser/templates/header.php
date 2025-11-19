@@ -113,7 +113,7 @@ $img = !empty($user['photo_candidate'])
                 </li>
               <li class="nav-item">
                 <a class="nav-link <?= menu_active('candidatebiodata'); ?>"
-                    href="<?= site_url('candidatebiodata'); ?>">
+                    href="<?= site_url('candidate-biodata'); ?>">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-single-02 text-danger text-sm opacity-10"></i>
                     </div>

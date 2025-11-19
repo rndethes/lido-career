@@ -249,7 +249,7 @@ if (!empty($visimisi_intro['intro_video_url'])) {
             <h2 class="title"><?= htmlspecialchars($news['title']) ?></h2>
 
             <div class="d-flex align-items-center">
-                <img src="<?= base_url('assets/img-landing/blog/blog-author.jpg') ?>" 
+                <img src="<?= base_url('assets/img-landing/blog/default1.jpg') ?>" 
                      alt="<?= htmlspecialchars($news['updated_by']) ?>" 
                      class="img-fluid post-author-img flex-shrink-0" />
                 <div class="post-meta">

@@ -26,8 +26,12 @@ class PengaturanLandingPage extends CI_Controller
         $data['socials']       = $this->Pengaturanlp_model->get_all_social();
         $data['footer']        = $this->Pengaturanlp_model->get_footer_setting();
         $data['map']            = $this->Pengaturanlp_model->get_map_link();
-          $data['content_career']            = $this->Pengaturanlp_model->get_career();
-         $data['landingpage']            = $this->Pengaturanlp_model->get_landingpage();
+        $data['content_career']            = $this->Pengaturanlp_model->get_career();
+        $data['landingpage']            = $this->Pengaturanlp_model->get_landingpage();
+        $data['content_hero_landing'] = $this->Pengaturanlp_model->get_landingpage();
+        $data['faq'] = $this->Pengaturanlp_model->get_all_faq();
+
+
 
 
         //  var_dump($data['quote']); die();
@@ -39,39 +43,47 @@ class PengaturanLandingPage extends CI_Controller
     }
 
     // Update Hero
-    public function update_hero()
-    {
-        $title    = $this->input->post('tittle_homepage');
-        $subtitle = $this->input->post('subtitle_homepage');
-        $image    = $_FILES['image_homepage']['name'];
+  public function update_hero()
+{
+    $title    = $this->input->post('tittle_homepage');
+    $subtitle = $this->input->post('subtitle_homepage');
+    $warna    = $this->input->post('warna'); // dari input color
+    $image    = $_FILES['image_homepage']['name'];
 
-        $data = [
-            'tittle_homepage' => $title,
-            'subtitle_homepage' => $subtitle
-        ];
+    // Data untuk setting_homepage
+    $data_homepage = [
+        'tittle_homepage' => $title,
+        'subtitle_homepage' => $subtitle
+    ];
 
-        if ($image) {
-            $config['upload_path']   = './assets/img-landing/';
-            $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['file_name']     = time() . '_' . $image;
-            $this->load->library('upload', $config);
+    if ($image) {
+        $config['upload_path']   = './assets/img-landing/';
+        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['file_name']     = time() . '_' . $image;
+        $this->load->library('upload', $config);
 
-            if ($this->upload->do_upload('image_homepage')) {
-                $data['image_homepage'] = $this->upload->data('file_name');
-            } else {
-                echo "<script>alert('Upload gambar gagal!'); window.history.back();</script>";
-                return;
-            }
-        }
-
-        $update = $this->Pengaturanlp_model->update_data($data);
-
-        if ($update) {
-            echo "<script>alert('Beranda berhasil diperbarui!'); window.location.href='" . base_url('PengaturanLandingPage') . "';</script>";
+        if ($this->upload->do_upload('image_homepage')) {
+            $data_homepage['image_homepage'] = $this->upload->data('file_name');
         } else {
-            echo "<script>alert('Gagal memperbarui Beranda!'); window.history.back();</script>";
+            echo "<script>alert('Upload gambar gagal!'); window.history.back();</script>";
+            return;
         }
     }
+
+    // Update setting_homepage
+    $this->db->where('id_hp', 1);
+    $update_homepage = $this->db->update('setting_homepage', $data_homepage);
+
+    // Update warna di setting_landingpage
+    $this->db->where('id', 1);
+    $update_warna = $this->db->update('setting_landingpage', ['warna' => $warna]);
+
+    if ($update_homepage && $update_warna) {
+        echo "<script>alert('Beranda berhasil diperbarui!'); window.location.href='" . base_url('PengaturanLandingPage') . "';</script>";
+    } else {
+        echo "<script>alert('Gagal memperbarui Beranda!'); window.history.back();</script>";
+    }
+}
 
     // Update About
     public function update_about()
@@ -784,6 +796,61 @@ public function update_image_unit()
     }
 }
 
+public function faq()
+{
+     $this->load->model('Pengaturanlp_model');
+    $data['faq'] = $this->Pengaturanlp_model->get_all_faq();
+
+    redirect('PengaturanLandingPage#faq');
+}
+
+// Simpan atau update FAQ
+public function save_faq()
+{
+    $id = $this->input->post('id');
+
+    $data = [
+        'question' => $this->input->post('question'),
+        'answer'   => $this->input->post('answer')
+    ];
+
+    if ($id) {
+        // Update FAQ
+        $this->db->where('id', $id);
+        $update = $this->db->update('setting_faq', $data);
+
+        if ($update) {
+            echo "<script>alert('FAQ berhasil diperbarui!'); 
+            window.location.href='" . base_url('PengaturanLandingPage#faq') . "';</script>";
+        } else {
+            echo "<script>alert('Gagal memperbarui FAQ!'); window.history.back();</script>";
+        }
+    } else {
+       
+        $insert = $this->db->insert('setting_faq', $data);
+
+        if ($insert) {
+            echo "<script>alert('FAQ berhasil ditambahkan!'); 
+            window.location.href='" . base_url('PengaturanLandingPage#faq') . "';</script>";
+        } else {
+            echo "<script>alert('Gagal menambahkan FAQ!'); window.history.back();</script>";
+        }
+    }
+}
+
+
+public function delete_faq($id)
+{
+    $this->db->where('id', $id);
+    $delete = $this->db->delete('setting_faq');
+
+    if ($delete) {
+        echo "<script>alert('FAQ berhasil dihapus!'); 
+        window.location.href='" . base_url('PengaturanLandingPage#faq') . "';</script>";
+    } else {
+        echo "<script>alert('Gagal menghapus FAQ!'); window.history.back();</script>";
+    }
+}
 
 
 }

@@ -47,7 +47,6 @@
 
                             <?php
                                 $pendidikan = [
-                                    'SEMUA JENJANG',
                                     'SD / MI',
                                     'SMP / MTS',
                                     'SMA / SMK / MA',

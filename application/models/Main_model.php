@@ -225,5 +225,7 @@ public function getSettingCareer()
     return $this->db->get_where('setting_landingpage', ['id' => 1])->row_array();
 }
 
-
+  public function get_faqs() {
+        return $this->db->get('setting_faq')->result_array();
+    }
 }

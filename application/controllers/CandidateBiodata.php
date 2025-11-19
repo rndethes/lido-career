@@ -180,23 +180,26 @@ class CandidateBiodata extends CI_Controller
     if (!empty($_FILES['photo_candidate']['name'])) {
         $file = $_FILES['photo_candidate'];
 
-        
-    if ($file['size'] > 5120) { 
+        // Batas ukuran file 5MB (5 * 1024 * 1024 bytes)
+        $maxFileSize = 5 * 1024 * 1024; // 5242880 bytes
+
+        if ($file['size'] > $maxFileSize) { 
             http_response_code(400);
-            echo json_encode(['success' => false, 'message' => 'Ukuran file terlalu besar! Maksimal 2MB.']);
+            echo json_encode(['success' => false, 'message' => 'Ukuran file terlalu besar! Maksimal 5MB.']);
             return;
         }
+
         $target_dir = FCPATH . 'uploads/kandidat/profiles/';
         if (!is_dir($target_dir)) mkdir($target_dir, 0777, true);
 
         $target_file = 'file_' . time() . '_' . basename($file['name']);
         $upload_path = $target_dir . $target_file;
-     if (move_uploaded_file($file['tmp_name'], $upload_path)) {
+
+        if (move_uploaded_file($file['tmp_name'], $upload_path)) {
             // Kirim nama file string ke model
             $save = $this->kandidat_model->saveKandidat([
                 'id' => $id_user,
                 'photo_candidate' => $target_file
-
             ]);
             if ($save) {
                 echo json_encode([
@@ -218,7 +221,7 @@ class CandidateBiodata extends CI_Controller
 
 
 
-   public function save_data_pendukung()
+ public function save_data_pendukung()
 {
     $file = $_FILES['file_pendukung'] ?? null;
     $idex = $this->input->post('id');
@@ -233,11 +236,14 @@ class CandidateBiodata extends CI_Controller
         return $this->response(false, 'Access denied (Unauthorized).', 401);
     }
 
-    if ($file['size'] > 5120) { 
-            http_response_code(400);
-            echo json_encode(['success' => false, 'message' => 'Ukuran file terlalu besar! Maksimal 2MB.']);
-            return;
-        }
+    // Batas ukuran file 5MB (5 * 1024 * 1024 bytes = 5242880 bytes)
+    $maxFileSize = 5 * 1024 * 1024; // 5242880 bytes
+    if ($file['size'] > $maxFileSize) { 
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Ukuran file terlalu besar! Maksimal 5MB.']);
+        return;
+    }
+
     // Pastikan folder upload ada
     $target_dir = FCPATH . 'uploads/kandidat/files/';
     if (!file_exists($target_dir)) {
@@ -288,6 +294,7 @@ private function response($success, $message, $code)
     echo json_encode(['success' => $success, 'message' => $message]);
     exit;
 }
+
 
     public function save_data_pengalaman()
     {

@@ -268,5 +268,37 @@ public function get_landingpage()
 }
 
 
+public function get_all_faq()
+{
+    return $this->db->order_by('id', 'DESC')->get('setting_faq')->result_array();
+}
+
+
+public function get_faq($id)
+{
+    return $this->db->get_where('setting_faq', ['id' => $id])->row_array();
+}
+
+
+public function insert_faq($data)
+{
+    return $this->db->insert('setting_faq', $data);
+}
+
+
+public function update_faq($id, $data)
+{
+    $this->db->where('id', $id);
+    return $this->db->update('setting_faq', $data);
+}
+
+// Hapus FAQ
+public function delete_faq($id)
+{
+    return $this->db->delete('setting_faq', ['id' => $id]);
+}
+
+
+
 
 }

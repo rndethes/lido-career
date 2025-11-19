@@ -31,7 +31,7 @@
             <h2 class="title"><?= htmlspecialchars($news['title']) ?></h2>
 
             <div class="d-flex align-items-center mt-2">
-                <img src="<?= base_url('assets/img-landing/blog/blog-author.jpg') ?>" 
+                <img src="<?= base_url('assets/img-landing/blog/default1.jpg') ?>" 
                      alt="<?= htmlspecialchars($news['updated_by']) ?>" 
                      class="img-fluid post-author-img flex-shrink-0 rounded-circle me-2" />
                 <div class="post-meta">

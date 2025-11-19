@@ -35,6 +35,30 @@
                     </div>
                   </div>
                   <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label for="selectEducation" class="form-label">Jenjang Pendidikan</label>
+                        <select class="form-select" id="selectEducation" name="education_job" required>
+                            <option value="">Pilih Jenjang</option>
+                            <?php
+                                $pendidikan = [
+                                    'SD / MI',
+                                    'SMP / MTS',
+                                    'SMA / SMK / MA',
+                                    'D3',
+                                    'D4',
+                                    'S1',
+                                    'S2',
+                                    'S3'
+                                ];
+
+                                foreach ($pendidikan as $edu):
+                            ?>
+                                <option value="<?= $edu ?>"><?= $edu ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>                
+                  <div class="col-lg-6">
                     <label>Tentukan Grade</label>
                     <div class="input-group mb-3">
                       <select class="form-select" id="inputGroupSelect01" name="kasta">

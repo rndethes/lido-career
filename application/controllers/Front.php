@@ -26,6 +26,7 @@ class Front extends CI_Controller
     $data['quote'] = $this->main_model->get_quote();
     $data['content_footer'] = $this->main_model->getSettingFooter();
     $data['news_list'] = $this->main_model->get_latest_news(3);
+   
 
     $id_user = getLoggedInUser('id');
     if ($id_user) {
@@ -56,6 +57,7 @@ class Front extends CI_Controller
     $data['content_about'] = $this->main_model->getSettingFirst();
     $data['content_zero'] = $this->main_model->getSettingZero();
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
 
     // 🔹 Tambahkan baris ini untuk ambil data perusahaan dari tabel 'settings'
     $data['company'] = $this->main_model->getCompany();
@@ -108,9 +110,11 @@ public function news_details()
     // --- data lain ---
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
     $data['company'] = $this->main_model->getCompany();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
 
     // user profile
     $id_user = getLoggedInUser('id');
+ 
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
 
@@ -138,6 +142,9 @@ public function contact_details()
      $id_user = getLoggedInUser('id');
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
      $data['company'] = $this->main_model->getCompany();
+     $data['content_footer'] = $this->main_model->getSettingFooter();
+     $data['faqs'] = $this->main_model->get_faqs();
+
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
 
@@ -161,10 +168,12 @@ public function contact_details()
 public function culture_details()
 {
     $data['title'] = 'Budaya Lido';
-      $data['culture'] = $this->main_model->getCulture();
+    $data['culture'] = $this->main_model->getCulture();
     $data['culture_details'] = $this->main_model->getCultureDetails();
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
-     $data['company'] = $this->main_model->getCompany();
+    $data['company'] = $this->main_model->getCompany();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
+
      $id_user = getLoggedInUser('id');
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
@@ -189,11 +198,13 @@ public function culture_details()
 public function business_details()
 {
     $data['title'] = 'Unit Bisnis Lido';
-     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
+    $data['content_sosmed'] = $this->main_model->getSettingSosmed();
     $data['unit_business'] = $this->main_model->getUnitBusiness();
     $data['landingpage'] = $this->main_model->get_landingpage(); 
-     $data['company'] = $this->main_model->getCompany();
-     $id_user = getLoggedInUser('id');
+    $data['company'] = $this->main_model->getCompany();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
+
+    $id_user = getLoggedInUser('id');
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
 
@@ -218,9 +229,11 @@ public function retail()
 {
     $data['title'] = 'Retail Lido';
     $data['business'] = $this->main_model->getBusinessDetail('Retail');
-     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
-      $data['company'] = $this->main_model->getCompany();
-     $id_user = getLoggedInUser('id');
+    $data['content_sosmed'] = $this->main_model->getSettingSosmed();
+    $data['company'] = $this->main_model->getCompany();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
+
+    $id_user = getLoggedInUser('id');
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
 
@@ -244,10 +257,11 @@ public function retail()
 public function distribution()
 {
     $data['title'] = 'Distribusi Lido';
-     $data['business'] = $this->main_model->getBusinessDetail('Distribusi');
-     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
-      $data['company'] = $this->main_model->getCompany();
-     $id_user = getLoggedInUser('id');
+    $data['business'] = $this->main_model->getBusinessDetail('Distribusi');
+    $data['content_sosmed'] = $this->main_model->getSettingSosmed();
+    $data['company'] = $this->main_model->getCompany();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
+    $id_user = getLoggedInUser('id');
     if ($id_user) {
         $user = $this->db->get_where('candidate', ['id' => $id_user])->row_array();
 
@@ -274,6 +288,7 @@ public function career()
 
     // Sosmed
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
 
     // Setting Career (banner image, title, desc)
     $career = $this->main_model->getSettingCareer();
@@ -315,6 +330,7 @@ public function blog($id)
     $data['news'] = $this->main_model->get_news($id);
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
     $data['company'] = $this->main_model->getCompany();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
 
     $id_user = getLoggedInUser('id');
     if ($id_user) {
@@ -346,6 +362,7 @@ public function unit_details($id = null)
     $data['unit'] = $this->main_model->getUnitBusinessById($id); // pastikan model punya fungsi ini
     $data['content_sosmed'] = $this->main_model->getSettingSosmed();
     $data['company'] = $this->main_model->getCompany();
+    $data['content_footer'] = $this->main_model->getSettingFooter();
 
     // cek login user
     $id_user = getLoggedInUser('id');

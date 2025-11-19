@@ -1,3 +1,14 @@
+<style>
+/* Atur jarak bullet */
+.content {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.content br {
+    line-height: 0.2; /* bisa diubah sesuai kebutuhan */
+}
+</style>
 <main class="main all-page">
   <section id="unit" class="section pt-5">
     <div class="container text-center">
@@ -9,20 +20,16 @@
 
       <h2 class="fw-bold mb-3"><?= htmlspecialchars($unit['title']) ?></h2>
 
-      <div class="content text-start mx-auto" style="max-width: 850px; font-size: 17px; line-height: 1.7;">
-        <p><?= nl2br(htmlspecialchars($unit['description1'])) ?></p>
-
-        <?php if(!empty($unit['advantages'])): 
-          $advantages = json_decode($unit['advantages'], true);
+      <div class="content text-start mx-auto" style="max-width: 850px; font-size: 17px; line-height: 1.4;">
+        <?php
+        $desc = $unit['description1'] ?? '';
+        $desc = str_replace(['<li>', '</li>'], ["\n&#8226; ", "\n"], $desc);
+        $desc = strip_tags($desc);
+        echo nl2br($desc);
         ?>
-          <h5 class="fw-bold mt-4">Keunggulan Unit Bisnis:</h5>
-          <ul style="text-align:left; max-width:750px; margin: 0 auto;">
-            <?php foreach($advantages as $item): ?>
-              <li><?= htmlspecialchars($item) ?></li>
-            <?php endforeach; ?>
-          </ul>
-        <?php endif; ?>
       </div>
     </div>
   </section>
 </main>
+
+

@@ -22,8 +22,9 @@
 
 
   .career-hero-overlay {
-    position: absolute;
-    bottom: 20px !important;
+    position: relative;
+    top: 100% !important;
+    bottom: 30px !important;
     left: 60px;
     color: #fff;
 

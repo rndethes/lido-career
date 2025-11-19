@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6">
-         <img src="<?= base_url('assets/img/' . $culture['image']) ?>" class="img-fluid rounded shadow" alt="<?= $culture['title'] ?>" style="width: 80%; height: auto; display: block;">
+         <img src="<?= base_url('assets/img/' . $culture['image']) ?>" class="img-fluid rounded" alt="<?= $culture['title'] ?>" style="width: 80%; height: auto; display: block;">
       </div>
 
       <div class="col-lg-6" style="font-size: 17px; line-height: 1.7; margin-bottom:-60px;">

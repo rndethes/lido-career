@@ -69,6 +69,11 @@ class Conjen extends CI_Controller
                     'label' => 'Nama Job',
                     'rules' => 'required'
             ),
+               array(
+            'field' => 'education_job',
+            'label' => 'Jenjang Pendidikan',
+            'rules' => 'required'
+            ),
             array(
                     'field' => 'kasta',
                     'label' => 'Grade',
@@ -102,6 +107,7 @@ class Conjen extends CI_Controller
             $idjob = $this->input->post('idpeker');
             $divisi = $this->input->post('divisi');
             $namajob = $this->input->post('nama');
+            $education = $this->input->post('education_job');
             $kasta = $this->input->post('kasta');
             $kualifikasi = $this->input->post('kualifikasi');
             $des = $this->input->post('deskripsi');
@@ -121,6 +127,7 @@ class Conjen extends CI_Controller
                 'id_job' => $idjob,
                 'id_division' => $divisi,
                 'name_job' => $namajob,
+                'education_job' => $education,
                 'grade_value' => $kasta,
                 'requirement_job'	=> $kualifikasi,
                 'description_job'	=> $des,
@@ -193,19 +200,20 @@ class Conjen extends CI_Controller
 
         $divisi = $this->input->post('divisi');
         $nama = $this->input->post('nama');
+        $education = $this->input->post('education_job');
         $kasta = $this->input->post('kasta');
         $kualifikasi = $this->input->post('kualifikasi');
         $des = $this->input->post('deskripsi');
-        $education = $this->input->post('education_job');
+      
 
         // Simpan ke DB
         $this->db->set('id_division', $divisi);
         $this->db->set('name_job', $nama);
+         $this->db->set('education_job', $education);
         $this->db->set('grade_value', $kasta);
         $this->db->set('requirement_job', $kualifikasi);
         $this->db->set('description_job', $des);
-        $this->db->set('education_job', $education);
-
+       
         $this->db->where('id', $id);
         $this->db->update('job_vacancy');
 

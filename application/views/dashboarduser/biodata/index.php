@@ -171,6 +171,16 @@
             }
         }
 
+        // Fungsi untuk memotong username maksimal 10 karakter
+        function truncate_username($username) {
+            $cleanUsername = ltrim($username, '@'); // Hapus @ jika ada
+            $display = '@' . $cleanUsername;
+            if (strlen($display) > 10) {
+                return substr($display, 0, 10) . '.....';
+            }
+            return $display;
+        }
+
         // Jika dua-duanya kosong
         if (empty($linkedin) && empty($instagram)) {
             echo '<span>TIDAK DICANTUMKAN</span>';
@@ -180,15 +190,15 @@
             // LinkedIn
             if (!empty($linkedin)) {
                 $linkedinUrl = build_social_url($linkedin, 'linkedin');
-                echo '<li><strong>LinkedIn:</strong> <a href="' . htmlspecialchars($linkedinUrl) . '" target="_blank">@' 
-                     . htmlspecialchars(ltrim($linkedin, '@')) . '</a></li>';
+                echo '<li><strong>LinkedIn:</strong> <a href="' . htmlspecialchars($linkedinUrl) . '" target="_blank">' 
+                     . htmlspecialchars(truncate_username($linkedin)) . '</a></li>';
             }
 
             // Instagram
             if (!empty($instagram)) {
                 $instagramUrl = build_social_url($instagram, 'instagram');
-                echo '<li><strong>Instagram:</strong> <a href="' . htmlspecialchars($instagramUrl) . '" target="_blank">@' 
-                     . htmlspecialchars(ltrim($instagram, '@')) . '</a></li>';
+                echo '<li><strong>Instagram:</strong> <a href="' . htmlspecialchars($instagramUrl) . '" target="_blank">' 
+                     . htmlspecialchars(truncate_username($instagram)) . '</a></li>';
             }
 
             echo '</ul>';

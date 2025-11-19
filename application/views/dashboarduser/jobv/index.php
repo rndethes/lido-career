@@ -34,30 +34,25 @@
                                     </button>
                                 </div>
                             </div>
-                           <div class="col-md-4 mb-3">
-                            <!-- Filter Divisi -->
-                            <div class="card card-body shadow-sm mb-3">
-                                <label>FILTER BY DIVISI</label>
-                                <select class="form-control" v-model="filterDivision">
-                                    <option value="all-division">SEMUA DIVISI</option>
-                                    <?php foreach ($division as $divisi): ?>
-                                        <option value="<?= $divisi['id_division'] ?>">
+                            <div class="col-md-4 mb-3">
+                                <div class="card card-body shadow-sm">
+                                    <label for="">FILTER BY DIVISI</label>
+                                    <select class="form-control" v-model="filterDivision">
+                                        <option value="all-division">SEMUA DIVISI</option>
+                                        <?php foreach ($division as $divisi): ?>
+                                        <option
+                                            value="<?= $divisi['id_division'] ?>">
                                             <?= $divisi['name_division'] ?>
                                         </option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-
-                            <!-- Filter Pendidikan -->
-                         <div class="card card-body shadow-sm mb-3">
-                            <label>FILTER BY PENDIDIKAN</label>
+                                        <?php endforeach ?>
+                                    </select>
+                                    </div>
+                                     <div class="card card-body shadow-sm">
+                                    <label>FILTER BY PENDIDIKAN</label>
                             <select class="form-control" v-model="filterEducation">
-
                                 <option value="all-education">SEMUA PENDIDIKAN</option>
-
                                 <?php
                                 $pendidikan = [
-                                    'SEMUA JENJANG',
                                     'SD / MI',
                                     'SMP / MTS',
                                     'SMA / SMK / MA',
@@ -72,29 +67,17 @@
                                 ?>
                                     <option value="<?= $edu ?>"><?= strtoupper($edu) ?></option>
                                 <?php endforeach; ?>
-
                             </select>
-                        </div>
-
-
-                            <!-- Tombol Apply -->
-                            <div class="mt-4">
-                                <button 
-                                    @click="switchTab('#tabPemilihanBatch')"
-                                    :disabled="selectedJobs.length === 0"
-                                    class="d-none d-md-block btn btn-md w-100 btn-info">
-                                    
-                                    <i class="fas fa-arrow-right"></i> Apply Lamaran
-                                </button>
-                            </div>
-
-                        </div>
+                              </div>
+                                <div class="mt-4">
+                                    <button @click="switchTab('#tabPemilihanBatch')":disabled="selectedJobs.length === 0" class="d-none d-md-block btn btn-md w-100 btn-info">
+                                        <i class="fas fa-arrow-right"></i> Apply Lamaran
+                                    </button>
+                                </div>
+                           
+                        </div>  
                             <div class="col-md-8 mb-3">
                                 <!-- Begin List Loker -->
-                                 <div class="col-md-8 mb-3">
-                                    <div v-if="filteredJobs.length === 0" class="text-center text-muted py-4">
-                                        <h5 class="fw-bold">Lowongan tidak tersedia</h5>
-                                    </div>
                                 <div v-for="job in filteredJobs" :key="`cardLowonganCrx-${job.id}`"
                                     class="card card-body shadow-sm mb-3">
                                     <div class="list-group-item list-group-item-action" aria-current="true">
@@ -260,17 +243,17 @@
                                                                 v-text="fmtDisplayAvailableBatchForJob(selectedJob)">
                                                             </span>
                                                         </td>
-                                                        <td class="text-center">
-                                                            <button @click="upJobPriority(selectedJob.id)"
-                                                                class="btn btn-xs btn-primary">
-                                                                <i class="fas fa-arrow-up"></i>
-                                                            </button>
-                                                            <button @click="downJobPriority(selectedJob.id)"
-                                                                class="btn btn-xs btn-warning">
-                                                                <i class="fas fa-arrow-down"></i>
-                                                            </button>
+                                                        <td class="text-center" style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+
+                                                            <select class="form-select form-select-sm"
+                                                                    v-model="selectedJob.priority"
+                                                                    @change="onPriorityChange(selectedJob)"
+                                                                    style="width: 95px;">
+                                                                <option disabled value="">Prioritas</option>
+                                                                <option v-for="n in selectedJobs.length" :key="n" :value="n">{{ n }}</option>
+                                                            </select>
                                                             <button class="btn btn-xs btn-danger"
-                                                                @click="removeSelectedJob(selectedJob)">
+                                                                @click="removeSelectedJob(selectedJob)" style="margin-top: 10px;" >
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </td>
@@ -428,9 +411,8 @@
                     }
                 }
             },
-           computed: {
-
-            filteredJobs() {
+            computed: {
+               filteredJobs() {
 
                 return this.jobLists.filter(job => {
 
@@ -447,11 +429,55 @@
                     return matchDivision && matchEducation;
                 });
             }
-
-        },
-
-
+         },
             methods: {
+            onPriorityChange(changedJob) {
+                const newPriority = parseInt(changedJob.priority);
+                const oldPriority = changedJob.oldPriority ?? newPriority;
+
+                if (newPriority === oldPriority) {
+                    return; // Tidak ada perubahan, langsung keluar
+                }
+
+                let selectedJobs = [...this.selectedJobs];
+
+                // Cari job yang diubah
+                const jobIndex = selectedJobs.findIndex(job => job.id === changedJob.id);
+                if (jobIndex === -1) return;
+
+                // Update priority job yang dipilih
+                selectedJobs[jobIndex].priority = newPriority;
+
+                // Jika naik prioritas (misal 3 ke 1)
+                if (oldPriority > newPriority) {
+                    // Geser yang posisinya >= newPriority dan < oldPriority naik 1
+                    selectedJobs.forEach(job => {
+                        if (job.id !== changedJob.id && job.priority >= newPriority && job.priority < oldPriority) {
+                            job.priority += 1;
+                        }
+                    });
+                }
+                // Jika turun prioritas (misal 1 ke 3)
+                else if (oldPriority < newPriority) {
+                    // Geser yang posisinya <= newPriority dan > oldPriority turun 1
+                    selectedJobs.forEach(job => {
+                        if (job.id !== changedJob.id && job.priority <= newPriority && job.priority > oldPriority) {
+                            job.priority -= 1;
+                        }
+                    });
+                }
+
+                // Update oldPriority agar bisa dibandingkan lagi di masa depan
+                selectedJobs[jobIndex].oldPriority = newPriority;
+
+                // Urutkan berdasarkan priority ascending
+                selectedJobs.sort((a, b) => a.priority - b.priority);
+
+                // Assign ulang ke reactive data
+                this.selectedJobs = selectedJobs;
+            },
+
+
                 pilihJadwalPenerbangan(batch) {
                     Swal.fire({
                         icon: 'question',
@@ -544,18 +570,46 @@
                         }
                     });
                 },
-                moveJobPriority(job_id, priority) {
-                    var selectedJobs = this.selectedJobs;
+             moveJobPriority(job_id, newPriority) {
+                    let selectedJobs = [...this.selectedJobs]; // clone agar tidak modifikasi langsung di reaktif
 
-                    const jobToMove = selectedJobs.filter(job => parseInt(job.id) === parseInt(job_id))[
-                        0];
-                    const currentIndex = selectedJobs.indexOf(jobToMove);
+                    // Cari job yang ingin dipindah
+                    const jobToMove = selectedJobs.find(job => parseInt(job.id) === parseInt(job_id));
+                    if (!jobToMove) return;
 
-                    selectedJobs.splice(currentIndex, 1);
-                    selectedJobs.splice(priority, 0, jobToMove);
+                    // simpan urutan lama
+                    const oldPriority = jobToMove.priority;
+                    
+                    
+                    jobToMove.priority = newPriority;
+
+                    // Kemudian, untuk semua job selain yang dipindah:
+                    // jika oldPriority < newPriority, maka jobs dengan priority di antara oldPriority+1 sampai newPriority geser ke atas (dikurangi 1)
+                    // jika oldPriority > newPriority, maka jobs dengan priority di antara newPriority sampai oldPriority-1 geser ke bawah (ditambah 1)
+                    
+                    selectedJobs.forEach(job => {
+                        if(job.id === jobToMove.id) return; // lewati job yang dipindah
+
+                        if (oldPriority < newPriority) {
+                            // Geser naik semua job di urutan antara oldPriority+1 sampai newPriority ke posisi satu tingkat lebih atas (priority dikurangi 1)
+                            if (job.priority > oldPriority && job.priority <= newPriority) {
+                                job.priority -= 1;
+                            }
+                        } else if (oldPriority > newPriority) {
+                            // Geser turun semua job di urutan antara newPriority sampai oldPriority-1 ke posisi satu tingkat lebih bawah (priority ditambah 1)
+                            if (job.priority >= newPriority && job.priority < oldPriority) {
+                                job.priority += 1;
+                            }
+                        }
+                    });
+
+                    
+                    selectedJobs.sort((a, b) => a.priority - b.priority);
 
                     this.selectedJobs = selectedJobs;
                 },
+
+
                 downJobPriority(job_id) {
                     let selectedJobs = this.selectedJobs;
 
@@ -635,46 +689,57 @@
                         });
                     }
                 },
-                addSelectedJob(data) {
-                    if (data.batchs.length === 0) {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Jadwal Kosong!',
-                            text: 'Anda tidak dapat memilih lowongan ini, karena belum ada jadwal yang ditetapkan untuk lowongan.'
-                        });
-                        return;
-                    }
+             addSelectedJob(data) {
+                if (data.batchs.length === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Jadwal Kosong!',
+                        text: 'Anda tidak dapat memilih lowongan ini karena belum ada jadwal.'
+                    });
+                    return;
+                }
 
-                    const id = data.id;
-                    const job = this.jobLists.find((v) => parseInt(v.id) === parseInt(id));
+                const id = data.id;
+                const job = this.jobLists.find(v => parseInt(v.id) === parseInt(id));
 
-                    if (typeof job !== "undefined") {
-                        if (!this._checkIsJobSelected(id)) {
-                            if (this.selectedJobs.length === 3) {
-                                Swal.fire({
-                                    icon: 'warning',
-                                    title: 'Pilihan Penuh!',
-                                    text: 'Anda hanya dapat memilih maksimal 3 lowongan, hapus salah satu lowongan untuk dapat memilih lowongan baru.'
-                                });
-                            } else {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Lowongan Dipilih!',
-                                    text: 'Berhasil memilih lowongan.'
-                                });
+                if (!job) return;
 
-                                this.selectedJobs.push(job);
-                                this.pushSelectedJobBatch(job);
-                            }
-                        } else {
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Lowongan Telah Dipilih!',
-                                text: 'Anda sudah memilih lowongan ini, silahkan pilih lowongan yang lain.'
-                            });
-                        }
-                    }
-                },
+                // Jika sudah dipilih → hentikan
+                if (this._checkIsJobSelected(id)) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Lowongan Telah Dipilih!',
+                        text: 'Silahkan pilih lowongan lain.'
+                    });
+                    return;
+                }
+
+                // Batas 3 lowongan
+                if (this.selectedJobs.length === 3) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Pilihan Penuh!',
+                        text: 'Maksimal 3 lowongan. Hapus satu untuk memilih yang baru.'
+                    });
+                    return;
+                }
+
+                // ===== SET PRIORITAS OTOMATIS =====
+                job.priority = this.selectedJobs.length + 1;
+                job.oldPriority = job.priority;
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Lowongan Dipilih!',
+                    text: 'Berhasil memilih lowongan.'
+                });
+
+                // Tambahkan job ke daftar terpilih
+                this.selectedJobs.push(job);
+
+                // Pastikan batch ikut masuk
+                this.pushSelectedJobBatch(job);
+            },
                 loadDataJob() {
                     $.LoadingOverlay("show");
 

@@ -67,7 +67,7 @@
 
                 <!-- Author Info -->
                 <div class="d-flex align-items-center mt-4">
-                    <img src="<?= base_url('assets/img-landing/blog/blog-author.jpg') ?>" 
+                    <img src="<?= base_url('assets/img-landing/blog/default1.jpg') ?>" 
                          alt="<?= htmlspecialchars($news['updated_by']) ?>" 
                          class="img-fluid post-author-img flex-shrink-0 rounded-circle me-2" style="width:50px;height:50px;">
                     <div class="post-meta">

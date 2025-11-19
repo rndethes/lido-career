@@ -96,7 +96,12 @@ img.preview {
   <button class="nav-link" id="career-tab" data-bs-toggle="tab" data-bs-target="#career" type="button" role="tab" aria-controls="career" aria-selected="false">
     💼 Career
   </button>
-</li>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab">
+      ❓ FAQ
+    </button>
+  </li>
   <li class="nav-item" role="presentation">
   <button class="nav-link" id="footer-tab" data-bs-toggle="tab" data-bs-target="#footer" type="button" role="tab" aria-controls="footer" aria-selected="false">
     📍 Footer
@@ -124,6 +129,11 @@ img.preview {
             <label>Subjudul</label>
             <textarea class="form-control" name="subtitle_homepage" rows="2"><?= isset($content_hero['subtitle_homepage']) ? $content_hero['subtitle_homepage'] : '' ?></textarea>
           </div>
+          <div class="mb-3">
+            <label>Warna</label>
+            <input type="color" class="form-control form-control-color" name="warna"
+                  value="<?= isset($content_hero_landing['warna']) ? $content_hero_landing['warna'] : '#000000' ?>" title="Pilih Warna">
+        </div>
          <div class="mb-3 text-center">
             <img id="previewHero" 
                 src="<?= isset($content_hero['image_homepage']) ? base_url('assets/img-landing/' . $content_hero['image_homepage']) : base_url('assets/img/default.png') ?>" 
@@ -575,9 +585,8 @@ img.preview {
           <td><?= $no++ ?></td>
           <td><?= htmlspecialchars($unit['title']) ?></td>
           <td><?= htmlspecialchars(mb_strimwidth($unit['description'],0,20,'...')) ?></td>
-          <td><?= htmlspecialchars(mb_strimwidth($unit['description1'],0,20,'...')) ?></td>
-          <td>
-            <?php if($unit['image']): ?>
+         <td><?= htmlspecialchars(mb_strimwidth(strip_tags($unit['description1']), 0, 20, '...')) ?></td>
+            <td><?php if($unit['image']): ?>
               <img src="<?= base_url('assets/img/'.$unit['image']) ?>" width="70" class="rounded">
             <?php else: ?>
               <span class="text-muted">Tidak ada</span>
@@ -848,6 +857,85 @@ img.preview {
       <button type="submit" class="btn btn-primary">💾 Simpan</button>
     </div>
   </form>
+</div>
+
+<!-- TAB FAQ -->
+<div class="tab-pane fade" id="faq" role="tabpanel">
+    <h2>Daftar FAQ</h2>
+
+    <!-- Tombol Tambah -->
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#faqModal" onclick="resetFaqForm()">
+        Tambah FAQ
+    </button>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th width="5%">No</th>
+                    <th>Pertanyaan</th>
+                    <th>Jawaban</th>
+                    <th width="15%">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if(!empty($faq)): $no=1; foreach($faq as $f): ?>
+                <tr>
+                    <td><?= $no++ ?></td>
+                    <td><?= htmlspecialchars($f['question']) ?></td>
+                    <td><?= htmlspecialchars(mb_strimwidth(strip_tags($f['answer']), 0, 40, '...')) ?></td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" 
+                                onclick='editFaq(<?= json_encode($f); ?>)'
+                                data-bs-toggle="modal" data-bs-target="#faqModal">
+                            Edit
+                        </button>
+                        <a href="<?= base_url('PengaturanLandingPage/delete_faq/'.$f['id']); ?>"
+                           class="btn btn-sm btn-danger"
+                           onclick="return confirm('Hapus FAQ ini?')">
+                            Hapus
+                        </a>
+                    </td>
+                </tr>
+                <?php endforeach; else: ?>
+                <tr><td colspan="4" class="text-center">Belum ada data FAQ</td></tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal FAQ -->
+<div class="modal fade" id="faqModal" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form id="faqForm" method="post" action="<?= base_url('PengaturanLandingPage/save_faq') ?>">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="faqModalLabel">Tambah / Edit FAQ</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="id" id="faq_id">
+
+          <div class="mb-3">
+            <label class="form-label">Pertanyaan</label>
+            <input type="text" class="form-control" name="question" id="question" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Jawaban</label>
+            <textarea class="form-control" name="answer" id="answer" rows="4" required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- ===================== TAB FOOTER ===================== -->
@@ -1377,6 +1465,17 @@ function editOffice(data) {
     const modal = new bootstrap.Modal(document.getElementById('socialModal'));
     modal.show();
   }
+
+    function resetFaqForm() {
+        document.getElementById('faqForm').reset();
+        document.getElementById('faq_id').value = '';
+    }
+
+    function editFaq(data) {
+        document.getElementById('faq_id').value = data.id;
+        document.getElementById('question').value = data.question;
+        document.getElementById('answer').value = data.answer;
+    }
 
 </script>
 

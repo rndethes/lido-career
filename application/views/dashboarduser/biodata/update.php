@@ -49,7 +49,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-control-label">Nama
-                                            Lengkap (Sesuai KTPPP)</label>
+                                            Lengkap (Sesuai KTP)</label>
                                         <input v-model="data_diri.name_candidate" name="name_candidate"
                                             class="form-control tt-gede" type="text"  style="text-transform: uppercase;" />
                                     </div>
@@ -578,7 +578,8 @@
                                                         class="text-uppercase text-secondary text-xxs text-center font-weight-bolder opacity-7 ps-2">
                                                         Deskripsi
                                                     </th>
-                                                    <th></th>
+                                                    <th class="text-uppercase text-secondary text-xxs text-center font-weight-bolder opacity-7 ps-2">
+                                                        Aksi </th>
                                                 </tr>
                                             </thead>
                                             <tbody v-if="pengalaman_list.length > 0">
@@ -588,28 +589,28 @@
                                                         <div class="d-flex px-2 py-1">
                                                             <div class="d-flex flex-column justify-content-center">
                                                                 <h6 class="mb-0 text-xs">
-                                                                    {{ item.name_company }}</h6>
+                                                                    {{ item.name_company .toUpperCase() }}</h6>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <p class="text-xs font-weight-bold mb-0">
-                                                            {{ item.type_company }}</p>
+                                                            {{ item.type_company .toUpperCase() }}</p>
                                                     </td>
                                                     <td>
                                                         <p class="text-xs font-weight-bold mb-0">
-                                                            {{ getStatusPegawai(item.employee_company) }}</p>
+                                                            {{ getStatusPegawai(item.employee_company) .toUpperCase() }}</p>
                                                     </td>
                                                     <td>
                                                         <span class="text-secondary text-xs font-weight-bold">
-                                                            {{ item.last_position }}
+                                                            {{ item.last_position .toUpperCase() }}
                                                         </span>
                                                     </td>
                                                     <td>
                                                         <span v-if="item.active == 0"
                                                             class="text-secondary text-xs font-weight-bold">
                                                             {{ diffLamaBekerja(new Date(item.first_year), new
-                                                            Date(item.last_year)) }}
+                                                            Date(item.last_year)) .toUpperCase() }}
                                                         </span>
                                                         <span v-else class="text-secondary text-xs font-weight-bold">
                                                             Masih Bekerja
@@ -623,6 +624,10 @@
                                                         </span>
                                                     </td>
                                                     <td>
+                                                        <!-- <i @click.self="showDescription(item.description)"
+                                                            class="text-primary fas fa-eye"
+                                                            style="cursor: pointer;"></i>
+                                                        &nbsp;&nbsp; -->
                                                         <i @click.self="editPengalaman(item.tempid)"
                                                             class="text-primary fas fa-pen"
                                                             style="cursor: pointer;"></i>

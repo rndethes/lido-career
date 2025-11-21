@@ -84,8 +84,24 @@
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div aria-hidden="true">
-                                                <img src="<?= base_url('/uploads/kandidat/profiles/' . $row['photo_candidate']) ?>"
-                                                    class="avatar avatar-sm me-3">
+                                               <?php 
+                        $photo = $row['photo_candidate'] ?? '';
+                        $path  = FCPATH . 'uploads/kandidat/profiles/' . $photo;
+
+                        if (!empty($photo) && file_exists($path) && is_file($path)): ?>
+                            
+                            <img src="<?= base_url('uploads/kandidat/profiles/' . $photo) ?>" 
+                                alt="Foto Profil"
+                                class="avatar avatar-sm me-3"
+                                style="width:43px;height:43px;border-radius:50%;object-fit:cover;">
+                    
+                    <?php else: ?>
+                        
+                        <i class="fa-solid fa-circle-user me-3" 
+                           style="font-size:40px;color:#6c757d;"></i>
+                    
+                    <?php endif; ?>
+
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-xs">
@@ -105,13 +121,18 @@
     <?= strtoupper(explode(',', $row['study_level'] ?? '-')[0]) ?>
 </td>
 
-                                   <td>
+                                  <td>
                                     <?php 
-                                        $alamat = strtoupper($row['address_candidate'] ?? '-');
-                                        echo strlen($alamat) > 20 ? substr($alamat, 0, 20) . '...' : $alamat;
+                                        $alamat = $row['address_candidate'] ?? '';
+
+                                        if (empty(trim($alamat))) {
+                                            echo '-';
+                                        } else {
+                                            $alamat = strtoupper($alamat);
+                                            echo strlen($alamat) > 20 ? substr($alamat, 0, 20) . '...' : $alamat;
+                                        }
                                     ?>
                                 </td>
-
                                     <td class="">
                                         <span class="text-secondary text-xs font-weight-bold">
                                             <?= $row['state'] == 2 ? strtoupper($row['division_']) : '&nbsp;&nbsp;&nbsp;-'  ?>

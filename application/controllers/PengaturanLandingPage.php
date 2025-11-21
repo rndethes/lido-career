@@ -241,41 +241,97 @@ $update_settings = $this->Pengaturanlp_model->update_settings($data_settings);
     $upload_path = FCPATH . 'uploads/intro/';
     if (!is_dir($upload_path)) mkdir($upload_path, 0777, true);
 
-    // Tangani konten sesuai tipe
-    switch($intro_type){
+    /* ============================================================
+       CHECK TIPE INTRO
+    ============================================================ */
+    switch ($intro_type) {
+
         case 'youtube':
             $intro_data['intro_youtube_url'] = $this->input->post('intro_youtube_url');
             break;
+
+
         case 'video':
-            if(isset($_FILES['intro_video_file']) && $_FILES['intro_video_file']['error']==0){
-                $video_name = time().'_'.$_FILES['intro_video_file']['name'];
-                move_uploaded_file($_FILES['intro_video_file']['tmp_name'], $upload_path.$video_name);
-                $intro_data['intro_video_file'] = 'uploads/intro/'.$video_name;
+
+            if (isset($_FILES['intro_video_file']) && $_FILES['intro_video_file']['error'] == 0) {
+
+                // CEK MAX SIZE 10MB
+                if ($_FILES['intro_video_file']['size'] > 10485760) {
+                    echo "<script>alert('Ukuran video maksimal 10 MB!'); window.history.back();</script>";
+                    return;
+                }
+
+                // CEK EXT VIDEO
+                $allowed_video = ['mp4','webm','mkv','mov'];
+                $ext = strtolower(pathinfo($_FILES['intro_video_file']['name'], PATHINFO_EXTENSION));
+
+                if (!in_array($ext, $allowed_video)) {
+                    echo "<script>alert('Format video harus MP4/WEBM/MKV/MOV'); window.history.back();</script>";
+                    return;
+                }
+
+                // Upload
+                $video_name = time() . '_video.' . $ext;
+
+                move_uploaded_file($_FILES['intro_video_file']['tmp_name'], $upload_path . $video_name);
+
+                $intro_data['intro_video_file'] = 'uploads/intro/' . $video_name;
             }
+
             break;
+
+
         case 'image':
-            if(isset($_FILES['intro_image_file']) && $_FILES['intro_image_file']['error']==0){
-                $image_name = time().'_'.$_FILES['intro_image_file']['name'];
-                move_uploaded_file($_FILES['intro_image_file']['tmp_name'], $upload_path.$image_name);
-                $intro_data['intro_image_file'] = 'uploads/intro/'.$image_name;
+
+            if (isset($_FILES['intro_image_file']) && $_FILES['intro_image_file']['error'] == 0) {
+
+                // CEK MAX SIZE 5MB
+                if ($_FILES['intro_image_file']['size'] > 5242880) {
+                    echo "<script>alert('Ukuran gambar maksimal 5 MB!'); window.history.back();</script>";
+                    return;
+                }
+
+                // CEK EXT FOTO
+                $allowed_img = ['jpg','jpeg','png','webp','svg'];
+                $ext = strtolower(pathinfo($_FILES['intro_image_file']['name'], PATHINFO_EXTENSION));
+
+                if (!in_array($ext, $allowed_img)) {
+                    echo "<script>alert('Format gambar harus JPG/PNG/WEBP/SVG'); window.history.back();</script>";
+                    return;
+                }
+
+                // Upload
+                $image_name = time() . '_image.' . $ext;
+
+                move_uploaded_file($_FILES['intro_image_file']['tmp_name'], $upload_path . $image_name);
+
+                $intro_data['intro_image_file'] = 'uploads/intro/' . $image_name;
             }
+
             break;
     }
 
+    /* ============================================================
+       UPDATE DATABASE
+    ============================================================ */
+
     // Update tabel setting_visimisi_intro
-    $this->db->where('id', 1); // asumsi ID intro = 1
+    $this->db->where('id', 1);
     $update_intro = $this->db->update('setting_visimisi_intro', $intro_data);
 
-    // Data untuk tabel setting_landingpage
+    // Update tabel setting_landingpage
     $landing_data = [
         'visi' => $this->input->post('visi'),
         'misi' => $this->input->post('misi')
     ];
 
-    // Update tabel setting_landingpage
-    $this->db->where('id', 1); // asumsi ID landingpage = 1
+    $this->db->where('id', 1);
     $update_landing = $this->db->update('setting_landingpage', $landing_data);
 
+
+    /* ============================================================
+       RESPONSE
+    ============================================================ */
     if ($update_intro || $update_landing) {
         echo "<script>alert('Visi, Misi & Intro berhasil diperbarui!'); window.location.href='" . base_url('PengaturanLandingPage') . "#visi';</script>";
     } else {

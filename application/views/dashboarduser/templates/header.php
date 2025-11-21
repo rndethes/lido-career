@@ -190,13 +190,19 @@ $img = !empty($user['photo_candidate'])
     <li class="nav-item dropdown pe-2 d-flex align-items-center">
         <a href="#" class="nav-link text-white p-0 d-flex align-items-center"
            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php if (!empty($user['photo_candidate'])): ?>
-                <img src="<?= $img ?>" alt="Foto Profil"
-                     class="profile-photo"
-                     style="width:43px;height:43px;border-radius:50%;object-fit:cover;">
+          <?php 
+            $photo = $user['photo_candidate'] ?? '';
+            $path = FCPATH . 'uploads/kandidat/profiles/' . $photo;
+
+            if (!empty($photo) && file_exists($path) && is_file($path)): ?>
+                <img src="<?= base_url('uploads/kandidat/profiles/' . $photo) ?>" 
+                    alt="Foto Profil"
+                    style="width:43px;height:43px;border-radius:50%;object-fit:cover;">
             <?php else: ?>
-                <i class="fas fa-user-circle" style="font-size:28px;"></i>
+                <i class="fa-solid fa-circle-user" 
+                style="font-size:40px;color: white;"></i>
             <?php endif; ?>
+
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end px-2 py-3">

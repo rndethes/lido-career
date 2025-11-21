@@ -121,8 +121,10 @@
             echo 'PEREMPUAN';
             } elseif ($biodata['jk_candidate'] == 3) {
             echo 'TRANSGENDER';
+         } elseif ($biodata['jk_candidate'] == 4) {
+        echo 'TIDAK INGIN MENYEBUTKAN';
         } else {
-            echo 'TIDAK INGIN MENYEBUTKAN';
+            echo ''; 
         }
     ?>
 </span>

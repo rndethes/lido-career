@@ -148,8 +148,25 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                    <img src="<?= base_url('uploads/kandidat/profiles/' . $candidate['photo_candidate']) ?>"
-                                                    class="avatar avatar-sm me-3">
+                                                       <?php 
+                                                        $photo = $candidate['photo_candidate'] ?? '';
+                                                        $path  = FCPATH . 'uploads/kandidat/profiles/' . $photo;
+
+                                                        if (!empty($photo) && file_exists($path) && is_file($path)): ?>
+                                                            
+                                                            <img src="<?= base_url('uploads/kandidat/profiles/' . $photo) ?>" 
+                                                                class="avatar avatar-sm me-3"
+                                                                style="width:43px;height:43px;border-radius:50%;object-fit:cover;">
+                                                        
+                                                    <?php else: ?>
+                                                            
+                                                            <i class="fa-solid fa-circle-user me-3" 
+                                                            style="font-size:40px;color:#6c757d;"></i>
+
+                                                    <?php endif; ?>
+
+
+                                                  
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-xs"><?= $candidate['name_candidate'] ?></h6>

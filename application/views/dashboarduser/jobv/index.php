@@ -1,3 +1,4 @@
+
 <div id="jobv-app-root" class="d-none">
     <div class="row">
         <div class="col-lg-12 mb-lg-0 mb-4">
@@ -35,40 +36,32 @@
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <div class="card card-body shadow-sm">
-                                    <label for="">FILTER BY DIVISI</label>
-                                    <select class="form-control" v-model="filterDivision">
-                                        <option value="all-division">SEMUA DIVISI</option>
-                                        <?php foreach ($division as $divisi): ?>
-                                        <option
-                                            value="<?= $divisi['id_division'] ?>">
-                                            <?= $divisi['name_division'] ?>
-                                        </option>
-                                        <?php endforeach ?>
-                                    </select>
-                                    </div>
-                                     <div class="card card-body shadow-sm">
-                                    <label>FILTER BY PENDIDIKAN</label>
-                            <select class="form-control" v-model="filterEducation">
-                                <option value="all-education">SEMUA PENDIDIKAN</option>
-                                <?php
-                                $pendidikan = [
-                                    'SD / MI',
-                                    'SMP / MTS',
-                                    'SMA / SMK / MA',
-                                    'D3',
-                                    'D4',
-                                    'S1',
-                                    'S2',
-                                    'S3'
-                                ];
+    <div class="card card-body shadow-sm mb-3">
+        <label for="">FILTER BY DIVISI</label>
+        <select class="form-control" v-model="filterDivision">
+            <option value="all-division">SEMUA DIVISI</option>
+            <?php foreach ($division as $divisi): ?>
+            <option value="<?= $divisi['id_division'] ?>">
+                <?= $divisi['name_division'] ?>
+            </option>
+            <?php endforeach ?>
+        </select>
+    </div>
 
-                                foreach ($pendidikan as $edu):
-                                ?>
-                                    <option value="<?= $edu ?>"><?= strtoupper($edu) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                              </div>
+    <div class="card card-body shadow-sm mb-3">
+        <label>FILTER BY PENDIDIKAN</label>
+        <select class="form-control" v-model="filterEducation">
+            <option value="all-education">SEMUA PENDIDIKAN</option>
+            <?php
+            $pendidikan = ['SD / MI','SMP / MTS','SMA / SMK / MA','D3','D4','S1','S2','S3'];
+            foreach ($pendidikan as $edu):
+            ?>
+                <option value="<?= $edu ?>"><?= strtoupper($edu) ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+
                                 <div class="mt-4">
                                     <button @click="switchTab('#tabPemilihanBatch')":disabled="selectedJobs.length === 0" class="d-none d-md-block btn btn-md w-100 btn-info">
                                         <i class="fas fa-arrow-right"></i> Apply Lamaran
@@ -199,81 +192,109 @@
                                     </button>
                                 </div>
                             </div>
-                            <!-- Job List -->
-                            <div class="col-md-12 mb-3">
-                                <h6 class="font-medium">Lowongan Anda</h6>
-                                <div class="card shadow-none border-1">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th
-                                                            class="text-uppercase text-dark text-xs font-weight-bolder opacity-7 ps-2">
-                                                            Lowongan
-                                                        </th>
-                                                        <th
-                                                            class="text-uppercase text-dark text-xs font-weight-bolder opacity-7 ps-2">
-                                                            Grade
-                                                        </th>
-                                                        <th
-                                                            class="text-uppercase text-dark text-xs font-weight-bolder opacity-7 ps-2">
-                                                            Urutan
-                                                        </th>
-                                                        <th
-                                                            class="text-uppercase text-dark text-xs font-weight-bolder opacity-7 ps-2">
-                                                            Jadwal Tersedia
-                                                        </th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="(selectedJob, index) in selectedJobs"
-                                                        :key="`selectedJobRow-${selectedJob.id}`">
-                                                        <td>
-                                                            <span class="text-dark text-xs font-weight-bold"
-                                                                v-text="selectedJob.name_job">
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="text-dark text-xs font-weight-bold"
-                                                                v-text="selectedJob.grade_value">
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="text-dark text-xs font-weight-bold"
-                                                                v-text="(index + 1)">
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="text-dark text-xs font-weight-bold"
-                                                                v-text="fmtDisplayAvailableBatchForJob(selectedJob)">
-                                                            </span>
-                                                        </td>
-                                                        <td class="text-center" style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                        <div class="col-md-12 mb-3"> 
+    <h6 class="font-medium mb-3">Lowongan Anda</h6>
 
-                                                            <select class="form-select form-select-sm"
-                                                                    v-model="selectedJob.priority"
-                                                                    @change="onPriorityChange(selectedJob)"
-                                                                    style="width: 95px;">
-                                                                <option disabled value="">Prioritas</option>
-                                                                <option v-for="n in selectedJobs.length" :key="n" :value="n">{{ n }}</option>
-                                                            </select>
-                                                            <button class="btn btn-xs btn-danger"
-                                                                @click="removeSelectedJob(selectedJob)" style="margin-top: 10px;" >
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Job List -->
+    <div class="row g-3">
+        <div 
+            v-for="(selectedJob, index) in selectedJobs"
+            :key="`selectedJobCard-${selectedJob.id}`"
+            :class="getColClass(selectedJobs.length)"
+        >
+            <div class="card shadow-sm border rounded position-relative">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <!-- Prioritas -->
+                    <div class="mb-2 text-center">
+                       <span class="badge bg-primary fs-7 py-1 px-2">
+                            Pilihan ke-{{ selectedJob.priority }}
+                        </span>
+                    </div>
 
-                            <div class="col-md-12 mb-3">
+                    <!-- Nama Job -->
+                    <h6 class="fw-bold text-center mb-3" v-text="selectedJob.name_job"></h6>
+
+                    <div class="mb-2">
+                        <p class="mb-1">
+                            <span class="fw-semibold">Grade:</span>
+                            <span>{{ selectedJob.grade_value }}</span>
+                        </p>
+                        <p class="mb-3">
+                            <span class="fw-semibold">Jadwal:</span>
+                            <span>{{ fmtDisplayAvailableBatchForJob(selectedJob) }}</span>
+                        </p>
+                    </div>
+
+                    <!-- Actions -->
+                   <div class="d-flex gap-2">
+                    <!-- Pilihan Prioritas Mini -->
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="mb-1" style="font-size: 12px; font-weight: 600; color: #707070ff;">
+                        Pilih Prioritas
+                        </div>
+
+                        <div class="btn-group" role="group" aria-label="Pilih prioritas">
+                        <label v-for="n in selectedJobs.length" :key="n"
+                                :class="['btn p-1', selectedJob.priority === n ? 'btn-primary' : 'btn-outline-primary']"
+                                style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                            <input type="radio"
+                                class="d-none"
+                                :value="n"
+                                v-model.number="selectedJob.priority"
+                                @change="onPriorityChange(selectedJob)">
+                            {{ n }}
+                        </label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div style="display: flex; gap: 5px; justify-content: flex-end;">
+      <button class="btn btn-info btn-sm"
+              type="button"
+              data-bs-toggle="collapse"
+              :data-bs-target="`#collapseDetailLowongan-${selectedJob.id}`"
+              aria-expanded="false"
+              :aria-controls="`collapseDetailLowongan-${selectedJob.id}`">
+        <i class="fas fa-info"></i>
+      </button>
+
+      <button class="btn btn-danger p-1"
+              style="width: 28px; height: 28px; font-size: 12px; border-radius: 50%;"
+              @click="removeSelectedJob(selectedJob)">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
+
+    <!-- Collapse content -->
+    <div :id="`collapseDetailLowongan-${selectedJob.id}`" class="collapse mt-2">
+      <div class="card card-body p-2 shadow-sm border rounded">
+        <h6 class="font-medium">Deskripsi</h6>
+        <div v-html="selectedJob.description_job" class="text-sm text-muted mb-2"></div>
+
+        <h6 class="font-medium">Persyaratan</h6>
+        <div v-html="selectedJob.requirement_job" class="text-sm text-muted mb-2"></div>
+
+        <h6 class="font-medium">Jadwal Tersedia</h6>
+        <div v-if="selectedJob.batchs.length === 0" class="text-sm text-muted">
+          Belum ada jadwal
+        </div>
+        <div v-else class="table-responsive">
+          <table class="table table-sm table-striped mb-0">
+            <tr v-for="batch in selectedJob.batchs" :key="batch.id_batch">
+              <td>{{ batch.name_batch }}</td>
+              <td>{{ getDateForBatch(batch) }}</td>
+            </tr>
+          </table>
+        </div>
+        </div>
+      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                            <div class="col-md-12 mt-3 mb-3">
                                 <h6 class="font-medium">Pilih Jadwal</h6>
                             </div>
 
@@ -437,6 +458,7 @@
                 });
             }
          },
+
             methods: {
             onPriorityChange(changedJob) {
                 const newPriority = parseInt(changedJob.priority);
@@ -484,7 +506,16 @@
                 this.selectedJobs = selectedJobs;
             },
 
-
+              getColClass(length) {
+        
+                switch(length) {
+                    case 1: return 'col-12'; // 1 full width
+                    case 2: return 'col-12 col-md-6'; // 2 per row
+                    case 3: return 'col-12 col-md-4'; // 3 per row
+                    case 4: return 'col-12 col-md-3'; // 4 per row
+                    default: return 'col-12 col-md-3'; // fallback
+                }
+            },
                 pilihJadwalPenerbangan(batch) {
                     Swal.fire({
                         icon: 'question',

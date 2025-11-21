@@ -140,41 +140,21 @@
         <p><?= $visimisi_intro['intro_description']; ?></p>
       </div>
 
-      <?php
-      // Tentukan konten mana yang aktif
-      if(!empty($visimisi_intro['intro_youtube_url'])):
-          $url = $visimisi_intro['intro_youtube_url'];
-          $embed_url = '';
-
-          if(strpos($url,'watch?v=')!==false){
-              $embed_url = str_replace('watch?v=','embed/',$url);
-              $embed_url = strtok($embed_url,'&');
-          } elseif(strpos($url,'youtu.be')!==false){
-              $parts = parse_url($url);
-              $video_id = ltrim($parts['path'],'/');
-              $embed_url = 'https://www.youtube.com/embed/'.$video_id;
-          }
-      ?>
-      <div class="col-lg-6 d-flex justify-content-center">
-          <div class="video-wrapper" style="width: 70%; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-              <iframe src="<?= $embed_url; ?>" frameborder="0" allowfullscreen
-                      style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-          </div>
-      </div>
-
-      <?php elseif(!empty($visimisi_intro['intro_video_file'])): ?>
-      <div class="col-lg-6 d-flex justify-content-center">
-          <video controls style="max-width:70%;">
-              <source src="<?= base_url($visimisi_intro['intro_video_file']); ?>" type="video/mp4">
-              Browser Anda tidak mendukung video.
-          </video>
-      </div>
-
-      <?php elseif(!empty($visimisi_intro['intro_image_file'])): ?>
-      <div class="col-lg-6 d-flex justify-content-center">
-          <img src="<?= base_url($visimisi_intro['intro_image_file']); ?>" style="max-width:70%;" alt="Intro Image">
-      </div>
-      <?php endif; ?>
+    <div class="col-lg-6 d-flex justify-content-center">
+    <div id="introContent"
+         data-type="<?=
+            !empty($visimisi_intro['intro_youtube_url']) ? 'youtube' :
+            (!empty($visimisi_intro['intro_video_file']) ? 'video' :
+            (!empty($visimisi_intro['intro_image_file']) ? 'image' : 'none'))
+         ?>"
+         data-youtube="<?=
+            !empty($visimisi_intro['intro_youtube_url']) ? $visimisi_intro['intro_youtube_url'] : ''
+         ?>"
+         data-video="<?= !empty($visimisi_intro['intro_video_file']) ? base_url($visimisi_intro['intro_video_file']) : '' ?>"
+         data-image="<?= !empty($visimisi_intro['intro_image_file']) ? base_url($visimisi_intro['intro_image_file']) : '' ?>"
+         style="width:70%;">
+    </div>
+</div>
 
     </div>
   </div>
@@ -228,7 +208,7 @@
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
         <h2>Berita Terbaru</h2>
-        <p>Update terkini seputar informasi dan kegiatan terbaru dari Lido29</p>
+        <p>Update terkini seputar informasi dan kegiatan terbaru dari Lido29.</p>
     </div>
     <!-- End Section Title -->
 
@@ -372,9 +352,16 @@
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <img src="<?= base_url('assets/img/') ?>${b.image}"
-                                             class="img-fluid rounded shadow-sm mb-3">
-                                    </div>
+                                    ${b.image && b.image.trim() !== ""
+                                        ? `<img src="<?= base_url('assets/img/') ?>${b.image}" 
+                                                class="img-fluid rounded shadow-sm mb-3"
+                                                style="width:100%;height:220px;object-fit:cover;">`
+                                        : `<div class="d-flex justify-content-center align-items-center rounded shadow-sm mb-3"
+                                                style="width:100%;height:220px;background:#f5f5f5;">
+                                                <i class='fa-solid fa-building' style='font-size:60px;color:#9aa0a6;'></i>
+                                        </div>`
+                                    }
+                                </div>
 
                                     <div class="col-md-7">
                                         <p><strong>Nama Cabang:</strong> ${b.branch_name}</p>
@@ -423,5 +410,79 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const container = document.getElementById("introContent");
+    if (!container) return;
+
+    const type = container.dataset.type;
+    const youtube = container.dataset.youtube;
+    const video = container.dataset.video;
+    const image = container.dataset.image;
+
+    console.log("Renderer JS mendeteksi tipe:", type);
+
+    // =============== YOUTUBE ===============
+    if (type === "youtube") {
+
+        let url = youtube;
+        let embed = "";
+
+        if (url.includes("watch?v=")) {
+            embed = url.replace("watch?v=", "embed/");
+            embed = embed.split("&")[0];
+        } else if (url.includes("youtu.be")) {
+            const id = url.substring(url.lastIndexOf("/") + 1);
+            embed = "https://www.youtube.com/embed/" + id;
+        }
+
+        container.innerHTML = `
+            <div style="width:100%; position:relative; padding-bottom:56.25%; height:0;">
+                <iframe src="${embed}" frameborder="0" allowfullscreen
+                        style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                </iframe>
+            </div>
+        `;
+
+        return;
+    }
+
+    // =============== VIDEO FILE ===============
+    if (type === "video") {
+
+        const videoEl = document.createElement("video");
+        videoEl.controls = true;
+        videoEl.style.width = "100%";
+
+        const source = document.createElement("source");
+        source.src = video + "?v=" + Date.now(); // no-cache
+        source.type = "video/mp4";
+
+        videoEl.appendChild(source);
+        container.appendChild(videoEl);
+
+        console.log("Video dirender via JS:", source.src);
+
+        return;
+    }
+
+    // =============== IMAGE FILE ===============
+    if (type === "image") {
+
+        const img = document.createElement("img");
+        img.src = image + "?v=" + Date.now();
+        img.style.maxWidth = "100%";
+        img.alt = "Intro Image";
+
+        container.appendChild(img);
+
+        console.log("Image dirender via JS:", img.src);
+
+        return;
+    }
+
+});
+
 </script>
 

@@ -292,13 +292,32 @@ public function update_faq($id, $data)
     return $this->db->update('setting_faq', $data);
 }
 
-// Hapus FAQ
 public function delete_faq($id)
 {
     return $this->db->delete('setting_faq', ['id' => $id]);
 }
 
+public function get_company()
+{
+    return $this->db->get('setting_landingpage')->row_array();
+}
 
+public function update_company($data)
+{
+    $this->db->where('id', 1); // asumsi 1 baris
+    return $this->db->update('setting_landingpage', $data);
+}
 
+public function get_settings()
+{
+    // Ambil data settings (asumsi 1 row)
+    return $this->db->get('settings')->row_array();
+}
+
+public function update_settings($data)
+{
+    $this->db->where('id', 1); // asumsi 1 row
+    return $this->db->update('settings', $data);
+}
 
 }

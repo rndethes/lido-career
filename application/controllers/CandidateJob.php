@@ -206,7 +206,7 @@ class CandidateJob extends CI_Controller
         return substr(rtrim($text), 0, $length) . '...';
     }
 
-   public function index()
+  public function index()
 {
     $id_candidate = getLoggedInUser('id');
 
@@ -224,6 +224,13 @@ class CandidateJob extends CI_Controller
 
     // Data lainnya
     $result = $this->M_jobv->get_batch_timeline($id_candidate);
+
+    // =====> Tambahkan decoding city_job di sini
+    foreach ($result as &$job) {
+        $job['city_job'] = json_decode($job['city_job'], true);
+    }
+    unset($job);
+
     $batch = $this->M_jobv->tampilBatch();
     $biodata = $this->M_jobv->checkDatadiri($id_candidate);
 
@@ -244,6 +251,7 @@ class CandidateJob extends CI_Controller
     ]);
     $this->load->view('dashboarduser/templates/footer');
 }
+
 
     public function index2()
     {

@@ -30,9 +30,8 @@ class PengaturanLandingPage extends CI_Controller
         $data['landingpage']            = $this->Pengaturanlp_model->get_landingpage();
         $data['content_hero_landing'] = $this->Pengaturanlp_model->get_landingpage();
         $data['faq'] = $this->Pengaturanlp_model->get_all_faq();
-
-
-
+        $data['company'] = $this->Pengaturanlp_model->get_company();
+        $data['settings']                = $this->Pengaturanlp_model->get_settings();
 
         //  var_dump($data['quote']); die();
 
@@ -42,48 +41,145 @@ class PengaturanLandingPage extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    // Update Hero
-  public function update_hero()
+ public function update_hero() 
 {
+    /* -------------------------
+       AMBIL INPUT
+    --------------------------*/
+    // HERO
     $title    = $this->input->post('tittle_homepage');
     $subtitle = $this->input->post('subtitle_homepage');
-    $warna    = $this->input->post('warna'); // dari input color
     $image    = $_FILES['image_homepage']['name'];
 
-    // Data untuk setting_homepage
+    // LANDINGPAGE
+    $company_name = $this->input->post('company_name');
+    $company_logo = $_FILES['company_logo']['name'];
+
+    // SETTINGS
+    $settings_name = $this->input->post('settings_name');
+    $settings_logo = $_FILES['settings_logo']['name'];
+
+
+    /* -------------------------
+       1. UPDATE HERO
+    --------------------------*/
     $data_homepage = [
-        'tittle_homepage' => $title,
-        'subtitle_homepage' => $subtitle
+        'tittle_homepage'  => $title,
+        'subtitle_homepage'=> $subtitle
     ];
 
-    if ($image) {
-        $config['upload_path']   = './assets/img-landing/';
-        $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['file_name']     = time() . '_' . $image;
-        $this->load->library('upload', $config);
+    if (!empty($image)) {
 
-        if ($this->upload->do_upload('image_homepage')) {
-            $data_homepage['image_homepage'] = $this->upload->data('file_name');
+        $config1 = [
+            'upload_path'   => './assets/img-landing/',
+            'allowed_types' => 'jpg|jpeg|png|webp|svg',
+            'file_name'     => time().'_hero_'.$image
+        ];
+
+        $this->load->library('upload', $config1, 'uploadHero');
+
+        if ($this->uploadHero->do_upload('image_homepage')) {
+
+            $data_homepage['image_homepage'] = $this->uploadHero->data('file_name');
+
         } else {
-            echo "<script>alert('Upload gambar gagal!'); window.history.back();</script>";
+            echo "<script>alert('Upload gambar HERO gagal!'); window.history.back();</script>";
             return;
         }
     }
 
-    // Update setting_homepage
-    $this->db->where('id_hp', 1);
-    $update_homepage = $this->db->update('setting_homepage', $data_homepage);
+    $update_homepage = $this->Pengaturanlp_model->update_data($data_homepage);
 
-    // Update warna di setting_landingpage
-    $this->db->where('id', 1);
-    $update_warna = $this->db->update('setting_landingpage', ['warna' => $warna]);
 
-    if ($update_homepage && $update_warna) {
-        echo "<script>alert('Beranda berhasil diperbarui!'); window.location.href='" . base_url('PengaturanLandingPage') . "';</script>";
+
+    /* -------------------------
+       2. UPDATE LANDINGPAGE
+    --------------------------*/
+    $data_company = [
+        'company_name' => $company_name
+    ];
+
+    if (!empty($company_logo)) {
+
+        $config2 = [
+            'upload_path'   => './assets/img/img-landing/',
+            'allowed_types' => 'jpg|jpeg|png|webp|svg',
+            'file_name'     => time().'_landing_'.$company_logo
+        ];
+
+        $this->load->library('upload', $config2, 'uploadLanding');
+
+        if ($this->uploadLanding->do_upload('company_logo')) {
+
+            $data_company['company_logo'] = $this->uploadLanding->data('file_name');
+
+        } else {
+            echo "<script>alert('Upload LOGO LANDINGPAGE gagal!'); window.history.back();</script>";
+            return;
+        }
+    }
+
+    $update_company = $this->Pengaturanlp_model->update_company($data_company);
+
+
+
+  /* -------------------------
+   3. UPDATE SETTINGS
+--------------------------*/
+
+$settings_name = $this->input->post('settings_name');
+$settings_logo = $_FILES['settings_logo']['name']; // AMAN, karena name di form settings_logo
+
+$data_settings = [
+    'company_name' => $settings_name
+];
+
+if (!empty($settings_logo)) {
+
+    $config3 = [
+        'upload_path'   => './assets/img/img-landing/',
+        'allowed_types' => 'jpg|jpeg|png|webp|svg',
+        'file_name'     => time().'_logo_'.$settings_logo
+    ];
+
+    // Load upload library khusus untuk settings
+    $this->load->library('upload', $config3, 'uploadSettings');
+
+    // do_upload pakai NAME INPUT = settings_logo
+    if ($this->uploadSettings->do_upload('settings_logo')) {
+
+        $uploaded = $this->uploadSettings->data();
+
+        // SIMPAN KE KOLOM YANG BENAR = company_logo
+        $data_settings['company_logo'] = $uploaded['file_name'];
+
     } else {
-        echo "<script>alert('Gagal memperbarui Beranda!'); window.history.back();</script>";
+        echo "<script>alert('Upload Logo gagal: ".$this->uploadSettings->display_errors()."'); window.history.back();</script>";
+        return;
     }
 }
+
+$update_settings = $this->Pengaturanlp_model->update_settings($data_settings);
+
+
+    /* -------------------------
+       RESPONSE
+    --------------------------*/
+    if ($update_homepage && $update_company && $update_settings) {
+
+        echo "<script>
+            alert('Beranda, Landingpage & Settings berhasil diperbarui!');
+            window.location.href='".base_url('PengaturanLandingPage')."';
+        </script>";
+
+    } else {
+
+        echo "<script>alert('Gagal memperbarui data!'); window.history.back();</script>";
+
+    }
+}
+
+
 
     // Update About
     public function update_about()
@@ -130,12 +226,41 @@ class PengaturanLandingPage extends CI_Controller
 
   public function update_visimisi()
 {
-    // Data untuk tabel setting_visimisi_intro
+    $intro_type = $this->input->post('intro_type'); // youtube, video, image
+
+    // Data default untuk tabel setting_visimisi_intro
     $intro_data = [
         'intro_title'       => $this->input->post('intro_title'),
         'intro_description' => $this->input->post('intro_description'),
-        'intro_video_url'   => $this->input->post('intro_video_url'),
+        'intro_youtube_url' => null,
+        'intro_video_file'  => null,
+        'intro_image_file'  => null
     ];
+
+    // Folder upload
+    $upload_path = FCPATH . 'uploads/intro/';
+    if (!is_dir($upload_path)) mkdir($upload_path, 0777, true);
+
+    // Tangani konten sesuai tipe
+    switch($intro_type){
+        case 'youtube':
+            $intro_data['intro_youtube_url'] = $this->input->post('intro_youtube_url');
+            break;
+        case 'video':
+            if(isset($_FILES['intro_video_file']) && $_FILES['intro_video_file']['error']==0){
+                $video_name = time().'_'.$_FILES['intro_video_file']['name'];
+                move_uploaded_file($_FILES['intro_video_file']['tmp_name'], $upload_path.$video_name);
+                $intro_data['intro_video_file'] = 'uploads/intro/'.$video_name;
+            }
+            break;
+        case 'image':
+            if(isset($_FILES['intro_image_file']) && $_FILES['intro_image_file']['error']==0){
+                $image_name = time().'_'.$_FILES['intro_image_file']['name'];
+                move_uploaded_file($_FILES['intro_image_file']['tmp_name'], $upload_path.$image_name);
+                $intro_data['intro_image_file'] = 'uploads/intro/'.$image_name;
+            }
+            break;
+    }
 
     // Update tabel setting_visimisi_intro
     $this->db->where('id', 1); // asumsi ID intro = 1
@@ -152,11 +277,12 @@ class PengaturanLandingPage extends CI_Controller
     $update_landing = $this->db->update('setting_landingpage', $landing_data);
 
     if ($update_intro || $update_landing) {
-        echo "<script>alert('Visi & Misi berhasil diperbarui!'); window.location.href='" . base_url('PengaturanLandingPage') . "#visi';</script>";
+        echo "<script>alert('Visi, Misi & Intro berhasil diperbarui!'); window.location.href='" . base_url('PengaturanLandingPage') . "#visi';</script>";
     } else {
-        echo "<script>alert('Gagal memperbarui Visi & Misi!'); window.history.back();</script>";
+        echo "<script>alert('Gagal memperbarui data!'); window.history.back();</script>";
     }
-    }
+}
+
 
     public function save_office()
 {
@@ -851,6 +977,7 @@ public function delete_faq($id)
         echo "<script>alert('Gagal menghapus FAQ!'); window.history.back();</script>";
     }
 }
+
 
 
 }

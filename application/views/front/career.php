@@ -23,7 +23,7 @@
 
   .career-hero-overlay {
     position: relative;
-    top: 100% !important;
+    top: 105% !important;
     bottom: 30px !important;
     left: 60px;
     color: #fff;
@@ -40,7 +40,7 @@
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 120px;
     color: #4a4a4a;
   }
 
@@ -141,15 +141,15 @@
       <div class="row g-3">
 
         <!-- Search -->
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <input type="text" name="search" class="form-control"
                  placeholder="Cari pekerjaan..." value="<?= $this->input->get('search') ?>">
         </div>
 
         <!-- Divisi -->
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <select name="division" class="form-control">
-            <option value="">Semua Divisi</option>
+            <option value="">SEMUA DIVISI</option>
             <?php foreach ($all_divisi as $d): ?>
               <option value="<?= $d['id_division'] ?>" 
                 <?= ($this->input->get('division') == $d['id_division']) ? 'selected' : '' ?>>
@@ -159,10 +159,33 @@
           </select>
         </div>
 
+        <!-- Pendidikan -->
+        <div class="col-lg-3">
+          <select name="education" class="form-control">
+            <option value="">SEMUA PENDIDIKAN</option>
+            <option value="SD / MI"  <?= ($this->input->get('education') == 'SD / MI') ? 'selected' : '' ?>>SD / MI</option>
+             <option value="SMP / MTS"  <?= ($this->input->get('education') == 'SD / MTS') ? 'selected' : '' ?>>SMP / MTS</option>
+            <option value="SMA / SMK / MA"  <?= ($this->input->get('education') == 'SMA / SMK / MA') ? 'selected' : '' ?>>SMA / SMK / MA</option>
+            <option value="D3"   <?= ($this->input->get('education') == 'D3') ? 'selected' : '' ?>>D3</option>
+             <option value="D4"   <?= ($this->input->get('education') == 'D4') ? 'selected' : '' ?>>D4</option>
+            <option value="S1"   <?= ($this->input->get('education') == 'S1') ? 'selected' : '' ?>>S1</option>
+            <option value="S2"   <?= ($this->input->get('education') == 'S2') ? 'selected' : '' ?>>S2</option>
+            <option value="S3"   <?= ($this->input->get('education') == 'S3') ? 'selected' : '' ?>>S3</option>
+          </select>
+        </div>
+
+
         <!-- Tombol -->
-        <div class="col-lg-4">
+        <div class="col-lg-1">
           <button class="btn btn-search w-100">Search</button>
         </div>
+
+        <div class="col-lg-1">
+          <a href="<?= base_url('front/career'); ?>" class="btn btn-secondary w-100">
+            Reset
+          </a>
+        </div>
+
 
 
       </div>
@@ -189,17 +212,26 @@
       <?php
         $search = strtolower($this->input->get('search'));
         $division_filter = $this->input->get('division');
+        $education_filter = $this->input->get('education');
 
         if ($search && strpos(strtolower($job['name_job']), $search) === false)
           continue;
 
         if ($division_filter && $division_filter != $divisi['id_division'])
           continue;
+
+        if ($education_filter && strtolower($education_filter) != strtolower($job['education_job']))
+        continue;
+
       ?>
 
       <!-- JOB CARD -->
       <div class="job-card">
-        <div class="job-division"><?= $divisi['name_division'] ?></div>
+       <div class="job-division"><?= $divisi['name_division'] ?></div>
+        <div class="text-muted" style="font-size: 15px;">
+            Pendidikan: <?= $job['education_job'] ?>
+        </div>
+
         <div class="job-title"><?= $job['name_job'] ?></div>
 
         <a class="btn-detail"

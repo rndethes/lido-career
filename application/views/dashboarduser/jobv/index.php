@@ -101,6 +101,13 @@
                                                 </span>
                                             </small>
                                         </div>
+                                          <p class="mb-1 text-muted fw-bold">
+                                            Pendidikan: {{ job.education_job }}
+                                        </p>
+                                        
+                                      <p class="mb-1 text-muted fw-bold" >Lokasi Penempatan: {{ job.city_job && job.city_job.length > 0 ? job.city_job.join(', ') : 'WFH' }}</p>
+
+
                                         <p class="mb-1"></p>
                                         <p v-html="job.description_job_"></p>
                                         <p class="mb-1"></p>
@@ -747,13 +754,20 @@
                         .then((response) => {
                             $.LoadingOverlay("hide");
 
-                            this.jobLists = response.data.jobs;
+                            // Pastikan city_job sudah didecode menjadi array
+                            this.jobLists = response.data.jobs.map(job => {
+                                return {
+                                    ...job,
+                                    city_job: job.city_job ? JSON.parse(job.city_job) : []
+                                };
+                            });
                         })
                         .catch((error) => {
                             $.LoadingOverlay("hide");
                             alert("Terjadi kesalahan saat memuat data.");
                         });
                 },
+
                 switchTab(tab) {
                     if (tab === '#tabPemilihanLowongan') {
                         this.toggleTabPemilihanBatch(false);

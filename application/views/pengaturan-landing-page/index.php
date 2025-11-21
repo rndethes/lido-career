@@ -108,10 +108,6 @@ img.preview {
   </button>
 </li>
 
-
- 
-
-
       <!-- Tambahkan tab lain sesuai kebutuhan -->
     </ul>
   </div>
@@ -121,6 +117,55 @@ img.preview {
       <!-- Hero Tab -->
       <div class="tab-pane fade show active" id="hero" role="tabpanel">
         <form action="<?= base_url('PengaturanLandingPage/update_hero') ?>" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="fw-bold">Nama Perusahaan</label>
+            <input type="text" 
+                   class="form-control" 
+                   name="company_name" 
+                   value="<?= isset($company['company_name']) ? $company['company_name'] : '' ?>" 
+                   required>
+        </div>
+        <div class="mb-3 text-center">
+            <label class="fw-bold">Logo Perusahaan</label><br>
+
+            <img id="previewCompanyLogo"
+                 src="<?= isset($company['company_logo']) 
+                        ? base_url('assets/img/img-landing/'.$company['company_logo']) 
+                        : base_url('assets/img/default.png') ?>"
+                 style="width: 120px; height:auto;" 
+                 class="mb-2">
+
+            <input type="file" 
+                   class="form-control mt-2" 
+                   name="company_logo" 
+                   id="companyLogoInput"
+                   accept="image/*">
+        </div>
+
+       <div class="mb-3">
+    <label class="fw-bold">Nama Perusahaan (Settings)</label>
+    <input type="text" 
+           class="form-control" 
+           name="settings_name" 
+           value="<?= isset($settings['company_name']) ? $settings['company_name'] : '' ?>" 
+           required>
+</div>
+
+<div class="mb-3 text-center">
+    <label class="fw-bold">Logo Perusahaan (Settings)</label><br>
+    <img id="previewCompanyLogoSettings" 
+         src="<?= isset($settings['company_logo']) ? base_url('assets/img/img-landing/'.$settings['company_logo']) : base_url('assets/img/default.png') ?>"
+         style="width: 120px; height:auto;" class="mb-2 border rounded">
+
+    <input type="file" 
+           class="form-control mt-2" 
+           name="settings_logo" 
+           id="companyLogoInputSettings" 
+           accept="image/*">
+</div>
+
+        
+
           <div class="mb-3">
             <label>Judul</label>
             <input type="text" class="form-control" name="tittle_homepage" value="<?= isset($content_hero['tittle_homepage']) ? $content_hero['tittle_homepage'] : '' ?>" required>
@@ -208,30 +253,66 @@ img.preview {
           <label for="intro_description"><strong>Deskripsi Intro - Beranda</strong></label>
             <textarea id="intro_description" name="intro_description">
               <?= isset($intro['intro_description']) ? $intro['intro_description'] : '' ?></textarea>
-            <label class="form-label"><strong>URL Video Intro - Beranda</strong></label>
-            <input type="text" class="form-control mb-2" name="intro_video_url" 
-                   value="<?= isset($intro['intro_video_url']) ? $intro['intro_video_url'] : '' ?>">
-            
-        <?php if(!empty($intro['intro_video_url'])): 
-    $url = $intro['intro_video_url'];
+          <label class="form-label"><strong>Pilih Konten Intro</strong></label>
+<div class="mb-2">
+    <input type="radio" name="intro_type" value="youtube" id="intro_youtube"
+        <?= (($intro['intro_youtube_url'] ?? '') != '') ? 'checked' : '' ?>>
+    <label for="intro_youtube">YouTube Link</label>
 
-    $embed_url = '';
+    <input type="radio" name="intro_type" value="video" id="intro_video"
+        <?= (($intro['intro_video_file'] ?? '') != '') ? 'checked' : '' ?>>
+    <label for="intro_video">Upload Video</label>
 
-    if (strpos($url, 'watch?v=') !== false) {
-        $embed_url = str_replace('watch?v=', 'embed/', $url);
-        $embed_url = strtok($embed_url, '&');
-    } elseif (strpos($url, 'youtu.be') !== false) {
-        $parts = parse_url($url);
-        $video_id = ltrim($parts['path'], '/');
-        $embed_url = 'https://www.youtube.com/embed/' . $video_id;
-    }
-?>
-<div class="mt-2 d-flex justify-content-center">
-    <div class="ratio ratio-16x9" style="max-width: 400px;"> <!-- atur max-width sesuai keinginan -->
-        <iframe src="<?= $embed_url ?>" title="Video Intro" allowfullscreen></iframe>
-    </div>
+    <input type="radio" name="intro_type" value="image" id="intro_image"
+        <?= (($intro['intro_image_file'] ?? '') != '') ? 'checked' : '' ?>>
+    <label for="intro_image">Upload Foto</label>
 </div>
+
+<!-- Input -->
+<div id="youtube_input" class="mb-2" style="display:none;">
+    <label class="form-label">URL Video YouTube</label>
+    <input type="text" class="form-control" name="intro_youtube_url"
+           value="<?= $intro['intro_youtube_url'] ?? '' ?>">
+</div>
+
+<div id="video_input" class="mb-2" style="display:none;">
+    <label class="form-label">Upload Video</label>
+    <input type="file" class="form-control" name="intro_video_file" accept="video/*">
+</div>
+
+<div id="image_input" class="mb-2" style="display:none;">
+    <label class="form-label">Upload Foto</label>
+    <input type="file" class="form-control" name="intro_image_file" accept="image/*">
+</div>
+
+<!-- Preview -->
+<div id="preview">
+<?php if(!empty($intro['intro_youtube_url'])): ?>
+    <?php 
+    $url = $intro['intro_youtube_url'];
+    if(strpos($url,'watch?v=')!==false){
+        $embed = str_replace('watch?v=','embed/',$url);
+        $embed = strtok($embed,'&');
+    } elseif(strpos($url,'youtu.be')!==false){
+        $parts = parse_url($url);
+        $embed = 'https://www.youtube.com/embed/'.ltrim($parts['path'],'/');
+    }
+    ?>
+    <div class="ratio ratio-16x9" style="max-width:400px;margin:auto;">
+        <iframe src="<?= $embed ?>" allowfullscreen></iframe>
+    </div>
+<?php elseif(!empty($intro['intro_video_file'])): ?>
+    <div style="text-align:center;">
+        <video controls style="max-width:400px;">
+            <source src="<?= base_url($intro['intro_video_file']) ?>" type="video/mp4">
+        </video>
+    </div>
+<?php elseif(!empty($intro['intro_image_file'])): ?>
+    <div style="text-align:center;">
+        <img src="<?= base_url($intro['intro_image_file']) ?>" style="max-width:400px;">
+    </div>
 <?php endif; ?>
+</div>
 
         </div>
 
@@ -367,9 +448,10 @@ img.preview {
               <label>Maps URL</label>
               <input type="text" name="maps_url" id="maps_url" class="form-control">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 text-center">
               <label>Image</label>
-              <input type="file" name="image" id="image" class="form-control">
+              <input type="file" name="image" id="imageOffice" class="form-control">
+              <img id="previewOffice" src="" class="preview mt-2" style="width: 50%; height: auto; display: none;">
             </div>
           </div>
         </div>
@@ -628,10 +710,11 @@ img.preview {
               <textarea name="description1" id="description1" class="form-control" rows="3"></textarea>
             </div>
             <div class="mb-3 text-center">
-              <label>Gambar</label>
-              <input type="file" name="image" id="unit_image" class="form-control" accept="image/*">
-              <img id="previewUnit" src="" class="preview mt-2" style="width: 50%; height: auto;">
+                <label>Gambar</label>
+                <input type="file" name="image" id="unit_image" class="form-control" accept="image/*">
+                <img id="previewUnit" src="" class="preview mt-2" style="width: 50%; height: auto;">
             </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -1145,6 +1228,20 @@ img.preview {
         }
     }
 });
+
+document.getElementById('companyLogoInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        document.getElementById('previewCompanyLogo').src = URL.createObjectURL(file);
+    }
+});
+
+document.getElementById('companyLogoInputSettings').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        document.getElementById('previewCompanyLogoSettings').src = URL.createObjectURL(file);
+    }
+});
  
   document.getElementById('imageHero').addEventListener('change', function(e){
     const file = e.target.files[0];
@@ -1202,7 +1299,7 @@ img.preview {
     CKEDITOR.instances['description1'].setData(data.description1 || '');
   }
 
-    if(data.image) document.getElementById('previewUnit').src = "<?= base_url('assets/img-landing/unit/') ?>" + data.image;
+    if(data.image) document.getElementById('previewUnit').src = "<?= base_url('assets/img/') ?>" + data.image;
     else document.getElementById('previewUnit').src = '';
     document.getElementById('unitModalLabel').innerText = 'Edit Unit Bisnis';
     new bootstrap.Modal(document.getElementById('unitModal')).show();
@@ -1397,19 +1494,37 @@ function addMediaInput(){
 }
 
 function editOffice(data) {
-    document.getElementById('office_id').value = data.id;
-    document.getElementById('area').value = data.area;
-    document.getElementById('type').value = data.type;
-    document.getElementById('branch_name').value = data.branch_name;
-    document.getElementById('address').value = data.address;
-    document.getElementById('phone_number').value = data.phone_number;
-    document.getElementById('email').value = data.email;
-    document.getElementById('maps_url').value = data.maps_url;
+    document.getElementById('office_id').value = data.id || '';
+    document.getElementById('area').value = data.area || '';
+    document.getElementById('type').value = data.type || '';
+    document.getElementById('branch_name').value = data.branch_name || '';
+    document.getElementById('address').value = data.address || '';
+    document.getElementById('phone_number').value = data.phone_number || '';
+    document.getElementById('email').value = data.email || '';
+    document.getElementById('maps_url').value = data.maps_url || '';
+
+    // Tampilkan preview gambar lama
+    if (data.image && data.image !== '') {
+        document.getElementById('previewOffice').src = "<?= base_url('assets/img/') ?>" + data.image;
+        document.getElementById('previewOffice').style.display = 'block';
+    } else {
+        document.getElementById('previewOffice').src = '';
+        document.getElementById('previewOffice').style.display = 'none';
+    }
+
     document.getElementById('officeModalLabel').innerText = 'Edit Kantor';
     var modal = new bootstrap.Modal(document.getElementById('officeModal'));
     modal.show();
 }
 
+// // Preview saat pilih file baru
+// document.getElementById('imageOffice').addEventListener('change', function(e){
+//     const file = e.target.files[0];
+//     if(file){
+//         document.getElementById('previewOffice').src = URL.createObjectURL(file);
+//         document.getElementById('previewOffice').style.display = 'block';
+//     }
+// });
 
   function resetCultureForm() {
     document.getElementById('cultureForm').reset();
@@ -1476,6 +1591,18 @@ function editOffice(data) {
         document.getElementById('question').value = data.question;
         document.getElementById('answer').value = data.answer;
     }
+    function setIntroInput(){
+    const type = document.querySelector('input[name="intro_type"]:checked')?.value || 'youtube';
+    document.getElementById('youtube_input').style.display = type=='youtube'?'block':'none';
+    document.getElementById('video_input').style.display = type=='video'?'block':'none';
+    document.getElementById('image_input').style.display = type=='image'?'block':'none';
+}
+
+// Load awal
+window.addEventListener('load', setIntroInput);
+document.querySelectorAll('input[name="intro_type"]').forEach(r=>{
+    r.addEventListener('change', setIntroInput);
+});
 
 </script>
 

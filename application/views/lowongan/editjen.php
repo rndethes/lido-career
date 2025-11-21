@@ -1,4 +1,25 @@
-              <div class="row">
+<style>
+.city-chip {
+    display: inline-flex;
+    align-items: center;
+    background: #e0faf6;
+    color: #0aa29a;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.city-chip .remove-chip {
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #0aa29a;
+}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+          <div class="row">
           <div class="col-lg-12 mb-lg-0 mb-4"></div>
           <div class="col-lg-12 mb-lg-0 mb-4">
             <!--- PROFILE --->
@@ -68,6 +89,37 @@
                         </select>
                     </div>
                 </div>
+
+                <!-- INPUT TAMBAH KOTA -->
+               <div class="mb-3">
+                  <label>Kota Penempatan</label>
+
+
+                  <!-- Wrapper chip -->
+                  <div id="city-container" class="d-flex flex-wrap gap-2 mb-2"></div>
+
+                  <!-- Input kota dan button -->
+                 <div class="d-flex gap-2 mb-2">
+                    <div class="input-group flex-grow-1">
+                      <select class="js-example-basic-single form-select" id="city-select" name="city">
+                        <option value="">Pilih kota...</option>
+                        <?php foreach ($kota_list as $k): ?>
+                            <option value="<?= $k['name'] ?>"><?= $k['name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    </div>
+
+                    <button type="button" id="add-city-btn" class="btn btn-primary">Tambah</button>
+                </div>
+
+
+                  <!-- Keterangan -->
+                  <small class="text-muted">Jika tidak memilih kota, maka akan otomatis WFH</small>
+
+                  <!-- Hidden input untuk simpan data -->
+                  <input type="hidden" name="city_job" id="city_job" value='<?= json_encode($savedCities) ?>'>
+              </div>
+
                   <div class="col-lg-6">
                     <label>Tentukan Grade</label>
                     <div class="input-group mb-3">
@@ -76,7 +128,6 @@
                             <?php for($i=1; $i<=10; $i++): ?>
                             <option value="<?php echo $i; ?>" <?php echo ($show_data_editjen['grade_value'] == $i) ? 'selected' : ''; ?>><?php echo $i; ?></option>
                             <?php endfor; ?>
-                                    
                     </select>
                     </div>
                   </div>
@@ -122,26 +173,65 @@
         </div>
  
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-          <script src="sweetalert2.all.min.js"></script>
+          <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
- <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      // Init CK
-      CKEDITOR.replace('klasifikasi2');
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    CKEDITOR.replace('klasifikasi2');
+    CKEDITOR.replace('deskripsi1');
+});
 
-      CKEDITOR.replace('deskripsi1');
+
+
+<?php if ($this->session->flashdata('error')) { ?>
+    Swal.fire({
+        title: 'Gagal',
+        text: <?= json_encode($this->session->flashdata('error')) ?>,
+        icon: 'error',
+    });
+<?php } ?>
+
+  document.querySelector("form").addEventListener("submit", function(){
+        for (instance in CKEDITOR.instances) {
+            CKEDITOR.instances[instance].updateElement();
+        }
     });
 
-   // eror
-          <?php 
-            if($this->session->flashdata('error')) {    ?>
-            var isi = <?= json_encode($this->session->flashdata('error')) ?>;
-          swal.fire({
-            tittle : 'Gagal',
-            text : isi,
-            icon : 'error',
-          });
-        <?php } ?>
-  </script>
+    // ===============================
+    // City Chips
+    // ===============================
+    let selectedCities = <?= json_encode($savedCities) ?>;
+    const select = document.getElementById("city-select");
+    const addBtn = document.getElementById("add-city-btn");
+    const container = document.getElementById("city-container");
+    const hiddenInput = document.getElementById("city_job");
 
+    function renderChips() {
+        container.innerHTML = "";
+        selectedCities.forEach((city,index)=>{
+            const chip = document.createElement("div");
+            chip.className = "city-chip";
+            chip.innerHTML = `${city} <span class="remove-chip" data-index="${index}">×</span>`;
+            container.appendChild(chip);
+        });
+        hiddenInput.value = JSON.stringify(selectedCities);
+    }
 
+    renderChips();
+
+    addBtn.addEventListener("click", function(){
+        const city = select.value;
+        if(city !== "" && !selectedCities.includes(city)){
+            selectedCities.push(city);
+            renderChips();
+        }
+    });
+
+    container.addEventListener("click", function(e){
+        if(e.target.classList.contains("remove-chip")){
+            const index = e.target.dataset.index;
+            selectedCities.splice(index,1);
+            renderChips();
+        }
+    });
+</script>

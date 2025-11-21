@@ -131,7 +131,7 @@
 
 
 
-     <!-- Services Section -->
+   <!-- Services Section -->
 <section id="visimisi-intro" class="py-5">
   <div class="container" data-aos="fade-up">
     <div class="row align-items-center">
@@ -140,34 +140,46 @@
         <p><?= $visimisi_intro['intro_description']; ?></p>
       </div>
 
-     <?php
-if (!empty($visimisi_intro['intro_video_url'])) {
-    $url = $visimisi_intro['intro_video_url'];
-    $embed_url = '';
+      <?php
+      // Tentukan konten mana yang aktif
+      if(!empty($visimisi_intro['intro_youtube_url'])):
+          $url = $visimisi_intro['intro_youtube_url'];
+          $embed_url = '';
 
-    // Format panjang (watch?v=...)
-    if (strpos($url, 'watch?v=') !== false) {
-        $embed_url = str_replace('watch?v=', 'embed/', $url);
-        $embed_url = strtok($embed_url, '&'); // hilangkan parameter tambahan
-    }
-    // Format pendek (youtu.be)
-    elseif (strpos($url, 'youtu.be') !== false) {
-        $parts = parse_url($url);
-        $video_id = ltrim($parts['path'], '/');
-        $embed_url = 'https://www.youtube.com/embed/' . $video_id;
-    }
-?>
-<div class="col-lg-6 d-flex justify-content-center">
-    <div class="video-wrapper" style="width: 70%; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-        <iframe src="<?= $embed_url; ?>" frameborder="0" allowfullscreen
-                style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-    </div>
-</div>
-<?php } ?>
+          if(strpos($url,'watch?v=')!==false){
+              $embed_url = str_replace('watch?v=','embed/',$url);
+              $embed_url = strtok($embed_url,'&');
+          } elseif(strpos($url,'youtu.be')!==false){
+              $parts = parse_url($url);
+              $video_id = ltrim($parts['path'],'/');
+              $embed_url = 'https://www.youtube.com/embed/'.$video_id;
+          }
+      ?>
+      <div class="col-lg-6 d-flex justify-content-center">
+          <div class="video-wrapper" style="width: 70%; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+              <iframe src="<?= $embed_url; ?>" frameborder="0" allowfullscreen
+                      style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+          </div>
+      </div>
+
+      <?php elseif(!empty($visimisi_intro['intro_video_file'])): ?>
+      <div class="col-lg-6 d-flex justify-content-center">
+          <video controls style="max-width:70%;">
+              <source src="<?= base_url($visimisi_intro['intro_video_file']); ?>" type="video/mp4">
+              Browser Anda tidak mendukung video.
+          </video>
+      </div>
+
+      <?php elseif(!empty($visimisi_intro['intro_image_file'])): ?>
+      <div class="col-lg-6 d-flex justify-content-center">
+          <img src="<?= base_url($visimisi_intro['intro_image_file']); ?>" style="max-width:70%;" alt="Intro Image">
+      </div>
+      <?php endif; ?>
 
     </div>
   </div>
 </section>
+
 
 <section id="cabang-kota" class="section py-5">
    <div class="container section-title" data-aos="fade-up">

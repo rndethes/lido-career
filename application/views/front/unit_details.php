@@ -6,7 +6,7 @@
 }
 
 .content br {
-    line-height: 0.2; /* bisa diubah sesuai kebutuhan */
+    line-height: 1; /* bisa diubah sesuai kebutuhan */
 }
 </style>
 <main class="main all-page">
@@ -15,18 +15,21 @@
       <?php if(!empty($unit['image'])): ?>
         <img src="<?= base_url('assets/img/' . $unit['image']) ?>" 
              alt="<?= htmlspecialchars($unit['title']) ?>" 
-             class="img-fluid mb-4" style="max-width: 250px; border-radius: 10px;">
+             class="img-fluid mb-4" style="max-width: 370px;">
       <?php endif; ?>
 
       <h2 class="fw-bold mb-3"><?= htmlspecialchars($unit['title']) ?></h2>
 
-      <div class="content text-start mx-auto" style="max-width: 850px; font-size: 17px; line-height: 1.4;">
-        <?php
-        $desc = $unit['description1'] ?? '';
-        $desc = str_replace(['<li>', '</li>'], ["\n&#8226; ", "\n"], $desc);
-        $desc = strip_tags($desc);
-        echo nl2br($desc);
-        ?>
+          <div class="content text-start mx-auto" style="max-width: 850px; font-size: 17px; line-height: 1.6;">
+          <?php
+          $desc = $unit['description1'] ?? '';
+
+          // Jika konten disimpan dengan HTML entities, decode dulu
+          $desc = htmlspecialchars_decode($desc);
+
+          // Tampilkan langsung HTML yang valid
+          echo $desc;
+          ?>
       </div>
     </div>
   </section>

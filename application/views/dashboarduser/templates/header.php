@@ -87,15 +87,12 @@ $img = !empty($user['photo_candidate'])
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
-        <div class="sidenav-header">
+       <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0"
-                href="<?= site_url('candidatedashboard') ?>">
-            <img src="<?= base_url('assets/img/img-landing/logo_webpage.png') ?>" alt="Foto Logo">
-
-                <span
-                    class="ms-1 font-weight-bold"><?= $content_zero['company_name'];  ?></span>
+            <a class="navbar-brand m-0" href="<?= site_url('candidatedashboard') ?>">
+                <img src="<?= base_url('assets/img/img-landing/' . $content_zero['company_logo']); ?>" alt="Logo Perusahaan">
+                <span class="ms-1 font-weight-bold"><?= htmlspecialchars($content_zero['company_name']); ?></span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">

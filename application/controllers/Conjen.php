@@ -41,103 +41,77 @@ class Conjen extends CI_Controller
     }
 
     public function showtambah()
-    {
-        $data['tablejen'] = $this->Loker->getAllData();
-        $data['latest_id_job'] = $this->Jenlok->getLatestIdJob();
-        if ($data['latest_id_job']) {
-            $data['next_id_job'] = $data['latest_id_job'] + 1;
-        } else {
-            $data['next_id_job'] = 1;
-        }
+{
+    // ==========================
+    // Ambil data divisi dan ID terbaru
+    // ==========================
+    $data['tablejen'] = $this->Loker->getAllData();
+    $data['latest_id_job'] = $this->Jenlok->getLatestIdJob();
+    $data['next_id_job'] = $data['latest_id_job'] ? $data['latest_id_job'] + 1 : 1;
 
-
-        $this->load->view('templates/header');
-        $this->load->view('lowongan/tambahjen', $data);
-        $this->load->view('templates/footer');
+    // ==========================
+    // Load JSON Kota
+    // ==========================
+    $json_path = FCPATH . 'assets/data/kota_jateng.json';
+    if (!file_exists($json_path)) {
+        show_error("File JSON tidak ditemukan: " . $json_path);
     }
 
-    public function tambahjen()
-    {
-        $aturan = array(
-            array(
-                    'field' => 'divisi',
-                    'label' => 'Nama Divisi',
-                    'rules' => 'required'
-            ),
-            array(
-                    'field' => 'nama',
-                    'label' => 'Nama Job',
-                    'rules' => 'required'
-            ),
-               array(
-            'field' => 'education_job',
-            'label' => 'Jenjang Pendidikan',
-            'rules' => 'required'
-            ),
-            array(
-                    'field' => 'kasta',
-                    'label' => 'Grade',
-                    'rules' => 'required'
-            ),
-            array(
-                    'field' => 'kualifikasi',
-                    'label' => 'Spec',
-                    'rules' => 'required'
-            ),
-            array(
-                    'field' => 'deskripsi',
-                    'label' => 'Deskripsi',
-                    'rules' => 'required'
-            ),
-            array(
-                    'field' => 'status',
-                    'label' => 'status',
-                    'rules' => 'required'
-            )
-    );
+    $json_data = file_get_contents($json_path);
+    $kota_list = json_decode($json_data, true);
 
-        $this->form_validation->set_rules($aturan);
-
-        if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Form tidak boleh kosong');
-            $this->load->view('templates/header');
-            $this->load->view('lowongan/tambahjen');
-            $this->load->view('templates/footer');
-        } else {
-            $idjob = $this->input->post('idpeker');
-            $divisi = $this->input->post('divisi');
-            $namajob = $this->input->post('nama');
-            $education = $this->input->post('education_job');
-            $kasta = $this->input->post('kasta');
-            $kualifikasi = $this->input->post('kualifikasi');
-            $des = $this->input->post('deskripsi');
-            $status = $this->input->post('status');
-
-            $cekjob = $this->db->get_where('job_vacancy', ['lower(name_job)' => strtolower($namajob)])->row_array();
-
-            if ($cekjob) {
-                if ($cekjob['id_division'] == $divisi) {
-                    $this->session->set_flashdata('error', 'Nama lowongan tersebut telah digunakan pada divisi ini, silahkan gunakan nama yang lain.');
-                    redirect('conjen/showtambah');
-                }
-            }
-
-
-            $data = [
-                'id_job' => $idjob,
-                'id_division' => $divisi,
-                'name_job' => $namajob,
-                'education_job' => $education,
-                'grade_value' => $kasta,
-                'requirement_job'	=> $kualifikasi,
-                'description_job'	=> $des,
-                'is_active' => $status
-            ];
-            $this->Jenlok->inputAll($data);
-            $this->session->set_flashdata('success', 'Data berhasil ditambah');
-            redirect('conjen/showjen');
-        }
+    if (!is_array($kota_list)) {
+        show_error("File JSON gagal di-decode.");
     }
+
+    $data['kota_list'] = $kota_list;
+
+    // ==========================
+    // Default savedCities kosong untuk tambah
+    // ==========================
+    $data['savedCities'] = [];
+
+    $this->load->view('templates/header');
+    $this->load->view('lowongan/tambahjen', $data);
+    $this->load->view('templates/footer');
+}
+
+
+   public function tambahjen()
+{
+    $divisi      = $this->input->post('divisi');
+    $nama        = $this->input->post('nama');
+    $education   = $this->input->post('education_job');
+    $kasta       = $this->input->post('kasta');
+    $kualifikasi = $this->input->post('kualifikasi');
+    $des         = $this->input->post('deskripsi');
+    $status      = $this->input->post('status');
+
+    // Ambil array kota dari hidden input
+    $city_job_post = $this->input->post('city_job');
+    $city_job = json_decode($city_job_post, true);
+
+    if(!is_array($city_job) || empty($city_job)){
+        $city_job = ['WFH'];
+    }
+
+    $data_insert = [
+         'id_job'          => $this->input->post('idpeker'),
+        'id_division'     => $divisi,
+        'name_job'        => $nama,
+        'education_job'   => $education,
+        'grade_value'     => $kasta,
+        'requirement_job' => $kualifikasi,
+        'description_job' => $des,
+        'city_job'        => json_encode($city_job),
+        'is_active'       => $status
+    ];
+
+    $this->db->insert('job_vacancy', $data_insert);
+    $this->session->set_flashdata('success','Data berhasil ditambah');
+    redirect('conjen/showjen');
+}
+
 
     public function hapus($id)
     {
@@ -146,82 +120,98 @@ class Conjen extends CI_Controller
         redirect('conjen/showjen');
     }
 
-  public function edit($id)
+public function edit($id)
 {
+    // ==========================
+    // 1. Ambil Data Utama
+    // ==========================
     $data['show_data_editjen'] = $this->Jenlok->getAllDataById($id);
     $data2['tablejen'] = $this->Loker->getAllData();
 
-    $aturan = array(
-        array(
-            'field' => 'divisi',
-            'label' => 'Nama Divisi',
-            'rules' => 'required'
-        ),
-        array(
-            'field' => 'nama',
-            'label' => 'Nama Job',
-            'rules' => 'required'
-        ),
-        array(
-            'field' => 'kasta',
-            'label' => 'Grade',
-            'rules' => 'required'
-        ),
-        array(
-            'field' => 'kualifikasi',
-            'label' => 'Spec',
-            'rules' => 'required'
-        ),
-        array(
-            'field' => 'deskripsi',
-            'label' => 'Deskripsi',
-            'rules' => 'required'
-        ),
-        array(
-            'field' => 'education_job',
-            'label' => 'Jenjang Pendidikan',
-            'rules' => 'required'
-        ),
-    );
+    // Decode kolom city_job (JSON) menjadi array
+    $savedCities = json_decode($data['show_data_editjen']['city_job'], true);
+    $data['savedCities'] = is_array($savedCities) ? $savedCities : [];
+
+    // ==========================
+    // 2. Load JSON Kota
+    // ==========================
+    $json_path = FCPATH . 'assets/data/kota_jateng.json';
+    $json_data = file_get_contents($json_path);
+    $data['kota_list'] = json_decode($json_data, true);
+
+    // ==========================
+    // 3. Validasi Form
+    // ==========================
+    $aturan = [
+        ['field' => 'divisi', 'label' => 'Nama Divisi', 'rules' => 'required'],
+        ['field' => 'nama', 'label' => 'Nama Job', 'rules' => 'required'],
+        ['field' => 'kasta', 'label' => 'Grade', 'rules' => 'required'],
+        ['field' => 'kualifikasi', 'label' => 'Spec', 'rules' => 'required'],
+        ['field' => 'deskripsi', 'label' => 'Deskripsi', 'rules' => 'required'],
+        ['field' => 'education_job','label' => 'Jenjang Pendidikan','rules'=>'required']
+    ];
 
     $this->form_validation->set_rules($aturan);
 
+    // ==========================
+    // 4. Jika Form Tidak Valid
+    // ==========================
     if ($this->form_validation->run() == false) {
 
-        if ($this->input->method()=='post') {
-            $this->session->set_flashdata('error', 'Form tidak boleh kosong');
-        }
-
-        $this->load->view('templates/header');
-        $this->load->view('lowongan/editjen', $data + $data2);
-        $this->load->view('templates/footer');
-
-    } else {
-
-        $divisi = $this->input->post('divisi');
-        $nama = $this->input->post('nama');
-        $education = $this->input->post('education_job');
-        $kasta = $this->input->post('kasta');
-        $kualifikasi = $this->input->post('kualifikasi');
-        $des = $this->input->post('deskripsi');
-      
-
-        // Simpan ke DB
-        $this->db->set('id_division', $divisi);
-        $this->db->set('name_job', $nama);
-         $this->db->set('education_job', $education);
-        $this->db->set('grade_value', $kasta);
-        $this->db->set('requirement_job', $kualifikasi);
-        $this->db->set('description_job', $des);
-       
-        $this->db->where('id', $id);
-        $this->db->update('job_vacancy');
-
-        $this->session->set_flashdata('success', 'Data berhasil edit');
-        redirect('conjen/showjen');
+    if ($this->input->method() == 'post') {
+        // Ambil error detail dari form_validation
+        $errors = validation_errors();
+        $this->session->set_flashdata('error', $errors);
     }
+
+    $this->load->view('templates/header');
+    $this->load->view('lowongan/editjen', $data + $data2);
+    $this->load->view('templates/footer');
+    return;
 }
 
+
+    // ==========================
+    // 5. Form Valid → Proses Update
+    // ==========================
+    $divisi      = $this->input->post('divisi');
+    $nama        = $this->input->post('nama');
+    $education   = $this->input->post('education_job');
+    $kasta       = $this->input->post('kasta');
+    $kualifikasi = $this->input->post('kualifikasi');
+    $des        = $this->input->post('deskripsi');
+
+    // Ambil array kota dari hidden input
+    $city_job_post = $this->input->post('city_job');
+    $city_job = json_decode($city_job_post, true);
+
+    // Jika kosong → otomatis WFH
+    if (!is_array($city_job) || empty($city_job)) {
+        $city_job = ['WFH'];
+    }
+
+    // ==========================
+    // 6. Update Database
+    // ==========================
+    $this->db->set('id_division',     $divisi);
+    $this->db->set('name_job',        $nama);
+    $this->db->set('education_job',   $education);
+    $this->db->set('grade_value',     $kasta);
+    $this->db->set('requirement_job', $kualifikasi);
+    $this->db->set('description_job', $des);
+    $this->db->set('city_job',        json_encode($city_job));
+
+    $this->db->where('id', $id);
+    $this->db->update('job_vacancy');
+
+    if ($this->db->affected_rows() > 0) {
+        $this->session->set_flashdata('success', 'Data berhasil diupdate');
+    } else {
+        $this->session->set_flashdata('error', 'Tidak ada perubahan data atau update gagal');
+    }
+
+    redirect('conjen/showjen');
+}
 
 public function toggle($id)
 {

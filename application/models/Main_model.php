@@ -228,4 +228,5 @@ public function getSettingCareer()
   public function get_faqs() {
         return $this->db->get('setting_faq')->result_array();
     }
+
 }

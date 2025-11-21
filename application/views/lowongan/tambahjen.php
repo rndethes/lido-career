@@ -1,3 +1,22 @@
+<style>
+.city-chip {
+    display: inline-flex;
+    align-items: center;
+    background: #e0faf6;
+    color: #0aa29a;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.city-chip .remove-chip {
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #0aa29a;
+}
+</style>
+
 <div class="row">
     <div class="col-lg-12 mb-lg-0 mb-4">
         <div class="card z-index-2 h-100">
@@ -57,7 +76,32 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                </div>                
+                </div>   
+                <div class="mb-3">
+    <label>Kota Penempatan</label>
+
+    <!-- Wrapper chip -->
+    <div id="city-container" class="d-flex flex-wrap gap-2 mb-2"></div>
+
+    <!-- Input kota dan button -->
+    <div class="d-flex gap-2 mb-2">
+        <div class="input-group flex-grow-1">
+           <select class="js-example-basic-single form-select" id="city-select" name="city">
+                        <option value="">Pilih kota...</option>
+                <?php foreach ($kota_list as $k): ?>
+                    <option value="<?= $k['name'] ?>"><?= $k['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <button type="button" id="add-city-btn" class="btn btn-primary">Tambah</button>
+    </div>
+
+    <!-- Keterangan -->
+    <small class="text-muted">Jika tidak memilih kota, maka akan otomatis WFH</small>
+
+    <!-- Hidden input untuk simpan data -->
+    <input type="hidden" name="city_job" id="city_job" value='<?= json_encode($savedCities) ?>'>
+</div>             
                   <div class="col-lg-6">
                     <label>Tentukan Grade</label>
                     <div class="input-group mb-3">
@@ -132,4 +176,44 @@
       });
       <?php endif ?>
     });
+
+    let selectedCities = <?= json_encode($savedCities) ?>;
+
+const select = document.getElementById("city-select");
+const addBtn = document.getElementById("add-city-btn");
+const container = document.getElementById("city-container");
+const hiddenInput = document.getElementById("city_job");
+
+function renderChips(){
+    container.innerHTML = "";
+    selectedCities.forEach((city, index) => {
+        const chip = document.createElement("div");
+        chip.className = "city-chip border rounded px-2 py-1 me-1 mb-1 d-flex align-items-center";
+        chip.innerHTML = `${city} <span class="remove-chip ms-2" data-index="${index}" style="cursor:pointer;">×</span>`;
+        container.appendChild(chip);
+    });
+    hiddenInput.value = JSON.stringify(selectedCities);
+}
+
+addBtn.addEventListener("click", function(){
+    const city = select.value.trim();
+    if(city !== "" && !selectedCities.includes(city)){
+        selectedCities.push(city);
+        renderChips();
+        select.value = "";
+    }
+});
+
+// Hapus chip
+container.addEventListener("click", function(e){
+    if(e.target.classList.contains("remove-chip")){
+        const index = e.target.dataset.index;
+        selectedCities.splice(index, 1);
+        renderChips();
+    }
+});
+
+// Render awal jika ada savedCities
+renderChips();
+
 </script>

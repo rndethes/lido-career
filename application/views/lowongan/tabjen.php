@@ -13,6 +13,7 @@
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Divisi</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lowongan</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pendidikan</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kota</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grade</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kualifikasi</th>
                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi</th>
@@ -46,6 +47,18 @@
                           <td class="align-middle text-center">
                             <p class="text-xs font-weight-bold mb-0 text-uppercase"><?= $tabjens['education_job'] ?></p>
                           </td>
+                          <td class="align-middle text-center">
+                            <p class="text-xs font-weight-bold mb-0 text-uppercase">
+                                <?php 
+                                    if(!empty($tabjens['city_job'])) {
+                                        $cities = json_decode($tabjens['city_job'], true); // asumsikan tersimpan JSON
+                                        echo implode(', ', $cities);
+                                    } else {
+                                        echo 'WFH';
+                                    }
+                                ?>
+                            </p>
+                        </td>
                           <td class="align-middle text-center">
                             <p class="text-xs font-weight-bold mb-0 text-uppercase"><?= $tabjens['grade_value'] ?></p>
                           </td>
